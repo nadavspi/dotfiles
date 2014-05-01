@@ -13,15 +13,17 @@ set tabstop=4
 " Key bindings
 nnoremap ; :
 
-set relativenumber
+if has("relativenumber")
+    set relativenumber
 
-" Always show line numbers, but only in current window.
-:au WinEnter * :setlocal relativenumber
-:au WinLeave * :setlocal norelativenumber
+    " Always show line numbers, but only in current window.
+    :au WinEnter * :setlocal relativenumber
+    :au WinLeave * :setlocal norelativenumber
 
-" Absolute Line Numbers in Insert Mode
-:au InsertEnter * :set number
-:au InsertLeave * :set relativenumber
+    " Absolute Line Numbers in Insert Mode
+    :au InsertEnter * :set number
+    :au InsertLeave * :set relativenumber
+endif
 
 " Unset the 'last search pattern' highlight by hitting enter
 nnoremap <CR> :noh<CR><CR>
