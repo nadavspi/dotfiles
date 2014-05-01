@@ -1,4 +1,11 @@
+# OS
 .DS_Store
 Thumbs.db
+
+# Vim
 Session.vim
+w[a-z]
+*.un~
+
+# Sass
 .sass-cache
