@@ -1,6 +1,7 @@
 set nocompatible
 syntax on
 set number
+set ruler
 filetype plugin indent on
 set backspace=indent,eol,start
 
