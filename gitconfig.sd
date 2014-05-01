@@ -1,0 +1,15 @@
+[user]
+	name = Nadav Spiegelman
+	email = nspiegelman@somethingdigital.com
+[alias]
+	co = checkout
+	s = status
+	br = branch
+	ci = commit
+[core]
+	editor = vim
+    excludesfile = ~/.gitignore
+[help]
+	autocorrect = 1
+[push]
+	default = simple
