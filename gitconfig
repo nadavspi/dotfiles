@@ -1,0 +1,17 @@
+[user]
+	name = Nadav Spiegelman
+	email = me@nadav.name
+[alias]
+	co = checkout
+	s = status
+	br = branch
+	ci = commit
+[core]
+	editor = vim
+	excludesfile = /Users/nadav/.gitignore
+[credential]
+	helper = osxkeychain
+[help]
+	autocorrect = 1
+[push]
+	default = simple
