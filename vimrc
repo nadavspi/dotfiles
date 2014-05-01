@@ -23,7 +23,7 @@ set relativenumber
 :au InsertEnter * :set number
 :au InsertLeave * :set relativenumber
 
-" Unset the 'last search pattern' highlight by hitting escape
-nnoremap <esc> :noh<return><esc>
+" Unset the 'last search pattern' highlight by hitting enter
+nnoremap <CR> :noh<CR><CR>
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
