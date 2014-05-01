@@ -22,3 +22,6 @@ set relativenumber
 " Absolute Line Numbers in Insert Mode
 :au InsertEnter * :set number
 :au InsertLeave * :set relativenumber
+
+" Unset the 'last search pattern' highlight by hitting escape
+nnoremap <esc> :noh<return><esc>
