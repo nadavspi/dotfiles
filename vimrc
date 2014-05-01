@@ -25,3 +25,5 @@ set relativenumber
 
 " Unset the 'last search pattern' highlight by hitting escape
 nnoremap <esc> :noh<return><esc>
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
