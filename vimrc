@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 filetype plugin indent on
