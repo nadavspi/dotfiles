@@ -39,7 +39,7 @@ set ignorecase
 set smartcase
 
 " Unset the 'last search pattern' highlight by hitting enter
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :noh<CR>
 
 " Key bindings
 """"""""""
