@@ -12,6 +12,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'othree/html5.vim'
 
 call vundle#end()
 filetype plugin indent on
