@@ -1,8 +1,23 @@
 set nocompatible
+filetype off
+
+" Vundle 
+""""""""""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+
+call vundle#end()
+filetype plugin indent on
+
+" General
+""""""""""
 syntax on
 set number
 set ruler
-filetype plugin indent on
 set backspace=indent,eol,start
 let mapleader = ","
 set visualbell
