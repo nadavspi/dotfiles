@@ -44,6 +44,7 @@ nnoremap <CR> :noh<CR>
 " Key bindings
 """"""""""
 nnoremap ; :
+nnoremap <tab> %
 
 " Line numbers
 """"""""""
