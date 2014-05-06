@@ -3,9 +3,12 @@
 Thumbs.db
 
 # Vim
-Session.vim
-w[a-z]
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
 *.un~
+Session.vim
+.netrwhist
+*~
 
 # Sass
 .sass-cache
