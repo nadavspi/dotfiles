@@ -2,14 +2,25 @@
 	name = Nadav Spiegelman
 	email = me@nadav.name
 [alias]
+  a = add
 	co = checkout
 	s = status
-	br = branch
+	br = branch -v
+  c = commit -m
+  ca = commit -am
 	ci = commit
+  amend = commit --amend
+  ammend = commit --amend
+
+  l = log --graph --date=short
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  simple = log --pretty=format:\" * %s\"
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
-[help]
-	autocorrect = 1
 [push]
-	default = simple
+  # push only current branch
+	default = tracking
