@@ -13,6 +13,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'othree/html5.vim'
+Plugin 'alpaca-tc/beautify.vim'
 
 call vundle#end()
 filetype plugin indent on
