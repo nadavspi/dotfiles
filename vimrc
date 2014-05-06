@@ -13,14 +13,13 @@ Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'othree/html5.vim'
-Plugin 'tomasr/molokai'
 
 call vundle#end()
 filetype plugin indent on
 
 " General
 """"""""""
-colorscheme molokai
+colorscheme desert
 syntax on
 set number
 set ruler
