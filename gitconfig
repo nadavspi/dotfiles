@@ -1,6 +1,6 @@
 [user]
 	name = Nadav Spiegelman
-	email = nspiegelman@somethingdigital.com
+	email = me@nadav.name
 [alias]
 	co = checkout
 	s = status
@@ -8,7 +8,7 @@
 	ci = commit
 [core]
 	editor = vim
-    excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [help]
 	autocorrect = 1
 [push]
