@@ -51,15 +51,17 @@ nnoremap <tab> %
 
 " Line numbers
 """"""""""
-set relativenumber
+if exists('+relativenumber')
+  set relativenumber
 
-" Always show line numbers, but only in current window.
-:au WinEnter * :setlocal relativenumber
-:au WinLeave * :setlocal norelativenumber
+  " Always show line numbers, but only in current window.
+  :au WinEnter * :setlocal relativenumber
+  :au WinLeave * :setlocal norelativenumber
 
-" Absolute Line Numbers in Insert Mode
-:au InsertEnter * :set number
-:au InsertLeave * :set relativenumber
+  " Absolute Line Numbers in Insert Mode
+  :au InsertEnter * :set number
+  :au InsertLeave * :set relativenumber
+endif
 
 " Line length and wrapping
 """"""""""
