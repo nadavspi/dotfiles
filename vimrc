@@ -72,6 +72,8 @@ set formatoptions=qrn1
 " Windows
 """"""""""
 nnoremap <leader>w <C-w>v<C-w>l
+set splitbelow
+set splitright
 
 " Tmux / Vim Split Windows 
 """"""""""
@@ -100,7 +102,8 @@ else
   map <C-l> <C-w>l
 endif
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+" Ag / The Silver Searcher
+""""""""
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
