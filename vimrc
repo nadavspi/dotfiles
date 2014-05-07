@@ -49,6 +49,9 @@ nnoremap <CR> :noh<CR>
 nnoremap ; :
 nnoremap <tab> %
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
 " Line numbers
 """"""""""
 if exists('+relativenumber')
