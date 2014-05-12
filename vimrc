@@ -19,6 +19,7 @@ Plugin 'othree/html5.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
@@ -55,6 +56,8 @@ nnoremap <tab> %
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " Line numbers
 """"""""""
