@@ -51,8 +51,12 @@ nnoremap <CR> :noh<CR>
 
 " Key bindings
 """"""""""
-nnoremap ; :
 nnoremap <tab> %
+
+" Vim fugitive
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>ga :Gwrite<cr>
+nmap <leader>gc :Gcommit -m "
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
