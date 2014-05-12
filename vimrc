@@ -6,6 +6,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'tpope/vim-sensible'
+Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -23,7 +25,7 @@ filetype plugin indent on
 
 " General
 """"""""""
-colorscheme desert
+colorscheme Tomorrow-Night-Eighties
 syntax on
 set number
 set ruler
