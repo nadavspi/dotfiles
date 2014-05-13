@@ -5,6 +5,7 @@ filetype off
 """"""""""
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/vim-tomorrow-theme'
