@@ -52,6 +52,7 @@ nnoremap <CR> :noh<CR>
 " Key bindings
 """"""""""
 nnoremap <tab> %
+inoremap <tab> <c-x><c-o>
 
 " Vim fugitive
 nnoremap <leader>gs :Gstatus<cr>
