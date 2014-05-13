@@ -86,6 +86,7 @@ set formatoptions=qrn1
 " Windows
 """"""""""
 nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>v <C-w>
 set splitbelow
 set splitright
 
