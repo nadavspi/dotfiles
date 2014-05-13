@@ -24,3 +24,5 @@
 [push]
   # push only current branch
 	default = tracking
+[github]
+  user = nadavspi
