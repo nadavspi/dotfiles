@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-haml'
@@ -19,7 +20,6 @@ Plugin 'othree/html5.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
