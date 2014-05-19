@@ -59,7 +59,7 @@ inoremap <tab> <c-x><c-o>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -m "
-nnoremap <leader>gp :Git push
+nnoremap <leader>gp :Git push<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
