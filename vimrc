@@ -20,7 +20,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()
 filetype plugin indent on
