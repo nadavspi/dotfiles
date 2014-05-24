@@ -9,6 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'vim-scripts/YankRing.vim'
@@ -94,6 +95,20 @@ nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>v <C-w>
 set splitbelow
 set splitright
+
+" Lightline (statusline)
+""""""""""
+let g:lightline = {
+      \ 'active': {
+      \    'right': [ [ 'fugitive' ] ]
+      \  },
+      \  'component': {
+      \    'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \   },
+      \  'component_visible_condition': {
+      \    'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \  }
+      \ }
 
 " Tmux / Vim Split Windows 
 """"""""""
