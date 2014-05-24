@@ -80,7 +80,7 @@ if exists('+relativenumber')
   :au WinLeave * :setlocal norelativenumber
 
   " Absolute Line Numbers in Insert Mode
-  :au InsertEnter * :set number
+  :au InsertEnter * :set relativenumber!
   :au InsertLeave * :set relativenumber
 endif
 
