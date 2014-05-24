@@ -28,3 +28,11 @@ install_shell_profile () {
 }
 
 install_shell_profile
+
+install_vundle () {
+  if [ ! -d ~/dotfiles/vim/bundle ]; then
+    git clone https://github.com/gmarik/Vundle.vim.git ~/dotfiles/.vim/bundle/Vundle.vim
+  fi
+}
+
+install_vundle
