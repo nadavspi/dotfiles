@@ -11,6 +11,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
+Plugin 'vim-scripts/YankRing.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-haml'
@@ -64,7 +65,8 @@ nnoremap <leader>gp :Git push<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-nnoremap <leader>n :NERDTreeToggle<cr>
+" Yankring
+nnoremap <leader>y :YRShow<cr>
 
 " Line numbers
 """"""""""
