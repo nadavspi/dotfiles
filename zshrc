@@ -19,7 +19,7 @@ DEFAULT_USER="nadav"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often to auto-update? (in days)
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=30
 
 # Uncomment following line if you want to disable colors in ls
 DISABLE_LS_COLORS="false"
