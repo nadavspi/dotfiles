@@ -23,6 +23,7 @@ Plugin 'othree/html5.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 call vundle#end()
 filetype plugin indent on
