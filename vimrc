@@ -50,8 +50,8 @@ set tabstop=2
 set ignorecase
 set smartcase
 
-" Unset the 'last search pattern' highlight by hitting enter
-nnoremap <CR> :noh<CR>
+" Unset the 'last search pattern' highlight 
+nnoremap <leader><space> :noh<CR>
 
 " Key bindings
 """"""""""
