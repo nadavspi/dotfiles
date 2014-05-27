@@ -49,7 +49,7 @@ DISABLE_LS_COLORS="false"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmux)
+plugins=(git tmux vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,3 +85,6 @@ auto-ls () {
 }
 zle -N accept-line auto-ls
 zle -N other-widget auto-ls
+
+# No delay for mode change (vi mode)
+export KEYTIMEOUT=1
