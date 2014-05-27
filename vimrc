@@ -12,7 +12,6 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
-Plugin 'vim-scripts/YankRing.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-haml'
@@ -37,6 +36,7 @@ set ruler
 set backspace=indent,eol,start
 let mapleader = ","
 set visualbell
+set cursorline
 
 " Tabs
 """"""""""
@@ -66,9 +66,6 @@ nnoremap <leader>gp :Git push<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" Yankring
-nnoremap <leader>y :YRShow<cr>
 
 " Line numbers
 """"""""""
