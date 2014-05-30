@@ -16,6 +16,7 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 
 " tpope
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-surround'
