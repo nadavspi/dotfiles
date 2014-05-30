@@ -7,6 +7,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
+" Plugins
+""""""""""
+
+" aesthetic
+Plugin 'itchyny/lightline.vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
+
+" tpope
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
@@ -14,16 +22,18 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'itchyny/lightline.vim'
+
+" utils
+Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'AndrewRadev/splitjoin.vim'
+
+" html/css
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'rking/ag.vim'
-Plugin 'AndrewRadev/splitjoin.vim'
 
 call vundle#end()
 filetype plugin indent on
