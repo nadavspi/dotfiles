@@ -17,7 +17,6 @@ Plugin 'tpope/vim-haml'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'benmills/vimux'
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
@@ -68,10 +67,6 @@ nnoremap <leader>gp :Git push<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" Vimux
-nnoremap <leader>tn :call VimuxRunCommand(
-nnoremap <leader>tr :call RunLastVimTmuxCommand<space>
 
 " Line numbers
 """"""""""
