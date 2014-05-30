@@ -8,20 +8,22 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-haml'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'itchyny/lightline.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-haml'
+Plugin 'benmills/vimux'
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-commentary'
 Plugin 'AndrewRadev/splitjoin.vim'
 
 call vundle#end()
@@ -66,6 +68,10 @@ nnoremap <leader>gp :Git push<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+" Vimux
+nnoremap <leader>tn :call VimuxRunCommand(
+nnoremap <leader>tr :call RunLastVimTmuxCommand<space>
 
 " Line numbers
 """"""""""
