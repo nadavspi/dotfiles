@@ -29,6 +29,7 @@ Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'terryma/vim-multiple-cursors'
 
 " html/css
 Plugin 'mattn/emmet-vim'
