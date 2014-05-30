@@ -66,6 +66,10 @@ nnoremap <leader><space> :noh<CR>
 
 " Key bindings
 """"""""""
+
+" edit vimrc 
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
 nnoremap <tab> %
 inoremap <tab> <c-x><c-o>
 
