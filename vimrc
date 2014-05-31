@@ -72,6 +72,9 @@ nnoremap <leader><space> :noh<CR>
 " edit vimrc 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
 nnoremap <tab> %
 inoremap <tab> <c-x><c-o>
 
@@ -81,8 +84,12 @@ nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -m "
 nnoremap <leader>gp :Git push<cr>
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
+" edit files relative to current dir
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 " Line numbers
 """"""""""
