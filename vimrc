@@ -99,10 +99,6 @@ if exists('+relativenumber')
   " Always show line numbers, but only in current window.
   :au WinEnter * :setlocal relativenumber
   :au WinLeave * :setlocal norelativenumber
-
-  " Absolute Line Numbers in Insert Mode
-  :au InsertEnter * :set relativenumber!
-  :au InsertLeave * :set relativenumber
 endif
 
 " Line length and wrapping
