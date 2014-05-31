@@ -91,6 +91,10 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
+" CtrlP shortcuts for Magento
+nnoremap gms :CtrlP skin/frontend/ 
+nnoremap gmd :CtrlP app/design/frontend/
+
 " Line numbers
 """"""""""
 if exists('+relativenumber')
