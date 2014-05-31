@@ -69,8 +69,8 @@ nnoremap <leader><space> :noh<CR>
 " Key bindings
 """"""""""
 
-" edit vimrc 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" go edit vimrc 
+nnoremap gev :vsplit $MYVIMRC<cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
