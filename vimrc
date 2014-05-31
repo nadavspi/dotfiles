@@ -92,8 +92,8 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
 " CtrlP shortcuts for Magento
-nnoremap gms :CtrlP skin/frontend/ 
-nnoremap gmd :CtrlP app/design/frontend/
+nnoremap gms :CtrlP skin/frontend<cr>
+nnoremap gmd :CtrlP app/design/frontend<cr>
 
 " Line numbers
 """"""""""
