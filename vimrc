@@ -109,6 +109,7 @@ endif
 " Line length and wrapping
 """"""""""
 set wrap
+set linebreak
 set textwidth=79
 set formatoptions=qrn1
 
