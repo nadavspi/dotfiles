@@ -31,6 +31,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'justinmk/vim-sneak'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 
 " html/css
 Plugin 'mattn/emmet-vim'

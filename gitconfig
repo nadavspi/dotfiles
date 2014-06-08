@@ -26,3 +26,5 @@
 	default = tracking
 [github]
   user = nadavspi
+[gist]
+	private = true
