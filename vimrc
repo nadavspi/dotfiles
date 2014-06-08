@@ -30,6 +30,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'justinmk/vim-sneak'
 
 " html/css
 Plugin 'mattn/emmet-vim'
