@@ -76,8 +76,8 @@ nnoremap <leader><space> :noh<CR>
 " go edit vimrc 
 nnoremap gev :vsplit $MYVIMRC<cr>
 
-inoremap jk <Esc>
-inoremap kk <Esc>:w<cr>
+inoremap jk <Esc>:w<cr>
+inoremap kk <Esc>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
