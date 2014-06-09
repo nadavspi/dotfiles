@@ -79,12 +79,6 @@ nnoremap gev :vsplit $MYVIMRC<cr>
 inoremap jk <Esc>:w<cr>
 inoremap kk <Esc>
 
-" swap colon and semicolon
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
