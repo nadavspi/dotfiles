@@ -76,6 +76,11 @@ nnoremap <leader><space> :noh<CR>
 " go edit vimrc 
 nnoremap gev :vsplit $MYVIMRC<cr>
 
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
 inoremap jk <Esc>:w<cr>
 inoremap kk <Esc>
 
@@ -164,3 +169,14 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" Sneak
+""""""""
+
+nmap <enter> <Plug>SneakNext
+xmap <enter> <Plug>SneakNext
+nmap <bs>    <Plug>SneakPrevious
+xmap <bs>    <Plug>SneakPrevious
+
+" Case sensitivity is determined by 'ignorecase' and 'smartcase'.
+let g:sneak#use_ic_scs = 1
