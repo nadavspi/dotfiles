@@ -29,6 +29,7 @@ Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'wellle/targets.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'justinmk/vim-sneak'
 Plugin 'mattn/webapi-vim'
@@ -76,10 +77,8 @@ nnoremap <leader><space> :noh<CR>
 " go edit vimrc 
 nnoremap gev :vsplit $MYVIMRC<cr>
 
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
+map ; :
+noremap ;; ;
 
 inoremap jk <Esc>:w<cr>
 inoremap kk <Esc>
