@@ -23,6 +23,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-ragtag'
 
 " utils
 Plugin 'rking/ag.vim'
