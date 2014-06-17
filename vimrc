@@ -103,6 +103,8 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
+" CtrlP
+nnoremap <leader>r :CtrlPMRU<cr>
 " CtrlP shortcuts for Magento
 nnoremap gms :CtrlP skin/frontend<cr>
 nnoremap gmd :CtrlP app/design/frontend<cr>
