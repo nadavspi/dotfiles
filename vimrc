@@ -55,7 +55,10 @@ set ruler
 set backspace=indent,eol,start
 let mapleader = ","
 set visualbell
-set cursorline
+
+" cursorline on current window only
+:au WinEnter * :setlocal cursorline
+:au WinLeave * :setlocal nocursorline
 
 " Tabs
 """"""""""
