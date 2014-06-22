@@ -108,6 +108,8 @@ nnoremap <leader>r :CtrlPMRU<cr>
 " CtrlP shortcuts for Magento
 nnoremap gms :CtrlP skin/frontend<cr>
 nnoremap gmd :CtrlP app/design/frontend<cr>
+" Notes
+nnoremap gn :CtrlP ~/Dropbox/Notes<cr>
 
 " Line numbers
 """"""""""
