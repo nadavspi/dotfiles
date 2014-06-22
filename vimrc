@@ -55,7 +55,10 @@ set ruler
 set backspace=indent,eol,start
 let mapleader = ","
 set visualbell
-set cursorline
+
+" cursorline on current window only
+:au WinEnter * :setlocal cursorline
+:au WinLeave * :setlocal nocursorline
 
 " Tabs
 """"""""""
@@ -68,6 +71,8 @@ set tabstop=2
 """"""""""
 set ignorecase
 set smartcase
+set incsearch
+set hlsearch
 
 " Unset the 'last search pattern' highlight 
 nnoremap <leader><space> :noh<CR>
