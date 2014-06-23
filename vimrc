@@ -83,6 +83,9 @@ nnoremap <leader><space> :noh<CR>
 " go edit vimrc 
 nnoremap gev :vsplit $MYVIMRC<cr>
 
+" go edit hosts file
+nnoremap geh :vsplit /etc/hosts<cr>
+
 map ; :
 noremap ;; ;
 
