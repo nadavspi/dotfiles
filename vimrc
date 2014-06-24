@@ -35,6 +35,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'justinmk/vim-sneak'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
+Plugin 'duff/vim-scratch'
 
 " html/css
 Plugin 'mattn/emmet-vim'
@@ -72,7 +73,6 @@ set tabstop=2
 set ignorecase
 set smartcase
 set incsearch
-set hlsearch
 
 " Unset the 'last search pattern' highlight 
 nnoremap <leader><space> :noh<CR>
