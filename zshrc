@@ -8,7 +8,7 @@ DISABLE_AUTO_TITLE="true"
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/Users/nadav/.rvm/gems/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/nadav/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin"
+export PATH="/Users/nadav/.rvm/gems/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/nadav/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/mysql/bin"
 
 auto-ls () {
   if [[ $#BUFFER -eq 0 ]]; then
