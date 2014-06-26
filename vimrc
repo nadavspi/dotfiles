@@ -103,6 +103,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -m "
 nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gm :Git amend<cr>
 
 " edit files relative to current dir
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
