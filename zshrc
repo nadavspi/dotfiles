@@ -24,3 +24,6 @@ zle -N other-widget auto-ls
 
 # No delay for mode change (vi mode)
 export KEYTIMEOUT=1
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities github nspiegelman
