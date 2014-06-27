@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pygmalion"
 DEFAULT_USER="nadav"
-plugins=(git tmux vi-mode ssh-agent)
+plugins=(git tmux ssh-agent)
 
 export UPDATE_ZSH_DAYS=30
 DISABLE_AUTO_TITLE="true"
