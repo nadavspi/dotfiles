@@ -101,7 +101,7 @@ inoremap <tab> <c-x><c-o>
 " Vim fugitive
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>ga :Gwrite<cr>
-nnoremap <leader>gc :Gcommit -m "
+nnoremap <leader>gc :Gcommit -m ""<left>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gm :Git amend<cr>
 
