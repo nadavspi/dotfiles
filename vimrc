@@ -195,3 +195,6 @@ xmap <bs>    <Plug>SneakPrevious
 
 " Case sensitivity is determined by 'ignorecase' and 'smartcase'.
 let g:sneak#use_ic_scs = 1
+
+" Private gists by default
+let g:gist_post_private = 1
