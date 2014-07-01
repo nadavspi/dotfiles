@@ -95,6 +95,8 @@ inoremap kk <Esc>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+nnoremap <leader>t :tabnew<cr>
+
 nnoremap <tab> %
 inoremap <tab> <c-x><c-o>
 
