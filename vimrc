@@ -77,6 +77,11 @@ set incsearch
 " Unset the 'last search pattern' highlight 
 nnoremap <leader><space> :noh<CR>
 
+" Abbreviations
+""""""""""
+abbreviate lenght length 
+
+
 " Key bindings
 """"""""""
 
