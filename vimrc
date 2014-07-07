@@ -37,11 +37,15 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
 
+" code
+Plugin 'scrooloose/syntastic'
+
 " html/css
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
+Plugin 'csscomb/vim-csscomb'
 Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
@@ -203,3 +207,7 @@ let g:sneak#use_ic_scs = 1
 
 " Private gists by default
 let g:gist_post_private = 1
+
+" Syntastic
+""""""""
+let g:syntastic_scss_checkers = ['scss_lint']
