@@ -1,0 +1,6 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+source! /Users/nadav/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+set toolbars=none,tabs
