@@ -1,6 +1,6 @@
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="gitconfig gitignore vimrc vim gemrc tmux.conf"
+files="gitconfig gitignore vimrc vim gemrc tmux.conf tmuxinator"
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
