@@ -65,6 +65,10 @@ set visualbell
 :au WinEnter * :setlocal cursorline
 :au WinLeave * :setlocal nocursorline
 
+" Filetypes
+""""""""""
+autocmd BufNewFile,BufRead *.phtml set filetype=php
+
 " Tabs
 """"""""""
 set expandtab
