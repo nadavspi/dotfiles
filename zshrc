@@ -28,3 +28,5 @@ export KEYTIMEOUT=1
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent identities github nspiegelman
+
+source ~/.zshrc-local
