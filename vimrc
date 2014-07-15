@@ -134,6 +134,7 @@ nnoremap gms :CtrlP skin/frontend<cr>
 nnoremap gmd :CtrlP app/design/frontend<cr>
 " Notes
 nnoremap gn :CtrlP ~/Dropbox/Notes<cr>
+nnoremap gwn :CtrlP ~/Documents/Notes<cr>
 
 " Line numbers
 """"""""""
