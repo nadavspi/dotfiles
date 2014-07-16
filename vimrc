@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 " aesthetic
 Plugin 'itchyny/lightline.vim'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'altercation/vim-colors-solarized'
 
 " tpope
 Plugin 'tpope/vim-sensible'
@@ -53,7 +54,9 @@ filetype plugin indent on
 
 " General
 """"""""""
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
+set background=light
+colorscheme solarized
 syntax on
 set number
 set ruler
@@ -163,6 +166,7 @@ set splitright
 " Lightline (statusline)
 """"""""""
 let g:lightline = {
+      \ 'colorscheme': 'solarized_light',
       \ 'active': {
       \    'right': [ [ 'fugitive' ] ]
       \  },
