@@ -11,10 +11,13 @@ Plugin 'gmarik/Vundle.vim'
 """"""""""
 
 " aesthetic
-Plugin 'itchyny/lightline.vim'
+Plugin 'bling/vim-airline'
+" Plugin 'itchyny/lightline.vim'
 Plugin 'reedes/vim-thematic'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'reedes/vim-colors-pencil'
+" Plugin 'edkolev/tmuxline.vim'
 
 " tpope
 Plugin 'tpope/vim-sensible'
@@ -58,9 +61,6 @@ filetype plugin indent on
 
 " General
 """"""""""
-" colorscheme Tomorrow-Night-Eighties
-set background=light
-colorscheme solarized
 syntax on
 set number
 set ruler
@@ -167,20 +167,41 @@ nnoremap <leader>v <C-w>
 set splitbelow
 set splitright
 
+" Airline
+""""""""""
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c'],
+    \ [ 'warning' ]
+    \ ]
+
+" Tmuxline
+""""""""""
+" let g:tmuxline_preset = {
+"     \ 'a' : '[#S]',
+"     \ 'z' : '[#h]',
+"     \ 'win': '#I:#W#F',
+"     \ 'cwin': '#I:#W#F',
+"     \ 'options': {
+"         \'status-justify': 'centre'
+"         \ }
+"     \ }
+
 " Lightline (statusline)
 """"""""""
-let g:lightline = {
-      \ 'colorscheme': 'solarized_light',
-      \ 'active': {
-      \    'right': [ [ 'fugitive' ] ]
-      \  },
-      \  'component': {
-      \    'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \   },
-      \  'component_visible_condition': {
-      \    'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \  }
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'solarized_light',
+"       \ 'active': {
+"       \    'right': [ [ 'fugitive' ] ]
+"       \  },
+"       \  'component': {
+"       \    'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+"       \   },
+"       \  'component_visible_condition': {
+"       \    'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+"       \  }
+"       \ }
 
 " Ag / The Silver Searcher
 """"""""
@@ -230,3 +251,34 @@ let g:syntastic_scss_checkers = ['scss_lint']
 """"""""
 " disable switch to next line with h/l
 let g:pencil#cursorwrap = 0  
+
+" Thematic
+""""""""
+let g:thematic#theme_name = 'tomorrow'
+let g:thematic#defaults = {
+      \ 'background': 'dark',
+      \ 'laststatus': 2,
+      \ 'ruler': 0,
+\ }
+let g:thematic#themes = {
+      \ 'solarized_light' : {
+      \ 'colorscheme': 'solarized',
+      \ 'background': 'light',
+      \ 'airline-theme': 'solarized',
+      \ },
+      \ 'solarized_dark' : {
+      \ 'colorscheme': 'solarized',
+      \ 'airline-theme': 'solarized',
+      \ },
+      \ 'tomorrow' : {
+      \ 'colorscheme': 'Tomorrow-Night-Eighties',
+      \ 'background': 'dark',
+      \ 'airline-theme': 'tomorrow',
+      \ },
+      \ 'pencil' :{'colorscheme': 'pencil',
+      \                 'background': 'light',
+      \                 'laststatus': 0,
+      \                 'ruler': 1,
+      \                },
+  \ }
+
