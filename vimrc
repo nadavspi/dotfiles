@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " aesthetic
 Plugin 'itchyny/lightline.vim'
+Plugin 'reedes/vim-thematic'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 
@@ -48,6 +49,9 @@ Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'csscomb/vim-csscomb'
 Plugin 'jiangmiao/auto-pairs'
+
+" writing
+Plugin 'reedes/vim-pencil'
 
 call vundle#end()
 filetype plugin indent on
@@ -220,3 +224,9 @@ let g:gist_post_private = 1
 " Syntastic
 """"""""
 let g:syntastic_scss_checkers = ['scss_lint']
+
+
+" Pencil
+""""""""
+" disable switch to next line with h/l
+let g:pencil#cursorwrap = 0  
