@@ -76,6 +76,7 @@ set visualbell
 " Filetypes
 """"""""""
 autocmd BufNewFile,BufRead *.phtml set filetype=php
+autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
 
 " Tabs
 """"""""""
