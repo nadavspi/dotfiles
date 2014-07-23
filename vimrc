@@ -17,7 +17,7 @@ Plugin 'reedes/vim-thematic'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'reedes/vim-colors-pencil'
-" Plugin 'edkolev/tmuxline.vim'
+Plugin 'junegunn/goyo.vim'
 
 " tpope
 Plugin 'tpope/vim-sensible'
@@ -29,6 +29,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-rails'
 
 " utils
 Plugin 'rking/ag.vim'
@@ -278,7 +279,34 @@ let g:thematic#themes = {
       \ 'pencil' :{'colorscheme': 'pencil',
       \                 'background': 'light',
       \                 'laststatus': 0,
-      \                 'ruler': 1,
       \                },
   \ }
 
+" Goyo
+""""""""
+
+function! GoyoBefore()
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+  set scrolloff=999
+  set noshowmode
+  set noshowcmd
+  set nocursorline
+  set norelativenumber
+endfunction
+
+function! GoyoAfter()
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+  set scrolloff=5
+  set showmode
+  set showcmd
+  set cursorline
+  set relativenumber
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+
+let g:goyo_width = 68
