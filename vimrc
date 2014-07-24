@@ -109,8 +109,8 @@ nnoremap gev :vsplit $MYVIMRC<cr>
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
 
-" map ; :
-" noremap ;; ;
+map ; :
+noremap ;; ;
 
 inoremap jk <Esc>:w<cr>
 inoremap kk <Esc>
