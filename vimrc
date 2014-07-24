@@ -17,7 +17,6 @@ Plugin 'reedes/vim-thematic'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'junegunn/goyo.vim'
 
 " tpope
 Plugin 'tpope/vim-sensible'
@@ -56,6 +55,8 @@ Plugin 'jiangmiao/auto-pairs'
 
 " writing
 Plugin 'reedes/vim-pencil'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -108,8 +109,8 @@ nnoremap gev :vsplit $MYVIMRC<cr>
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
 
-map ; :
-noremap ;; ;
+" map ; :
+" noremap ;; ;
 
 inoremap jk <Esc>:w<cr>
 inoremap kk <Esc>
@@ -295,6 +296,7 @@ function! GoyoBefore()
   set noshowcmd
   set nocursorline
   set norelativenumber
+  TogglePencil
 endfunction
 
 function! GoyoAfter()
@@ -306,6 +308,7 @@ function! GoyoAfter()
   set showcmd
   set cursorline
   set relativenumber
+  NoPencil
 endfunction
 
 let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
