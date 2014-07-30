@@ -41,6 +41,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
+Plugin 'mtth/scratch.vim'
 
 " code
 Plugin 'scrooloose/syntastic'
@@ -51,7 +52,6 @@ Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'csscomb/vim-csscomb'
-Plugin 'jiangmiao/auto-pairs'
 
 " writing
 Plugin 'reedes/vim-pencil'
