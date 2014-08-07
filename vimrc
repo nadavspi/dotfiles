@@ -70,6 +70,9 @@ set backspace=indent,eol,start
 let mapleader = ","
 set visualbell
 
+set nobackup
+set noswapfile
+
 " cursorline on current window only
 :au WinEnter * :setlocal cursorline
 :au WinLeave * :setlocal nocursorline
