@@ -53,6 +53,7 @@ Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'csscomb/vim-csscomb'
+Plugin 'mustache/vim-mustache-handlebars'
 
 " writing
 Plugin 'reedes/vim-pencil'
