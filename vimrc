@@ -47,12 +47,13 @@ Plugin 'nixon/vim-vmath'
 " code
 Plugin 'scrooloose/syntastic'
 
-" html/css
+" frontend
 Plugin 'mattn/emmet-vim'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
 Plugin 'csscomb/vim-csscomb'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
 
 " writing
