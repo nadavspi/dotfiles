@@ -42,6 +42,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'mtth/scratch.vim'
+Plugin 'nixon/vim-vmath'
 
 " code
 Plugin 'scrooloose/syntastic'
@@ -321,3 +322,8 @@ endfunction
 let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
 let g:goyo_width = 68
+
+" Vmath
+""""""""
+vmap <expr>  ++  VMATH_YankAndAnalyse()
+nmap         ++  vip++
