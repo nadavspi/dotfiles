@@ -77,6 +77,10 @@ set noswapfile
 :au WinEnter * :setlocal cursorline
 :au WinLeave * :setlocal nocursorline
 
+" highlight 81st column of wide lines
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
 " Filetypes
 """"""""""
 autocmd BufNewFile,BufRead *.phtml set filetype=php
