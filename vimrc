@@ -108,6 +108,7 @@ nnoremap <leader><space> :noh<CR>
 " Abbreviations
 """"""""""
 abbreviate lenght length 
+abbreviate dont' don't
 
 
 " Key bindings
