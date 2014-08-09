@@ -268,6 +268,7 @@ let g:syntastic_scss_checkers = ['scss_lint']
 
 " Pencil
 """"""""
+let g:pencil#wrapModeDefault = 'soft'  
 " disable switch to next line with h/l
 let g:pencil#cursorwrap = 0  
 
