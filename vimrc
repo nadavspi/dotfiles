@@ -32,7 +32,7 @@ Plugin 'tpope/vim-rails'
 
 " utils
 Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'wellle/targets.vim'
