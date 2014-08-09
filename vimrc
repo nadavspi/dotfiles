@@ -60,6 +60,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
+Plugin 'glidenote/newdayone.vim'
 
 call vundle#end()
 filetype plugin indent on
