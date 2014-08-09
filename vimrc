@@ -41,7 +41,6 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
-Plugin 'mtth/scratch.vim'
 Plugin 'nixon/vim-vmath'
 
 " code
