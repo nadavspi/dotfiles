@@ -137,7 +137,6 @@ inoremap <tab> <c-x><c-o>
 " toggle folds, because za is awkward 
 nnoremap zo za
 nnoremap zc za
-nnoremap zz za
 
 " Vim fugitive
 nnoremap <leader>gs :Gstatus<cr>
