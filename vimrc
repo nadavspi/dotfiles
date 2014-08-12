@@ -161,6 +161,9 @@ nnoremap gmd :CtrlP app/design/frontend<cr>
 nnoremap gn :CtrlP ~/Dropbox/Notes<cr>
 nnoremap gwn :CtrlP ~/Documents/Notes<cr>
 
+" Emmet
+let g:user_emmet_leader_key = '<c-e>'
+
 " Line numbers
 """"""""""
 if exists('+relativenumber')
