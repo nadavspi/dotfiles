@@ -28,3 +28,11 @@ re-downloaded in order to locate PACKAGE."
 
 ; add line numbers
 (global-linum-mode t)
+
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(unless (display-graphic-p) (menu-bar-mode -1))
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1) 
