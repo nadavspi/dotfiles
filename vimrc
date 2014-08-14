@@ -339,3 +339,7 @@ let g:goyo_width = 68
 """"""""
 vmap <expr>  ++  VMATH_YankAndAnalyse()
 nmap         ++  vip++
+
+" delimitMate
+"""""""""""""
+let delimitMate_expand_cr = 1
