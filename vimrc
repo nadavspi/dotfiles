@@ -48,6 +48,7 @@ Plugin 'scrooloose/syntastic'
 
 " frontend
 Plugin 'mattn/emmet-vim'
+Plugin 'Raimondi/delimitMate'
 Plugin 'JulesWang/css.vim'
 Plugin 'ap/vim-css-color'
 Plugin 'othree/html5.vim'
