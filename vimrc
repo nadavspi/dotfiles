@@ -78,6 +78,9 @@ set visualbell
 set nobackup
 set noswapfile
 
+" automatically re-read files that have been changed outside of vim 
+set autoread
+
 " cursorline on current window only
 :au WinEnter * :setlocal cursorline
 :au WinLeave * :setlocal nocursorline
