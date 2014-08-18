@@ -110,6 +110,7 @@ set tabstop=2
 set ignorecase
 set smartcase
 set incsearch
+set nohlsearch
 
 " Unset the 'last search pattern' highlight 
 nnoremap <leader><space> :noh<CR>
