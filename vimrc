@@ -42,6 +42,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nixon/vim-vmath'
+Plugin 'kana/vim-textobj-user'
 
 " code
 Plugin 'scrooloose/syntastic'
@@ -353,3 +354,15 @@ nmap         ++  vip++
 " delimitMate
 """""""""""""
 let delimitMate_expand_cr = 1
+
+" vim-textobj-user (custom text objects)
+""""""""""""""""""""""""""""""""""""""""
+
+call textobj#user#plugin('php', {
+\   'code': {
+\     'pattern': ['<?php\>', '?>'],
+\     'select-a': 'aP',
+\     'select-i': 'iP',
+\   },
+\ })
+
