@@ -132,6 +132,9 @@ abbreviate dont' don't
 " go edit vimrc 
 nnoremap gev :vsplit $MYVIMRC<cr>
 
+" go source vimrc 
+nnoremap gsv :source $MYVIMRC<cr>
+
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
 
