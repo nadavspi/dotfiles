@@ -179,6 +179,16 @@ nnoremap gwn :CtrlP ~/Dropbox/NotesWork<cr>
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
 
+" Buffers
+nnoremap <leader>1 :buffer 1<cr>
+nnoremap <leader>2 :buffer 2<cr>
+nnoremap <leader>3 :buffer 3<cr>
+nnoremap <leader>4 :buffer 4<cr>
+nnoremap <leader>5 :buffer 5<cr>
+nnoremap <leader>6 :buffer 6<cr>
+nnoremap <leader>7 :buffer 7<cr>
+nnoremap <leader>8 :buffer 8<cr>
+
 " Line numbers
 """"""""""
 if exists('+relativenumber')
@@ -212,6 +222,7 @@ let g:airline#extensions#default#layout = [
     \ [ 'warning' ]
     \ ]
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Tmuxline
 """"""""""
