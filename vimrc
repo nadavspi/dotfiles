@@ -46,6 +46,7 @@ Plugin 'kana/vim-textobj-user'
 
 " code
 Plugin 'scrooloose/syntastic'
+Plugin 'StanAngeloff/php.vim'
 
 " frontend
 Plugin 'mattn/emmet-vim'
