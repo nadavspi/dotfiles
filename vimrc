@@ -43,6 +43,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'nixon/vim-vmath'
 Plugin 'kana/vim-textobj-user'
+Plugin 'tyru/open-browser.vim'
 
 " code
 Plugin 'scrooloose/syntastic'
@@ -367,3 +368,9 @@ call textobj#user#plugin('php', {
 \   },
 \ })
 
+" open-browser
+""""""""""""""
+
+" If URI, open. Othwrwise, search.
+nnoremap gb <Plug>(openbrowser-smart-search) 
+vnoremap gb <Plug>(openbrowser-smart-search) 
