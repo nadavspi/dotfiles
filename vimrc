@@ -49,6 +49,7 @@ Plugin 'tyru/open-browser.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'dsawardekar/wordpress.vim'
 
 " frontend
 Plugin 'mattn/emmet-vim'
