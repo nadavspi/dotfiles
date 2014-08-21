@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-" Vundle 
+" Vundle
 """"""""""
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -87,7 +87,7 @@ set visualbell
 set nobackup
 set noswapfile
 
-" automatically re-read files that have been changed outside of vim 
+" automatically re-read files that have been changed outside of vim
 set autoread
 
 " cursorline on current window only
@@ -117,22 +117,22 @@ set smartcase
 set incsearch
 set nohlsearch
 
-" Unset the 'last search pattern' highlight 
+" Unset the 'last search pattern' highlight
 nnoremap <leader><space> :noh<CR>
 
 " Abbreviations
 """"""""""
-abbreviate lenght length 
+abbreviate lenght length
 abbreviate dont' don't
 
 
 " Key bindings
 """"""""""
 
-" go edit vimrc 
+" go edit vimrc
 nnoremap gev :vsplit $MYVIMRC<cr>
 
-" go source vimrc 
+" go source vimrc
 nnoremap gsv :source $MYVIMRC<cr>
 
 " go install plugins
@@ -155,7 +155,7 @@ nnoremap <leader>t :tabnew<cr>
 nnoremap <tab> %
 inoremap <tab> <c-x><c-o>
 
-" toggle folds, because za is awkward 
+" toggle folds, because za is awkward
 nnoremap zo za
 nnoremap zc za
 
@@ -274,9 +274,9 @@ let g:syntastic_scss_checkers = ['scss_lint']
 
 " Pencil
 """"""""
-let g:pencil#wrapModeDefault = 'soft'  
+let g:pencil#wrapModeDefault = 'soft'
 " disable switch to next line with h/l
-let g:pencil#cursorwrap = 0  
+let g:pencil#cursorwrap = 0
 
 " Thematic
 """"""""
@@ -363,5 +363,5 @@ call textobj#user#plugin('php', {
 """"""""""""""
 
 " If URI, open. Othwrwise, search.
-nnoremap gb <Plug>(openbrowser-smart-search) 
-vnoremap gb <Plug>(openbrowser-smart-search) 
+nnoremap gb <Plug>(openbrowser-smart-search)
+vnoremap gb <Plug>(openbrowser-smart-search)
