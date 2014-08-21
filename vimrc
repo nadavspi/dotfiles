@@ -43,6 +43,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'nixon/vim-vmath'
 Plugin 'kana/vim-textobj-user'
 Plugin 'tyru/open-browser.vim'
+Plugin 'bronson/vim-trailing-whitespace'
 
 " code
 Plugin 'scrooloose/syntastic'
