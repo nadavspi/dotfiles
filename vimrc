@@ -135,6 +135,9 @@ nnoremap gev :vsplit $MYVIMRC<cr>
 " go source vimrc 
 nnoremap gsv :source $MYVIMRC<cr>
 
+" go install plugins
+nnoremap gip :PluginInstall<cr>
+
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
 
