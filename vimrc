@@ -12,7 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " aesthetic
 Plugin 'bling/vim-airline'
-" Plugin 'itchyny/lightline.vim'
 Plugin 'reedes/vim-thematic'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
@@ -224,33 +223,6 @@ let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c'],
     \ [ 'warning' ]
     \ ]
-
-" Tmuxline
-""""""""""
-" let g:tmuxline_preset = {
-"     \ 'a' : '[#S]',
-"     \ 'z' : '[#h]',
-"     \ 'win': '#I:#W#F',
-"     \ 'cwin': '#I:#W#F',
-"     \ 'options': {
-"         \'status-justify': 'centre'
-"         \ }
-"     \ }
-
-" Lightline (statusline)
-""""""""""
-" let g:lightline = {
-"       \ 'colorscheme': 'solarized_light',
-"       \ 'active': {
-"       \    'right': [ [ 'fugitive' ] ]
-"       \  },
-"       \  'component': {
-"       \    'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-"       \   },
-"       \  'component_visible_condition': {
-"       \    'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-"       \  }
-"       \ }
 
 " Ag / The Silver Searcher
 """"""""
