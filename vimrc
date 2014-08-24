@@ -176,6 +176,8 @@ map <leader>et :tabe %%
 
 " CtrlP
 nnoremap <leader>r :CtrlPMRU<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
+
 " CtrlP shortcuts for Magento
 nnoremap gms :CtrlP skin/frontend<cr>
 nnoremap gmd :CtrlP app/design/frontend<cr>
