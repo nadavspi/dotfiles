@@ -198,6 +198,9 @@ nnoremap <leader>6 :buffer 6<cr>
 nnoremap <leader>7 :buffer 7<cr>
 nnoremap <leader>8 :buffer 8<cr>
 
+" duplicate and comma-ize CSS
+nnoremap gy :norm yypk$hC,<cr>:norm j0<cr>
+
 " Line numbers
 """"""""""
 if exists('+relativenumber')
