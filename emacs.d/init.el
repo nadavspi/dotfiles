@@ -77,12 +77,28 @@
   (interactive)
   (evil-normal-state)
   (save-buffer))
+(defun evil-window-keymaps (map)
+  (define-key map (kbd "C-k") 'evil-window-up)
+  (define-key map (kbd "C-j") 'evil-window-down)
+  (define-key map (kbd "C-h") 'evil-window-left)
+  (define-key map (kbd "C-l") 'evil-window-right))
+(defun insert-blank-line-above ()
+  (interactive)
+  (evil-open-above 1)
+  (evil-normal-state)
+  (message nil))
+(defun insert-blank-line-below ()
+  (interactive)
+  (evil-open-below 1)
+  (evil-normal-state)
+  (message nil))
 
 (use-package evil
   :ensure evil
 
   :pre-load
-  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-u-scroll t
+	evil-want-C-w-in-emacs-state t)
 
   :init
   (progn
@@ -92,8 +108,13 @@
       (progn
 	(evil-leader/set-leader ",")
 	(global-evil-leader-mode t)
+
 	(evil-leader/set-key
-	 "m" (lambda () (interactive) (message "Mode %s" major-mode)))))
+	 "m" (lambda () (interactive) (message "Mode %s" major-mode)))
+
+	; switch to previously edited buffer
+	(evil-leader/set-key
+	  "," 'mode-line-other-buffer)))
 
     (use-package key-chord
       :ensure key-chord
@@ -115,7 +136,21 @@
 
   :config
   (progn
-    (evil-mode t)))
+    (evil-mode t)
+
+    (define-key evil-normal-state-map (kbd "gei")
+      (lambda () (interactive) (find-file user-init-file)))
+    (define-key evil-normal-state-map (kbd "geb")
+      'eval-buffer)
+    (define-key evil-normal-state-map (kbd "geh")
+      (lambda () (interactive) (find-file "/etc/hosts")))
+
+    (evil-ex-define-cmd "h" 'help)
+    (evil-window-keymaps evil-normal-state-map)
+
+    ;; Insert line above/below like in unimpaired
+    (define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
+    (define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)))
 	
 ;; Magit
 
@@ -126,17 +161,6 @@
   (evil-leader/set-key
     "gs" 'magit-status))
 
-;; Insert line above/below like in unimpaired
-;(defun insert-blank-line-above ()
-  ;(interactive)
-  ;(evil-open-above 1)
-  ;(evil-normal-state))
-;(defun insert-blank-line-below ()
-  ;(interactive)
-  ;(evil-open-below 1)
-  ;(evil-normal-state))
-;(define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
-;(define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)
 
 
 ;; Rainbow delimiters
