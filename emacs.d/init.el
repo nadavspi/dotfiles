@@ -5,6 +5,9 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Turn off alarms
+(setq ring-bell-function 'ignore)
+
 ;;; Package management
 
 ;; Set up package archives
@@ -48,3 +51,6 @@
 (add-hook 'after-init-hook '(lambda ()
   (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 ))
+
+;;; Evil mode
+
