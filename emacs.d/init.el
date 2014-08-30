@@ -55,35 +55,7 @@
 (add-hook 'dired-mode-hook 'use-monospace-font) (add-hook 'magit-mode-hook 'use-monospace-font))
 
 
-;; Install packages
-; (defvar required-packages
-;   '(
-;     evil
-;     magit
-;   ) "a list of packages to ensure are installed at launch.")
-
-; (require 'cl)
-
-; ; Check if all packages in required-packages are installed
-; (defun packages-installed-p ()
-;   (loop for p in required-packages
-;     when (not (package-installed-p p)) do (return nil)
-;     finally (return t)))
-
-; ; Install missing packages
-; (unless (packages-installed-p)
-;   ; Refresh packages
-;   (message "%s" "Emacs is now refreshing its package database...")
-;   (package-refresh-contents)
-;   (message "%s" " done.")
-;   ; install the missing packages
-;   (dolist (p required-packages)
-;     (when (not (package-installed-p p))
-;       (package-install p))))
-
-
 ;;; Key binds
-
 (add-hook 'after-init-hook '(lambda ()
   (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 ))
@@ -107,7 +79,10 @@
 (define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
 (define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)
 
-
-
 (evil-mode t)
+
+;; Rainbow delimiters
+(use-package rainbow-delimiters
+  :ensure rainbow-delimiters 
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
