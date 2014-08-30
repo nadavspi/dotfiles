@@ -1,3 +1,16 @@
+;;; Package management
+
+;; Set up package archives
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;(add-to-list 'package-archives
+;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
+
+(require 'use-package)
+
+
 ;;; Basic settings
 
 ;; Remove scrollbars, menu bars, toolbars
@@ -5,46 +18,69 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Quiet startup
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message t
+      initial-scratch-message nil)
+
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 
-;;; Package management
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Set up package archives
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(package-initialize)
+;; Highlight current line (like cursorline)
+(global-hl-line-mode t)
+
+;; Line numbers
+(setq linum-format "%3d ")
+(add-hook 'prog-mode-hook 'linum-mode)
+(use-package linum-relative
+  :ensure linum-relative)
+
+;; Font settings
+(when (eq system-type 'darwin)
+  (set-face-attribute 'default nil :height 170)
+  (set-default-font "input sans")
+  (setq-default line-spacing 0.05)
+  (toggle-word-wrap t)
+
+  (defun use-proportional-font ()
+    (interactive)
+    (face-remap-add-relative 'default '(:family "Input Sans")))
+
+  (defun use-monospace-font ()
+    (interactive)
+    (face-remap-add-relative 'default '(:family "Input Mono")))
+
+(add-hook 'dired-mode-hook 'use-monospace-font) (add-hook 'magit-mode-hook 'use-monospace-font))
+
 
 ;; Install packages
-(defvar required-packages
-  '(
-    evil
-    magit
-  ) "a list of packages to ensure are installed at launch.")
+; (defvar required-packages
+;   '(
+;     evil
+;     magit
+;   ) "a list of packages to ensure are installed at launch.")
 
-(require 'cl)
+; (require 'cl)
 
-; Check if all packages in required-packages are installed
-(defun packages-installed-p ()
-  (loop for p in required-packages
-    when (not (package-installed-p p)) do (return nil)
-    finally (return t)))
+; ; Check if all packages in required-packages are installed
+; (defun packages-installed-p ()
+;   (loop for p in required-packages
+;     when (not (package-installed-p p)) do (return nil)
+;     finally (return t)))
 
-; Install missing packages
-(unless (packages-installed-p)
-  ; Refresh packages
-  (message "%s" "Emacs is now refreshing its package database...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ; install the missing packages
-  (dolist (p required-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+; ; Install missing packages
+; (unless (packages-installed-p)
+;   ; Refresh packages
+;   (message "%s" "Emacs is now refreshing its package database...")
+;   (package-refresh-contents)
+;   (message "%s" " done.")
+;   ; install the missing packages
+;   (dolist (p required-packages)
+;     (when (not (package-installed-p p))
+;       (package-install p))))
 
-(package-initialize)
 
 ;;; Key binds
 
@@ -53,4 +89,25 @@
 ))
 
 ;;; Evil mode
+
+;; C-u to scroll
+(setq evil-want-C-u-scroll t)
+
+(require 'evil)
+
+;; Insert line above/below like in unimpaired
+(defun insert-blank-line-above ()
+  (interactive)
+  (evil-open-above 1)
+  (evil-normal-state))
+(defun insert-blank-line-below ()
+  (interactive)
+  (evil-open-below 1)
+  (evil-normal-state))
+(define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
+(define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)
+
+
+
+(evil-mode t)
 
