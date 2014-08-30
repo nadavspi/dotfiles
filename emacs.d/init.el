@@ -1,3 +1,9 @@
+(custom-set-variables
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
+ '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+(custom-set-faces
+ )
+
 ;;; Package management
 
 ;; Set up package archives
@@ -66,7 +72,7 @@
 ;;; Key binds
 
 ;; C-x C-m  
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+;(global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 ;; Indent on RET
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -151,9 +157,22 @@
     ;; Insert line above/below like in unimpaired
     (define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
     (define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)))
+
+;; Use esc to get away from everything, like in vim
+;; https://github.com/TheBB/dotfiles/blob/master/emacs/init.el
+(defun bb/minibuffer-keyboard-quit ()
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key minibuffer-local-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'bb/minibuffer-keyboard-quit)
 	
 ;; Magit
-
 (use-package magit
   :ensure magit
   :commands (magit-status magit-log)
@@ -161,10 +180,28 @@
   (evil-leader/set-key
     "gs" 'magit-status))
 
+;; Ag
+(use-package ag
+  :ensure ag)
 
+;; Helm
+(use-package helm
+  :ensure helm
+  :init
+  (global-set-key (kbd "C-x C-m") 'helm-M-x)
+  (evil-leader/set-key
+    "x" 'helm-M-x
+    "f" 'helm-find-files
+    "b" 'helm-mini)
+  :config
+  (progn
+    (use-package helm-ag
+      :ensure helm-ag)))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
   :ensure rainbow-delimiters 
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+;; Show Paren Mode
+(show-paren-mode 1)
