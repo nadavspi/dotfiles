@@ -77,6 +77,8 @@
 ;; Indent on RET
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(define-key global-map (kbd "M-h") 'help)
+
 
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
@@ -101,11 +103,9 @@
 
 (use-package evil
   :ensure evil
-
   :pre-load
   (setq evil-want-C-u-scroll t
 	evil-want-C-w-in-emacs-state t)
-
   :init
   (progn
     (use-package evil-leader
@@ -143,6 +143,12 @@
   :config
   (progn
     (evil-mode t)
+
+    (setq evil-emacs-state-cursor  '("red" box))
+    (setq evil-normal-state-cursor '("gray" box))
+    (setq evil-visual-state-cursor '("gray" box))
+    (setq evil-insert-state-cursor '("gray" bar))
+    (setq evil-motion-state-cursor '("gray" box))
 
     (define-key evil-normal-state-map (kbd "gei")
       (lambda () (interactive) (find-file user-init-file)))
@@ -189,14 +195,46 @@
   :ensure helm
   :init
   (global-set-key (kbd "C-x C-m") 'helm-M-x)
+  (global-set-key (kbd "C-x C-b") 'helm-mini)
   (evil-leader/set-key
     "x" 'helm-M-x
     "f" 'helm-find-files
     "b" 'helm-mini)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-z") 'helm-select-action)
   :config
   (progn
     (use-package helm-ag
       :ensure helm-ag)))
+
+;; Ido
+(use-package ido-ubiquitous
+  :ensure ido-ubiquitous)
+
+(use-package flx-ido
+  :ensure flx-ido)
+
+(use-package ido-vertical-mode
+  :ensure ido-vertical-mode)
+
+(ido-mode t)
+(ido-everywhere t)
+(flx-ido-mode t)
+(ido-vertical-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+;; Projectile
+(use-package projectile
+  :ensure projectile
+  :config
+  (projectile-global-mode))
+
+(use-package helm-projectile
+  :ensure helm-projectile
+  :init
+  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile))
+
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
