@@ -171,7 +171,10 @@
     (use-package evil-matchit
       :ensure evil-matchit
       :commands global-evil-matchit-mode
-      :idle (global-evil-matchit-mode t)))
+      :idle (global-evil-matchit-mode t))
+
+    (use-package evil-sneak
+      :load-path "vendor/"))
 
   :config
   (progn
@@ -305,3 +308,4 @@
   :ensure smartparens
   :idle
   (smartparens-global-mode t))
+
