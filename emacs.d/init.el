@@ -1,7 +1,21 @@
 (custom-set-variables
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector (vector "#cccccc" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#2d2d2d"))
+ '(custom-enabled-themes (quote (sanityinc-solarized-light)))
+ '(custom-safe-themes (quote ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
+ '(fci-rule-color "#515151")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map (quote ((20 . "#f2777a") (40 . "#f99157") (60 . "#ffcc66") (80 . "#99cc99") (100 . "#66cccc") (120 . "#6699cc") (140 . "#cc99cc") (160 . "#f2777a") (180 . "#f99157") (200 . "#ffcc66") (220 . "#99cc99") (240 . "#66cccc") (260 . "#6699cc") (280 . "#cc99cc") (300 . "#f2777a") (320 . "#f99157") (340 . "#ffcc66") (360 . "#99cc99"))))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;;; Package management
@@ -66,7 +80,18 @@
 ;; Theme
 (use-package color-theme-sanityinc-tomorrow
   :ensure color-theme-sanityinc-tomorrow
-  :init (color-theme-sanityinc-tomorrow-eighties))
+  :init
+  (color-theme-sanityinc-tomorrow-eighties)
+  (defun dark ()
+    (interactive)
+    (color-theme-sanityinc-tomorrow-eighties)))
+
+(use-package color-theme-sanityinc-solarized
+  :ensure color-theme-sanityinc-solarized
+  :init
+  (defun light ()
+    (interactive)
+    (color-theme-sanityinc-solarized-light)))
 
 
 ;;; Key binds
@@ -155,7 +180,7 @@
     (define-key evil-normal-state-map (kbd "geb")
       'eval-buffer)
     (define-key evil-normal-state-map (kbd "geh")
-      (lambda () (interactive) (find-file "/etc/hosts")))
+      (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
 
     (evil-ex-define-cmd "h" 'help)
     (evil-window-keymaps evil-normal-state-map)
@@ -194,12 +219,8 @@
 (use-package helm
   :ensure helm
   :init
-  (global-set-key (kbd "C-x C-m") 'helm-M-x)
-  (global-set-key (kbd "C-x C-b") 'helm-mini)
-  (evil-leader/set-key
-    "x" 'helm-M-x
-    "f" 'helm-find-files
-    "b" 'helm-mini)
+  ;(global-set-key (kbd "C-x C-b") 'helm-mini)
+  (evil-leader/set-key "f" 'helm-find-files)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z") 'helm-select-action)
   :config
@@ -217,12 +238,36 @@
 (use-package ido-vertical-mode
   :ensure ido-vertical-mode)
 
+(evil-leader/set-key "b" 'ido-switch-buffer)
+
+; sort ido filelist by mtime instead of alphabetically
+(add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
+(add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
+(defun ido-sort-mtime ()
+  (setq ido-temp-list
+	(sort ido-temp-list 
+	      (lambda (a b)
+		(time-less-p
+		 (sixth (file-attributes (concat ido-current-directory b)))
+		 (sixth (file-attributes (concat ido-current-directory a)))))))
+  (ido-to-end  ;; move . files to end (again)
+   (delq nil (mapcar
+	      (lambda (x) (and (char-equal (string-to-char x) ?.) x))
+	      ido-temp-list))))
+
 (ido-mode t)
 (ido-everywhere t)
-(flx-ido-mode t)
 (ido-vertical-mode 1)
+(flx-ido-mode t)
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
+
+;; Smex
+(use-package smex
+  :ensure smex
+  :init
+  (global-set-key (kbd "C-x C-m") 'smex)
+  (evil-leader/set-key "x" 'smex))
 
 ;; Projectile
 (use-package projectile
@@ -233,8 +278,11 @@
 (use-package helm-projectile
   :ensure helm-projectile
   :init
-  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile))
+  (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
 
+;; Flycheck
+(use-package flycheck
+  :ensure flycheck)
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
@@ -243,3 +291,9 @@
 
 ;; Show Paren Mode
 (show-paren-mode 1)
+
+;; Smartparens
+(use-package smartparents
+  :ensure smartparens
+  :idle
+  (smartparens-global-mode t))
