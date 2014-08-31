@@ -70,7 +70,7 @@
   (set-face-attribute 'default nil :height 170)
   (set-default-font "input sans")
   (setq-default line-spacing 0.05)
-  (toggle-word-wrap t)
+  (toggle-word-wrap 1)
 
   (defun use-proportional-font ()
     (interactive)
