@@ -130,11 +130,13 @@
   (interactive)
   (evil-open-above 1)
   (evil-normal-state)
+  (evil-next-line)
   (message nil))
 (defun insert-blank-line-below ()
   (interactive)
   (evil-open-below 1)
   (evil-normal-state)
+  (evil-previous-line)
   (message nil))
 
 (use-package evil
