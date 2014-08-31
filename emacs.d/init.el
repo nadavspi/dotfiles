@@ -321,3 +321,11 @@
   :ensure smartparens
   :idle
   (smartparens-global-mode t))
+
+;; Google
+(use-package google-this
+  :ensure google-this
+  :commands (google-search google-this)
+  :config
+  (global-set-key (kbd "C-x g") 'google-this-mode-submap)
+  )
