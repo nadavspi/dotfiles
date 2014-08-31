@@ -101,7 +101,7 @@
 
 ;;; Key binds
 
-;; C-x C-m  
+;; C-x C-m
 ;(global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 ;; Indent on RET
@@ -109,11 +109,11 @@
 
 (define-key global-map (kbd "M-h") 'help)
 
-(global-set-key (kbd "M-3") 'split-window-horizontally) 
-(global-set-key (kbd "M-2") 'split-window-vertically) 
-(global-set-key (kbd "M-1") 'delete-other-windows) 
-(global-set-key (kbd "M-0") 'delete-window) 
-(global-set-key (kbd "M-o") 'other-window) 
+(global-set-key (kbd "M-3") 'split-window-horizontally)
+(global-set-key (kbd "M-2") 'split-window-vertically)
+(global-set-key (kbd "M-1") 'delete-other-windows)
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "M-o") 'other-window)
 
 
 ;;; Evil mode
@@ -155,6 +155,13 @@
 
 	(evil-leader/set-key
 	 "m" (lambda () (interactive) (message "Mode %s" major-mode)))
+
+	; Fugitive-like git commands
+	(evil-leader/set-key "ga"
+	  (lambda () (interactive) (evil-ex "!git add %")))
+
+	(evil-leader/set-key "gc"
+	  (lambda () (interactive) (evil-ex "!git commit -m \"")))
 
 	; switch to previously edited buffer
 	(evil-leader/set-key
@@ -218,7 +225,7 @@
 (define-key minibuffer-local-completion-map [escape] 'bb/minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'bb/minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'bb/minibuffer-keyboard-quit)
-	
+
 ;; Magit
 (use-package magit
   :ensure magit
@@ -261,7 +268,7 @@
 (add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
 (defun ido-sort-mtime ()
   (setq ido-temp-list
-	(sort ido-temp-list 
+	(sort ido-temp-list
 	      (lambda (a b)
 		(time-less-p
 		 (sixth (file-attributes (concat ido-current-directory b)))
@@ -302,7 +309,7 @@
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
-  :ensure rainbow-delimiters 
+  :ensure rainbow-delimiters
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;; Show Paren Mode
@@ -313,4 +320,3 @@
   :ensure smartparens
   :idle
   (smartparens-global-mode t))
-
