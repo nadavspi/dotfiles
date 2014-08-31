@@ -62,6 +62,8 @@
 
 ;; Font settings
 (when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+
   (set-face-attribute 'default nil :height 170)
   (set-default-font "input sans")
   (setq-default line-spacing 0.05)
@@ -103,6 +105,12 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (define-key global-map (kbd "M-h") 'help)
+
+(global-set-key (kbd "M-3") 'split-window-horizontally) 
+(global-set-key (kbd "M-2") 'split-window-vertically) 
+(global-set-key (kbd "M-1") 'delete-other-windows) 
+(global-set-key (kbd "M-0") 'delete-window) 
+(global-set-key (kbd "M-o") 'other-window) 
 
 
 ;;; Evil mode
@@ -212,8 +220,8 @@
     "gs" 'magit-status))
 
 ;; Ag
-(use-package ag
-  :ensure ag)
+;(use-package ag
+;  :ensure ag)
 
 ;; Helm
 (use-package helm
@@ -293,7 +301,7 @@
 (show-paren-mode 1)
 
 ;; Smartparens
-(use-package smartparents
+(use-package smartparens
   :ensure smartparens
   :idle
   (smartparens-global-mode t))
