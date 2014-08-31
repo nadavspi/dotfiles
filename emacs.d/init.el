@@ -232,7 +232,8 @@
   :commands (magit-status magit-log)
   :init
   (evil-leader/set-key
-    "gs" 'magit-status))
+    "gs" 'magit-status
+    "gp" 'magit-push))
 
 ;; Ag
 ;(use-package ag
