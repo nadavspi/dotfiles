@@ -46,6 +46,9 @@
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 
+;; Delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; No blinking cursor
 (blink-cursor-mode 0)
 
