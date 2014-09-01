@@ -171,7 +171,11 @@
 	  (lambda () (interactive) (evil-ex "!git add %")))
 
 	(evil-leader/set-key "gc"
-	  (lambda () (interactive) (evil-ex "!git commit -m \"")))
+	  (lambda ()
+	    (interactive)
+	    (minibuffer-with-setup-hook
+		(lambda () (backward-char 1))
+	      (evil-ex "!git commit -m \"\""))))
 
 	; switch to previously edited buffer
 	(evil-leader/set-key
