@@ -385,3 +385,8 @@
 
     ;; make web-mode play nice with smartparens
     (setq web-mode-enable-auto-pairing nil)))
+
+;; PHP mode
+(use-package php-mode
+  :commands php-mode
+  :ensure php-mode)
