@@ -136,18 +136,6 @@
   (define-key map (kbd "C-j") 'evil-window-down)
   (define-key map (kbd "C-h") 'evil-window-left)
   (define-key map (kbd "C-l") 'evil-window-right))
-(defun insert-blank-line-above ()
-  (interactive)
-  (evil-open-above 1)
-  (evil-normal-state)
-  (evil-next-line)
-  (message nil))
-(defun insert-blank-line-below ()
-  (interactive)
-  (evil-open-below 1)
-  (evil-normal-state)
-  (evil-previous-line)
-  (message nil))
 
 (use-package evil
   :ensure evil
@@ -205,7 +193,10 @@
 	    (kbd "TAB") 'evilmi-jump-items))))
 
     (use-package evil-sneak
-      :load-path "vendor/"))
+      :load-path "vendor/")
+
+    (use-package evil-linewise
+      :load-path "mine/evil-linewise/"))
 
   :config
   (progn
@@ -225,11 +216,7 @@
       (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
 
     (evil-ex-define-cmd "h" 'help)
-    (evil-window-keymaps evil-normal-state-map)
-
-    ;; Insert line above/below like in unimpaired
-    (define-key evil-normal-state-map (kbd "[ SPC") 'insert-blank-line-above)
-    (define-key evil-normal-state-map (kbd "] SPC") 'insert-blank-line-below)))
+    (evil-window-keymaps evil-normal-state-map)))
 
 ;; Use esc to get away from everything, like in vim
 ;; https://github.com/TheBB/dotfiles/blob/master/emacs/init.el

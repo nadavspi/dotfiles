@@ -1,0 +1,3 @@
+[submodule "emacs.d/mine/evil-linewise"]
+	path = emacs.d/mine/evil-linewise
+	url = git@github.com:nadavspi/evil-linewise.git
