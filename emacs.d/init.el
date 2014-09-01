@@ -331,3 +331,11 @@
 ;; Writeroom
 (use-package writeroom-mode
   :commands writeroom-mode)
+
+;; Emmet
+(use-package emmet-mode
+  :ensure emmet-mode
+  :commands emmet-mode
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook  'emmet-mode))
