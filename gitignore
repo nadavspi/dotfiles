@@ -8,7 +8,15 @@ Thumbs.db
 *.un~
 Session.vim
 .netrwhist
-*~
 
 # Sass
 .sass-cache
+
+ # Emacs
+*~
+\#*
+tramp
+elpa/
+bookmarks
+projectile*
+eshell/
