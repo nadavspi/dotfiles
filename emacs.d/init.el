@@ -327,3 +327,7 @@
   :ensure google-this
   :config
   (global-set-key (kbd "C-x g") 'google-this-mode-submap))
+
+;; Writeroom
+(use-package writeroom-mode
+  :commands writeroom-mode)
