@@ -109,8 +109,18 @@
 
 (define-key global-map (kbd "M-h") 'help)
 
-(global-set-key (kbd "M-3") 'split-window-horizontally)
-(global-set-key (kbd "M-2") 'split-window-vertically)
+;; Splits
+(defun split-and-switch-horizontally ()
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1))
+(defun split-and-switch-vertically ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1))
+
+(global-set-key (kbd "M-3") 'split-and-switch-horizontally)
+(global-set-key (kbd "M-2") 'split-and-switch-vertically)
 (global-set-key (kbd "M-1") 'delete-other-windows)
 (global-set-key (kbd "M-0") 'delete-window)
 (global-set-key (kbd "M-o") 'other-window)
