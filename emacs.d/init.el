@@ -183,7 +183,12 @@
     (use-package evil-matchit
       :ensure evil-matchit
       :commands global-evil-matchit-mode
-      :idle (global-evil-matchit-mode t))
+      :idle (global-evil-matchit-mode t)
+      :init
+      (progn
+	(defun evilmi-customize-keybinding ()
+	  (evil-define-key 'normal evil-matchit-mode-map
+	    (kbd "TAB") 'evilmi-jump-items))))
 
     (use-package evil-sneak
       :load-path "vendor/"))
@@ -341,6 +346,7 @@
   :init (add-hook 'prog-mode-hook 'company-mode)
   :config
   (progn
+    (setq company-idle-delay 0)
     (define-key company-active-map (kbd "C-n") 'company-select-next)
     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
 
