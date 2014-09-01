@@ -245,6 +245,8 @@
   :init
   ;(global-set-key (kbd "C-x C-b") 'helm-mini)
   (evil-leader/set-key "f" 'helm-find-files)
+  (evil-leader/set-key "hb" 'helm-bookmarks)
+  (define-key evil-normal-state-map (kbd "g h b") 'helm-bookmarks)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z") 'helm-select-action)
   :config
@@ -363,4 +365,7 @@
     (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+    ;; make web-mode play nice with smartparens
+    (setq web-mode-enable-auto-pairing nil)))
