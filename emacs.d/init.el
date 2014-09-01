@@ -334,6 +334,16 @@
 (use-package writeroom-mode
   :commands writeroom-mode)
 
+;; Company
+(use-package company
+  :commands company-mode
+  :ensure company
+  :init (add-hook 'prog-mode-hook 'company-mode)
+  :config
+  (progn
+    (define-key company-active-map (kbd "C-n") 'company-select-next)
+    (define-key company-active-map (kbd "C-p") 'company-select-previous)))
+
 ;; Emmet
 (use-package emmet-mode
   :ensure emmet-mode
