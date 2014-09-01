@@ -360,7 +360,8 @@
   :init (add-hook 'prog-mode-hook 'company-mode)
   :config
   (progn
-    (setq company-idle-delay 0)
+    (setq company-idle-delay nil)
+    (define-key evil-insert-state-map (kbd "C-c") 'company-manual-begin)
     (define-key company-active-map (kbd "C-n") 'company-select-next)
     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
 
