@@ -339,3 +339,15 @@
   :init
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook  'emmet-mode))
+
+;; Scss mode
+(use-package scss-mode
+  :ensure scss-mode
+  :config
+  (setq scss-compile-at-save nil))
+
+;; Rainbow mode for CSS
+(use-package rainbow-mode
+  :ensure rainbow-mode
+  :config
+  (add-hook 'css-mode-hook 'rainbow-mode))
