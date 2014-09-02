@@ -377,7 +377,7 @@
   (setq emmet-preview-default nil))
 
 ;; CSS mode
-(use-package scss-mode
+(use-package css-mode
   :ensure css-mode
   :config
   (setq css-indent-offset 2))
