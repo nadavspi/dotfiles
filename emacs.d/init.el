@@ -270,7 +270,8 @@
 
 ;; Ido
 (use-package ido-ubiquitous
-  :ensure ido-ubiquitous)
+  :ensure ido-ubiquitous
+  :config (ido-ubiquitous-mode 1))
 
 (use-package flx-ido
   :ensure flx-ido)
