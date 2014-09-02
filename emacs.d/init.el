@@ -389,7 +389,7 @@ Including indent-buffer, which should not be called automatically on save."
   (use-package powerline-evil
     :ensure powerline-evil
     :config
-    (powerline-evil-vim-color-theme)))
+    (powerline-evil-center-color-theme)))
 
 ;; Company
 (use-package company
