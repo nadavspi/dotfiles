@@ -366,7 +366,9 @@
   :commands emmet-mode
   :init
   (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook  'emmet-mode))
+  (add-hook 'css-mode-hook  'emmet-mode)
+  :config
+  (setq emmet-preview-default nil))
 
 ;; Scss mode
 (use-package scss-mode
