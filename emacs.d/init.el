@@ -395,7 +395,10 @@ Including indent-buffer, which should not be called automatically on save."
 (use-package company
   :commands company-mode
   :ensure company
-  :init (add-hook 'prog-mode-hook 'company-mode)
+  :init
+  (progn
+  (add-hook 'css-mode-hook 'company-mode))
+  (add-hook 'prog-mode-hook 'company-mode))
   :config
   (progn
     (setq company-idle-delay nil)
