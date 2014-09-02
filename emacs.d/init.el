@@ -58,6 +58,11 @@
 ;; Highlight current line (like cursorline)
 (global-hl-line-mode t)
 
+;; Indentation
+(setq-default indent-tabs-mode nil)
+(setq c-basic-indent 2)
+(setq tab-width 4)
+
 ;; Line numbers
 (setq linum-format "%3d ")
 (add-hook 'prog-mode-hook 'linum-mode)
@@ -370,6 +375,12 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   :config
   (setq emmet-preview-default nil))
+
+;; CSS mode
+(use-package scss-mode
+  :ensure css-mode
+  :config
+  (setq css-indent-offset 2))
 
 ;; Scss mode
 (use-package scss-mode
