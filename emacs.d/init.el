@@ -66,6 +66,8 @@
 ;; Line numbers
 (setq linum-format "%3d ")
 (add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'css-mode-hook 'linum-mode)
+(add-hook 'sgml-mode-hook 'linum-mode)
 (use-package linum-relative
   :ensure linum-relative)
 
@@ -104,6 +106,22 @@
     (interactive)
     (color-theme-sanityinc-solarized-light)))
 
+;; Useful stuff from Magnars
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer.
+Including indent-buffer, which should not be called automatically on save."
+  (interactive)
+  (untabify-buffer)
+  (delete-trailing-whitespace)
+  (indent-buffer))
 
 ;;; Key binds
 
@@ -414,3 +432,8 @@
 (use-package php-mode
   :commands php-mode
   :ensure php-mode)
+
+;; HTML mode stuff
+; Reindent after deleting tag
+(defadvice sgml-delete-tag (after reindent-buffer activate)
+  (cleanup-buffer))
