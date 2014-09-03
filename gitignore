@@ -19,4 +19,5 @@ tramp
 elpa/
 bookmarks
 projectile*
+.projectile
 eshell/
