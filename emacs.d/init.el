@@ -265,19 +265,10 @@ Including indent-buffer, which should not be called automatically on save."
   :ensure magit
   :commands (magit-status magit-log)
   :init
-  (evil-leader/set-key
-    "gs" 'magit-status
-    "gp" 'magit-push)
-  :config
-  (defun evil-git-add-current-file ()
-    (interactive)
-    (start-process "git-add"
-                   (get-buffer-create "*git-checkout*")
-                   "git" "add" buffer-file-name)
-    (find-file-noselect buffer-file-name)
-    (message "Added"))
-  (evil-leader/set-key "ga" 'evil-git-add-current-file)
+  (use-package magit-magic
+    :load-path "mine/")
 
+  :config
   (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
     "K" 'magit-discard-item
     "L" 'magit-key-mode-popup-logging)
