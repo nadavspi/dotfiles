@@ -60,7 +60,7 @@
 
 ;; Indentation
 (setq-default indent-tabs-mode nil)
-(setq c-basic-indent 2)
+(setq c-basic-indent 4)
 (setq tab-width 4)
 
 ;; Line numbers
@@ -179,9 +179,6 @@ Including indent-buffer, which should not be called automatically on save."
 	 "m" (lambda () (interactive) (message "Mode %s" major-mode)))
 
 	; Fugitive-like git commands
-	(evil-leader/set-key "ga"
-	  (lambda () (interactive) (evil-ex "!git add %")))
-
 	(evil-leader/set-key "gc"
 	  (lambda ()
 	    (interactive)
@@ -272,6 +269,15 @@ Including indent-buffer, which should not be called automatically on save."
     "gs" 'magit-status
     "gp" 'magit-push)
   :config
+  (defun evil-git-add-current-file ()
+    (interactive)
+    (start-process "git-add"
+                   (get-buffer-create "*git-checkout*")
+                   "git" "add" buffer-file-name)
+    (find-file-noselect buffer-file-name)
+    (message "Added"))
+  (evil-leader/set-key "ga" 'evil-git-add-current-file)
+
   (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
     "K" 'magit-discard-item
     "L" 'magit-key-mode-popup-logging)
@@ -397,7 +403,7 @@ Including indent-buffer, which should not be called automatically on save."
   :ensure company
   :init
   (progn
-  (add-hook 'css-mode-hook 'company-mode))
+  (add-hook 'css-mode-hook 'company-mode)
   (add-hook 'prog-mode-hook 'company-mode))
   :config
   (progn
@@ -447,6 +453,9 @@ Including indent-buffer, which should not be called automatically on save."
     (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
+    (setq web-mode-code-indent-offset 4)
+    (setq web-mode-markup-indent-offset 4)
+
     ;; make web-mode play nice with smartparens
     (setq web-mode-enable-auto-pairing nil)))
 
@@ -454,6 +463,7 @@ Including indent-buffer, which should not be called automatically on save."
 (use-package php-mode
   :commands php-mode
   :ensure php-mode)
+
 
 ;; HTML mode stuff
 ; Reindent after deleting tag
