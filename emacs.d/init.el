@@ -88,7 +88,9 @@
     (interactive)
     (face-remap-add-relative 'default '(:family "Input Mono")))
 
-(add-hook 'dired-mode-hook 'use-monospace-font) (add-hook 'magit-mode-hook 'use-monospace-font))
+(add-hook 'dired-mode-hook 'use-monospace-font)
+(add-hook 'help-mode-hook 'use-monospace-font)
+(add-hook 'magit-mode-hook 'use-monospace-font))
 
 ;; Theme
 (use-package color-theme-sanityinc-tomorrow
