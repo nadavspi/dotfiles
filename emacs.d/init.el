@@ -371,6 +371,20 @@ Including indent-buffer, which should not be called automatically on save."
   :idle
   (smartparens-global-mode t))
 
+;; Hippie expand
+(global-set-key (kbd "M-/") 'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol)))
+
 ;; Google
 (use-package google-this
   :ensure google-this
