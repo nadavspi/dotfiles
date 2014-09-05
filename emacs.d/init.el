@@ -426,6 +426,7 @@ Including indent-buffer, which should not be called automatically on save."
   :init
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook  'emmet-mode)
+  (add-hook 'nxml-mode-hook  'emmet-mode)
   :config
   (setq emmet-preview-default nil))
 
