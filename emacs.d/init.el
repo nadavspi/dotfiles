@@ -367,6 +367,13 @@ Including indent-buffer, which should not be called automatically on save."
   :init
   (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
 
+;; Popwin
+
+(use-package popwin
+  :ensure popwin
+  :config
+  (popwin-mode 1))
+
 ;; Flycheck
 (use-package flycheck
   :ensure flycheck)
