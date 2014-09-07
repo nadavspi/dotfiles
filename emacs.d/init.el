@@ -294,7 +294,9 @@ Including indent-buffer, which should not be called automatically on save."
   ;; disable auto cleanup because of tramp
   (setq recentf-auto-cleanup 'never)
   :config
-  (recentf-mode 1))
+  (progn
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 100)))
 
 ;; Helm
 (use-package helm
