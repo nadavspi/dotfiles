@@ -190,7 +190,9 @@ Including indent-buffer, which should not be called automatically on save."
 
 	; switch to previously edited buffer
 	(evil-leader/set-key
-	  "," 'mode-line-other-buffer)))
+	  "," 'mode-line-other-buffer)
+
+        (evil-leader/set-key "r" 'remember)))
 
     (use-package key-chord
       :ensure key-chord
