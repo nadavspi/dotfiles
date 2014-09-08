@@ -192,7 +192,7 @@ Including indent-buffer, which should not be called automatically on save."
 	(evil-leader/set-key
 	  "," 'mode-line-other-buffer)
 
-        (evil-leader/set-key "r" 'remember)))
+        (evil-leader/set-key "c" 'org-capture)))
 
     (use-package key-chord
       :ensure key-chord
@@ -474,6 +474,25 @@ Including indent-buffer, which should not be called automatically on save."
   :commands php-mode
   :ensure php-mode)
 
+;; Org mode
+(use-package org
+  :config
+  (progn
+    (evil-define-key 'normal org-mode-map
+      "t" 'org-todo
+
+      ;; Clocking
+      "gxi" 'org-clock-in
+      "gxo" 'org-clock-out
+      "gxx" 'org-clock-in-last
+      "gxd" 'org-clock-display
+      "gxr" 'org-clock-report)
+
+     (add-hook 'org-mode-hook
+              (lambda () (interactive)
+                (org-indent-mode)
+                (visual-line-mode)
+                (linum-mode)))))
 
 ;; HTML mode stuff
 ; Reindent after deleting tag
