@@ -433,6 +433,7 @@ Including indent-buffer, which should not be called automatically on save."
   :init
   (progn
   (add-hook 'css-mode-hook 'company-mode)
+  (add-hook 'nxml-mode-hook 'company-mode)
   (add-hook 'prog-mode-hook 'company-mode))
   :config
   (progn
