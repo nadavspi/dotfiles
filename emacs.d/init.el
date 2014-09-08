@@ -287,12 +287,24 @@ Including indent-buffer, which should not be called automatically on save."
 ;(use-package ag
 ;  :ensure ag)
 
+
+;; Recentf
+(use-package recentf
+  :pre-load
+  ;; disable auto cleanup because of tramp
+  (setq recentf-auto-cleanup 'never)
+  :config
+  (progn
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 100)))
+
 ;; Helm
 (use-package helm
   :ensure helm
   :init
   ;(global-set-key (kbd "C-x C-b") 'helm-mini)
   (evil-leader/set-key "f" 'helm-find-files)
+  (evil-leader/set-key "r" 'helm-recentf)
   (evil-leader/set-key "hb" 'helm-bookmarks)
   (define-key evil-normal-state-map (kbd "g h b") 'helm-bookmarks)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
@@ -354,6 +366,13 @@ Including indent-buffer, which should not be called automatically on save."
   :ensure helm-projectile
   :init
   (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
+
+;; Popwin
+
+(use-package popwin
+  :ensure popwin
+  :config
+  (popwin-mode 1))
 
 ;; Flycheck
 (use-package flycheck
