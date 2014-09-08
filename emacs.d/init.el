@@ -287,6 +287,8 @@ Including indent-buffer, which should not be called automatically on save."
 ;(use-package ag
 ;  :ensure ag)
 
+;; Tramp
+(setq tramp-verbose 1)
 
 ;; Recentf
 (use-package recentf
