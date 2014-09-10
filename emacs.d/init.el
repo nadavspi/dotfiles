@@ -367,13 +367,6 @@ Including indent-buffer, which should not be called automatically on save."
    :init
    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
 
- ;; Popwin
-
- (use-package popwin
-   :ensure popwin
-   :config
-   (popwin-mode 1))
-
  ;; Flycheck
  (use-package flycheck
    :ensure flycheck)
@@ -503,7 +496,11 @@ Including indent-buffer, which should not be called automatically on save."
                (lambda () (interactive)
                  (org-indent-mode)
                  (visual-line-mode)
+                 (setq org-clock-persist 'history)
                  (linum-mode)))
+
+     ;; Persistent clocking
+     (org-clock-persistence-insinuate)
 
      ;; Keys
      (evil-define-key 'normal org-mode-map
@@ -520,7 +517,10 @@ Including indent-buffer, which should not be called automatically on save."
      ;; Todo settings
      (setq org-todo-keywords
            (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
-     (setq org-log-done t)))
+     (setq org-log-done t)
+
+   (use-package evil-org
+     :load-path "vendor/evil-org-mode")))
 
  ;; HTML mode stuff
                                         ; Reindent after deleting tag
