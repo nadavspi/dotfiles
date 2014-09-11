@@ -380,8 +380,10 @@ Including indent-buffer, which should not be called automatically on save."
  (show-paren-mode 1)
 
  ;; Smartparens
- (use-package smartparens
+ (use-package smartparens-config
    :ensure smartparens
+   :config
+   (require 'smartparens-config)
    :idle
    (smartparens-global-mode t))
 
