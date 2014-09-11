@@ -383,7 +383,19 @@ Including indent-buffer, which should not be called automatically on save."
  (use-package smartparens-config
    :ensure smartparens
    :config
+   (progn
    (require 'smartparens-config)
+   (defun prelude-smart-open-line-above ()
+     "Insert an empty line above the current line.
+Position the cursor at it's beginning, according to the current mode."
+     (interactive)
+     (move-beginning-of-line nil)
+     (newline-and-indent)
+     (forward-line -1)
+     (indent-according-to-mode))
+   (sp-pair "{" nil :post-handlers
+            '(((lambda (&rest _ignored)
+                 (prelude-smart-open-line-above)) "RET"))))
    :idle
    (smartparens-global-mode t))
 
