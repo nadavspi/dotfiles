@@ -302,7 +302,8 @@ Including indent-buffer, which should not be called automatically on save."
  (use-package helm
    :ensure helm
    :init
-                                        ;(global-set-key (kbd "C-x C-b") 'helm-mini)
+   (global-set-key (kbd "C-x C-b") 'helm-mini)
+   (evil-leader/set-key "b" 'helm-mini)
    (evil-leader/set-key "f" 'helm-find-files)
    (evil-leader/set-key "r" 'helm-recentf)
    (evil-leader/set-key "hb" 'helm-bookmarks)
@@ -325,7 +326,7 @@ Including indent-buffer, which should not be called automatically on save."
  (use-package ido-vertical-mode
    :ensure ido-vertical-mode)
 
- (evil-leader/set-key "b" 'ido-switch-buffer)
+ ;; (evil-leader/set-key "b" 'ido-switch-buffer)
 
                                         ; sort ido filelist by mtime instead of alphabetically
  (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
