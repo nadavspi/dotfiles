@@ -9,6 +9,8 @@
  '(custom-safe-themes (quote ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
  '(evil-operator-comment-key "gc")
  '(fci-rule-color "#515151")
+ '(linum-format (quote linum-relative))
+ '(linum-relative-current-symbol "")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map (quote ((20 . "#f2777a") (40 . "#f99157") (60 . "#ffcc66") (80 . "#99cc99") (100 . "#66cccc") (120 . "#6699cc") (140 . "#cc99cc") (160 . "#f2777a") (180 . "#f99157") (200 . "#ffcc66") (220 . "#99cc99") (240 . "#66cccc") (260 . "#6699cc") (280 . "#cc99cc") (300 . "#f2777a") (320 . "#f99157") (340 . "#ffcc66") (360 . "#99cc99"))))
  '(vc-annotate-very-old-color nil))
@@ -19,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:background "cornsilk" :foreground "black" :family "Input Mono
   "))))
- '(nxml-attribute-value ((t (:inherit font-lock-string-face :family "Input Mono")))))
+ '(nxml-attribute-value ((t (:inherit font-lock-string-face :family "Input Mono"))) t))
 ;;; Package management
 
  ;; Set up package archives
