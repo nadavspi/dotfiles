@@ -70,7 +70,9 @@
  (add-hook 'css-mode-hook 'linum-mode)
  (add-hook 'sgml-mode-hook 'linum-mode)
  (use-package linum-relative
-   :ensure linum-relative)
+   :ensure linum-relative
+   :init
+   (setq linum-format 'linum-relative))
 
  ;; Font settings
  (when (eq system-type 'darwin)
@@ -531,7 +533,7 @@ Position the cursor at it's beginning, according to the current mode."
      ;; Todo settings
      (setq org-todo-keywords
            (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
-     (setq org-log-done t)
+    (setq org-log-done t)
 
    (use-package evil-org
      :load-path "vendor/evil-org-mode")))
