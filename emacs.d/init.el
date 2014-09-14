@@ -245,6 +245,12 @@ Including indent-buffer, which should not be called automatically on save."
      (setq evil-insert-state-cursor '("gray" bar))
      (setq evil-motion-state-cursor '("gray" box))
 
+     (define-key evil-insert-state-map (kbd "M-RET")
+       (lambda ()
+         (interactive)
+         (end-of-line)
+         (newline-and-indent)))
+
      (define-key evil-normal-state-map (kbd "gei")
        (lambda () (interactive) (find-file user-init-file)))
      (define-key evil-normal-state-map (kbd "geb")
