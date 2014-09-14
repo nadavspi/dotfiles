@@ -544,3 +544,21 @@ Position the cursor at it's beginning, according to the current mode."
                                         ; Reindent after deleting tag
  (defadvice sgml-delete-tag (after reindent-buffer activate)
    (cleanup-buffer))
+
+;; CSS stuff
+(defun duplicate-css-selector ()
+  "Duplicates next selector and comma separates them"
+  (interactive)
+  (search-forward "{")
+  (backward-delete-char 2)
+  (insert ",")
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+  (backward-delete-char 1)
+  (insert " {"))
+(evil-leader/set-key-for-mode 'css-mode "d" 'duplicate-css-selector)
+(evil-leader/set-key-for-mode 'scss-mode "d" 'duplicate-css-selector)
