@@ -228,6 +228,9 @@ Including indent-buffer, which should not be called automatically on save."
      (use-package evil-linewise
        :load-path "mine/evil-linewise/")
 
+     (use-package evil-jumper
+       :ensure evil-jumper)
+
      (use-package evil-operator-comment
        :load-path "vendor/"
        :config
@@ -297,6 +300,10 @@ Including indent-buffer, which should not be called automatically on save."
  ;; Ag
                                         ;(use-package ag
                                         ;  :ensure ag)
+
+;; Move-text
+(use-package move-text
+  :ensure move-text)
 
  ;; Recentf
  (use-package recentf
