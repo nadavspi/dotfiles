@@ -229,6 +229,7 @@ Including indent-buffer, which should not be called automatically on save."
              (kbd "TAB") 'evilmi-jump-items))))
 
      (use-package evil-sneak
+       :disabled
        :load-path "vendor/")
 
      (use-package evil-linewise
@@ -236,6 +237,11 @@ Including indent-buffer, which should not be called automatically on save."
 
      (use-package evil-jumper
        :ensure evil-jumper)
+
+     (use-package ace-jump-mode
+       :ensure ace-jump-mode
+       :config
+       (define-key evil-normal-state-map (kbd "gw") 'evil-ace-jump-word-mode))
 
      (use-package evil-operator-comment
        :load-path "vendor/"
