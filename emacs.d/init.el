@@ -22,7 +22,6 @@
  '(company-tooltip ((t (:background "cornsilk" :foreground "black" :family "Input Mono"))))
  '(nxml-attribute-value ((t (:inherit font-lock-string-face :family "Input Mono"))) t))
 ;;; Package management
-
  ;; Set up package archives
  (require 'package)
  (add-to-list 'package-archives
@@ -240,7 +239,7 @@ Including indent-buffer, which should not be called automatically on save."
      (use-package ace-jump-mode
        :ensure ace-jump-mode
        :config
-       (define-key evil-normal-state-map (kbd "gw") 'evil-ace-jump-word-mode))
+       (define-key evil-normal-state-map (kbd "gw") 'evil-ace-jump-char-mode))
 
      (use-package evil-operator-comment
        :load-path "vendor/"
