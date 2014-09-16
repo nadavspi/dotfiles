@@ -227,7 +227,6 @@ Including indent-buffer, which should not be called automatically on save."
              (kbd "TAB") 'evilmi-jump-items))))
 
      (use-package evil-sneak
-       :disabled
        :load-path "vendor/")
 
      (use-package evil-linewise
@@ -239,7 +238,7 @@ Including indent-buffer, which should not be called automatically on save."
      (use-package ace-jump-mode
        :ensure ace-jump-mode
        :config
-       (define-key evil-normal-state-map (kbd "gw") 'evil-ace-jump-char-mode))
+       (define-key evil-normal-state-map (kbd "gw") 'ace-jump-char-mode))
 
      (use-package evil-operator-comment
        :load-path "vendor/"
@@ -497,7 +496,9 @@ Position the cursor at it's beginning, according to the current mode."
  (use-package scss-mode
    :ensure scss-mode
    :config
-   (setq scss-compile-at-save nil))
+   (progn
+   (setq scss-compile-at-save nil)
+   (add-hook 'scss-mode-hook (lambda () (setq comment-start "// " comment-end "")))))
 
  ;; Rainbow mode for CSS
  (use-package rainbow-mode
