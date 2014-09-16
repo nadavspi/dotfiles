@@ -450,7 +450,7 @@ Position the cursor at it's beginning, according to the current mode."
  (use-package google-this
    :ensure google-this
    :config
-   (global-set-key (kbd "C-x g") 'google-this-mode-submap))
+   (evil-leader/set-key "gg" 'google-this))
 
  ;; Writeroom
  (use-package writeroom-mode
