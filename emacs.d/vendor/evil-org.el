@@ -100,7 +100,7 @@
   "H" 'org-beginning-of-line
   "L" 'org-end-of-line
   "o" '(lambda () (interactive) (evil-org-eol-call 'clever-insert-item))
-  "O" '(lambda () (interactive) (evil-org-eol-call 'org-insert-heading))
+  ;; "O" '(lambda () (interactive) (evil-org-eol-call 'org-insert-heading))
   "$" 'org-end-of-line
   "^" 'org-beginning-of-line
   "<" 'org-metaleft
@@ -109,11 +109,11 @@
   (kbd "TAB") 'org-cycle)
 
 ;; leader maps
-(evil-leader/set-key
-  "t"  'org-show-todo-tree
-  "a"  'org-agenda
-  "x"  'org-archive-subtree
-)
+;; (evil-leader/set-key
+;;   "t"  'org-show-todo-tree
+;;   "a"  'org-agenda
+;;   "x"  'org-archive-subtree
+;; )
 
 ;; normal & insert state shortcuts.
 (mapc (lambda (state)
