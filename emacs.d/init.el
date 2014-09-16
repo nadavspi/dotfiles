@@ -569,7 +569,7 @@ Position the cursor at it's beginning, according to the current mode."
     (setq org-log-done t)
 
    (use-package evil-org
-     :load-path "vendor/evil-org-mode")))
+     :load-path "vendor/evil-org")))
 
  ;; HTML mode stuff
                                         ; Reindent after deleting tag
