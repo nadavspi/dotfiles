@@ -549,6 +549,7 @@ Position the cursor at it's beginning, according to the current mode."
                  (linum-mode)))
 
      ;; Persistent clocking
+     (setq org-clock-persist 'history)
      (org-clock-persistence-insinuate)
 
      ;; Keys
