@@ -240,11 +240,18 @@ Including indent-buffer, which should not be called automatically on save."
        :config
        (define-key evil-normal-state-map (kbd "gw") 'ace-jump-char-mode))
 
+     (use-package evil-numbers
+       :ensure evil-numbers
+       :config
+       (progn
+         (global-set-key (kbd "C-a") 'evil-numbers/inc-at-pt)
+         (global-set-key (kbd "C-M-a") 'evil-numbers/dec-at-pt)))
+
      (use-package evil-operator-comment
        :load-path "vendor/"
        :config
        (progn
-         (global-evil-operator-comment-mode 1))))
+         (global-evil-operator-comment-mode 2))))
 
 
    :config
@@ -586,3 +593,9 @@ Position the cursor at it's beginning, according to the current mode."
   (insert " {"))
 (evil-leader/set-key-for-mode 'css-mode "d" 'duplicate-css-selector)
 (evil-leader/set-key-for-mode 'scss-mode "d" 'duplicate-css-selector)
+
+;; Org-clock-statusbar-app
+(defadvice org-clock-in (after org-clock-statusbar-app-in activate)
+  (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\"")))
+(defadvice org-clock-out (after org-clock-statusbar-app-out activate)
+  (call-process "/usr/bin/osascript" nil 0 nil "-e" "tell application \"org-clock-statusbar\" to clock out"))
