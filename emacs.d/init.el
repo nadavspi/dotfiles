@@ -591,7 +591,12 @@ Position the cursor at it's beginning, according to the current mode."
                 (kbd "M-L") 'org-shiftright
                 (kbd "M-H") 'org-shiftleft
                 (kbd "M-K") 'org-shiftup
-                (kbd "M-J") 'org-shiftdown))
+                (kbd "M-J") 'org-shiftdown
+                (kbd "M-o") '(lambda () (interactive)
+                               (evil-org-eol-call
+                                '(lambda()
+                                   (org-insert-heading)
+                                   (org-metaright))))))
             '(normal insert))
 
     (evil-define-key 'normal evil-org-mode-map
