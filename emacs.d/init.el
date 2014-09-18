@@ -186,6 +186,8 @@ Including indent-buffer, which should not be called automatically on save."
          (evil-leader/set-leader ",")
          (global-evil-leader-mode t)
 
+         (evil-leader/set-key "h" 'help)
+
          (evil-leader/set-key
            "m" (lambda () (interactive) (message "Mode %s" major-mode)))
 
@@ -264,6 +266,11 @@ Including indent-buffer, which should not be called automatically on save."
      (setq evil-insert-state-cursor '("gray" bar))
      (setq evil-motion-state-cursor '("gray" box))
 
+     ;; swap colon and semicolon
+     (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+     (define-key evil-visual-state-map (kbd ";") 'evil-ex)
+     (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+
      (define-key evil-insert-state-map (kbd "M-RET")
        (lambda ()
          (interactive)
@@ -338,8 +345,7 @@ Including indent-buffer, which should not be called automatically on save."
                                         ;(global-set-key (kbd "C-x C-b") 'helm-mini)
    (evil-leader/set-key "f" 'helm-find-files)
    (evil-leader/set-key "r" 'helm-recentf)
-   (evil-leader/set-key "hb" 'helm-bookmarks)
-   (define-key evil-normal-state-map (kbd "g h b") 'helm-bookmarks)
+   (evil-leader/set-key "b" 'helm-bookmarks)
    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
    (define-key helm-map (kbd "C-z") 'helm-select-action)
    :config
