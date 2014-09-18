@@ -574,7 +574,28 @@ Position the cursor at it's beginning, according to the current mode."
            (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
     (setq org-log-done t)
 
+    (mapcar (lambda (state)
+              (evil-declare-key state org-mode-map
+                (kbd "M-l") 'org-metaright
+                (kbd "M-h") 'org-metaleft
+                (kbd "M-k") 'org-metaup
+                (kbd "M-j") 'org-metadown
+                ;; (kbd "M-L") 'org-shiftmetaright
+                ;; (kbd "M-H") 'org-shiftmetaleft
+                ;; (kbd "M-K") 'org-shiftmetaup
+                ;; (kbd "M-J") 'org-shiftmetadown
+                (kbd "M-L") 'org-shiftright
+                (kbd "M-H") 'org-shiftleft
+                (kbd "M-K") 'org-shiftup
+                (kbd "M-J") 'org-shiftdown))
+            '(normal insert))
+
+    (evil-define-key 'normal evil-org-mode-map
+      "gh" 'outline-up-heading
+      "T" 'org-time-stamp)
+
    (use-package evil-org
+     :disabled
      :load-path "vendor/evil-org")))
 
  ;; HTML mode stuff
