@@ -271,6 +271,8 @@ Including indent-buffer, which should not be called automatically on save."
      (define-key evil-visual-state-map (kbd ";") 'evil-ex)
      (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
 
+     (define-key evil-insert-state-map "\C-e" 'end-of-line)
+
      (define-key evil-insert-state-map (kbd "M-RET")
        (lambda ()
          (interactive)
@@ -318,8 +320,9 @@ Including indent-buffer, which should not be called automatically on save."
      "l" 'magit-key-mode-popup-logging
      "h" 'magit-toggle-diff-refine-hunk)
    (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
-   (evil-add-hjkl-bindings magit-commit-mode-map 'emacs))
+   (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
 
+   (evil-set-initial-state 'git-commit-mode 'insert))
  ;; Ag
                                         ;(use-package ag
                                         ;  :ensure ag)
@@ -555,6 +558,7 @@ Position the cursor at it's beginning, according to the current mode."
                  (linum-mode)))
 
      ;; Persistent clocking
+     (setq org-clock-persist 'history)
      (org-clock-persistence-insinuate)
 
      ;; Keys
