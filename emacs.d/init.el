@@ -485,7 +485,7 @@ Position the cursor at it's beginning, according to the current mode."
      (add-hook 'prog-mode-hook 'company-mode))
    :config
    (progn
-     (setq company-idle-delay nil)
+     (setq company-idle-delay 0)
      (define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
      (define-key company-active-map (kbd "C-n") 'company-select-next)
      (define-key company-active-map (kbd "C-p") 'company-select-previous)))
