@@ -262,8 +262,8 @@ Including indent-buffer, which should not be called automatically on save."
      (evil-mode t)
 
      (setq evil-emacs-state-cursor  '("red" box))
-     (setq evil-normal-state-cursor '("green" box))
-     (setq evil-visual-state-cursor '("blue" box))
+     (setq evil-normal-state-cursor '("grey" box))
+     (setq evil-visual-state-cursor '("green" box))
      (setq evil-insert-state-cursor '("orange" bar))
      (setq evil-replace-state-cursor '("orange" bar))
      (setq evil-operator-state-cursor '("orange" hollow))
