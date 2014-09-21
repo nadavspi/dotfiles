@@ -188,6 +188,7 @@ Including indent-buffer, which should not be called automatically on save."
          (global-evil-leader-mode t)
 
          (evil-leader/set-key "h" 'help)
+         (evil-leader/set-key "w" 'save-buffer)
 
          (evil-leader/set-key
            "m" (lambda () (interactive) (message "Mode %s" major-mode)))
