@@ -269,6 +269,11 @@ Including indent-buffer, which should not be called automatically on save."
      (setq evil-operator-state-cursor '("orange" hollow))
      (setq evil-motion-state-cursor '("gray" box))
 
+     ;; make j and k into gj and gk
+     (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+     (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+
 
      ;; swap colon and semicolon
      (define-key evil-normal-state-map (kbd ";") 'evil-ex)
