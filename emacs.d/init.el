@@ -65,6 +65,8 @@
  ;; Highlight current line (like cursorline)
  (global-hl-line-mode t)
 
+(setq default-indicate-empty-lines t)
+
  ;; Indentation
  (setq-default indent-tabs-mode nil)
  (setq c-basic-indent 4)
