@@ -185,7 +185,7 @@ Including indent-buffer, which should not be called automatically on save."
       :ensure evil-leader
       :init
       (progn
-        (evil-leader/set-leader ",")
+        (evil-leader/set-leader "SPC")
         (setq evil-leader/in-all-states)
         (global-evil-leader-mode t)
 
