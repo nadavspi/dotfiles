@@ -184,6 +184,7 @@ Including indent-buffer, which should not be called automatically on save."
        :init
        (progn
          (evil-leader/set-leader ",")
+         (setq evil-leader/in-all-states)
          (global-evil-leader-mode t)
 
          (evil-leader/set-key "h" 'help)
