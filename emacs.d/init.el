@@ -552,9 +552,22 @@ Position the cursor at it's beginning, according to the current mode."
      (setq web-mode-enable-auto-pairing nil)))
 
  ;; PHP mode
- (use-package php-mode
-   :commands php-mode
-   :ensure php-mode)
+(use-package php-mode
+  :commands php-mode
+  :ensure php-mode)
+
+(use-package diminish
+  :ensure diminish
+  :init
+  (diminish 'visual-line-mode)
+  :config
+  (progn
+  (eval-after-load "magit" '(diminish 'magit-auto-revert-mode))
+  (eval-after-load "smartparens" '(diminish 'smartparens-mode))
+  (eval-after-load "company" '(diminish 'company-mode))
+  (eval-after-load "hideshow" '(diminish 'hs-minor-mode))
+  (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
+  (eval-after-load "projectile" '(diminish 'projectile-mode))))
 
  ;; Org mode
  (use-package org
