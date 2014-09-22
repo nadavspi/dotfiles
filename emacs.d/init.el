@@ -205,7 +205,8 @@ Including indent-buffer, which should not be called automatically on save."
 
                                         ; switch to previously edited buffer
         (evil-leader/set-key
-          "," 'mode-line-other-buffer)
+          "SPC" 'mode-line-other-buffer)
+        (define-key evil-normal-state-map (kbd ",,") 'mode-line-other-buffer)
 
         (evil-leader/set-key "c" 'org-capture)))
 
