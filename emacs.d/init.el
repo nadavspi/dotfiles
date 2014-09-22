@@ -360,7 +360,8 @@ Including indent-buffer, which should not be called automatically on save."
                                         ;(global-set-key (kbd "C-x C-b") 'helm-mini)
   (evil-leader/set-key "f" 'helm-find-files)
   (evil-leader/set-key "r" 'helm-recentf)
-  (evil-leader/set-key "b" 'helm-bookmarks)
+  (define-key evil-normal-state-map (kbd "g b") 'helm-bookmarks)
+
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z") 'helm-select-action)
   :config
