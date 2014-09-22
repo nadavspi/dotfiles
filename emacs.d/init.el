@@ -83,6 +83,12 @@
   (setq linum-format 'linum-relative))
 (global-linum-mode 1)
 
+;; Uniquify buffers with the same name
+(require 'uniquify)
+(setq
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+
 ;; Font settings
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
