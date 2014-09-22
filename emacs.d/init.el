@@ -81,6 +81,7 @@
   :ensure linum-relative
   :init
   (setq linum-format 'linum-relative))
+(global-linum-mode 1)
 
 ;; Font settings
 (when (eq system-type 'darwin)
