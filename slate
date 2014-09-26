@@ -30,3 +30,8 @@ bind right:${leader} ${righthalf}
 bind l:${leader} ${righthalf}
 
 bind m:${leader} ${mobile}
+
+# Application switching
+bind esc:cmd focus 'Emacs'
+bind esc:alt focus 'iTerm'
+bind esc:shift focus 'Google Chrome'
