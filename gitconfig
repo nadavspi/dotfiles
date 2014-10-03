@@ -11,6 +11,7 @@
 	ci = commit
   amend = commit --amend
   ammend = commit --amend
+  amendp = commit --amend --no-edit
 
   l = log --graph --date=short
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
@@ -29,3 +30,6 @@
   user = nadavspi
 [gist]
 	private = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
