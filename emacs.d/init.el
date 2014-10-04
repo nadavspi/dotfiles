@@ -1,5 +1,5 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
+g;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
@@ -281,8 +281,8 @@ Including indent-buffer, which should not be called automatically on save."
     (setq evil-motion-state-cursor '("gray" box))
 
     ;; make j and k into gj and gk
-    (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-    (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+    ;; (define-key evil-normal-state-map (kbd "j") 'evil-next-line)
+    ;; (define-key evil-normal-state-map (kbd "k") 'evil-previous-line)
 
 
 
@@ -448,6 +448,7 @@ Including indent-buffer, which should not be called automatically on save."
   :config
   (progn
     (require 'smartparens-config)
+    (setq sp-autoescape-string-quote nil)
     (defun prelude-smart-open-line-above ()
       "Insert an empty line above the current line.
 Position the cursor at it's beginning, according to the current mode."
