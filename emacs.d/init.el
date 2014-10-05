@@ -432,7 +432,9 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; Flycheck
 (use-package flycheck
-  :ensure flycheck)
+  :ensure flycheck
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
