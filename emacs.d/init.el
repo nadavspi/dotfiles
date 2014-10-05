@@ -667,6 +667,11 @@ Position the cursor at it's beginning, according to the current mode."
 (evil-leader/set-key-for-mode 'css-mode "d" 'duplicate-css-selector)
 (evil-leader/set-key-for-mode 'scss-mode "d" 'duplicate-css-selector)
 
+(fset 'duplicate-opposite-property
+   [?y ?y ?p ?2 ?w ?c ?i ?w ?r ?\A-\s-\H-÷µ¹¶ ?i ?g ?h ?t escape])
+(evil-leader/set-key-for-mode 'css-mode "p" 'duplicate-opposite-property)
+(evil-leader/set-key-for-mode 'scss-mode "p" 'duplicate-opposite-property)
+
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
   (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\"")))
