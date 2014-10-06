@@ -307,6 +307,7 @@ Including indent-buffer, which should not be called automatically on save."
       (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
 
     (evil-ex-define-cmd "h" 'help)
+    (evil-ex-define-cmd "n" 'evil-ex-normal)
     (evil-window-keymaps evil-normal-state-map)))
 
 ;; Use esc to get away from everything, like in vim
@@ -666,6 +667,17 @@ Position the cursor at it's beginning, according to the current mode."
   (insert " {"))
 (evil-leader/set-key-for-mode 'css-mode "d" 'duplicate-css-selector)
 (evil-leader/set-key-for-mode 'scss-mode "d" 'duplicate-css-selector)
+
+(defun duplicate-declaration-and-change-side ()
+  "Duplicates a CSS declaration and changes from left to right"
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+  (evil-forward-word-begin 2))
 
 (fset 'duplicate-opposite-property
    [?y ?y ?p ?2 ?w ?c ?i ?w ?r ?\A-\s-\H-÷µ¹¶ ?i ?g ?h ?t escape])
