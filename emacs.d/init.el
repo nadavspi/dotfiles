@@ -230,10 +230,6 @@ Including indent-buffer, which should not be called automatically on save."
       :commands global-evil-surround-mode
       :idle (global-evil-surround-mode t))
 
-    (use-package evil-tabs
-      :ensure evil-tabs
-      :idle (global-evil-tabs-mode t))
-
     (use-package evil-matchit
       :ensure evil-matchit
       :commands global-evil-matchit-mode
