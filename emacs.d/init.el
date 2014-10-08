@@ -230,6 +230,10 @@ Including indent-buffer, which should not be called automatically on save."
       :commands global-evil-surround-mode
       :idle (global-evil-surround-mode t))
 
+    (use-package evil-tabs
+      :ensure evil-tabs
+      :idle (global-evil-tabs-mode t))
+
     (use-package evil-matchit
       :ensure evil-matchit
       :commands global-evil-matchit-mode
@@ -539,6 +543,7 @@ Position the cursor at it's beginning, according to the current mode."
   :config
   (progn
     (setq scss-compile-at-save nil)
+    (add-hook 'scss-mode-hook 'flycheck-mode)
     (add-hook 'scss-mode-hook (lambda () (setq comment-start "// " comment-end "")))))
 
 ;; Rainbow mode for CSS
@@ -616,6 +621,9 @@ Position the cursor at it's beginning, according to the current mode."
           (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
     (setq org-log-done t)
 
+    (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
+    (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
+
     (mapcar (lambda (state)
               (evil-declare-key state org-mode-map
                 (kbd "M-l") 'org-metaright
@@ -636,10 +644,6 @@ Position the cursor at it's beginning, according to the current mode."
                                    (org-insert-heading)
                                    (org-metaright))))))
             '(normal insert))
-
-    (evil-define-key 'normal evil-org-mode-map
-      "gh" 'outline-up-heading
-      "T" 'org-time-stamp)
 
     (use-package evil-org
       :disabled
@@ -665,24 +669,15 @@ Position the cursor at it's beginning, according to the current mode."
   (yank)
   (backward-delete-char 1)
   (insert " {"))
-(evil-leader/set-key-for-mode 'css-mode "d" 'duplicate-css-selector)
-(evil-leader/set-key-for-mode 'scss-mode "d" 'duplicate-css-selector)
+(define-key evil-normal-state-map (kbd "g s d") 'duplicate-css-selector)
 
 (defun duplicate-declaration-and-change-side ()
   "Duplicates a CSS declaration and changes from left to right"
   (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (next-line 1)
-  (yank)
-  (evil-forward-word-begin 2))
-
-(fset 'duplicate-opposite-property
-   [?y ?y ?p ?2 ?w ?c ?i ?w ?r ?\A-\s-\H-÷µ¹¶ ?i ?g ?h ?t escape])
-(evil-leader/set-key-for-mode 'css-mode "p" 'duplicate-opposite-property)
-(evil-leader/set-key-for-mode 'scss-mode "p" 'duplicate-opposite-property)
+  (evil-yank-line (point-at-bol) (point-at-eol) 'line)
+  (evil-paste-after 1)
+  (evil-forward-word-begin 2)
+  (evil-yank (point) (evil-forward-word-end)))
 
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
