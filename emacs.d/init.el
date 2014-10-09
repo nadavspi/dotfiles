@@ -681,6 +681,7 @@ Position the cursor at it's beginning, according to the current mode."
   (sgml-mode)
   (sgml-delete-tag 1)
   (web-mode))
+(define-key evil-normal-state-map (kbd "g d t") 'delete-the-tag)
 
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
