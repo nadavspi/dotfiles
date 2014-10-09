@@ -675,6 +675,13 @@ Position the cursor at it's beginning, according to the current mode."
   (evil-forward-word-begin 2)
   (evil-yank (point) (evil-forward-word-end)))
 
+(defun delete-the-tag ()
+  "Switches to sgml-mode to delete the tag and switches back to web-mode"
+  (interactive)
+  (sgml-mode)
+  (sgml-delete-tag 1)
+  (web-mode))
+
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
   (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\"")))
