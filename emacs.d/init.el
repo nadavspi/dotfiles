@@ -683,6 +683,12 @@ Position the cursor at it's beginning, according to the current mode."
   (web-mode))
 (define-key evil-normal-state-map (kbd "g d t") 'delete-the-tag)
 
+;; Magento stuff
+(define-key evil-normal-state-map (kbd "g m h")
+  (lambda ()
+    (interactive)
+    (async-shell-command "magerun dev:template-hints")))
+
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
   (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\"")))
