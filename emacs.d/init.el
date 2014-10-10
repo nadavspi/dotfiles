@@ -687,7 +687,10 @@ Position the cursor at it's beginning, according to the current mode."
 (define-key evil-normal-state-map (kbd "g m h")
   (lambda ()
     (interactive)
-    (async-shell-command "magerun dev:template-hints")))
+    (start-process "magerun"
+                   (get-buffer-create "*magerun*")
+                   "magerun" "dev:template-hints")
+    (message "Toggling template hints")))
 
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
