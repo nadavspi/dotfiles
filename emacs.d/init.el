@@ -303,6 +303,8 @@ Including indent-buffer, which should not be called automatically on save."
       (lambda () (interactive) (find-file user-init-file)))
     (define-key evil-normal-state-map (kbd "geb")
       'eval-buffer)
+    (define-key evil-normal-state-map (kbd "gcb")
+      'cleanup-buffer)
     (define-key evil-normal-state-map (kbd "geh")
       (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
 
