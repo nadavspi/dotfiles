@@ -199,6 +199,8 @@ Including indent-buffer, which should not be called automatically on save."
         (evil-leader/set-key "h" 'help)
         (evil-leader/set-key "w" 'save-buffer)
 
+        (evil-leader/set-key "c" 'cleanup-buffer)
+        
         (evil-leader/set-key
           "m" (lambda () (interactive) (message "Mode %s" major-mode)))
 
@@ -213,9 +215,7 @@ Including indent-buffer, which should not be called automatically on save."
                                         ; switch to previously edited buffer
         (evil-leader/set-key
           "SPC" 'mode-line-other-buffer)
-        (define-key evil-normal-state-map (kbd ",,") 'mode-line-other-buffer)
-
-        (evil-leader/set-key "c" 'org-capture)))
+        (define-key evil-normal-state-map (kbd ",,") 'mode-line-other-buffer)))
 
     (use-package key-chord
       :ensure key-chord
@@ -303,8 +303,6 @@ Including indent-buffer, which should not be called automatically on save."
       (lambda () (interactive) (find-file user-init-file)))
     (define-key evil-normal-state-map (kbd "geb")
       'eval-buffer)
-    (define-key evil-normal-state-map (kbd "gcb")
-      'cleanup-buffer)
     (define-key evil-normal-state-map (kbd "geh")
       (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
 
