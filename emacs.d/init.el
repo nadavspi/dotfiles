@@ -169,6 +169,12 @@ Including indent-buffer, which should not be called automatically on save."
 (global-set-key (kbd "M-0") 'delete-window)
 (global-set-key (kbd "M-o") 'other-window)
 
+;;; Exec-path-from-shell
+(when (memq window-system '(mac ns))
+  (use-package exec-path-from-shell
+  :ensure exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize)))
 
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
