@@ -172,17 +172,22 @@ Including indent-buffer, which should not be called automatically on save."
 ;;; Exec-path-from-shell
 (when (memq window-system '(mac ns))
   (use-package exec-path-from-shell
-  :ensure exec-path-from-shell
-  :init
-  (exec-path-from-shell-initialize)))
+    :ensure exec-path-from-shell
+    :init
+    (exec-path-from-shell-initialize)))
 
 ;;; Agressive indent mode
 (use-package aggressive-indent
   :ensure aggressive-indent
   :config
   (progn
-   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-   (add-hook 'css-mode-hook #'aggressive-indent-mode)))
+    (eval-after-load 'scss-mode
+      '(add-hook
+        'scss-mode-hook
+        (lambda () (unless defun-prompt-regexp
+                     (setq-local defun-prompt-regexp "^[^[:blank:]].*")))))
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+    (add-hook 'css-mode-hook #'aggressive-indent-mode)))
 
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
