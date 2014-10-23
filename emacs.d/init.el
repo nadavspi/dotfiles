@@ -205,6 +205,8 @@ Including indent-buffer, which should not be called automatically on save."
         (evil-leader/set-key "h" 'help)
         (evil-leader/set-key "w" 'save-buffer)
 
+        (evil-leader/set-key "c" 'cleanup-buffer)
+        
         (evil-leader/set-key
           "m" (lambda () (interactive) (message "Mode %s" major-mode)))
 
@@ -219,9 +221,7 @@ Including indent-buffer, which should not be called automatically on save."
                                         ; switch to previously edited buffer
         (evil-leader/set-key
           "SPC" 'mode-line-other-buffer)
-        (define-key evil-normal-state-map (kbd ",,") 'mode-line-other-buffer)
-
-        (evil-leader/set-key "c" 'org-capture)))
+        (define-key evil-normal-state-map (kbd ",,") 'mode-line-other-buffer)))
 
     (use-package key-chord
       :ensure key-chord
@@ -680,6 +680,23 @@ Position the cursor at it's beginning, according to the current mode."
   (evil-paste-after 1)
   (evil-forward-word-begin 2)
   (evil-yank (point) (evil-forward-word-end)))
+
+(defun delete-the-tag ()
+  "Switches to sgml-mode to delete the tag and switches back to web-mode"
+  (interactive)
+  (sgml-mode)
+  (sgml-delete-tag 1)
+  (web-mode))
+(define-key evil-normal-state-map (kbd "g d t") 'delete-the-tag)
+
+;; Magento stuff
+(define-key evil-normal-state-map (kbd "g m h")
+  (lambda ()
+    (interactive)
+    (start-process "magerun"
+                   (get-buffer-create "*magerun*")
+                   "magerun" "dev:template-hints")
+    (message "Toggling template hints")))
 
 ;; Org-clock-statusbar-app
 (defadvice org-clock-in (after org-clock-statusbar-app-in activate)
