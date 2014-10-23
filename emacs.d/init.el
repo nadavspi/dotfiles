@@ -176,6 +176,14 @@ Including indent-buffer, which should not be called automatically on save."
   :init
   (exec-path-from-shell-initialize)))
 
+;;; Agressive indent mode
+(use-package aggressive-indent
+  :ensure aggressive-indent
+  :config
+  (progn
+   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+   (add-hook 'css-mode-hook #'aggressive-indent-mode)))
+
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
   (interactive)
@@ -206,7 +214,7 @@ Including indent-buffer, which should not be called automatically on save."
         (evil-leader/set-key "w" 'save-buffer)
 
         (evil-leader/set-key "c" 'cleanup-buffer)
-        
+
         (evil-leader/set-key
           "m" (lambda () (interactive) (message "Mode %s" major-mode)))
 
