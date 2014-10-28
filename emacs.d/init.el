@@ -544,7 +544,9 @@ Position the cursor at it's beginning, according to the current mode."
   (add-hook 'nxml-mode-hook  'emmet-mode)
   (add-hook 'web-mode-hook  'emmet-mode)
   :config
-  (setq emmet-preview-default nil))
+  (setq emmet-preview-default nil)
+  (define-key evil-normal-state-map (kbd "C-e") 'emmet-expand-line)
+  (define-key evil-insert-state-map (kbd "C-e") 'emmet-expand-line))
 
 ;; CSS mode
 (use-package css-mode
