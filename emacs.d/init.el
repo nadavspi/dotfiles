@@ -499,6 +499,13 @@ Position the cursor at it's beginning, according to the current mode."
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
+;; Expand region
+(use-package expand-region
+  :ensure expand-region
+  :config
+  (progn
+    (evil-leader/set-key "e" 'er/expand-region)))
+
 ;; Writeroom
 (use-package writeroom-mode
   :commands writeroom-mode)
