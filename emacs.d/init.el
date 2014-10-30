@@ -499,12 +499,6 @@ Position the cursor at it's beginning, according to the current mode."
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-;; Google
-(use-package google-this
-  :ensure google-this
-  :config
-  (evil-leader/set-key "gg" 'google-this))
-
 ;; Writeroom
 (use-package writeroom-mode
   :commands writeroom-mode)
