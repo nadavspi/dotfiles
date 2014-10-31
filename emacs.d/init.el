@@ -570,6 +570,12 @@ Position the cursor at it's beginning, according to the current mode."
   :config
   (add-hook 'css-mode-hook 'rainbow-mode))
 
+(use-package js2-mode
+  :ensure js2-mode
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
+
 ;; Web mode
 (use-package web-mode
   :ensure web-mode
