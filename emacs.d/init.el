@@ -368,6 +368,12 @@ Including indent-buffer, which should not be called automatically on save."
     ad-do-it
     (delete-other-windows))
 
+  (defadvice magit-mode-quit-window (after magit-restore-screen activate)
+    "Restores the previous window configuration and kills the magit buffer"
+    (jump-to-register :magit-fullscreen))
+
+  (define-key magit-status-mode-map (kbd "q") 'magit-mode-quit-window)
+
   (evil-set-initial-state 'git-commit-mode 'insert))
 ;; Ag
                                         ;(use-package ag
