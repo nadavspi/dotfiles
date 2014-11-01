@@ -593,6 +593,7 @@ Position the cursor at it's beginning, according to the current mode."
   :ensure web-mode
   :config
   (progn
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
