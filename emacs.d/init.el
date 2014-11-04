@@ -189,6 +189,13 @@ Including indent-buffer, which should not be called automatically on save."
     (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
     (add-hook 'css-mode-hook #'aggressive-indent-mode)))
 
+;;; Column marker
+(use-package column-marker
+  :ensure column-marker
+  :config
+  (column-marker-1 80)
+  (column-marker-2 120))
+
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
   (interactive)
