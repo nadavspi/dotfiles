@@ -249,7 +249,10 @@ Including indent-buffer, which should not be called automatically on save."
       (progn
         (key-chord-mode t)
         (key-chord-define evil-insert-state-map "jk" 'evil-normal-and-save-buffer)
-        (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer)))
+        (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer)
+
+        (key-chord-define-global "0o" ")")
+        (key-chord-define-global "9i" "(")))
 
     (use-package evil-surround
       :ensure evil-surround
