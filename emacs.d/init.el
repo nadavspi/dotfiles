@@ -189,6 +189,13 @@ Including indent-buffer, which should not be called automatically on save."
     (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
     (add-hook 'css-mode-hook #'aggressive-indent-mode)))
 
+;;; YASnippet
+(use-package yasnippet
+  :ensure yasnippet
+  :config
+  (progn
+    (yas-global-mode 1)))
+
 ;;; Column marker
 (use-package column-marker
   :ensure column-marker
