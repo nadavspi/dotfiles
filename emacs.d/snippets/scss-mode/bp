@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Magento Breakpoint mixin
+# key: bp
+# --
+@include bp(${1:min}-width, $bp-${2:medium} + 1) {
+    $0
+}
