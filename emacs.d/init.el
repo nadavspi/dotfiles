@@ -200,8 +200,9 @@ Including indent-buffer, which should not be called automatically on save."
 (use-package column-marker
   :ensure column-marker
   :config
-  (column-marker-1 80)
-  (column-marker-2 120))
+  (progn
+    (column-marker-1 80)
+    (column-marker-2 120)))
 
 ;;; Evil mode
 (defun evil-normal-and-save-buffer()
