@@ -704,6 +704,12 @@ Position the cursor at it's beginning, according to the current mode."
       :disabled
       :load-path "vendor/evil-org")))
 
+;; nxml mode
+(setq
+ nxml-child-indent 4
+ nxml-attribute-indent 4
+ nxml-slash-auto-complete-flag t)
+
 ;; HTML mode stuff
                                         ; Reindent after deleting tag
 (defadvice sgml-delete-tag (after reindent-buffer activate)
