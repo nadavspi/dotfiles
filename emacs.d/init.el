@@ -1,5 +1,5 @@
 (custom-set-variables
-;; custom-set-variables was added by Custom.
+ ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
@@ -414,16 +414,19 @@ Including indent-buffer, which should not be called automatically on save."
 ;; Helm
 (use-package helm
   :ensure helm
-  :init
-                                        ;(global-set-key (kbd "C-x C-b") 'helm-mini)
-  (evil-leader/set-key "f" 'helm-find-files)
-  (evil-leader/set-key "r" 'helm-recentf)
-  (define-key evil-normal-state-map (kbd "g b") 'helm-bookmarks)
-
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-z") 'helm-select-action)
   :config
   (progn
+    (evil-leader/set-key "b" 'helm-buffers-list)
+    (evil-leader/set-key "f" 'helm-find-files)
+    (evil-leader/set-key "r" 'helm-recentf)
+    
+    (global-set-key (kbd "C-x C-m") 'helm-M-x)
+    (evil-leader/set-key "x" 'helm-M-x)
+    
+    (define-key evil-normal-state-map (kbd "g b") 'helm-bookmarks)
+    
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z") 'helm-select-action)
     (use-package helm-ag
       :ensure helm-ag)))
 
@@ -438,7 +441,7 @@ Including indent-buffer, which should not be called automatically on save."
 (use-package ido-vertical-mode
   :ensure ido-vertical-mode)
 
-(evil-leader/set-key "b" 'ido-switch-buffer)
+;; (evil-leader/set-key "b" 'ido-switch-buffer)
 
                                         ; sort ido filelist by mtime instead of alphabetically
 (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
@@ -465,6 +468,7 @@ Including indent-buffer, which should not be called automatically on save."
 ;; Smex
 (use-package smex
   :ensure smex
+  :disabled
   :init
   (global-set-key (kbd "C-x C-m") 'smex)
   (evil-leader/set-key "x" 'smex))
@@ -473,12 +477,22 @@ Including indent-buffer, which should not be called automatically on save."
 (use-package projectile
   :ensure projectile
   :config
-  (projectile-global-mode))
+  (progn
+    (projectile-global-mode)
+    (setq projectile-enable-caching t)))
 
 (use-package helm-projectile
   :ensure helm-projectile
   :init
-  (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
+  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
+  :config
+  (progn
+    (setq projectile-completion-system 'helm)
+    (helm-projectile-on)
+    (setq helm-projectile-sources-list '(helm-source-projectile-projects
+                                         helm-source-projectile-files-list))
+    (setq projectile-switch-project-action 'helm-projectile)
+    ))
 
 ;; Flycheck
 (use-package flycheck
