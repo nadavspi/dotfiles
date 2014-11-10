@@ -286,18 +286,6 @@ Including indent-buffer, which should not be called automatically on save."
     (use-package evil-jumper
       :ensure evil-jumper)
 
-    (use-package ace-jump-mode
-      :ensure ace-jump-mode
-      :config
-      (define-key evil-normal-state-map (kbd "gw") 'ace-jump-char-mode))
-
-    (use-package evil-numbers
-      :ensure evil-numbers
-      :config
-      (progn
-        (global-set-key (kbd "C-a") 'evil-numbers/inc-at-pt)
-        (global-set-key (kbd "C-M-a") 'evil-numbers/dec-at-pt)))
-
     (use-package evil-operator-comment
       :load-path "vendor/"
       :config
@@ -419,12 +407,12 @@ Including indent-buffer, which should not be called automatically on save."
     (evil-leader/set-key "b" 'helm-buffers-list)
     (evil-leader/set-key "f" 'helm-find-files)
     (evil-leader/set-key "r" 'helm-recentf)
-    
+
     (global-set-key (kbd "C-x C-m") 'helm-M-x)
     (evil-leader/set-key "x" 'helm-M-x)
-    
+
     (define-key evil-normal-state-map (kbd "g b") 'helm-bookmarks)
-    
+
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-z") 'helm-select-action)
     (use-package helm-ag
