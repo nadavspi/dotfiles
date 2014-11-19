@@ -48,8 +48,8 @@ Plugin 'zirrostig/vim-schlepp.git'
 
 " code
 Plugin 'scrooloose/syntastic'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'StanAngeloff/php.vim'
+" Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'dsawardekar/wordpress.vim'
 
 " frontend
