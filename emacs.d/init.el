@@ -740,7 +740,7 @@ Position the cursor at it's beginning, according to the current mode."
   (yank)
   (backward-delete-char 1)
   (insert " {"))
-(define-key evil-normal-state-map (kbd "g s d") 'duplicate-css-selector)
+(define-key evil-normal-state-map (kbd "g d s") 'duplicate-css-selector)
 
 (defun duplicate-opposite-css-property ()
   "Duplicates a CSS declaration and changes the property's direction from left to right, top to bottom, etc."
@@ -754,7 +754,7 @@ Position the cursor at it's beginning, according to the current mode."
           ((equal "right" x) (insert "left"))
           ((equal "top" x) (insert "bottom"))
           ((equal "bottom" x) (insert "top")))))
-(define-key evil-normal-state-map (kbd "g p d") 'duplicate-opposite-css-property)
+(define-key evil-normal-state-map (kbd "g d p") 'duplicate-opposite-css-property)
 
 (defun delete-the-tag ()
   "Switches to sgml-mode to delete the tag and switches back to web-mode"
