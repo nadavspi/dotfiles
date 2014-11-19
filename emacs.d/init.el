@@ -48,6 +48,14 @@
 ;; Turn off alarms
 (setq ring-bell-function 'ignore)
 
+;; Use UTF-8
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
+
+(modify-all-frames-parameters '((fullscreen . maximized)))
+
 ;; Store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -95,7 +103,7 @@
 
   (set-face-attribute 'default nil :height 170)
   (set-default-font "input sans")
-  (setq-default line-spacing 0.05)
+  (setq-default line-spacing 0.25)
   (setq-default word-wrap t)
 
   (defun use-proportional-font ()
@@ -734,13 +742,19 @@ Position the cursor at it's beginning, according to the current mode."
   (insert " {"))
 (define-key evil-normal-state-map (kbd "g s d") 'duplicate-css-selector)
 
-(defun duplicate-declaration-and-change-side ()
-  "Duplicates a CSS declaration and changes from left to right"
+(defun duplicate-opposite-css-property ()
+  "Duplicates a CSS declaration and changes the property's direction from left to right, top to bottom, etc."
   (interactive)
   (evil-yank-line (point-at-bol) (point-at-eol) 'line)
   (evil-paste-after 1)
   (evil-forward-word-begin 2)
-  (evil-yank (point) (evil-forward-word-end)))
+  (let ((x (current-word t t)))
+    (kill-word 1)
+    (cond ((equal "left" x) (insert "right"))
+          ((equal "right" x) (insert "left"))
+          ((equal "top" x) (insert "bottom"))
+          ((equal "bottom" x) (insert "top")))))
+(define-key evil-normal-state-map (kbd "g p d") 'duplicate-opposite-css-property)
 
 (defun delete-the-tag ()
   "Switches to sgml-mode to delete the tag and switches back to web-mode"
