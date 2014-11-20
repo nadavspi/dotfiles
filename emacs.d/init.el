@@ -423,6 +423,7 @@ Including indent-buffer, which should not be called automatically on save."
 
     (define-key evil-normal-state-map (kbd "ghb") 'helm-bookmarks)
     (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
+    (define-key evil-normal-state-map (kbd "g h o") 'helm-occur)
 
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
