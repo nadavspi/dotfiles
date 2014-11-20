@@ -424,6 +424,7 @@ Including indent-buffer, which should not be called automatically on save."
     (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
 
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-z") 'helm-select-action)
     (use-package helm-ag
       :ensure helm-ag)))
@@ -477,6 +478,7 @@ Including indent-buffer, which should not be called automatically on save."
   :config
   (progn
     (projectile-global-mode)
+    (evil-leader/set-key "a g" 'projectile-ag)
     (setq projectile-enable-caching t)))
 
 (use-package helm-projectile
@@ -688,7 +690,7 @@ Position the cursor at it's beginning, according to the current mode."
           (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
     (setq org-log-done t)
 
-    (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
+    ;; (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
     (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
 
     (mapcar (lambda (state)
