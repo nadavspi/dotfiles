@@ -7,7 +7,7 @@ config windowHintsSpread true
 alias leader cmd,space
 bind r:${leader} relaunch
 
-bind e:cmd hint jklfdsgha;nm,vcx
+# bind e:cmd hint jklfdsgha;nm,vcx
 
 # Aliases
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
