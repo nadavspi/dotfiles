@@ -419,7 +419,9 @@ Including indent-buffer, which should not be called automatically on save."
     (global-set-key (kbd "C-x C-m") 'helm-M-x)
     (evil-leader/set-key "x" 'helm-M-x)
 
-    (define-key evil-normal-state-map (kbd "g b") 'helm-bookmarks)
+
+    (define-key evil-normal-state-map (kbd "ghb") 'helm-bookmarks)
+    (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
 
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
     (define-key helm-map (kbd "C-z") 'helm-select-action)
