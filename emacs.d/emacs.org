@@ -1,0 +1,310 @@
+#+TITLE: Nadav Spiegelman's Emacs config
+* Introduction
+This is my Emacs configuration set up as an Org file. As a convert from Vim, I make heavy use of Evil.
+
+Inspired by [[https://github.com/mwfogleman/config/blob/master/home/.emacs.d/michael.org][mwfogleman]], [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa]], [[https://github.com/TheBB/dotfiles/blob/master/emacs/init.el][TheBB]], and others.
+* General setup
+** Package management
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
+  (package-initialize)
+  (require 'req-package)
+#+END_SRC
+
+** Basic settings
+*** Remove scrollbars, menu bars, toolbars
+#+BEGIN_SRC emacs-lisp
+    (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+    (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+    (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
+
+*** Quiet startup
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message t
+      initial-scratch-message nil)
+#+END_SRC
+
+*** Turn off alarms
+#+BEGIN_SRC emacs-lisp
+(setq ring-bell-function 'ignore)
+#+END_SRC
+
+*** Use UTF-8
+#+BEGIN_SRC emacs-lisp
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
+#+END_SRC
+*** Put backups and autosave files in tmp dir
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+#+END_SRC
+*** Quicker prompts
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+*** Remove nonexistant file confirmation
+#+BEGIN_SRC emacs-lisp
+  (setq confirm-nonexistent-file-or-buffer nil)
+#+END_SRC
+** Editing settings
+*** Turn off blinking cursor
+#+BEGIN_SRC emacs-lisp
+(blink-cursor-mode 0)
+#+END_SRC
+*** Highlight current line
+Like cursorline in Vim
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+#+END_SRC
+*** Indicate empty lines
+#+BEGIN_SRC emacs-lisp
+(setq default-indicate-empty-lines t)
+#+END_SRC
+*** Delete trailing whitespace on save
+#+BEGIN_SRC emacs-lisp
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+*** Indentation settings
+Indent using spaces instead of tabs and use 4 spaces by default.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
+#+END_SRC
+*** Uniquify buffers with the same filename
+
+#+BEGIN_SRC emacs-lisp
+(require 'uniquify)
+(setq
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+#+END_SRC
+*** Relative line numbers
+Like in Vim. Set globally.
+Show the actual line number for the current line.
+#+BEGIN_SRC emacs-lisp
+(req-package linum-relative
+:init
+  (setq linum-format 'linum-relative)
+:config
+  (global-linum-mode 1))
+#+END_SRC
+*** Column markers
+
+#+BEGIN_SRC emacs-lisp
+(req-package column-marker
+  :config
+  (progn
+    (column-marker-1 80)
+    (column-marker-2 120)))
+#+END_SRC
+
+** Mac
+*** Use command key as meta
+
+#+BEGIN_SRC emacs-lisp
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta))
+#+END_SRC
+*** Font settings
+I use Input Sans and switch to Input Mono in buffers that need it.
+
+#+BEGIN_SRC emacs-lisp
+(when (eq system-type 'darwin)
+  (set-face-attribute 'default nil :height 170)
+  (set-default-font "input sans")
+  (setq-default line-spacing 0.25)
+  (setq-default word-wrap t)
+
+  (defun use-proportional-font ()
+    (interactive)
+    (face-remap-add-relative 'default '(:family "Input Sans")))
+
+  (defun use-monospace-font ()
+    (interactive)
+    (face-remap-add-relative 'default '(:family "Input Mono")))
+
+  (add-hook 'dired-mode-hook 'use-monospace-font)
+  (add-hook 'help-mode-hook 'use-monospace-font)
+  (add-hook 'magit-mode-hook 'use-monospace-font))
+#+END_SRC
+*** Use $PATH
+
+#+BEGIN_SRC emacs-lisp
+(when (memq window-system '(mac ns))
+  (req-package exec-path-from-shell
+    :init
+    (exec-path-from-shell-initialize)))
+#+END_SRC
+** Key bindings
+General key bindings not necessarily tied to any packages.
+
+*** Indent on RET like a sane person
+
+#+BEGIN_SRC emacs-lisp
+(bind-key "RET" 'newline-and-indent)
+#+END_SRC
+
+*** Use M-h for help
+Because we're going to override the default bind to switch windows
+
+#+BEGIN_SRC emacs-lisp
+(bind-key "M-h" 'help)
+#+END_SRC
+
+*** Window splits
+
+#+BEGIN_SRC emacs-lisp
+(defun split-and-switch-horizontally ()
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1))
+
+(defun split-and-switch-vertically ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1))
+
+(bind-key  "M-3" 'split-and-switch-horizontally)
+(bind-key  "M-2" 'split-and-switch-vertically)
+(bind-key  "M-1" 'delete-other-windows)
+(bind-key  "M-0" 'delete-window)
+(bind-key  "M-o" 'other-window)
+#+END_SRC
+
+* Evil and family
+** Evil
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :ensure evil
+  :pre-load
+  (setq evil-want-C-u-scroll t
+        evil-want-C-w-in-emacs-state t)
+  :config
+    (progn
+    ))
+#+END_SRC
+
+** Evil-leader
+
+#+BEGIN_SRC emacs-lisp
+(req-package evil-leader
+  :requires evil
+  :config
+  (progn
+    (evil-leader/set-leader "SPC")
+    (setq evil-leader/in-all-states)
+    (global-evil-leader-mode t)
+
+    (evil-leader/set-key "h" 'help)
+    (evil-leader/set-key "w" 'save-buffer)
+
+    (evil-leader/set-key "gc"
+      (lambda ()
+        (interactive)
+        (minibuffer-with-setup-hook
+            (lambda () (backward-char 1))
+          (evil-ex "!git commit -m \"\""))))
+
+    (evil-leader/set-key
+      "SPC" 'mode-line-other-buffer)
+#+END_SRC
+
+** Key chords
+Use the jk chord to switch to normal mode and save the buffer
+
+#+BEGIN_SRC emacs-lisp
+    (req-package key-chord
+      :config
+      (progn
+        (key-chord-mode t)
+
+        (defun evil-normal-and-save-buffer()
+          (interactive)
+          (evil-normal-state)
+          (save-buffer))
+
+        (key-chord-define evil-insert-state-map "jk" 'evil-normal-and-save-buffer)
+        (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer)))
+#+END_SRC
+
+** Surround
+
+#+BEGIN_SRC emacs-lisp
+    (use-package evil-surround
+      :requires evil
+      :commands global-evil-surround-mode
+      :idle (global-evil-surround-mode t))
+#+END_SRC
+
+** Matchit
+#+BEGIN_SRC emacs-lisp
+    (use-package evil-matchit
+      :requires evil
+      :commands global-evil-matchit-mode
+      :idle (global-evil-matchit-mode t)
+      :init
+      (progn
+        (defun evilmi-customize-keybinding ()
+          (evil-define-key 'normal evil-matchit-mode-map
+            (kbd "TAB") 'evilmi-jump-items))))
+#+END_SRC
+
+** TODO Sneak
+** TODO Linewise
+** TODO Operator comment
+* Development packages
+** Aggressive indent mode
+
+#+BEGIN_SRC emacs-lisp
+(req-package aggressive-indent
+  :config
+  (progn
+    (eval-after-load 'scss-mode
+      '(add-hook
+        'scss-mode-hook
+        (lambda () (unless defun-prompt-regexp
+                     (setq-local defun-prompt-regexp "^[^[:blank:]].*")))))
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+    (add-hook 'css-mode-hook #'aggressive-indent-mode)))
+#+END_SRC
+* Helper functions
+** Cleanup buffer
+Useful stuff from Magnars
+
+#+BEGIN_SRC emacs-lisp
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer.
+Including indent-buffer, which should not be called automatically on save."
+  (interactive)
+  (untabify-buffer)
+  (delete-trailing-whitespace)
+  (indent-buffer))
+
+(evil-leader/set-key "c" 'cleanup-buffer)
+#+END_SRC
+* Finish req-package
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
+#+END_SRC
+
+Stopped on line 306
