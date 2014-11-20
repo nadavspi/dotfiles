@@ -412,7 +412,8 @@ Including indent-buffer, which should not be called automatically on save."
   :ensure helm
   :config
   (progn
-    (evil-leader/set-key "b" 'helm-buffers-list)
+    ;; (evil-leader/set-key "b" 'helm-buffers-list)
+    (evil-leader/set-key "b" 'helm-mini)
     (evil-leader/set-key "f" 'helm-find-files)
     (evil-leader/set-key "r" 'helm-recentf)
 
