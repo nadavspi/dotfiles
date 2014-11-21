@@ -34,6 +34,6 @@ bind l:ctrl;cmd throw 1 resize
 
 
 # Application switching
-bind esc:cmd focus 'Emacs'
-bind esc:alt focus 'iTerm'
+bind esc:alt focus 'Emacs'
+bind esc:cmd focus 'iTerm'
 bind esc:shift focus 'Google Chrome'
