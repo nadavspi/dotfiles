@@ -51,7 +51,7 @@ Set up package and req-package so the rest of this can work
 #+BEGIN_SRC emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-*** Remove nonexistant file confirmation
+*** Remove nonexistent file confirmation
 #+BEGIN_SRC emacs-lisp
   (setq confirm-nonexistent-file-or-buffer nil)
 #+END_SRC
