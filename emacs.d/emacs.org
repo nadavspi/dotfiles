@@ -108,11 +108,6 @@ Show the actual line number for the current line.
     (column-marker-1 80)
     (column-marker-2 120)))
 #+END_SRC
-*** Highlight matching parens
-
-#+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
-#+END_SRC
 *** Hippie expand
 #+BEGIN_SRC emacs-lisp
 (bind-key "M-/" 'hippie-expand)
@@ -473,23 +468,24 @@ I mostly use Helm but there are places where ido still comes in handy
 *** Smartparens
 
 #+BEGIN_SRC emacs-lisp
-(req-package smartparens
-  :config
-  (progn
-    (require 'smartparens-config)
-    (setq sp-autoescape-string-quote nil)
-    (defun prelude-smart-open-line-above ()
-      "Insert an empty line above the current line.
-Position the cursor at it's beginning, according to the current mode."
-      (interactive)
-      (move-beginning-of-line nil)
-      (newline-and-indent)
-      (forward-line -1)
-      (indent-according-to-mode))
-    (sp-pair "{" nil :post-handlers
-             '(((lambda (&rest _ignored)
-                  (prelude-smart-open-line-above)) "RET")))
-  (smartparens-global-mode t)))
+  (req-package smartparens
+    :config
+    (progn
+      (require 'smartparens-config)
+      (setq sp-autoescape-string-quote nil)
+      (defun prelude-smart-open-line-above ()
+        "Insert an empty line above the current line.
+  Position the cursor at it's beginning, according to the current mode."
+        (interactive)
+        (move-beginning-of-line nil)
+        (newline-and-indent)
+        (forward-line -1)
+        (indent-according-to-mode))
+      (sp-pair "{" nil :post-handlers
+               '(((lambda (&rest _ignored)
+                    (prelude-smart-open-line-above)) "RET")))
+      (show-smartparens-global-mode t)
+      (smartparens-global-mode t)))
 #+END_SRC
 *** Aggressive indent mode
 
