@@ -608,59 +608,50 @@ Colorizes colors in CSS
 
 ** Org mode
 #+BEGIN_SRC emacs-lisp
-(req-package org
-  :config
-  (progn
-    (add-hook 'org-mode-hook
-              (lambda () (interactive)
-                (org-indent-mode)
-                (visual-line-mode)
-                (setq org-clock-persist 'history)
-                (linum-mode)))
+  (req-package org
+    :config
+    (progn
+      (add-hook 'org-mode-hook
+                (lambda () (interactive)
+                  (org-indent-mode)
+                  (visual-line-mode)
+                  (setq org-clock-persist 'history)
+                  (linum-mode)))
 
-    ;; Persistent clocking
-    (setq org-clock-persist 'history)
-    (org-clock-persistence-insinuate)
+      ;; Persistent clocking
+      (setq org-clock-persist 'history)
+      (org-clock-persistence-insinuate)
 
-    ;; Keys
-    (evil-define-key 'normal org-mode-map
-      ;; Todo
-      "t" 'org-todo
+      ;; Keys
+      (evil-define-key 'normal org-mode-map
+        ;; Todo
+        "t" 'org-todo
 
-      ;; Clocking
-      "gxi" 'org-clock-in
-      "gxo" 'org-clock-out
-      "gxd" 'org-clock-display
-      "gxr" 'org-clock-report)
+        ;; Clocking
+        "gxi" 'org-clock-in
+        "gxo" 'org-clock-out
+        "gxd" 'org-clock-display
+        "gxr" 'org-clock-report)
 
-    ;; Todo settings
-    (setq org-todo-keywords
-          (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
-    ;(setq org-log-done t)
+      ;; Todo settings
+      (setq org-todo-keywords
+            (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
+                                          ;(setq org-log-done t)
 
-    ;; (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
-    (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
+      ;; (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
+      (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
 
-    (mapcar (lambda (state)
-              (evil-declare-key state org-mode-map
-                (kbd "M-l") 'org-metaright
-                (kbd "M-h") 'org-metaleft
-                (kbd "M-k") 'org-metaup
-                (kbd "M-j") 'org-metadown
-                ;; (kbd "M-L") 'org-shiftmetaright
-                ;; (kbd "M-H") 'org-shiftmetaleft
-                ;; (kbd "M-K") 'org-shiftmetaup
-                ;; (kbd "M-J") 'org-shiftmetadown
-                (kbd "M-L") 'org-shiftright
-                (kbd "M-H") 'org-shiftleft
-                (kbd "M-K") 'org-shiftup
-                (kbd "M-J") 'org-shiftdown
-                (kbd "M-o") '(lambda () (interactive)
-                               (evil-org-eol-call
-                                '(lambda()
-                                   (org-insert-heading)
-                                   (org-metaright))))))
-            '(normal insert))))
+      (mapcar (lambda (state)
+                (evil-declare-key state org-mode-map
+                  (kbd "M-l") 'org-metaright
+                  (kbd "M-h") 'org-metaleft
+                  (kbd "M-k") 'org-metaup
+                  (kbd "M-j") 'org-metadown
+                  (kbd "M-L") 'org-shiftmetaright
+                  (kbd "M-H") 'org-shiftmetaleft
+                  (kbd "M-K") 'org-shiftmetaup
+                  (kbd "M-J") 'org-shiftmetadown))
+              '(normal insert))))
 #+END_SRC
 ** Aesthetics
 *** Powerline
