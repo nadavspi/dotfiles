@@ -658,6 +658,17 @@ Colorizes colors in CSS
   :config
   (powerline-evil-center-color-theme))
 #+END_SRC
+*** Golden ratio
+#+BEGIN_SRC emacs-lisp
+  (req-package golden-ratio
+    :config
+    (setq golden-ratio-extra-commands
+          (append golden-ratio-extra-commands
+                  '(evil-window-left
+                    evil-window-right
+                    evil-window-up
+                    evil-window-down))))
+#+END_SRC
 ** Finish req-package
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)
