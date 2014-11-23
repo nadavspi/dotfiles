@@ -32,6 +32,12 @@ bind m:${leader} ${mobile}
 bind h:ctrl;cmd throw 0 resize
 bind l:ctrl;cmd throw 1 resize
 
+# Focus bindings
+bind h:ctrl;alt focus left
+bind l:ctrl;alt focus right
+bind k:ctrl;alt focus above
+bind j:ctrl;alt focus below
+
 
 # Application switching
 bind esc:alt focus 'Emacs'
