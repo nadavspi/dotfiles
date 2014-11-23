@@ -5,6 +5,7 @@ This is my Emacs configuration set up as an Org file. As a convert from Vim, I m
 Inspired by [[https://github.com/mwfogleman/config/blob/master/home/.emacs.d/michael.org][mwfogleman]], [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa]], [[https://github.com/TheBB/dotfiles/blob/master/emacs/init.el][TheBB]], and others.
 * General setup
 ** Package management
+Set up package and req-package so the rest of this can work
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
@@ -12,7 +13,6 @@ Inspired by [[https://github.com/mwfogleman/config/blob/master/home/.emacs.d/mic
   (package-initialize)
   (require 'req-package)
 #+END_SRC
-
 ** Basic settings
 *** Remove scrollbars, menu bars, toolbars
 #+BEGIN_SRC emacs-lisp
@@ -108,7 +108,26 @@ Show the actual line number for the current line.
     (column-marker-1 80)
     (column-marker-2 120)))
 #+END_SRC
+*** Highlight matching parens
 
+#+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+#+END_SRC
+*** Hippie expand
+#+BEGIN_SRC emacs-lisp
+(bind-key "M-/" 'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+#+END_SRC
 ** Mac
 *** Use command key as meta
 
@@ -182,90 +201,297 @@ Because we're going to override the default bind to switch windows
 (bind-key  "M-o" 'other-window)
 #+END_SRC
 
-* Evil and family
-** Evil
+*** Escape from everything
+Use esc to get away from everything, like in vim
+https://github.com/TheBB/dotfiles/blob/master/emacs/init.el
 
 #+BEGIN_SRC emacs-lisp
-(use-package evil
-  :ensure evil
-  :pre-load
-  (setq evil-want-C-u-scroll t
-        evil-want-C-w-in-emacs-state t)
-  :config
-    (progn
-    ))
+(defun bb/minibuffer-keyboard-quit ()
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key minibuffer-local-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'bb/minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'bb/minibuffer-keyboard-quit)
+#+END_SRC
+* Install Packages
+The good stuff
+** Evil and family
+*** Enable C-u scrolling
+Must be set before evil is loaded and use-package's :pre-load isn't working for some reason.
+
+#+BEGIN_SRC emacs-lisp
+(setq evil-want-C-u-scroll t
+      evil-want-C-w-in-emacs-state t)
 #+END_SRC
 
-** Evil-leader
+*** Surround
+#+BEGIN_SRC emacs-lisp
+(req-package evil-surround
+  :init (global-evil-surround-mode t))
+#+END_SRC
+
+*** Evil mode
+#+BEGIN_SRC emacs-lisp
+(req-package evil
+  :require evil-surround
+  :config
+  (evil-mode t)
+  (setq evil-emacs-state-cursor  '("red" box))
+  (setq evil-normal-state-cursor '("orange" box))
+  (setq evil-visual-state-cursor '("green" box))
+  (setq evil-insert-state-cursor '("orange" bar))
+  (setq evil-replace-state-cursor '("orange" bar))
+  (setq evil-operator-state-cursor '("orange" hollow))
+  (setq evil-motion-state-cursor '("gray" box))
+
+  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+  (define-key evil-visual-state-map (kbd ";") 'evil-ex)
+  (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+
+  (define-key evil-normal-state-map (kbd "gei")
+    (lambda () (interactive) (find-file user-init-file)))
+  (define-key evil-normal-state-map (kbd "geb")
+    'eval-buffer)
+  (define-key evil-normal-state-map (kbd "geh")
+    (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
+
+  ;; Easier window switching
+  (defun evil-window-keymaps (map)
+    (define-key map (kbd "C-k") 'evil-window-up)
+    (define-key map (kbd "C-j") 'evil-window-down)
+    (define-key map (kbd "C-h") 'evil-window-left)
+    (define-key map (kbd "C-l") 'evil-window-right))
+  (evil-window-keymaps evil-normal-state-map))
+#+END_SRC
+
+*** Leader
 
 #+BEGIN_SRC emacs-lisp
 (req-package evil-leader
-  :requires evil
+  :require evil
+  :config
+  (evil-leader/set-leader "SPC")
+  (setq evil-leader/in-all-states)
+  (global-evil-leader-mode t)
+
+  (evil-leader/set-key "h" 'help)
+  (evil-leader/set-key "w" 'save-buffer)
+
+
+  (evil-leader/set-key
+    "SPC" 'mode-line-other-buffer))
+#+END_SRC
+
+*** Matchit
+#+BEGIN_SRC emacs-lisp
+(req-package evil-matchit
+  :require evil
+  :config
+  (defun evilmi-customize-keybinding ()
+    (evil-define-key 'normal evil-matchit-mode-map
+      (kbd "TAB") 'evilmi-jump-items))
+
+  (global-evil-matchit-mode t))
+#+END_SRC
+
+*** Key chord
+Define the jk chord to switch to normal mode and save the buffer
+
+#+BEGIN_SRC emacs-lisp
+(req-package key-chord
+  :require evil
+  :config
+  (key-chord-mode t)
+  (defun evil-normal-and-save-buffer()
+    (interactive)
+    (evil-normal-state)
+    (save-buffer))
+
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-and-save-buffer)
+  (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer))
+#+END_SRC
+
+*** Sneak
+#+BEGIN_SRC emacs-lisp
+(req-package evil-sneak
+  :require evil
+  :load-path "vendor/")
+#+END_SRC
+
+*** Comments
+#+BEGIN_SRC emacs-lisp
+(req-package evil-operator-comment
+  :require evil
+  :load-path "vendor/"
+  :config
+  (global-evil-operator-comment-mode 2))
+#+END_SRC
+
+** Ido
+I mostly use Helm but there are places where ido still comes in handy
+
+#+BEGIN_SRC emacs-lisp
+(req-package ido-ubiquitous
+  :config (ido-ubiquitous-mode 1))
+
+(req-package flx-ido)
+
+(req-package ido-vertical-mode)
+
+(ido-mode t)
+(ido-everywhere t)
+(ido-vertical-mode 1)
+(flx-ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+#+END_SRC
+** Magit
+#+BEGIN_SRC emacs-lisp
+(req-package magit
+  :require evil-leader
+
   :config
   (progn
-    (evil-leader/set-leader "SPC")
-    (setq evil-leader/in-all-states)
-    (global-evil-leader-mode t)
+    (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
+      "K" 'magit-discard-item
+      "L" 'magit-key-mode-popup-logging)
+    (evil-add-hjkl-bindings magit-status-mode-map 'emacs
+      "K" 'magit-discard-item
+      "l" 'magit-key-mode-popup-logging
+      "h" 'magit-toggle-diff-refine-hunk)
+    (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
+    (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
 
-    (evil-leader/set-key "h" 'help)
-    (evil-leader/set-key "w" 'save-buffer)
+    ;; full screen magit-status
+    (defadvice magit-status (around magit-fullscreen activate)
+      (window-configuration-to-register :magit-fullscreen)
+      ad-do-it
+      (delete-other-windows))
 
-    (evil-leader/set-key "gc"
-      (lambda ()
+    (defadvice magit-mode-quit-window (after magit-restore-screen activate)
+      "Restores the previous window configuration and kills the magit buffer"
+      (jump-to-register :magit-fullscreen))
+
+    (define-key magit-status-mode-map (kbd "q") 'magit-mode-quit-window)
+
+    (evil-set-initial-state 'git-commit-mode 'insert)
+
+  (defun evil-git-add-current-file ()
+    (interactive)
+    (start-process "git-add"
+                   (get-buffer-create "*git-add*")
+                   "git" "add" buffer-file-name)
+    (find-file-noselect buffer-file-name)
+    (message "File added"))
+
+  (defun evil-git-checkout-current-file ()
+    (interactive)
+    (start-process "git-checkout"
+                   (get-buffer-create "*git-checkout*")
+                   "git" "checkout --" buffer-file-name)
+    (find-file-noselect buffer-file-name))
+
+  (defun evil-get-remove-current-file ()
+    (interactive)
+    (start-process "git-remove"
+                   (get-buffer-create "*git-remove*")
+                   "git" "rm" "-f"
+                   buffer-file-name)
+    (kill-buffer))
+
+  (evil-leader/set-key "ga" 'evil-git-add-current-file)
+
+  (evil-ex-define-cmd "Gread" 'evil-git-checkout-current-file)
+  (evil-ex-define-cmd "Gremove" 'evil-git-remove-current-file)
+
+  (evil-leader/set-key
+    "gs" 'magit-status
+    "gp" 'magit-push
+    "gc" (lambda ()
         (interactive)
         (minibuffer-with-setup-hook
             (lambda () (backward-char 1))
-          (evil-ex "!git commit -m \"\""))))
-
-    (evil-leader/set-key
-      "SPC" 'mode-line-other-buffer)
+          (evil-ex "!git commit -m \"\""))))))
 #+END_SRC
+** Helm
+#+BEGIN_SRC emacs-lisp
+(req-package helm
+  :require evil-leader
+  :config
+  (progn
+    (evil-leader/set-key "b" 'helm-mini)
+    (evil-leader/set-key "f" 'helm-find-files)
+    (evil-leader/set-key "r" 'helm-recentf)
 
-** Key chords
-Use the jk chord to switch to normal mode and save the buffer
+    (global-set-key (kbd "C-x C-m") 'helm-M-x)
+    (evil-leader/set-key "x" 'helm-M-x)
+
+
+    (define-key evil-normal-state-map (kbd "ghb") 'helm-bookmarks)
+    (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
+    (define-key evil-normal-state-map (kbd "g h o") 'helm-occur)
+
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z") 'helm-select-action)))
+
+(req-package helm-ag
+  :require helm)
+
+(req-package helm-projectile
+:require (helm projectile)
+  :config
+  (progn
+    (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
+    (setq projectile-completion-system 'helm)
+    (helm-projectile-on)
+    (setq helm-projectile-sources-list '(helm-source-projectile-projects
+                                         helm-source-projectile-files-list))
+    (setq projectile-switch-project-action 'helm-projectile)
+    ))
+#+END_SRC
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(req-package projectile
+  :config
+  (progn
+    (projectile-global-mode)
+    (evil-leader/set-key "a g" 'projectile-ag)
+    (setq projectile-enable-caching t)))
+#+END_SRC
+** Working with text
+*** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-delimiters
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+*** Smartparens
 
 #+BEGIN_SRC emacs-lisp
-    (req-package key-chord
-      :config
-      (progn
-        (key-chord-mode t)
-
-        (defun evil-normal-and-save-buffer()
-          (interactive)
-          (evil-normal-state)
-          (save-buffer))
-
-        (key-chord-define evil-insert-state-map "jk" 'evil-normal-and-save-buffer)
-        (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer)))
+(req-package smartparens
+  :config
+  (progn
+    (require 'smartparens-config)
+    (setq sp-autoescape-string-quote nil)
+    (defun prelude-smart-open-line-above ()
+      "Insert an empty line above the current line.
+Position the cursor at it's beginning, according to the current mode."
+      (interactive)
+      (move-beginning-of-line nil)
+      (newline-and-indent)
+      (forward-line -1)
+      (indent-according-to-mode))
+    (sp-pair "{" nil :post-handlers
+             '(((lambda (&rest _ignored)
+                  (prelude-smart-open-line-above)) "RET")))
+  (smartparens-global-mode t)))
 #+END_SRC
-
-** Surround
-
-#+BEGIN_SRC emacs-lisp
-    (use-package evil-surround
-      :requires evil
-      :commands global-evil-surround-mode
-      :idle (global-evil-surround-mode t))
-#+END_SRC
-
-** Matchit
-#+BEGIN_SRC emacs-lisp
-    (use-package evil-matchit
-      :requires evil
-      :commands global-evil-matchit-mode
-      :idle (global-evil-matchit-mode t)
-      :init
-      (progn
-        (defun evilmi-customize-keybinding ()
-          (evil-define-key 'normal evil-matchit-mode-map
-            (kbd "TAB") 'evilmi-jump-items))))
-#+END_SRC
-
-** TODO Sneak
-** TODO Linewise
-** TODO Operator comment
-* Development packages
-** Aggressive indent mode
+*** Aggressive indent mode
 
 #+BEGIN_SRC emacs-lisp
 (req-package aggressive-indent
@@ -279,6 +505,177 @@ Use the jk chord to switch to normal mode and save the buffer
     (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
     (add-hook 'css-mode-hook #'aggressive-indent-mode)))
 #+END_SRC
+
+*** Move-text
+#+BEGIN_SRC emacs-lisp
+(req-package move-text)
+#+END_SRC
+
+** Code completion
+*** Company
+#+BEGIN_SRC emacs-lisp
+(req-package company
+  :commands company-mode
+  :init
+  (progn
+    (add-hook 'css-mode-hook 'company-mode)
+    (add-hook 'nxml-mode-hook 'company-mode)
+    (add-hook 'prog-mode-hook 'company-mode))
+  :config
+  (progn
+    (setq company-idle-delay 0)
+    (define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
+    (define-key company-active-map (kbd "C-n") 'company-select-next)
+    (define-key company-active-map (kbd "C-p") 'company-select-previous)))
+#+END_SRC
+
+*** Emmet
+#+BEGIN_SRC emacs-lisp
+(req-package emmet-mode
+  :commands emmet-mode
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook  'emmet-mode)
+  (add-hook 'nxml-mode-hook  'emmet-mode)
+  (add-hook 'web-mode-hook  'emmet-mode)
+  :config
+  (setq emmet-preview-default nil)
+  (define-key evil-normal-state-map (kbd "C-e") 'emmet-expand-line)
+  (define-key evil-insert-state-map (kbd "C-e") 'emmet-expand-line))
+#+END_SRC
+
+** Development modes
+*** CSS mode
+#+BEGIN_SRC emacs-lisp
+(req-package css-mode
+  :config
+  (setq css-indent-offset 2))
+#+END_SRC
+
+*** SCSS mode
+#+BEGIN_SRC emacs-lisp
+(req-package scss-mode
+  :require css-mode
+  :config
+  (progn
+    (setq scss-compile-at-save nil)
+    ;;(add-hook 'scss-mode-hook 'flycheck-mode)
+    (add-hook 'scss-mode-hook (lambda () (setq comment-start "// " comment-end "")))))
+#+END_SRC
+*** Rainbow mode
+Colorizes colors in CSS
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-mode
+  :require css-mode
+  :config
+  (add-hook 'css-mode-hook 'rainbow-mode))
+#+END_SRC
+*** js2 mode
+#+BEGIN_SRC emacs-lisp
+(req-package js2-mode
+  :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+#+END_SRC
+*** Web mode
+#+BEGIN_SRC emacs-lisp
+(req-package web-mode
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+    (setq web-mode-code-indent-offset 4)
+    (setq web-mode-markup-indent-offset 4)
+
+    ;; make web-mode play nice with smartparens
+    (setq web-mode-enable-auto-pairing nil)))
+#+END_SRC
+*** nxml mode
+#+BEGIN_SRC emacs-lisp
+(req-package nxml-mode
+:config
+(setq
+ nxml-child-indent 4
+ nxml-attribute-indent 4
+ nxml-slash-auto-complete-flag t))
+#+END_SRC
+
+** Org mode
+#+BEGIN_SRC emacs-lisp
+(req-package org
+  :config
+  (progn
+    (add-hook 'org-mode-hook
+              (lambda () (interactive)
+                (org-indent-mode)
+                (visual-line-mode)
+                (setq org-clock-persist 'history)
+                (linum-mode)))
+
+    ;; Persistent clocking
+    (setq org-clock-persist 'history)
+    (org-clock-persistence-insinuate)
+
+    ;; Keys
+    (evil-define-key 'normal org-mode-map
+      ;; Todo
+      "t" 'org-todo
+
+      ;; Clocking
+      "gxi" 'org-clock-in
+      "gxo" 'org-clock-out
+      "gxd" 'org-clock-display
+      "gxr" 'org-clock-report)
+
+    ;; Todo settings
+    (setq org-todo-keywords
+          (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
+    ;(setq org-log-done t)
+
+    ;; (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
+    (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
+
+    (mapcar (lambda (state)
+              (evil-declare-key state org-mode-map
+                (kbd "M-l") 'org-metaright
+                (kbd "M-h") 'org-metaleft
+                (kbd "M-k") 'org-metaup
+                (kbd "M-j") 'org-metadown
+                ;; (kbd "M-L") 'org-shiftmetaright
+                ;; (kbd "M-H") 'org-shiftmetaleft
+                ;; (kbd "M-K") 'org-shiftmetaup
+                ;; (kbd "M-J") 'org-shiftmetadown
+                (kbd "M-L") 'org-shiftright
+                (kbd "M-H") 'org-shiftleft
+                (kbd "M-K") 'org-shiftup
+                (kbd "M-J") 'org-shiftdown
+                (kbd "M-o") '(lambda () (interactive)
+                               (evil-org-eol-call
+                                '(lambda()
+                                   (org-insert-heading)
+                                   (org-metaright))))))
+            '(normal insert))))
+#+END_SRC
+** Aesthetics
+*** Powerline
+#+BEGIN_SRC emacs-lisp
+(req-package powerline)
+(req-package powerline-evil
+  :require (evil-mode powerline)
+  :config
+  (powerline-evil-center-color-theme))
+#+END_SRC
+** Finish req-package
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
+#+END_SRC
+
 * Helper functions
 ** Cleanup buffer
 Useful stuff from Magnars
@@ -302,9 +699,132 @@ Including indent-buffer, which should not be called automatically on save."
 
 (evil-leader/set-key "c" 'cleanup-buffer)
 #+END_SRC
-* Finish req-package
+** Linewise
+Some useful mappings inspired by unimpaired.vim
 #+BEGIN_SRC emacs-lisp
-(req-package-finish)
+(evil-define-command evil-linewise-blank-lines-above (&optional count argument)
+  "Inserts blank lines above the cursor"
+  (interactive "p")
+  (evil-open-above count)
+  (evil-normal-state)
+  (evil-next-line)
+  (message nil))
+
+(evil-define-command evil-linewise-blank-lines-below (&optional count argument)
+  "Inserts blank lines below the cursor"
+  (interactive "p")
+  (evil-open-below count)
+  (evil-normal-state)
+  (evil-previous-line count)
+  (message nil))
+
+(evil-define-command evil-linewise-move-text-down (&optional count argument)
+  "Moves line arg lines down. Uses move-text.el"
+  (interactive "p")
+  (move-text-down count))
+
+(evil-define-command evil-linewise-move-text-up (&optional count argument)
+  "Moves line arg lines up. Uses move-text.el"
+  (interactive "p")
+  (move-text-up count))
+
+(evil-define-command evil-linewise-paste-newline-below
+  "Pastes in a new line below"
+  (interactive)
+  ;; (move-end-of-line 1)
+  ;; (newline-and-indent)
+  (evil-open-below 1)
+  (evil-normal-state)
+  (evil-paste-after 1)
+  (message nil))
+
+(evil-define-command evil-linewise-paste-newline-above
+  "Pastes in a new line above"
+  (interactive)
+  (evil-open-above 1)
+  (evil-normal-state)
+  (evil-paste-after 1)
+  (message nil))
+
+(evil-define-command evil-linewise-next-buffer
+  "Goes to the next buffer"
+  (interactive)
+  (evil-next-buffer 1))
+
+(evil-define-command evil-linewise-previous-buffer
+  "Goes to the previous buffer"
+  (interactive)
+  (evil-prev-buffer 1))
+
+(define-key evil-normal-state-map (kbd "[ SPC") 'evil-linewise-blank-lines-above)
+(define-key evil-normal-state-map (kbd "] SPC") 'evil-linewise-blank-lines-below)
+
+(define-key evil-normal-state-map (kbd "[ e") 'evil-linewise-move-text-up)
+(define-key evil-normal-state-map (kbd "] e") 'evil-linewise-move-text-down)
+
+(define-key evil-normal-state-map (kbd "[ p") 'evil-linewise-paste-newline-above)
+(define-key evil-normal-state-map (kbd "] p") 'evil-linewise-paste-newline-below)
+
+(define-key evil-normal-state-map (kbd "[ b") 'evil-linewise-next-buffer)
+(define-key evil-normal-state-map (kbd "] b") 'evil-linewise-previous-buffer)
+#+END_SRC
+** CSS helpers
+*** Duplicate selector
+
+#+BEGIN_SRC emacs-lisp
+(defun duplicate-css-selector ()
+  "Duplicates next selector and comma separates them"
+  (interactive)
+  (search-forward "{")
+  (backward-delete-char 2)
+  (insert ",")
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+  (backward-delete-char 1)
+  (insert " {"))
+(define-key evil-normal-state-map (kbd "g d s") 'duplicate-css-selector)
 #+END_SRC
 
-Stopped on line 306
+*** Duplicate property
+
+Duplicates a property and flips its direction. E.g., padding-left -> padding-right
+#+BEGIN_SRC emacs-lisp
+(defun duplicate-opposite-css-property ()
+  "Duplicates a CSS declaration and changes the property's direction from left to right, top to bottom, etc."
+  (interactive)
+  (evil-yank-line (point-at-bol) (point-at-eol) 'line)
+  (evil-paste-after 1)
+  (evil-forward-word-begin 2)
+  (let ((x (current-word t t)))
+    (kill-word 1)
+    (cond ((equal "left" x) (insert "right"))
+          ((equal "right" x) (insert "left"))
+          ((equal "top" x) (insert "bottom"))
+          ((equal "bottom" x) (insert "top")))))
+(define-key evil-normal-state-map (kbd "g d p") 'duplicate-opposite-css-property)
+#+END_SRC
+
+** Magento
+*** Toggle template hints
+Uses magerun to toggle template hints
+
+#+BEGIN_SRC emacs-lisp
+(define-key evil-normal-state-map (kbd "g m h")
+  (lambda ()
+    (interactive)
+    (start-process "magerun"
+                   (get-buffer-create "*magerun*")
+                   "magerun" "dev:template-hints")
+    (message "Toggling template hints")))
+#+END_SRC
+** Org clock statusbar app
+https://github.com/koddo/org-clock-statusbar-app
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-clock-in-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
+(add-hook 'org-clock-out-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" "tell application \"org-clock-statusbar\" to clock out")))
+#+END_SRC
