@@ -415,40 +415,42 @@ I mostly use Helm but there are places where ido still comes in handy
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
-(req-package helm
-  :require evil-leader
-  :config
-  (progn
-    (evil-leader/set-key "b" 'helm-mini)
-    (evil-leader/set-key "f" 'helm-find-files)
-    (evil-leader/set-key "r" 'helm-recentf)
+  (req-package helm
+    :require evil-leader
+    :config
+    (progn
+      (evil-leader/set-key "b" 'helm-mini)
+      (evil-leader/set-key "f" 'helm-find-files)
+      (evil-leader/set-key "r" 'helm-recentf)
 
-    (global-set-key (kbd "C-x C-m") 'helm-M-x)
-    (evil-leader/set-key "x" 'helm-M-x)
+      (global-set-key (kbd "C-x C-m") 'helm-M-x)
+      (evil-leader/set-key "x" 'helm-M-x)
 
 
-    (define-key evil-normal-state-map (kbd "ghb") 'helm-bookmarks)
-    (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
-    (define-key evil-normal-state-map (kbd "g h o") 'helm-occur)
+      (define-key evil-normal-state-map (kbd "ghb") 'helm-bookmarks)
+      (define-key evil-normal-state-map (kbd "g h i") 'helm-semantic-or-imenu)
+      (define-key evil-normal-state-map (kbd "g h o") 'helm-occur)
 
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-z") 'helm-select-action)))
+      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+      (define-key helm-map (kbd "C-z") 'helm-select-action)))
 
-(req-package helm-ag
-  :require helm)
+  (req-package helm-ag
+    :require helm)
 
-(req-package helm-projectile
-:require (helm projectile)
-  :config
-  (progn
-    (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
-    (setq projectile-completion-system 'helm)
-    (helm-projectile-on)
-    (setq helm-projectile-sources-list '(helm-source-projectile-projects
-                                         helm-source-projectile-files-list))
-    (setq projectile-switch-project-action 'helm-projectile)
-    ))
+  (req-package helm-projectile
+    :require (helm projectile)
+    :config
+    (progn
+      (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
+      (evil-leader/set-key "p" 'helm-projectile)
+
+      (setq projectile-completion-system 'helm)
+      (helm-projectile-on)
+      (setq helm-projectile-sources-list '(helm-source-projectile-projects
+                                           helm-source-projectile-files-list))
+      (setq projectile-switch-project-action 'helm-projectile)
+      ))
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
