@@ -327,6 +327,17 @@ Define the jk chord to switch to normal mode and save the buffer
   (global-evil-operator-comment-mode 2))
 #+END_SRC
 
+*** Evil-escape
+Binds a key chord (`fd`) to escape from all the things
+
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-escape
+    :require evil
+    :init
+    (evil-escape-mode t))
+#+END_SRC
+
+
 ** Ido
 I mostly use Helm but there are places where ido still comes in handy
 
