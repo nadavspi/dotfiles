@@ -413,6 +413,13 @@ I mostly use Helm but there are places where ido still comes in handy
             (lambda () (backward-char 1))
           (evil-ex "!git commit -m \"\""))))))
 #+END_SRC
+*** Magit git flow
+#+BEGIN_SRC emacs-lisp
+  (req-package magit-gitflow
+    :require magit
+    :config
+    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+#+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
   (req-package helm
