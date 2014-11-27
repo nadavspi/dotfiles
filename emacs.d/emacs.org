@@ -267,19 +267,36 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 *** Leader
 
 #+BEGIN_SRC emacs-lisp
-(req-package evil-leader
-  :require evil
-  :config
-  (evil-leader/set-leader "SPC")
-  (setq evil-leader/in-all-states)
-  (global-evil-leader-mode t)
+  (req-package evil-leader
+    :require evil
+    :config
+    (evil-leader/set-leader "SPC")
+    (setq evil-leader/in-all-states)
+    (global-evil-leader-mode t)
 
-  (evil-leader/set-key "h" 'help)
-  (evil-leader/set-key "w" 'save-buffer)
+    (evil-leader/set-key "h" 'help)
 
+    ;; define and name prefixes, courtesy of spacemacs
+    (dolist (x '(("t" . "toggles")
+                 ("w" . "windows")))
+      (let ((key (car x))
+            (prefix-command (intern (format "%s-prefix" (cdr x)))))
+        (define-prefix-command prefix-command)
+        (evil-leader/set-key key prefix-command)))
 
-  (evil-leader/set-key
-    "SPC" 'mode-line-other-buffer))
+    ;; files
+    ;;(evil-leader/set-key "fs" 'save-buffer)
+
+    ;; window management
+    (evil-leader/set-key
+      "ww" 'split-and-switch-horizontally
+      "wv" 'split-and-switch-vertically
+      "wc" 'delete-window
+      "wo" 'delete-other-windows)
+
+    ;; switch to previous buffer with <leader>SPC
+    (evil-leader/set-key
+      "SPC" 'mode-line-other-buffer))
 #+END_SRC
 
 *** Matchit
@@ -466,7 +483,7 @@ I mostly use Helm but there are places where ido still comes in handy
     :require (helm projectile)
     :config
     (progn
-      (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
+      ;;(define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
       (evil-leader/set-key "p" 'helm-projectile)
 
       (setq projectile-completion-system 'helm)
