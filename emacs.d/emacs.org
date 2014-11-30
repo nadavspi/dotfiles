@@ -695,11 +695,11 @@ Colorizes colors in CSS
 ** Aesthetics
 *** Powerline
 #+BEGIN_SRC emacs-lisp
-(req-package powerline)
-(req-package powerline-evil
-  :require (evil-mode powerline)
-  :config
-  (powerline-evil-center-color-theme))
+  (req-package powerline)
+
+  (req-package powerline-evil
+    :init
+    (powerline-evil-center-color-theme))
 #+END_SRC
 *** Golden ratio
 #+BEGIN_SRC emacs-lisp
