@@ -299,6 +299,13 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
       "SPC" 'mode-line-other-buffer))
 #+END_SRC
 
+*** Evil-nerd-commenter
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-nerd-commenter
+    :pre-load (setq evilnc-hotkey-comment-operator "gc")
+    :require evil-leader)
+#+END_SRC
+
 *** Matchit
 #+BEGIN_SRC emacs-lisp
 (req-package evil-matchit
@@ -335,15 +342,6 @@ Define the jk chord to switch to normal mode and save the buffer
   :load-path "vendor/")
 #+END_SRC
 
-*** Comments
-#+BEGIN_SRC emacs-lisp
-(req-package evil-operator-comment
-  :require evil
-  :load-path "vendor/"
-  :config
-  (global-evil-operator-comment-mode 2))
-#+END_SRC
-
 *** Evil-escape
 Binds a key chord (`fd`) to escape from all the things
 
@@ -353,7 +351,6 @@ Binds a key chord (`fd`) to escape from all the things
     :init
     (evil-escape-mode t))
 #+END_SRC
-
 
 ** Ido
 I mostly use Helm but there are places where ido still comes in handy
@@ -889,3 +886,9 @@ https://github.com/koddo/org-clock-statusbar-app
 (add-hook 'org-clock-in-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
 (add-hook 'org-clock-out-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" "tell application \"org-clock-statusbar\" to clock out")))
 #+END_SRC
+
+* Spacemacs inspiration
+** DONE "fd" to escape
+** DONE C-j / C-k everywhere
+** DONE <leader>w for window stuff
+** TODO Nerd commenter

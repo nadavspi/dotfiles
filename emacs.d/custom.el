@@ -11,7 +11,6 @@
  '(custom-safe-themes
    (quote
     ("d46d14636f375c786c0e06dcad2de2c25464fe69e41234860e33da3a12fbe32c" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
- '(evil-operator-comment-key "gc")
  '(fci-rule-color "#515151")
  '(linum-format (quote linum-relative))
  '(linum-relative-current-symbol "")
