@@ -702,12 +702,27 @@ Colorizes colors in CSS
 #+BEGIN_SRC emacs-lisp
   (req-package golden-ratio
     :config
-    (setq golden-ratio-extra-commands
-          (append golden-ratio-extra-commands
-                  '(evil-window-left
-                    evil-window-right
-                    evil-window-up
-                    evil-window-down))))
+    (progn
+     (setq golden-ratio-extra-commands
+           (append golden-ratio-extra-commands
+                   '(evil-window-left
+                     evil-window-right
+                     evil-window-up
+                     evil-window-down
+                     select-window-0
+                     select-window-1
+                     select-window-2
+                     select-window-3
+                     select-window-4)))
+
+     (defun spacemacs/toggle-golden-ratio ()
+       "Toggle golden-ratio mode on and off."
+       (interactive)
+       (if (symbol-value golden-ratio-mode)
+           (progn (golden-ratio-mode -1)(balance-windows))
+         (golden-ratio-mode)
+         (golden-ratio)))
+     (evil-leader/set-key "tg" 'spacemacs/toggle-golden-ratio)))
 #+END_SRC
 *** Window numbering
 #+BEGIN_SRC emacs-lisp
