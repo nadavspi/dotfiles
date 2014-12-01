@@ -754,7 +754,7 @@ Colorizes colors in CSS
 #+END_SRC
 
 * Helper functions
-** Adjust font sizr
+** Adjust font size
 Courtesy of spacemacs
 
 #+BEGIN_SRC emacs-lisp
