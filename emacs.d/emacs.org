@@ -962,3 +962,18 @@ https://github.com/koddo/org-clock-statusbar-app
 (add-hook 'org-clock-in-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
 (add-hook 'org-clock-out-hook (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e" "tell application \"org-clock-statusbar\" to clock out")))
 #+END_SRC
+
+** Elisp slime navigation
+
+Turn on eldoc and slime nav for elisp and bind K to describe the thing at point.
+From here: http://nathantypanski.com/blog/2014-08-03-a-vim-like-emacs-config.html
+#+BEGIN_SRC emacs-lisp
+  (defun my-lisp-hook ()
+    (elisp-slime-nav-mode)
+    (eldoc-mode))
+
+  (add-hook 'emacs-lisp-mode-hook 'my-lisp-hook)
+
+  (evil-define-key 'normal emacs-lisp-mode-map (kbd "K")
+    'elisp-slime-nav-describe-elisp-thing-at-point)
+#+END_SRC
