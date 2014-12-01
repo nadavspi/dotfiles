@@ -236,36 +236,64 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 
 *** Evil mode
 #+BEGIN_SRC emacs-lisp
-(req-package evil
-  :require evil-surround
-  :config
-  (evil-mode t)
-  (setq evil-emacs-state-cursor  '("red" box))
-  (setq evil-normal-state-cursor '("orange" box))
-  (setq evil-visual-state-cursor '("green" box))
-  (setq evil-insert-state-cursor '("orange" bar))
-  (setq evil-replace-state-cursor '("orange" bar))
-  (setq evil-operator-state-cursor '("orange" hollow))
-  (setq evil-motion-state-cursor '("gray" box))
+  (req-package evil
+    :require evil-surround
+    :config
+    (evil-mode t)
 
-  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
-  (define-key evil-visual-state-map (kbd ";") 'evil-ex)
-  (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+    ;; map multiple states at once (courtesy of Michael Markert;
+    ;; http://permalink.gmane.org/gmane.emacs.vim-emulation/1674)
+    (defun set-in-all-evil-states (key def &optional maps)
+      (unless maps
+        (setq maps (list evil-normal-state-map
+                         evil-visual-state-map
+                         evil-insert-state-map
+                         evil-emacs-state-map
+                         evil-motion-state-map)))
+      (while maps
+        (define-key (pop maps) key def)))
 
-  (define-key evil-normal-state-map (kbd "gei")
-    (lambda () (interactive) (find-file user-init-file)))
-  (define-key evil-normal-state-map (kbd "geb")
-    'eval-buffer)
-  (define-key evil-normal-state-map (kbd "geh")
-    (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
+    (defun set-in-all-evil-states-but-insert (key def)
+      (set-in-all-evil-states key def (list evil-normal-state-map
+                                            evil-visual-state-map
+                                            evil-emacs-state-map
+                                            evil-motion-state-map)))
+    ;; colemak stuff
+    (set-in-all-evil-states-but-insert "e" 'evil-previous-line)
+    (set-in-all-evil-states-but-insert "n" 'evil-next-line)
 
-  ;; Easier window switching
-  (defun evil-window-keymaps (map)
-    (define-key map (kbd "C-k") 'evil-window-up)
-    (define-key map (kbd "C-j") 'evil-window-down)
-    (define-key map (kbd "C-h") 'evil-window-left)
-    (define-key map (kbd "C-l") 'evil-window-right))
-  (evil-window-keymaps evil-normal-state-map))
+    (define-key evil-motion-state-map "k" 'evil-search-next)
+    (define-key evil-motion-state-map "K" 'evil-search-previous)
+
+    (define-key evil-motion-state-map "j" 'evil-forward-word-end)
+    ;; (define-key evil-motion-state-map "J" 'evil-forward-WORD-end)
+
+    (setq evil-emacs-state-cursor  '("red" box))
+    (setq evil-normal-state-cursor '("orange" box))
+    (setq evil-visual-state-cursor '("green" box))
+    (setq evil-insert-state-cursor '("orange" bar))
+    (setq evil-replace-state-cursor '("orange" bar))
+    (setq evil-operator-state-cursor '("orange" hollow))
+    (setq evil-motion-state-cursor '("gray" box))
+
+    (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+    (define-key evil-visual-state-map (kbd ";") 'evil-ex)
+    (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+
+    (define-key evil-normal-state-map (kbd "gei")
+      (lambda () (interactive) (find-file user-init-file)))
+    (define-key evil-normal-state-map (kbd "geb")
+      'eval-buffer)
+    (define-key evil-normal-state-map (kbd "geh")
+      (lambda () (interactive) (find-file "/sudo::/etc/hosts")))
+
+    ;; Easier window switching
+    (defun evil-window-keymaps (map)
+      (define-key map (kbd "C-k") 'evil-window-up)
+      (define-key map (kbd "C-j") 'evil-window-down)
+      (define-key map (kbd "C-h") 'evil-window-left)
+      (define-key map (kbd "C-l") 'evil-window-right))
+    (evil-window-keymaps evil-normal-state-map))
 #+END_SRC
 
 *** Leader
@@ -974,6 +1002,5 @@ From here: http://nathantypanski.com/blog/2014-08-03-a-vim-like-emacs-config.htm
 
   (add-hook 'emacs-lisp-mode-hook 'my-lisp-hook)
 
-  (evil-define-key 'normal emacs-lisp-mode-map (kbd "K")
-    'elisp-slime-nav-describe-elisp-thing-at-point)
+  ;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "K") 'elisp-slime-nav-describe-elisp-thing-at-point)
 #+END_SRC
