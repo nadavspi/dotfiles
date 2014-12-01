@@ -754,6 +754,63 @@ Colorizes colors in CSS
 #+END_SRC
 
 * Helper functions
+** Adjust font sizr
+Courtesy of spacemacs
+
+#+BEGIN_SRC emacs-lisp
+  (defun spacemacs/scale-font-size-overlay-map ()
+    "Set a temporary overlay map to easily change the font size."
+    (set-temporary-overlay-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map (kbd "+") 'spacemacs/scale-up-font)
+       (define-key map (kbd "-") 'spacemacs/scale-down-font)
+       (define-key map (kbd "=") 'spacemacs/reset-font-size)
+       map) t))
+
+  (defun spacemacs/font-scaling-micro-state-doc ()
+    "Display a short documentation in the mini buffer."
+    (message "Scale Font micro-state:
+    + to scale up
+    - to scale down
+    = to reset
+  Press any other key to exit."))
+
+  (spacemacs/font-scaling-micro-state-doc)
+
+  (defun spacemacs/scale-up-or-down-font-size (direction)
+    "Scale the font. If DIRECTION is positive or zero the font is scaled up,
+  otherwise it is scaled down."
+    (interactive)
+    (let ((scale 0.5))
+      (if (eq direction 0)
+          (text-scale-set 0)
+        (if (< direction 0)
+            (text-scale-decrease scale)
+          (text-scale-increase scale))))
+    (spacemacs/scale-font-size-overlay-map)
+    (spacemacs/font-scaling-micro-state-doc))
+
+  (defun spacemacs/scale-up-font ()
+    "Scale up the font."
+    (interactive)
+    (spacemacs/scale-up-or-down-font-size 1))
+
+  (defun spacemacs/scale-down-font ()
+    "Scale up the font."
+    (interactive)
+    (spacemacs/scale-up-or-down-font-size -1))
+
+  (defun spacemacs/reset-font-size ()
+    "Reset the font size."
+    (interactive)
+    (spacemacs/scale-up-or-down-font-size 0))
+
+
+  (evil-leader/set-key
+    "="  'spacemacs/reset-font-size
+    "+"  'spacemacs/scale-up-font
+    "-"  'spacemacs/scale-down-font)
+#+END_SRC
 ** Cleanup buffer
 Useful stuff from Magnars
 
