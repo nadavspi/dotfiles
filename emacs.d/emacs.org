@@ -5,12 +5,18 @@ This is my Emacs configuration set up as an Org file. As a convert from Vim, I m
 Inspired by [[https://github.com/mwfogleman/config/blob/master/home/.emacs.d/michael.org][mwfogleman]], [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa]], [[https://github.com/TheBB/dotfiles/blob/master/emacs/init.el][TheBB]], and others.
 * General setup
 ** Package management
-Set up package and req-package so the rest of this can work
+Set up package and req-package so the rest of this can work. Install req-package if it isn't already.
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.org/packages/") t)
   (package-initialize)
+
+  (if (not (package-installed-p 'req-package))
+      (progn
+        (package-refresh-contents)
+        (package-install 'req-package)))
+
   (require 'req-package)
 #+END_SRC
 ** Basic settings
@@ -88,20 +94,6 @@ Indent using spaces instead of tabs and use 4 spaces by default.
 (setq
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
-#+END_SRC
-*** Relative line numbers
-Like in Vim. Set globally.
-Show the actual line number for the current line.
-#+BEGIN_SRC emacs-lisp
-  (req-package linum-relative
-    :init
-    (setq linum-format 'linum-relative)
-    :config
-    (progn
-      (global-linum-mode 1)
-
-      (evil-leader/set-key "tr" 'linum-relative-toggle)))
-
 #+END_SRC
 *** Column markers
 
@@ -384,6 +376,18 @@ Binds a key chord (`fd`) to escape from all the things
     (evil-escape-mode t))
 #+END_SRC
 
+** Relative line numbers
+Like in Vim. Set globally.
+Show the actual line number for the current line.
+#+BEGIN_SRC emacs-lisp
+  (req-package linum-relative
+    :require evil-leader
+    :init
+    (setq linum-format 'linum-relative)
+    :config
+    (global-linum-mode 1)
+    (evil-leader/set-key "tr" 'linum-relative-toggle))
+#+END_SRC
 ** Ido
 I mostly use Helm but there are places where ido still comes in handy
 
@@ -721,6 +725,7 @@ Colorizes colors in CSS
                   (kbd "M-J") 'org-shiftmetadown))
               '(normal insert))))
 #+END_SRC
+
 ** Aesthetics
 *** Powerline
 #+BEGIN_SRC emacs-lisp
