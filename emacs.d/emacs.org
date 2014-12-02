@@ -727,8 +727,18 @@ Colorizes colors in CSS
 #+END_SRC
 
 ** Aesthetics
+*** Rich minority
+Hide minor modes from the mode lines
 
+#+BEGIN_SRC emacs-lisp
+  (req-package rich-minority
+    :init
+    (progn
+      (rich-minority-mode 1)
+      (setf rm-blacklist "")))
+#+END_SRC
 *** Smart mode line
+
 #+BEGIN_SRC emacs-lisp
   (req-package smart-mode-line
     :init (sml/setup)
