@@ -727,13 +727,19 @@ Colorizes colors in CSS
 #+END_SRC
 
 ** Aesthetics
-*** Powerline
-#+BEGIN_SRC emacs-lisp
-  (req-package powerline)
 
-  (req-package powerline-evil
-    :init
-    (powerline-evil-center-color-theme))
+*** Smart mode line
+#+BEGIN_SRC emacs-lisp
+  (req-package smart-mode-line
+    :init (sml/setup)
+    :config
+    (progn
+      (sml/apply-theme 'automatic)
+      (setq sml/shorten-directory t)
+      (setq sml/shorten-modes t)
+      (setq sml/name-width 40)
+      (setq sml/mode-width 'full)
+      ))
 #+END_SRC
 *** Golden ratio
 #+BEGIN_SRC emacs-lisp
