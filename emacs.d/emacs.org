@@ -711,8 +711,17 @@ Colorizes colors in CSS
 
       ;; Todo settings
       (setq org-todo-keywords
-            (quote ((sequence "TODO(t)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
-                                          ;(setq org-log-done t)
+            (quote ((sequence "TODO(t)" "TODAY(o)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
+      (setq org-log-done t)
+
+      ;; Capture
+      (setq org-directory "~/Dropbox/Org")
+      (setq org-default-notes-file "~/Dropbox/Org/inbox.org")
+      (setq org-refile-targets '(("life.org" :maxlevel  . 2)
+                                 ("work.org" :maxlevel . 1)))
+
+      ;; Enable syntax highlighting in babel src blocks
+      (setq-default org-src-fontify-natively t)
 
       ;; (define-key evil-normal-state-map (kbd "gh") 'outline-up-heading)
       (define-key evil-normal-state-map (kbd "T") 'org-time-stamp)
