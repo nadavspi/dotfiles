@@ -720,6 +720,11 @@ Colorizes colors in CSS
       (setq org-refile-targets '(("life.org" :maxlevel  . 2)
                                  ("work.org" :maxlevel . 1)))
 
+      ;; Agenda
+      (setq org-agenda-files
+            (list "~/Dropbox/Org/life.org" "~/Dropbox/Org/work.org")
+
+
       ;; Enable syntax highlighting in babel src blocks
       (setq-default org-src-fontify-natively t)
 
