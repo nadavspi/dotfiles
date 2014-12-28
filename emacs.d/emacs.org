@@ -759,10 +759,13 @@ Hide minor modes from the mode lines
 
 #+BEGIN_SRC emacs-lisp
   (req-package smart-mode-line
-    :init (sml/setup)
+    :init
+    (progn
+      (setq sml/no-confirm-load-theme t)
+      (sml/setup)
+      )
     :config
     (progn
-      (sml/apply-theme 'automatic)
       (setq sml/shorten-directory t)
       (setq sml/shorten-modes t)
       (setq sml/name-width 40)
