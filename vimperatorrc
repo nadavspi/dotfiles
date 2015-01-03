@@ -1,0 +1,7 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+set toolbars=none,tabs
+set defsearch=duckduckgo
+source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:
