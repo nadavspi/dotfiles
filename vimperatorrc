@@ -2,6 +2,12 @@
 
 set toolbars=none,tabs
 set defsearch=duckduckgo
+
+noremap d <C-d>
+noremap u <C-u>
+noremap <C-u> u
+noremap x d
+
 source! ~/.vimperatorrc.local
 
 " vim: set ft=vimperator:
