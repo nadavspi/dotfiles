@@ -3,11 +3,10 @@
 set toolbars=none,tabs
 set defsearch=duckduckgo
 
-noremap d <C-d>
-noremap u <C-u>
-noremap <C-u> u
-noremap x d
-
-source! ~/.vimperatorrc.local
+" Scroll with d/u (no modifiers)
+nnoremap d <C-d>
+nnoremap u <C-u>
+nnoremap x d
+nnoremap <C-u> u
 
 " vim: set ft=vimperator:
