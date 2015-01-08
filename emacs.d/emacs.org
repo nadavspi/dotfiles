@@ -525,8 +525,10 @@ I mostly use Helm but there are places where ido still comes in handy
 
       (setq projectile-completion-system 'helm)
       (helm-projectile-on)
-      (setq helm-projectile-sources-list '(helm-source-projectile-projects
-                                           helm-source-projectile-files-list))
+      (setq helm-projectile-sources-list '(
+                                           helm-source-projectile-files-list
+                                           helm-source-projectile-projects
+                                           ))
       (setq projectile-switch-project-action 'helm-projectile)
       ))
 #+END_SRC
