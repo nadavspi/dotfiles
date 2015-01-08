@@ -533,8 +533,11 @@ I mostly use Helm but there are places where ido still comes in handy
       ))
 #+END_SRC
 ** Projectile
-To turn on caching for a project, create a .dir-locals.el file with:
-```((nil . ((projectile-enable-caching . t))))```
+To turn on caching for a project, create a =.dir-locals.el= file with:
+#+BEGIN_SRC text
+((nil . ((projectile-enable-caching . t))))
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (req-package projectile
     :config
