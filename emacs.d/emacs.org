@@ -61,6 +61,11 @@ Set up package and req-package so the rest of this can work. Install req-package
 #+BEGIN_SRC emacs-lisp
   (setq confirm-nonexistent-file-or-buffer nil)
 #+END_SRC
+*** Enable directory local variables for remote files
+I will use .dir-locals.el to turn on projectile cache for large projects.
+#+BEGIN_SRC emacs-lisp
+  (setq enable-remote-dir-locals t)
+#+END_SRC
 ** Editing settings
 *** Turn off blinking cursor
 #+BEGIN_SRC emacs-lisp
