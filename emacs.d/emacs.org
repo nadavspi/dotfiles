@@ -260,6 +260,8 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     (define-key evil-motion-state-map "j" 'evil-forward-word-end)
     ;; (define-key evil-motion-state-map "J" 'evil-forward-WORD-end)
 
+    (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+
     (setq evil-emacs-state-cursor  '("red" box))
     (setq evil-normal-state-cursor '("orange" box))
     (setq evil-visual-state-cursor '("green" box))
@@ -623,8 +625,8 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
   (add-hook 'web-mode-hook  'emmet-mode)
   :config
   (setq emmet-preview-default nil)
-  (define-key evil-normal-state-map (kbd "C-e") 'emmet-expand-line)
-  (define-key evil-insert-state-map (kbd "C-e") 'emmet-expand-line))
+
+  (define-key evil-insert-state-map (kbd "C-k") 'emmet-expand-line))
 #+END_SRC
 
 ** Development modes
