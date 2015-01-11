@@ -34,9 +34,9 @@ bind l:ctrl;cmd throw 1 resize
 
 # Focus bindings
 bind h:ctrl;alt focus left
-bind l:ctrl;alt focus right
-bind k:ctrl;alt focus above
-bind j:ctrl;alt focus below
+bind i:ctrl;alt focus right
+bind e:ctrl;alt focus above
+bind n:ctrl;alt focus below
 
 
 # Application switching
