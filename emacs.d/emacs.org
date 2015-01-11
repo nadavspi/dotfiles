@@ -515,10 +515,10 @@ I mostly use Helm but there are places where ido still comes in handy
       (define-key evil-normal-state-map (kbd "g h o") 'helm-occur)
 
       ;; hjkl navigation courtesy of spacemacs
-      (define-key helm-map (kbd "C-j") 'helm-next-line)
-      (define-key helm-map (kbd "C-k") 'helm-previous-line)
+      ;; (define-key helm-map (kbd "C-j") 'helm-next-line)
+      (define-key helm-map (kbd "C-e") 'helm-previous-line)
       (define-key helm-map (kbd "C-h") 'helm-next-source)
-      (define-key helm-map (kbd "C-l") 'helm-previous-source)
+      (define-key helm-map (kbd "C-i") 'helm-previous-source)
 
       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
