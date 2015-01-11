@@ -253,6 +253,10 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     ;; colemak stuff
     (set-in-all-evil-states-but-insert "e" 'evil-previous-line)
     (set-in-all-evil-states-but-insert "n" 'evil-next-line)
+    (set-in-all-evil-states-but-insert "i" 'evil-forward-char)
+
+    (set-in-all-evil-states-but-insert "u" 'evil-insert)
+    (set-in-all-evil-states-but-insert "l" 'undo-tree-undo)
 
     (define-key evil-motion-state-map "k" 'evil-search-next)
     (define-key evil-motion-state-map "K" 'evil-search-previous)
