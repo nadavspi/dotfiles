@@ -843,6 +843,12 @@ Hide minor modes from the mode lines
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "##javascript" "#learnjavascript" "#emberjs")))
 
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+  ;; Timestamps on the left
+  (setq erc-timestamp-only-if-changed-flag nil
+        erc-timestamp-format "%H:%M "
+        erc-fill-prefix "      "
+        erc-insert-timestamp-function 'erc-insert-timestamp-left)
 #+END_SRC
 ** Finish req-package
 #+BEGIN_SRC emacs-lisp
