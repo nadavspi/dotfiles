@@ -329,6 +329,11 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
       "wc" 'delete-window
       "wo" 'delete-other-windows)
 
+    ;; ace jump mode
+    (evil-leader/set-key "e" 'evil-ace-jump-word-mode)
+    (evil-leader/set-key "l" 'evil-ace-jump-line-mode)
+    (evil-leader/set-key "j" 'evil-ace-jump-char-mode)
+
     ;; switch to previous buffer with <leader>SPC
     (evil-leader/set-key
       "SPC" 'mode-line-other-buffer))
