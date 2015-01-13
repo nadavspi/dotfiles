@@ -836,6 +836,14 @@ Hide minor modes from the mode lines
 
       (window-numbering-mode t)))
 #+END_SRC
+** ERC
+#+BEGIN_SRC emacs-lisp
+  (require 'erc)
+
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "##javascript" "#learnjavascript" "#emberjs")))
+
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+#+END_SRC
 ** Finish req-package
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)
