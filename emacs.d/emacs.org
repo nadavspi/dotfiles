@@ -733,6 +733,8 @@ Colorizes colors in CSS
         "gxd" 'org-clock-display
         "gxr" 'org-clock-report)
 
+      (setq org-clock-clocktable-default-properties '(:maxlevel 4 :scope subtree))
+
       ;; Todo settings
       (setq org-todo-keywords
             (quote ((sequence "TODO(t)" "TODAY(o)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
