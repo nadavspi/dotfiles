@@ -313,6 +313,7 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 
     ;; define and name prefixes, courtesy of spacemacs
     (dolist (x '(("t" . "toggles")
+                 ("o" . "org")
                  ("w" . "windows")))
       (let ((key (car x))
             (prefix-command (intern (format "%s-prefix" (cdr x)))))
@@ -731,7 +732,12 @@ Colorizes colors in CSS
         "gxi" 'org-clock-in
         "gxo" 'org-clock-out
         "gxd" 'org-clock-display
-        "gxr" 'org-clock-report)
+        "gxr" 'org-clock-report
+        "gxc" 'org-clock-jump-to-current-clock)
+
+      (evil-leader/set-key
+        "oa" 'org-agenda
+        "oc" 'org-capture)
 
       (setq org-clock-clocktable-default-properties '(:maxlevel 4 :scope subtree))
 
