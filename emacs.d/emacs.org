@@ -715,13 +715,26 @@ Colorizes colors in CSS
       (add-hook 'org-mode-hook
                 (lambda () (interactive)
                   (org-indent-mode)
-                  (visual-line-mode)
-                  (setq org-clock-persist 'history)
-                  (linum-mode)))
+                  (visual-line-mode)))
 
       ;; Persistent clocking
       (setq org-clock-persist 'history)
       (org-clock-persistence-insinuate)
+
+      ;; Resume clocking task on clock-in if the clock is open
+      (setq org-clock-in-resume t)
+      ;; Do not prompt to resume an active clock
+      (setq org-clock-persist-query-resume nil)
+      ;; Enable auto clock resolution for finding open clocks
+      (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+      ;; Separate drawers for clocking and logs
+      (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
+      ;; Save clock data and state changes and notes in the LOGBOOK drawer
+      (setq org-clock-into-drawer t)
+      ;; Include current clocking task in clock reports
+      (setq org-clock-report-include-clocking-task t)
+      ;; this removes clocked tasks with 0:00 duration
+      (setq org-clock-out-remove-zero-time-clocks t)
 
       ;; Keys
       (evil-define-key 'normal org-mode-map
@@ -737,24 +750,60 @@ Colorizes colors in CSS
 
       (evil-leader/set-key
         "oa" 'org-agenda
-        "oc" 'org-capture)
+        "oc" 'org-capture
+        "or" 'org-refile
+        "ob" 'org-iswitchb
+        )
 
       (setq org-clock-clocktable-default-properties '(:maxlevel 4 :scope subtree))
 
       ;; Todo settings
       (setq org-todo-keywords
-            (quote ((sequence "TODO(t)" "TODAY(o)" "WAITING(w)" "|" "CANCELLED(c)" "DONE(d)"))))
-      (setq org-log-done t)
+            (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+                    (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)"))))
+
+      ;; automatically assign tags to tasks based on state changes
+      (setq org-todo-state-tags-triggers
+            (quote (("CANCELLED" ("CANCELLED" . t))
+                    ("WAITING" ("WAITING" . t))
+                    ("HOLD" ("WAITING") ("HOLD" . t))
+                    (done ("WAITING") ("HOLD"))
+                    ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+                    ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+                    ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
       ;; Capture
       (setq org-directory "~/Dropbox/Org")
       (setq org-default-notes-file "~/Dropbox/Org/inbox.org")
-      (setq org-refile-targets '(("life.org" :maxlevel  . 2)
-                                 ("work.org" :maxlevel . 1)))
+
+      ;; Targets include this file and any file contributing to the agenda
+      (setq org-refile-targets (quote ((nil :maxlevel . 4)
+                                       (org-agenda-files :maxlevel . 2))))
+
+      ;; Exclude DONE state tasks from refile targets
+      (defun bh/verify-refile-target ()
+        "Exclude todo keywords with a done state from refile targets"
+        (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+      (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+      (setq org-capture-templates
+            (quote (("t" "TODO" entry (file "~/Dropbox/Org/inbox.org")
+                     "* TODO %?\n%U\n%a\n")
+                    ("n" "Note" entry (file "")
+                     "* %? :NOTE:\n%U\n%a\n")
+                    ("f" "Food" entry (file+datetree "~/Dropbox/Org/food.org")
+                     "* %?\n%U\n")
+                    ("m" "Meeting" entry (file "~/Dropbox/Org/inbox.org")
+                     "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                    ("p" "Phone call" entry (file "~/Dropbox/Org/inbox.org")
+                     "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t))))
 
       ;; Agenda
       (setq org-agenda-files
-            (list "~/Dropbox/Org/life.org" "~/Dropbox/Org/work.org"))
+            (list "~/Dropbox/Org/life.org"
+                  "~/Dropbox/Org/work.org"
+                  "~/Dropbox/Org/clients"))
 
 
       ;; Enable syntax highlighting in babel src blocks
