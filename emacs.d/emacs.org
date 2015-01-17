@@ -776,6 +776,8 @@ Colorizes colors in CSS
       (setq org-directory "~/Dropbox/Org")
       (setq org-default-notes-file "~/Dropbox/Org/inbox.org")
 
+      (add-hook 'org-capture-mode-hook 'evil-insert-state)
+
       ;; Targets include this file and any file contributing to the agenda
       (setq org-refile-targets (quote ((nil :maxlevel . 4)
                                        (org-agenda-files :maxlevel . 4))))
