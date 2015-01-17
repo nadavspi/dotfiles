@@ -805,6 +805,7 @@ Colorizes colors in CSS
       (setq org-agenda-files
             (list "~/Dropbox/Org/life.org"
                   "~/Dropbox/Org/work.org"
+                  "~/Dropbox/Org/inbox.org"
                   "~/Dropbox/Org/clients"))
 
 
