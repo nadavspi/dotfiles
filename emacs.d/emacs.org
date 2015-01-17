@@ -760,7 +760,7 @@ Colorizes colors in CSS
       ;; Todo settings
       (setq org-todo-keywords
             (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                    (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)"))))
+                    (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)" "MEETING(m)"))))
 
       ;; automatically assign tags to tasks based on state changes
       (setq org-todo-state-tags-triggers
@@ -778,7 +778,7 @@ Colorizes colors in CSS
 
       ;; Targets include this file and any file contributing to the agenda
       (setq org-refile-targets (quote ((nil :maxlevel . 4)
-                                       (org-agenda-files :maxlevel . 2))))
+                                       (org-agenda-files :maxlevel . 4))))
 
       ;; Exclude DONE state tasks from refile targets
       (defun bh/verify-refile-target ()
