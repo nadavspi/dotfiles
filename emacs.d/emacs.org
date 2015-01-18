@@ -124,6 +124,10 @@ Indent using spaces instead of tabs and use 4 spaces by default.
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 #+END_SRC
+*** Global auto revert
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode 1)
+#+END_SRC
 ** Mac
 *** Use command key as meta
 
