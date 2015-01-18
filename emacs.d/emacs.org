@@ -764,7 +764,7 @@ Colorizes colors in CSS
       ;; Todo settings
       (setq org-todo-keywords
             (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                    (sequence "WAITING(w)" "HOLD(h)" "|" "CANCELLED(c)" "MEETING(m)"))))
+                    (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING(m)"))))
 
       ;; automatically assign tags to tasks based on state changes
       (setq org-todo-state-tags-triggers
@@ -801,9 +801,7 @@ Colorizes colors in CSS
                     ("f" "Food" entry (file+datetree "~/Dropbox/Org/food.org")
                      "* %?\n%U\n")
                     ("m" "Meeting" entry (file "~/Dropbox/Org/inbox.org")
-                     "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-                    ("p" "Phone call" entry (file "~/Dropbox/Org/inbox.org")
-                     "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t))))
+                     "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t))))
 
       ;; Agenda
       (setq org-agenda-files
