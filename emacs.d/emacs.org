@@ -859,6 +859,10 @@ Hide minor modes from the mode lines
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                 (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING(m)"))))
 
+
+  ;; Prevent marking a task as DONE if any subtasks are open
+  (setq org-enforce-todo-dependencies t)
+
   ;; automatically assign tags to tasks based on state changes
   (setq org-todo-state-tags-triggers
         (quote (("CANCELLED" ("CANCELLED" . t))
