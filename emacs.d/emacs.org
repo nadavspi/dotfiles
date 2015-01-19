@@ -811,6 +811,7 @@ Hide minor modes from the mode lines
   (add-hook 'org-mode-hook
             (lambda () (interactive)
               (org-indent-mode)
+              (linum-mode 0)
               (visual-line-mode)))
 
   ;; Persistent clocking
