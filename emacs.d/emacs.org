@@ -789,6 +789,8 @@ Hide minor modes from the mode lines
 #+BEGIN_SRC emacs-lisp
   (require 'erc)
 
+  (add-hook 'erc-mode-hook 'use-monospace-font)
+
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs")))
 
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
