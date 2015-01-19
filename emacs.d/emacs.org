@@ -1469,6 +1469,17 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
               (or subtree-end (point-max)))
           next-headline))))
 #+END_SRC
+** Aesthetics
+#+BEGIN_SRC emacs-lisp
+  ;; Hides blank lines between headings
+  (setq org-cycle-separator-lines 0)
+
+  (setq org-log-done (quote time))
+  (setq org-log-into-drawer t)
+  (setq org-log-state-notes-insert-after-drawers nil)
+
+  (setq org-return-follows-link t)
+#+END_SRC
 * Helper functions
 ** Adjust font size
 Courtesy of spacemacs
