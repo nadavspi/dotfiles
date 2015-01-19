@@ -1247,7 +1247,9 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 #+END_SRC
 *** Narrowing
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<f5>") 'bh/org-todo)
+  (evil-leader/set-key
+    "ot"  'bh/org-todo
+    "ow"  'bh/widen)
 
   (defun bh/org-todo (arg)
     (interactive "p")
@@ -1257,8 +1259,6 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
           (org-show-todo-tree nil))
       (bh/narrow-to-org-subtree)
       (org-show-todo-tree nil)))
-
-  (global-set-key (kbd "<S-f5>") 'bh/widen)
 
   (defun bh/widen ()
     (interactive)
@@ -1430,6 +1430,9 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
            (pom
             (org-with-point-at pom
               (org-agenda-set-restriction-lock restriction-type))))))))
+
+  ;; Limit restriction lock highlighting to the headline only
+  (setq org-agenda-restriction-lock-highlight-subtree nil)
 
 #+END_SRC
 ** Archiving
