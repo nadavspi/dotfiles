@@ -904,8 +904,7 @@ Hide minor modes from the mode lines
   (setq org-agenda-files
         (list "~/Dropbox/Org/life.org"
               "~/Dropbox/Org/work.org"
-              "~/Dropbox/Org/inbox.org"
-              "~/Dropbox/Org/clients/"))
+              "~/Dropbox/Org/inbox.org"))
 
   (add-hook 'org-agenda-mode-hook 'use-monospace-font)
   (setq org-agenda-span 'day)
