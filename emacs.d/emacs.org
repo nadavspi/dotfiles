@@ -873,33 +873,6 @@ Hide minor modes from the mode lines
                 ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
                 ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
-  ;; Capture
-  (setq org-directory "~/Dropbox/Org")
-  (setq org-default-notes-file "~/Dropbox/Org/inbox.org")
-
-  (add-hook 'org-capture-mode-hook 'evil-insert-state)
-
-  ;; Targets include this file and any file contributing to the agenda
-  (setq org-refile-targets (quote ((nil :maxlevel . 4)
-                                   (org-agenda-files :maxlevel . 4))))
-
-  ;; Exclude DONE state tasks from refile targets
-  (defun bh/verify-refile-target ()
-    "Exclude todo keywords with a done state from refile targets"
-    (not (member (nth 2 (org-heading-components)) org-done-keywords)))
-
-  (setq org-refile-target-verify-function 'bh/verify-refile-target)
-
-  (setq org-capture-templates
-        (quote (("t" "TODO" entry (file "~/Dropbox/Org/inbox.org")
-                 "* TODO %?\n%U\n%a\n")
-                ("n" "Note" entry (file "")
-                 "* %? :NOTE:\n%U\n%a\n")
-                ("f" "Food" entry (file+datetree "~/Dropbox/Org/food.org")
-                 "* %?\n%U\n")
-                ("m" "Meeting" entry (file "~/Dropbox/Org/inbox.org")
-                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t))))
-
   ;; Agenda
   (setq org-agenda-files
         (list "~/Dropbox/Org/life.org"
@@ -926,6 +899,40 @@ Hide minor modes from the mode lines
               (kbd "M-E") 'org-shiftmetaup
               (kbd "M-N") 'org-shiftmetadown))
           '(normal insert))
+#+END_SRC
+
+** Capture and refile
+#+BEGIN_SRC emacs-lisp
+  (setq org-directory "~/Dropbox/Org")
+  (setq org-default-notes-file "~/Dropbox/Org/inbox.org")
+
+  (add-hook 'org-capture-mode-hook 'evil-insert-state)
+
+  (setq org-completion-use-ido t)
+  (setq org-refile-use-outline-path "file")
+  (setq org-outline-path-complete-in-steps nil)
+
+  ;; Targets include this file and any file contributing to the agenda
+  (setq org-refile-targets (quote ((nil :maxlevel . 4)
+                                   (org-agenda-files :maxlevel . 4))))
+
+  ;; Exclude DONE state tasks from refile targets
+  (defun bh/verify-refile-target ()
+    "Exclude todo keywords with a done state from refile targets"
+    (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+  (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+  (setq org-capture-templates
+        (quote (("t" "TODO" entry (file "~/Dropbox/Org/inbox.org")
+                 "* TODO %?\n%U\n%a\n")
+                ("n" "Note" entry (file "")
+                 "* %? :NOTE:\n%U\n%a\n")
+                ("f" "Food" entry (file+datetree "~/Dropbox/Org/food.org")
+                 "* %?\n%U\n")
+                ("m" "Meeting" entry (file "~/Dropbox/Org/inbox.org")
+                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t))))
+
 #+END_SRC
 ** Agenda
 Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
