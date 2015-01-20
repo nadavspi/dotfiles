@@ -1,0 +1,26 @@
+[general]
+ui = TTY.TTYUI
+accounts = fastmail
+pythonfile = ~/dotfiles/get_keychain_pass.py
+fsync = False
+
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+status_backend = sqlite
+
+[Repository fastmail-local]
+type = Maildir
+localfolders = ~/.mail/fastmail
+
+[Repository fastmail-remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteport = 993
+ssl = yes
+cert_fingerprint = 958b1601563aef92607a41eb5bad22e3cace8431
+remoteuser = nadavspi@elitemail.org
+remotepasseval = get_keychain_pass(account="nadavspi@elitemail.org", server="mail.messagingengine.com")
+
+folderfilter =  lambda foldername: foldername not in ['INBOX.Trash',
+                                                      'INBOX.Spam']
