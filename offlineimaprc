@@ -23,4 +23,4 @@ remoteuser = nadavspi@elitemail.org
 remotepasseval = get_keychain_pass(account="nadavspi@elitemail.org", server="mail.messagingengine.com")
 
 folderfilter =  lambda foldername: foldername not in ['INBOX.Trash',
-                                                      'INBOX.Spam']
+                                                      'INBOX.Junk Mail']
