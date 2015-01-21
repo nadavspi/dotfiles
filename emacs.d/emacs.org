@@ -850,7 +850,8 @@ Hide minor modes from the mode lines
     "oc" 'org-capture
     "or" 'org-refile
     "ob" 'org-iswitchb
-    )
+    "oh" 'helm-org-agenda-files-headings
+    "oH" 'helm-org-in-buffer-headings)
 
   (setq org-clock-clocktable-default-properties '(:maxlevel 4 :scope subtree))
 
