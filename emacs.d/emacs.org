@@ -798,9 +798,11 @@ Hide minor modes from the mode lines
 
   (add-hook 'erc-mode-hook 'use-monospace-font)
 
+  (setq erc-nick "nadavspi")
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs")))
 
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
 
   ;; Timestamps on the left
   (setq erc-timestamp-only-if-changed-flag nil
