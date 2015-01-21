@@ -315,6 +315,8 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     ;; files
     ;;(evil-leader/set-key "fs" 'save-buffer)
 
+    (evil-leader/set-key "tv" 'variable-pitch-mode)
+
     ;; window management
     (evil-leader/set-key
       "ww" 'split-and-switch-horizontally
