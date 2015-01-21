@@ -141,7 +141,7 @@ Indent using spaces instead of tabs and use 4 spaces by default.
     (set-face-attribute 'default nil :height 170)
     (set-default-font "Input Mono")
     (setq-default line-spacing 0.25)
-    (setq-default word-wrap t)
+    (setq-default word-wrap t))
 #+END_SRC
 *** Use $PATH
 
