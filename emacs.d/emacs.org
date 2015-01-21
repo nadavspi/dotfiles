@@ -1192,6 +1192,8 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
   ;; Compact the block agenda view
   (setq org-agenda-compact-blocks t)
 
+  (setq org-agenda-window-setup 'current-window)
+
   ;; Custom agenda command definitions
   (setq org-agenda-custom-commands
         (quote (("N" "Notes" tags "NOTE"
