@@ -275,6 +275,8 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 
     (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 
+    (define-key evil-normal-state-map (kbd ",") 'ace-jump-mode)
+
     (setq evil-emacs-state-cursor  '("red" box))
     (setq evil-normal-state-cursor '("orange" box))
     (setq evil-visual-state-cursor '("green" box))
