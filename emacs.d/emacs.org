@@ -1491,6 +1491,24 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 
   (setq org-return-follows-link t)
 #+END_SRC
+* Email
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+
+  (add-hook 'mu4e-main-mode-hook 'use-monospace-font)
+
+  (setq mu4e-maildir (expand-file-name "~/.mail"))
+  (setq mu4e-get-mail-command "offlineimap")
+
+  (setq mu4e-drafts-folder "/INBOX.Drafts")
+  (setq mu4e-sent-folder   "/INBOX.Sent Items")
+  (setq mu4e-trash-folder  "/INBOX.Trash")
+
+  (setq
+   user-email-addess "me@nadav.name"
+   user-full-name "Nadav Spiegelman")
+#+END_SRC
 * Helper functions
 ** Adjust font size
 Courtesy of spacemacs
