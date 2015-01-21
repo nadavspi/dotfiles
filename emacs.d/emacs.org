@@ -136,26 +136,12 @@ Indent using spaces instead of tabs and use 4 spaces by default.
   (setq mac-command-modifier 'meta))
 #+END_SRC
 *** Font settings
-I use Input Sans and switch to Input Mono in buffers that need it.
-
 #+BEGIN_SRC emacs-lisp
-(when (eq system-type 'darwin)
-  (set-face-attribute 'default nil :height 170)
-  (set-default-font "input sans")
-  (setq-default line-spacing 0.25)
-  (setq-default word-wrap t)
-
-  (defun use-proportional-font ()
-    (interactive)
-    (face-remap-add-relative 'default '(:family "Input Sans")))
-
-  (defun use-monospace-font ()
-    (interactive)
-    (face-remap-add-relative 'default '(:family "Input Mono")))
-
-  (add-hook 'dired-mode-hook 'use-monospace-font)
-  (add-hook 'help-mode-hook 'use-monospace-font)
-  (add-hook 'magit-mode-hook 'use-monospace-font))
+  (when (eq system-type 'darwin)
+    (set-face-attribute 'default nil :height 170)
+    (set-default-font "Input Mono")
+    (setq-default line-spacing 0.25)
+    (setq-default word-wrap t)
 #+END_SRC
 *** Use $PATH
 
@@ -796,8 +782,6 @@ Hide minor modes from the mode lines
 #+BEGIN_SRC emacs-lisp
   (require 'erc)
 
-  (add-hook 'erc-mode-hook 'use-monospace-font)
-
   (setq erc-nick "nadavspi")
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs")))
 
@@ -871,7 +855,6 @@ Hide minor modes from the mode lines
               "~/Dropbox/Org/work.org"
               "~/Dropbox/Org/inbox.org"))
 
-  (add-hook 'org-agenda-mode-hook 'use-monospace-font)
   (setq org-agenda-span 'day)
 
   ;; Enable syntax highlighting in babel src blocks
@@ -1530,8 +1513,6 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
   (require 'mu4e)
-
-  (add-hook 'mu4e-main-mode-hook 'use-monospace-font)
 
   (setq mu4e-maildir (expand-file-name "~/.mail"))
   (setq mu4e-get-mail-command "offlineimap")

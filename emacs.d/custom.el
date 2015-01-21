@@ -42,4 +42,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:background "cornsilk" :foreground "black" :family "Input Mono"))))
- '(nxml-attribute-value ((t (:inherit font-lock-string-face :family "Input Mono")))))
+ '(nxml-attribute-value ((t (:inherit font-lock-string-face :family "Input Mono"))))
+ '(variable-pitch ((t (:family "Input Sans")))))
