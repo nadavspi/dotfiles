@@ -510,6 +510,8 @@ I mostly use Helm but there are places where ido still comes in handy
     :require evil-leader
     :config
     (progn
+      (helm-mode 1)
+
       ;; don't show . and .. when using find-file
       (setq helm-boring-file-regexp-list '("\\.\\.$" "\\.$"))
       (setq helm-ff-skip-boring-files t)
