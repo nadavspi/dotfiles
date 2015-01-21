@@ -941,6 +941,8 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-span 'day)
 
+  (setq org-agenda-clockreport-parameter-plist '(:link t :maxlevel 7))
+
   (defun bh/find-project-task ()
     "Move point to the parent (project) task if any"
     (save-restriction
