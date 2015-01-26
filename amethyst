@@ -16,11 +16,11 @@
     ],
 
     "mod1": [
-        "command",
+        "option",
         "shift"
     ],
     "mod2": [
-        "command",
+        "option",
         "shift",
         "control"
     ],
@@ -152,6 +152,14 @@
         "mod": "mod2",
         "key": "2"
     },
+    "throw-space-3": {
+        "mod": "mod2",
+        "key": "3"
+    },
+    "throw-space-4": {
+        "mod": "mod2",
+        "key": "4"
+    },
     "toggle-float": {
         "mod": "mod1",
         "key": "a"
@@ -166,9 +174,11 @@
     },
 
     "MISC": "----------------------",
-    "floating": [],
+    "floating": [
+        "com.apple.systempreferences"
+    ],
     "float-small-windows": true,
-    "mouse-follows-focus": false,
+    "mouse-follows-focus": true,
     "focus-follows-mouse": false,
     "enables-layout-hud": true,
     "enables-layout-hud-on-space-change": false
