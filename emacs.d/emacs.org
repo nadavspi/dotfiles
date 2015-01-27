@@ -1543,14 +1543,23 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
   (require 'mu4e)
 
-  (setq evil-leader/no-prefix-mode-rx '("mu4e-main-mode mu4e-headers-mode mu4e-view-mode"))
+  (evil-leader/set-key "m" 'mu4e)
+
+  (setq evil-emacs-state-modes
+        '(mu4e-main-mode mu4e-headers-mode mu4e-view-mode))
 
   (setq mu4e-maildir (expand-file-name "~/.mail"))
-  (setq mu4e-get-mail-command "offlineimap")
+  (setq mu4e-get-mail-command "offlineimap -q")
 
   (setq mu4e-drafts-folder "/fastmail/INBOX.Drafts")
   (setq mu4e-sent-folder   "/fastmail/INBOX.Sent Items")
   (setq mu4e-trash-folder  "/fastmail/INBOX.Trash")
+
+  (setq   mu4e-maildir-shortcuts
+          '(("/fastmail/INBOX.Archive"     . ?a)
+            ("/fastmail/INBOX.+SaneNews"     . ?s)
+            ("/fastmail/INBOX.+SaneLater"     . ?l)
+            ("/fastmail/INBOX"       . ?i)))
 
   (setq mu4e-view-show-images t)
   (setq mu4e-html2text-command "w3m -dump -T text/html")
