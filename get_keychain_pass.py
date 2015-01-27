@@ -8,7 +8,7 @@ def get_keychain_pass(account=None, server=None):
         'server': server,
         'keychain': '~/Library/Keychains/login.keychain',
     }
-    command = "sudo -u nadaarstv %(security)s -v %(command)s -g -a %(account)s -s %(server)s %(keychain)s" % params
+    command = "sudo -u nadav %(security)s -v %(command)s -g -a %(account)s -s %(server)s %(keychain)s" % params
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     outtext = [l for l in output.splitlines()
                if l.startswith('password: ')][0]
