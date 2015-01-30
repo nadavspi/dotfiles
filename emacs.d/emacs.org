@@ -891,8 +891,8 @@ Hide minor modes from the mode lines
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
   ;; Targets include this file and any file contributing to the agenda
-  (setq org-refile-targets (quote ((nil :maxlevel . 4)
-                                   (org-agenda-files :maxlevel . 4))))
+  (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                   (org-agenda-files :maxlevel . 9))))
 
   ;; Exclude DONE state tasks from refile targets
   (defun bh/verify-refile-target ()
