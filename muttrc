@@ -52,14 +52,14 @@ alternates nadavspi@elitemail.org
 
 # Mailboxes to show in the sidebar.
 mailboxes +fastmail/INBOX \
-          +fastmail/INBOX.+SaneLater \
-          +fastmail/INBOX.+SaneNews \
-          +fastmail/INBOX.Archive \
-          +fastmail/INBOX.Drafts \
+          +fastmail/SaneLater \
+          +fastmail/SaneNews \
+          +fastmail/archive \
+          +fastmail/drafts \
 
 # Other special folders.
-set mbox      = "+fastmail/INBOX.Archive"
-set postponed = "+fastmail/INBOX.Drafts"
+set mbox      = "+fastmail/archive"
+set postponed = "+fastmail/drafts"
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
@@ -114,6 +114,8 @@ bind pager gg top
 bind pager G  bottom
 
 bind pager R  group-reply
+
+auto_view text/html
 
 # View attachments properly.
 bind attach <return> view-mailcap
