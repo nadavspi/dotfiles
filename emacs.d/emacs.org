@@ -623,7 +623,7 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
   :config
   (progn
     (setq company-idle-delay 0)
-    (define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
+    ;;(define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
     (define-key company-active-map (kbd "C-n") 'company-select-next)
     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
 #+END_SRC
