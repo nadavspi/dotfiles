@@ -8,6 +8,7 @@ fsync = False
 localrepository = fastmail-local
 remoterepository = fastmail-remote
 status_backend = sqlite
+postsynchook = notmuch new
 
 [Repository fastmail-local]
 type = Maildir
@@ -28,7 +29,7 @@ ssl = yes
 cert_fingerprint = 958b1601563aef92607a41eb5bad22e3cace8431
 remoteuser = nadavspi@elitemail.org
 remotepasseval = get_keychain_pass(account="nadavspi@elitemail.org", server="mail.messagingengine.com")
-nametrans = lambda folder: {'INBOX.Drafts': 'drafts',
+nametrans = lambda folder: {'INBOX.Drafts': 'Drafts',
                             'INBOX.Sent Items': 'Sent',
                             'INBOX.Archive': 'Archive',
                             'INBOX.+SaneLater': 'SaneLater',
