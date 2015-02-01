@@ -8,7 +8,7 @@ set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 set tmpdir           = ~/.mutt/temp          # where to keep temp files
 # set signature        = ~/.mutt/sig           # my signature file
 
-# set editor = "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n -c"
+# set editor = "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 set editor = "vim"
 
 # Basic Options --------------------------------------
@@ -54,12 +54,15 @@ alternates nadavspi@elitemail.org
 mailboxes +fastmail/INBOX \
           +fastmail/SaneLater \
           +fastmail/SaneNews \
-          +fastmail/archive \
-          +fastmail/drafts \
+          +fastmail/Archive \
+          +fastmail/Sent \
+          +fastmail/Drafts \
 
 # Other special folders.
-set mbox      = "+fastmail/archive"
-set postponed = "+fastmail/drafts"
+set mbox      = "+fastmail/Archive"
+set postponed = "+fastmail/Drafts"
+set copy      = yes
+set record    = "+fastmail/Sent"
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
@@ -152,7 +155,6 @@ set forward_quote                    # include message in forwards
 set from     = "me@nadav.name"
 set sendmail = "/usr/local/bin/msmtp -a fastmail"
 set sendmail_wait = 0
-unset record
 
 bind compose p postpone-message
 
