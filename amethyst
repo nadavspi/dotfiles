@@ -175,7 +175,9 @@
 
     "MISC": "----------------------",
     "floating": [
-        "com.apple.systempreferences"
+        "com.apple.systempreferences",
+        "com.apple.finder",
+        "com.adobe.Photoshop"
     ],
     "float-small-windows": true,
     "mouse-follows-focus": true,
