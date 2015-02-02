@@ -623,7 +623,7 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
   :config
   (progn
     (setq company-idle-delay 0)
-    (define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
+    ;;(define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
     (define-key company-active-map (kbd "C-n") 'company-select-next)
     (define-key company-active-map (kbd "C-p") 'company-select-previous)))
 #+END_SRC
@@ -1521,7 +1521,32 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 
   (setq org-return-follows-link t)
 #+END_SRC
-* Eshell
+* Shells
+** General term stuff
+#+BEGIN_SRC emacs-lisp
+  (defun oleh-term-exec-hook ()
+    (let* ((buff (current-buffer))
+           (proc (get-buffer-process buff)))
+      (set-process-sentinel
+       proc
+       `(lambda (process event)
+          (if (string= event "finished\n")
+              (kill-buffer ,buff))))))
+
+  (add-hook 'term-exec-hook 'oleh-term-exec-hook)
+
+  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+  (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+
+#+END_SRC
+** Ansi-term
+#+BEGIN_SRC emacs-lisp
+  (defadvice ansi-term (after advise-ansi-term-coding-system)
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+  (ad-activate 'ansi-term)
+#+END_SRC
+
+** Eshell
 #+BEGIN_SRC emacs-lisp
   (defun eshell-here ()
     "Opens up a new shell in the directory associated with the

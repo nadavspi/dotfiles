@@ -378,3 +378,12 @@ vmap <unique> <up>    <Plug>SchleppUp
 vmap <unique> <down>  <Plug>SchleppDown
 vmap <unique> <left>  <Plug>SchleppLeft
 vmap <unique> <right> <Plug>SchleppRight
+
+" Colemak stuff
+nnoremap n j
+nnoremap e k
+nnoremap i l
+nnoremap u i
+nnoremap l u
+nnoremap k n
+nnoremap K N

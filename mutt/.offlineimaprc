@@ -1,0 +1,40 @@
+[general]
+ui = TTY.TTYUI
+accounts = fastmail
+pythonfile = ~/dotfiles/get_keychain_pass.py
+fsync = False
+
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository fastmail-local]
+type = Maildir
+localfolders = ~/.mail/fastmail
+nametrans = lambda folder: {'Drafts': 'INBOX.Drafts',
+                            'Sent': 'INBOX.Sent Items',
+                            'Archive': 'INBOX.Archive',
+                            'SaneLater': 'INBOX.+SaneLater',
+                            'SaneNews': 'INBOX.+SaneNews',
+                            'SaneBlackHole': 'INBOX.+SaneBlackHole',
+                            }.get(folder, folder)
+
+[Repository fastmail-remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteport = 993
+ssl = yes
+cert_fingerprint = 958b1601563aef92607a41eb5bad22e3cace8431
+remoteuser = nadavspi@elitemail.org
+remotepasseval = get_keychain_pass(account="nadavspi@elitemail.org", server="mail.messagingengine.com")
+nametrans = lambda folder: {'INBOX.Drafts': 'Drafts',
+                            'INBOX.Sent Items': 'Sent',
+                            'INBOX.Archive': 'Archive',
+                            'INBOX.+SaneLater': 'SaneLater',
+                            'INBOX.+SaneNews': 'SaneNews',
+                            'INBOX.+SaneBlackHole': 'SaneBlackHole'
+                            }.get(folder, folder)
+folderfilter =  lambda foldername: foldername not in ['INBOX.Trash',
+                                                      'INBOX.Junk Mail']
