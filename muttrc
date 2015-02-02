@@ -158,4 +158,5 @@ set sendmail_wait = 0
 
 bind compose p postpone-message
 
-source ~/.mutt/tomorrow-night
+# source ~/.mutt/colors/tomorrow-night
+source ~/.mutt/colors/solarized-dark
