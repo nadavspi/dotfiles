@@ -24,5 +24,5 @@ eshell/
 emacs.el
 org-clock-save.el
 
-mutt/cache/*
-mutt/temp/*
+.mutt/cache/*
+.mutt/temp/*
