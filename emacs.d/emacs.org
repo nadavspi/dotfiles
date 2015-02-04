@@ -826,6 +826,8 @@ Hide minor modes from the mode lines
     "oa" 'org-agenda
     "oc" 'org-capture
     "or" 'org-refile
+    "oe" 'org-set-effort
+    "os" 'org-schedule
     "ob" 'org-iswitchb
     "oh" 'helm-org-agenda-files-headings
     "oH" 'helm-org-in-buffer-headings)
