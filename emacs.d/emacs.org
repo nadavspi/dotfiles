@@ -653,13 +653,16 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 
 *** SCSS mode
 #+BEGIN_SRC emacs-lisp
-(req-package scss-mode
-  :require css-mode
-  :config
-  (progn
-    (setq scss-compile-at-save nil)
-    ;;(add-hook 'scss-mode-hook 'flycheck-mode)
-    (add-hook 'scss-mode-hook (lambda () (setq comment-start "// " comment-end "")))))
+  (req-package scss-mode
+    :require css-mode
+    :config
+    (progn
+      (setq scss-compile-at-save nil)
+      ;;(add-hook 'scss-mode-hook 'flycheck-mode)
+      (add-hook 'scss-mode-hook (lambda ()
+                                  (setq comment-start "// " comment-end "")
+                                  (setq require-final-newline t)
+                                  ))))
 #+END_SRC
 *** Rainbow mode
 Colorizes colors in CSS
