@@ -402,6 +402,7 @@ Binds a key chord (`fd`) to escape from all the things
 
 #+BEGIN_SRC emacs-lisp
   (req-package evil-escape
+    :disabled
     :require evil
     :init
     (evil-escape-mode t))
