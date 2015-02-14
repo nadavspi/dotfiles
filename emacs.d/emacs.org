@@ -1602,42 +1602,6 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
     (eshell-send-input)
     (delete-window))
 #+END_SRC
-* Email
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-  (require 'mu4e)
-
-  (evil-leader/set-key "m" 'mu4e)
-
-  (add-to-list 'evil-emacs-state-modes 'mu4e-main-mode)
-  (add-to-list 'evil-emacs-state-modes 'mu4e-headers-mode)
-  (add-to-list 'evil-emacs-state-modes 'mu4e-view-mode)
-
-  (setq mu4e-maildir (expand-file-name "~/.mail"))
-  (setq mu4e-get-mail-command "offlineimap -q")
-
-  (setq mu4e-drafts-folder "/fastmail/INBOX.Drafts")
-  (setq mu4e-sent-folder   "/fastmail/INBOX.Sent Items")
-  (setq mu4e-trash-folder  "/fastmail/INBOX.Trash")
-
-  (setq  mu4e-maildir-shortcuts
-          '(("/fastmail/INBOX.Archive"     . ?a)
-            ("/fastmail/INBOX.+SaneNews"     . ?n)
-            ("/fastmail/INBOX.+SaneLater"     . ?l)
-            ("/fastmail/INBOX"       . ?i)))
-
-  (setq mu4e-view-show-images t)
-  (setq mu4e-html2text-command "w3m -dump -T text/html")
-  (setq mu4e-view-prefer-html nil)
-  (setq mu4e-use-fancy-chars t)
-
-  (setq mu4e-headers-skip-duplicates t)
-
-  (setq
-   user-email-addess "me@nadav.name"
-   user-full-name "Nadav Spiegelman"
-   mu4e-compose-signature-auto-include nil)
-#+END_SRC
 * Helper functions
 ** Adjust font size
 Courtesy of spacemacs
