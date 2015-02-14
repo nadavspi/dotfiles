@@ -386,8 +386,8 @@ Define the jk chord to switch to normal mode and save the buffer
     (evil-normal-state)
     (save-buffer))
 
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-and-save-buffer)
-  (key-chord-define evil-visual-state-map "jk" 'evil-normal-and-save-buffer))
+  (key-chord-define evil-insert-state-map "dt" 'evil-normal-and-save-buffer)
+  (key-chord-define evil-visual-state-map "dt" 'evil-normal-and-save-buffer))
 #+END_SRC
 
 *** Sneak
