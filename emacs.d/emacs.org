@@ -353,6 +353,26 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
   (global-evil-matchit-mode t))
 #+END_SRC
 
+*** Evil-args
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-args
+    :require evil
+    :config
+    ;; bind evil-args text objects
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+
+    ;; bind evil-forward/backward-args
+    (define-key evil-normal-state-map "L" 'evil-forward-arg)
+    (define-key evil-normal-state-map "H" 'evil-backward-arg)
+    (define-key evil-motion-state-map "L" 'evil-forward-arg)
+    (define-key evil-motion-state-map "H" 'evil-backward-arg)
+
+    ;; bind evil-jump-out-args
+    ;; (define-key evil-normal-state-map "K" 'evil-jump-out-args)
+    )
+#+END_SRC
+
 *** Key chord
 Define the jk chord to switch to normal mode and save the buffer
 
