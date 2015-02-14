@@ -673,13 +673,16 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 
 *** SCSS mode
 #+BEGIN_SRC emacs-lisp
-(req-package scss-mode
-  :require css-mode
-  :config
-  (progn
-    (setq scss-compile-at-save nil)
-    ;;(add-hook 'scss-mode-hook 'flycheck-mode)
-    (add-hook 'scss-mode-hook (lambda () (setq comment-start "// " comment-end "")))))
+  (req-package scss-mode
+    :require css-mode
+    :config
+    (progn
+      (setq scss-compile-at-save nil)
+      ;;(add-hook 'scss-mode-hook 'flycheck-mode)
+      (add-hook 'scss-mode-hook (lambda ()
+                                  (setq comment-start "// " comment-end "")
+                                  (setq require-final-newline t)
+                                  ))))
 #+END_SRC
 *** Rainbow mode
 Colorizes colors in CSS
@@ -697,24 +700,28 @@ Colorizes colors in CSS
 #+END_SRC
 *** Web mode
 #+BEGIN_SRC emacs-lisp
-(req-package web-mode
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (req-package web-mode
+    :config
+    (progn
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
-    (setq web-mode-code-indent-offset 4)
-    (setq web-mode-markup-indent-offset 4)
+      (add-hook 'web-mode-hook
+                (lambda ()
+                  (setq indent-tabs-mode t)))
 
-    ;; make web-mode play nice with smartparens
-    (setq web-mode-enable-auto-pairing nil)))
+      (setq web-mode-code-indent-offset 4)
+      (setq web-mode-markup-indent-offset 4)
+
+      ;; make web-mode play nice with smartparens
+      (setq web-mode-enable-auto-pairing nil)))
 #+END_SRC
 *** nxml mode
 #+BEGIN_SRC emacs-lisp
