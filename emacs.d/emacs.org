@@ -250,6 +250,7 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     (set-in-all-evil-states-but-insert "n" 'evil-next-line)
     (set-in-all-evil-states-but-insert "i" 'evil-forward-char)
 
+    (set-in-all-evil-states-but-insert "U" 'evil-insert-line)
     (set-in-all-evil-states-but-insert "u" 'evil-insert)
     (set-in-all-evil-states-but-insert "l" 'undo-tree-undo)
 
@@ -363,13 +364,13 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
 
     ;; bind evil-forward/backward-args
-    (define-key evil-normal-state-map "L" 'evil-forward-arg)
+    (define-key evil-normal-state-map "I" 'evil-forward-arg)
     (define-key evil-normal-state-map "H" 'evil-backward-arg)
-    (define-key evil-motion-state-map "L" 'evil-forward-arg)
+    (define-key evil-motion-state-map "I" 'evil-forward-arg)
     (define-key evil-motion-state-map "H" 'evil-backward-arg)
 
     ;; bind evil-jump-out-args
-    ;; (define-key evil-normal-state-map "K" 'evil-jump-out-args)
+    (define-key evil-normal-state-map (kbd "gE") 'evil-jump-out-args)
     )
 #+END_SRC
 
