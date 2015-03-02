@@ -44,7 +44,6 @@ Plugin 'nixon/vim-vmath'
 Plugin 'kana/vim-textobj-user'
 Plugin 'tyru/open-browser.vim'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'zirrostig/vim-schlepp.git'
 
 " code
 Plugin 'scrooloose/syntastic'
@@ -371,13 +370,6 @@ call textobj#user#plugin('php', {
 " If URI, open. Othwrwise, search.
 nnoremap gb <Plug>(openbrowser-smart-search)
 vnoremap gb <Plug>(openbrowser-smart-search)
-
-" Schlepp
-"""""""""
-vmap <unique> <up>    <Plug>SchleppUp
-vmap <unique> <down>  <Plug>SchleppDown
-vmap <unique> <left>  <Plug>SchleppLeft
-vmap <unique> <right> <Plug>SchleppRight
 
 " Colemak stuff
 nnoremap n j
