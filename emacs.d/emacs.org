@@ -303,6 +303,7 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     (global-evil-leader-mode t)
 
     (evil-leader/set-key "h" 'help)
+    (evil-leader/set-key "u" 'universal-argument)
 
     ;; define and name prefixes, courtesy of spacemacs
     (dolist (x '(("t" . "toggles")
@@ -861,6 +862,8 @@ Hide minor modes from the mode lines
     "oe" 'org-set-effort
     "os" 'org-schedule
     "ob" 'org-iswitchb
+    "oxc" 'org-clock-jump-to-current-clock
+    "oxl" 'org-clock-in-last
     "oh" 'helm-org-agenda-files-headings
     "oH" 'helm-org-in-buffer-headings)
 
