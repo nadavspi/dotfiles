@@ -303,7 +303,6 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
     (global-evil-leader-mode t)
 
     (evil-leader/set-key "h" 'help)
-    (evil-leader/set-key "u" 'universal-argument)
 
     ;; define and name prefixes, courtesy of spacemacs
     (dolist (x '(("t" . "toggles")
@@ -471,9 +470,6 @@ I mostly use Helm but there are places where ido still comes in handy
 
       (evil-set-initial-state 'git-commit-mode 'insert)
 
-      (add-hook 'git-commit-mode-hook (lambda ()
-                                   ('flyspell-mode 1)))
-
       (defun evil-git-add-current-file ()
         (interactive)
         (start-process "git-add"
@@ -639,19 +635,21 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 ** Code completion
 *** Company
 #+BEGIN_SRC emacs-lisp
-(req-package company
-  :commands company-mode
-  :init
-  (progn
-    (add-hook 'css-mode-hook 'company-mode)
-    (add-hook 'nxml-mode-hook 'company-mode)
-    (add-hook 'prog-mode-hook 'company-mode))
-  :config
-  (progn
-    (setq company-idle-delay 0)
-    ;;(define-key evil-insert-state-map (kbd "TAB") 'company-manual-begin)
-    (define-key company-active-map (kbd "C-n") 'company-select-next)
-    (define-key company-active-map (kbd "C-p") 'company-select-previous)))
+  (req-package company
+    :commands company-mode
+    :config
+    (progn
+      (setf company-idle-delay 0
+            company-minimum-prefix-length 2
+            company-show-numbers t
+            company-selection-wrap-around t
+            company-dabbrev-ignore-case t
+            company-dabbrev-ignore-invisible t
+            company-dabbrev-downcase nil)
+
+      (define-key company-active-map (kbd "C-n") 'company-select-next)
+      (define-key company-active-map (kbd "C-e") 'company-select-previous)
+      (global-company-mode t)))
 #+END_SRC
 
 *** Emmet
@@ -833,7 +831,11 @@ Hide minor modes from the mode lines
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)
 #+END_SRC
-
+** Ember mode
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/vendor/ember-mode")
+  (require 'ember-mode)
+#+END_SRC
 * Org mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook
@@ -862,8 +864,6 @@ Hide minor modes from the mode lines
     "oe" 'org-set-effort
     "os" 'org-schedule
     "ob" 'org-iswitchb
-    "oxc" 'org-clock-jump-to-current-clock
-    "oxl" 'org-clock-in-last
     "oh" 'helm-org-agenda-files-headings
     "oH" 'helm-org-in-buffer-headings)
 
@@ -1518,7 +1518,7 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
 
   ;; global Effort estimate values
   ;; global STYLE property values for completion
-  (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 8:00 10:00 12:00 20:00")
+  (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
                                       ("STYLE_ALL" . "habit"))))
 #+END_SRC
 ** Archiving
