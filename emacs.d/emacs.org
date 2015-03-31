@@ -338,7 +338,7 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 *** Evil-nerd-commenter
 #+BEGIN_SRC emacs-lisp
   (req-package evil-nerd-commenter
-    :pre-load (setq evilnc-hotkey-comment-operator "gc")
+    :init (setq evilnc-hotkey-comment-operator "gc")
     :require evil-leader)
 #+END_SRC
 
@@ -636,7 +636,6 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 *** Company
 #+BEGIN_SRC emacs-lisp
   (req-package company
-    :commands company-mode
     :config
     (progn
       (setf company-idle-delay 0
@@ -831,11 +830,6 @@ Hide minor modes from the mode lines
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)
 #+END_SRC
-** Ember mode
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/vendor/ember-mode")
-  (require 'ember-mode)
-#+END_SRC
 * Org mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook
@@ -854,8 +848,7 @@ Hide minor modes from the mode lines
     "gxi" 'org-clock-in
     "gxo" 'org-clock-out
     "gxd" 'org-clock-display
-    "gxr" 'org-clock-report
-    "gxc" 'org-clock-jump-to-current-clock)
+    "gxr" 'org-clock-report)
 
   (evil-leader/set-key
     "oa" 'org-agenda
@@ -865,6 +858,7 @@ Hide minor modes from the mode lines
     "os" 'org-schedule
     "ob" 'org-iswitchb
     "oh" 'helm-org-agenda-files-headings
+    "oxc" 'org-clock-jump-to-current-clock
     "oH" 'helm-org-in-buffer-headings)
 
   (setq org-clock-clocktable-default-properties '(:maxlevel 4 :scope subtree))
@@ -876,7 +870,7 @@ Hide minor modes from the mode lines
 
 
   ;; Prevent marking a task as DONE if any subtasks are open
-  (setq org-enforce-todo-dependencies t)
+  ;; (setq org-enforce-todo-dependencies t)
 
   ;; automatically assign tags to tasks based on state changes
   (setq org-todo-state-tags-triggers
