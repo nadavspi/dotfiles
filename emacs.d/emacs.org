@@ -128,6 +128,21 @@ Indent using spaces instead of tabs and use 4 spaces by default.
 #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode 1)
 #+END_SRC
+*** Flycheck
+#+BEGIN_SRC emacs-lisp
+  (require 'flycheck)
+
+  ;; turn on flychecking globally
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+
+  ;; disable jshint since we prefer eslint checking
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  ;; use eslint with web-mode for jsx files
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+#+END_SRC
 ** Mac
 *** Use command key as meta
 
@@ -714,13 +729,14 @@ Colorizes colors in CSS
       (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
       (add-hook 'web-mode-hook
                 (lambda ()
                   (setq indent-tabs-mode t)))
 
-      (setq web-mode-code-indent-offset 4)
+      (setq web-mode-code-indent-offset 2)
       (setq web-mode-markup-indent-offset 4)
 
       ;; make web-mode play nice with smartparens
