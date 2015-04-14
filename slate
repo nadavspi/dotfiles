@@ -23,6 +23,7 @@ alias mobile move screenOriginX;screenOriginY 320;screenSizeY
 
 # Positioning bindings
 bind 1:${leader} ${full}
+bind space:${leader} ${full}
 bind space:alt;cmd ${full}
 bind left:alt;cmd ${lefthalf}
 bind h:alt;cmd ${lefthalf}
