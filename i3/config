@@ -13,17 +13,78 @@ exec vmware-user --no-startup-id
 
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
+set $black #2c2836
+set $darkblack #73707e
+set $red #bb7473
+set $darkred #cf9fa4
+set $green #68b782
+set $darkgreen #9acbad
+set $yellow #abb773
+set $darkyellow #c5cba4
+set $blue #7865c5
+set $darkblue #a396d9
+set $magenta #bb65b6
+set $darkmagenta #cf96cf
+set $cyan #68a8c5
+set $darkcyan #9ac1d9
+set $white #f1edfb
+set $darkwhite #f1edfb
+set $background #133B47
+
+# BORDER BACKGROUND TEXT INDICATOR
+client.focused $darkred $darkred $white $cyan
+client.unfocused $darkcyan $darkcyan $white $darkcyan
+client.focused_inactive $darkcyan $darkcyan $white $darkcyan
+client.urgent $red $red $white $red
+
 font pango:DejaVu Sans Mono 12
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+
+# disable window titlebars
+for_window [class="^.*"] border pixel 2
+
+smart_borders on
+
+set $default_gaps_inner 5
+set $default_gaps_outer 5
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -151,5 +212,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        # status_command i3status
 }
+
+exec --no-startup-id nitrogen --restore
