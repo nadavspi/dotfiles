@@ -1,13 +1,15 @@
+# config keyboardLayout "colemak"
 config defaultToCurrentScreen true
 # Shows app icons and background apps, spreads icons in the same place.
  config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
+config secondsBetweenRepeat 0.1
 
 alias leader cmd,space
 bind r:${leader} relaunch
 
-# bind e:cmd hint jklfdsgha;nm,vcx
+# bind esc:ctrl hint jklfdsgha;nm,vcx
 
 # Aliases
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
@@ -21,25 +23,35 @@ alias mobile move screenOriginX;screenOriginY 320;screenSizeY
 
 # Positioning bindings
 bind 1:${leader} ${full}
-bind space:${leader} ${full}
-bind left:${leader} ${lefthalf}
-bind h:${leader} ${lefthalf}
-bind right:${leader} ${righthalf}
-bind l:${leader} ${righthalf}
-bind m:${leader} ${mobile}
+bind space:alt;cmd ${full}
+bind left:alt;cmd ${lefthalf}
+bind h:alt;cmd ${lefthalf}
+bind right:alt;cmd ${righthalf}
+bind l:alt;cmd ${righthalf}
+bind o:alt;cmd ${topright}
+bind i:alt;cmd ${topleft}
+bind .:alt;cmd ${bottomright}
+bind ,:alt;cmd ${bottomleft}
+bind m:alt;cmd ${mobile}
+
+bind h:alt;cmd;shift resize +10% +0
+bind l:alt;cmd;shift resize -10% +0
+bind k:alt;cmd;shift resize +0 +10%
+bind j:alt;cmd;shift resize +0 -10%
+
+bind esc:ctrl grid
 
 # Throw bindings
 bind h:ctrl;cmd throw 0 resize
 bind l:ctrl;cmd throw 1 resize
 
 # Focus bindings
-bind h:ctrl;alt focus left
-bind i:ctrl;alt focus right
-bind e:ctrl;alt focus above
-bind n:ctrl;alt focus below
+bind h:alt;shift focus left
+bind l:alt;shift focus right
+bind k:alt;shift focus above
+bind j:alt;shift focus below
 
-
-# Application switching
+# Applicatioctrl;altn switching
 bind esc:alt focus 'Emacs'
 bind esc:cmd focus 'iTerm'
-bind esc:shift focus 'Google Chrome'
+bind esc:shift focus 'Firefox'
