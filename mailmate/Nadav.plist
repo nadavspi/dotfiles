@@ -1,0 +1,33 @@
+{
+    "c" = "newMessage:";
+    "r" = "replyAll:";
+    "R" = "replySender:";
+    "f" =  "forwardMessage:";
+
+    "x" = "deleteMessage:";
+    "m" = "moveToMailbox:";
+    "a" = "archive:";
+
+    "." = "rootOfThread:";
+    "," = "lastOfThread:";
+    "/" = "searchAllMessages:";
+    "n" = "nextMessage:";
+    "e" = "previousMessage:";
+    "N" = "nextThread:";
+    "E" = "previousThread:";
+
+    "g" = {
+        "g" = "goToMailbox:";
+        " " = ( "goToMailbox:", "INBOX");
+        "i" = ( "goToMailbox:", "INBOX" );
+        "A" = ( "goToMailbox:", "ALL_MESSAGES" );
+        "a" = ( "goToMailbox:", "ARCHIVE" );
+        "n" = ( "goToMailbox:", "imap://nadavspi%40elitemail.org@mail.messagingengine.com/INBOX/+SaneNews" );
+        "l" = ( "goToMailbox:", "imap://nadavspi%40elitemail.org@mail.messagingengine.com/INBOX/+SaneLater" );
+        "s" = ( "goToMailbox:", "imap://nadavspi%40elitemail.org@mail.messagingengine.com/INBOX/Sent Items" );
+    };
+
+    "^f" = "scrollPageDown:";
+    "^b" = "scrollPageUp:";
+
+}
