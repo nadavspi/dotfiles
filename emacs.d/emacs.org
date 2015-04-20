@@ -712,9 +712,12 @@ Colorizes colors in CSS
 #+END_SRC
 *** js2 mode
 #+BEGIN_SRC emacs-lisp
-(req-package js2-mode
-  :config
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+  (req-package js2-mode
+    :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (custom-set-variables
+     '(js2-basic-offset 2)
+     '(js2-bounce-indent-p t)))
 #+END_SRC
 *** Web mode
 #+BEGIN_SRC emacs-lisp
