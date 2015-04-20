@@ -29,8 +29,8 @@ bind left:alt;cmd ${lefthalf}
 bind h:alt;cmd ${lefthalf}
 bind right:alt;cmd ${righthalf}
 bind l:alt;cmd ${righthalf}
-bind o:alt;cmd ${topright}
-bind i:alt;cmd ${topleft}
+bind ]:alt;cmd ${topright}
+bind [:alt;cmd ${topleft}
 bind .:alt;cmd ${bottomright}
 bind ,:alt;cmd ${bottomleft}
 bind m:alt;cmd ${mobile}
