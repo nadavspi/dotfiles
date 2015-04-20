@@ -717,7 +717,7 @@ Colorizes colors in CSS
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (custom-set-variables
      '(js2-basic-offset 2)
-     '(js2-bounce-indent-p t)))
+     '(js2-bounce-indent-p nil)))
 #+END_SRC
 *** Web mode
 #+BEGIN_SRC emacs-lisp
