@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: React.createClass
+# key: cc
+# --
+var $1 = React.createClass({
+  render () {
+    return (
+      $0
+    );
+  }
+});

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: import react
+# key: ir
+# --
+import React from 'react';

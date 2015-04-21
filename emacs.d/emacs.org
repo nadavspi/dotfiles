@@ -681,6 +681,17 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
   (define-key evil-insert-state-map (kbd "C-k") 'emmet-expand-line))
 #+END_SRC
 
+*** Yasnippet
+#+BEGIN_SRC emacs-lisp
+  (req-package yasnippet
+    :config
+    (progn
+      (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+      (define-key evil-insert-state-map (kbd "C-s") 'yas-expand)
+      (setq yas-fallback-behavior 'return-nil)
+      (yas-global-mode 1)))
+
+#+END_SRC
 ** Development modes
 *** CSS mode
 #+BEGIN_SRC emacs-lisp
@@ -717,7 +728,13 @@ Colorizes colors in CSS
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (custom-set-variables
      '(js2-basic-offset 2)
-     '(js2-bounce-indent-p nil)))
+     '(js2-bounce-indent-p nil))
+
+    (defun modify-syntax-table-for-jsx ()
+      (modify-syntax-entry ?< "(>")
+      (modify-syntax-entry ?> ")<"))
+
+    (add-hook 'js2-mode-hook 'modify-syntax-table-for-jsx))
 #+END_SRC
 *** Web mode
 #+BEGIN_SRC emacs-lisp
