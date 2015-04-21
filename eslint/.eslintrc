@@ -27,6 +27,7 @@
     "no-shadow": [0],
     "no-unused-vars": [1],
     "no-use-before-define": [2, "nofunc"],
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "camelcase": 0
   }
 }
