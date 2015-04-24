@@ -689,6 +689,8 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
       (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
       (define-key evil-insert-state-map (kbd "C-s") 'yas-expand)
       (setq yas-fallback-behavior 'return-nil)
+      (define-key yas-minor-mode-map (kbd "<tab>") nil)
+      (define-key yas-minor-mode-map (kbd "TAB") nil)
       (yas-global-mode 1)))
 
 #+END_SRC
