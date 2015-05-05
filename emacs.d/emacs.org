@@ -912,6 +912,13 @@ Hide minor modes from the mode lines
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                 (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING(m)"))))
 
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "DarkOrange1"))
+          ("NEXT" . (:foreground "red"))
+          ("DONE" . (:foreground "light sea green"))
+          ("CANCELLED" . (:foreground "forest green"))
+          ("WAITING" . (:foreground "light blue"))))
+
 
   ;; Prevent marking a task as DONE if any subtasks are open
   ;; (setq org-enforce-todo-dependencies t)
