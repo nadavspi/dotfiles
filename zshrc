@@ -13,6 +13,7 @@ export EDITOR="vim"
 
 alias v="vim"
 alias vi="vim"
+alias n="ncmpcpp"
 
 auto-ls () {
   if [[ $#BUFFER -eq 0 ]]; then
