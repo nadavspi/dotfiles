@@ -26,3 +26,5 @@ org-clock-save.el
 
 .mutt/cache/*
 .mutt/temp/*
+
+*.log
