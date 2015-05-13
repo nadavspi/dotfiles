@@ -148,12 +148,12 @@
 #def_key "mouse"
 #  mouse_event
 #
-#def_key "up"
-#  scroll_up
-#
-#def_key "down"
-#  scroll_down
-#
+def_key "e"
+ scroll_up
+
+def_key "n"
+ scroll_down
+
 #def_key "["
 #  scroll_up_album
 #
@@ -166,12 +166,12 @@
 #def_key "}"
 #  scroll_down_artist
 #
-#def_key "page_up"
-#  page_up
-#
-#def_key "page_down"
-#  page_down
-#
+def_key "ctrl_u"
+ page_up
+
+def_key "ctrl_d"
+ page_down
+
 #def_key "home"
 #  move_home
 #
@@ -193,27 +193,27 @@
 #def_key "delete"
 #  delete_stored_playlist
 #
-#def_key "right"
-#  next_column
-#
-#def_key "right"
-#  slave_screen
-#
-#def_key "right"
-#  volume_up
-#
+def_key "i"
+ next_column
+
+def_key "i"
+ slave_screen
+
+def_key "i"
+ volume_up
+
 #def_key "+"
 #  volume_up
 #
-#def_key "left"
-#  previous_column
-#
-#def_key "left"
-#  master_screen
-#
-#def_key "left"
-#  volume_down
-#
+def_key "h"
+ previous_column
+
+def_key "h"
+ master_screen
+
+def_key "h"
+ volume_down
+
 #def_key "-"
 #  volume_down
 #
@@ -397,8 +397,8 @@
 #def_key "e"
 #  edit_lyrics
 #
-#def_key "i"
-#  show_song_info
+def_key "I"
+ show_song_info
 #
 #def_key "I"
 #  show_artist_info
