@@ -56,3 +56,4 @@ bind j:alt;shift focus below
 bind esc:alt focus 'Emacs'
 bind esc:cmd focus 'iTerm'
 bind esc:shift focus 'Firefox'
+bind ;:alt;cmd focus 'OmniFocus'
