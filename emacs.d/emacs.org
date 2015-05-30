@@ -464,6 +464,7 @@ I mostly use Helm but there are places where ido still comes in handy
     :require evil-leader
 
     :config
+    (setq magit-last-seen-setup-instructions "1.4.0")
     (progn
       (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
         "K" 'magit-discard-item
