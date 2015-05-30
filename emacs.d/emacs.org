@@ -736,11 +736,15 @@ Colorizes colors in CSS
       (modify-syntax-entry ?< "(>")
       (modify-syntax-entry ?> ")<"))
 
-    (add-hook 'js2-mode-hook 'modify-syntax-table-for-jsx))
+    (add-hook 'js2-mode-hook 'modify-syntax-table-for-jsx)
+
+    (eval-after-load 'js2-mode
+      '(sp-local-pair 'js2-mode "<" ">")))
 #+END_SRC
 *** Web mode
 #+BEGIN_SRC emacs-lisp
   (req-package web-mode
+    :requires js2-mode
     :config
     (progn
       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -751,6 +755,7 @@ Colorizes colors in CSS
       (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
@@ -759,13 +764,22 @@ Colorizes colors in CSS
                   (setq indent-tabs-mode t)))
 
       (setq web-mode-code-indent-offset 2)
-      (setq web-mode-markup-indent-offset 4)
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-attr-indent-offset 2)
 
       (defadvice web-mode-highlight-part (around tweak-jsx activate)
         (if (equal web-mode-content-type "jsx")
             (let ((web-mode-enable-part-face nil))
               ad-do-it)
           ad-do-it))
+
+      (add-to-list 'web-mode-content-types '("jsx" . "app/.*\\.js\\'"))
+      (add-to-list 'web-mode-content-types '("jsx" . "src/.*\\.js\\'"))
+
+      (defun maybe-jsx-mode ()
+        (when (string-equal "jsx" web-mode-content-type)
+          (js2-minor-mode 1)))
+      (add-hook 'web-mode-hook 'maybe-jsx-mode)
 
       ;; make web-mode play nice with smartparens
       (setq web-mode-enable-auto-pairing nil)))
