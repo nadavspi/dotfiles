@@ -353,8 +353,12 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 *** Evil-nerd-commenter
 #+BEGIN_SRC emacs-lisp
   (req-package evil-nerd-commenter
-    :init (setq evilnc-hotkey-comment-operator "gc")
-    :require evil-leader)
+    :require evil-leader
+    :init
+    (setq evilnc-hotkey-comment-operator "gc")
+    (define-key evil-normal-state-map evilnc-hotkey-comment-operator 'evilnc-comment-operator)
+    (define-key evil-visual-state-map evilnc-hotkey-comment-operator 'evilnc-comment-operator))
+
 #+END_SRC
 
 *** Matchit
