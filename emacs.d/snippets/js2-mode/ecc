@@ -3,7 +3,7 @@
 # key: ecc
 # --
 export default React.createClass({
-  render () {
+  render() {
     return (
       $0
     );
