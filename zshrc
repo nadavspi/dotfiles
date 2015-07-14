@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="pygmalion"
+ZSH_THEME="avit"
 DEFAULT_USER="nadav"
 plugins=(git tmux ssh-agent)
 
