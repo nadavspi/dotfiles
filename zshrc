@@ -8,9 +8,9 @@ DISABLE_AUTO_TITLE="true"
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/Users/nadav/.rvm/gems/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/nadav/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/nadav/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/mysql/bin"
 export EDITOR="vim"
 
+alias ec="emacsclient -t"
 alias v="vim"
 alias vi="vim"
 alias n="ncmpcpp"
@@ -33,6 +33,6 @@ export KEYTIMEOUT=1
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent identities github nspiegelman
 
-if [[ -f ~/.zshrc-local ]]; then 
+if [[ -f ~/.zshrc-local ]]; then
   source ~/.zshrc-local
 fi
