@@ -277,8 +277,6 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
 
     (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 
-    (define-key evil-normal-state-map (kbd ",") 'ace-jump-char-mode)
-
     (setq evil-emacs-state-cursor  '("red" box))
     (setq evil-normal-state-cursor '("orange" box))
     (setq evil-visual-state-cursor '("green" box))
@@ -339,11 +337,6 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
       "wv" 'split-and-switch-vertically
       "wc" 'delete-window
       "wo" 'delete-other-windows)
-
-    ;; ace jump mode
-    (evil-leader/set-key "e" 'evil-ace-jump-word-mode)
-    (evil-leader/set-key "l" 'evil-ace-jump-line-mode)
-    (evil-leader/set-key "j" 'evil-ace-jump-char-mode)
 
     ;; switch to previous buffer with <leader>SPC
     (evil-leader/set-key
@@ -408,13 +401,6 @@ Define the jk chord to switch to normal mode and save the buffer
 
   (key-chord-define evil-insert-state-map "dt" 'evil-normal-and-save-buffer)
   (key-chord-define evil-visual-state-map "dt" 'evil-normal-and-save-buffer))
-#+END_SRC
-
-*** Sneak
-#+BEGIN_SRC emacs-lisp
-(req-package evil-sneak
-  :require evil
-  :load-path "vendor/")
 #+END_SRC
 
 *** Evil-escape
@@ -652,6 +638,18 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 (req-package move-text)
 #+END_SRC
 
+*** Avy
+A better alternative to ace-jump mode (like easymotion in Vim)
+#+BEGIN_SRC emacs-lisp
+  (req-package avy
+    :requires evil
+    :config
+    (define-key evil-normal-state-map (kbd ",") 'avy-goto-char)
+    (define-key evil-normal-state-map (kbd "s") 'avy-goto-char-2)
+    (define-key evil-motion-state-map (kbd "p") #'avy-goto-word-1)
+    (define-key evil-motion-state-map (kbd "z") #'avy-goto-char-2)
+    (define-key evil-motion-state-map (kbd "P") #'avy-goto-line))
+#+END_SRC
 ** Code completion
 *** Company
 #+BEGIN_SRC emacs-lisp
