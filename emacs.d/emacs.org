@@ -449,79 +449,90 @@ I mostly use Helm but there are places where ido still comes in handy
   (req-package magit
     :require evil-leader
 
+
     :config
-    (setq magit-last-seen-setup-instructions "1.4.0")
-    (progn
-      (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
-        "K" 'magit-discard-item
-        "L" 'magit-key-mode-popup-logging)
-      (evil-add-hjkl-bindings magit-status-mode-map 'emacs
-        "K" 'magit-discard-item
-        "l" 'magit-key-mode-popup-logging
-        "h" 'magit-toggle-diff-refine-hunk)
-      (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
-      (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
+    (dolist (map (list
+                  ;; Mode maps
+                  magit-blame-mode-map
+                  magit-cherry-mode-map
+                  magit-diff-mode-map
+                  magit-log-mode-map
+                  magit-log-select-mode-map
+                  magit-mode-map
+                  ;; No evil keys for the popup.
+                  ;; magit-popup-help-mode-map
+                  ;; magit-popup-mode-map
+                  ;; magit-popup-sequence-mode-map
+                  magit-process-mode-map
+                  magit-reflog-mode-map
+                  magit-refs-mode-map
+                  magit-revision-mode-map
+                  magit-stash-mode-map
+                  magit-stashes-mode-map
+                  magit-status-mode-map
+                  ;; Section submaps
+                  magit-branch-section-map
+                  magit-commit-section-map
+                  magit-file-section-map
+                  magit-hunk-section-map
+                  magit-module-commit-section-map
+                  magit-remote-section-map
+                  magit-staged-section-map
+                  magit-stash-section-map
+                  magit-stashes-section-map
+                  magit-tag-section-map
+                  magit-unpulled-section-map
+                  magit-unpushed-section-map
+                  magit-unstaged-section-map
+                  magit-untracked-section-map))
+      ;; Move current bindings for movement keys to their upper-case counterparts.
+      (dolist (key (list "e" "n" "h" "i"))
+        (let ((binding (lookup-key map key)))
+          (when binding
+            (define-key map (upcase key) binding) (define-key map key nil))))
+      (evil-add-hjkl-bindings map 'emacs
+        (kbd "v") 'evil-visual-char
+        (kbd "V") 'evil-visual-line
+        (kbd "C-v") 'evil-visual-block
+        (kbd "C-w") 'evil-window-map))
+    (dolist (mode (list 'magit-blame-mode
+                        'magit-cherry-mode
+                        'magit-diff-mode
+                        'magit-log-mode
+                        'magit-log-select-mode
+                        'magit-mode
+                        'magit-popup-help-mode
+                        'magit-popup-mode
+                        'magit-popup-sequence-mode
+                        'magit-process-mode
+                        'magit-reflog-mode
+                        'magit-refs-mode
+                        'magit-revision-mode
+                        'magit-stash-mode
+                        'magit-stashes-mode
+                        'magit-status-mode))
+      (add-to-list 'evil-emacs-state-modes mode))
 
-      ;; full screen magit-status
-      (defadvice magit-status (around magit-fullscreen activate)
-        (window-configuration-to-register :magit-fullscreen)
-        ad-do-it
-        (delete-other-windows))
+    (define-key magit-mode-map "\C-n" 'magit-section-forward)
+    (define-key magit-mode-map "\C-e" 'magit-section-backward)
+    (define-key magit-mode-map "\M-n" 'magit-section-forward-sibling)
+    (define-key magit-mode-map "\M-e" 'magit-section-backward-sibling)
 
-      (defadvice magit-mode-quit-window (after magit-restore-screen activate)
-        "Restores the previous window configuration and kills the magit buffer"
-        (jump-to-register :magit-fullscreen))
+    ;; Full screen
+    (add-hook 'magit-status-mode-hook 'delete-other-windows)
 
-      (define-key magit-status-mode-map (kbd "q") 'magit-mode-quit-window)
-
-      (evil-set-initial-state 'git-commit-mode 'insert)
-
-      (defun evil-git-add-current-file ()
-        (interactive)
-        (start-process "git-add"
-                       (get-buffer-create "*git-add*")
-                       "git" "add" buffer-file-name)
-        (find-file-noselect buffer-file-name)
-        (message "File added"))
-
-      (defun evil-git-checkout-current-file ()
-        (interactive)
-        (start-process "git-checkout"
-                       (get-buffer-create "*git-checkout*")
-                       "git" "checkout --" buffer-file-name)
-        (find-file-noselect buffer-file-name))
-
-      (defun evil-get-remove-current-file ()
-        (interactive)
-        (start-process "git-remove"
-                       (get-buffer-create "*git-remove*")
-                       "git" "rm" "-f"
-                       buffer-file-name)
-        (kill-buffer))
-
-      (evil-leader/set-key "ga" 'evil-git-add-current-file)
-
-      (evil-ex-define-cmd "Gread" 'evil-git-checkout-current-file)
-      (evil-ex-define-cmd "Gremove" 'evil-git-remove-current-file)
-
-      (evil-leader/set-key
-        "gs" 'magit-status
-        "gp" 'magit-push
-        "gb" 'magit-blame-mode
-        "gd" 'vc-diff
-        "gl" 'magit-log
-        "gc" (lambda ()
-               (interactive)
-               (minibuffer-with-setup-hook
-                   (lambda () (backward-char 1))
-                 (evil-ex "!git commit -m \"\""))))))
-#+END_SRC
-*** Magit git flow
-#+BEGIN_SRC emacs-lisp
-  (req-package magit-gitflow
-    :require magit
-    :config
-    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+    ;; (evil-set-initial-state 'git-commit-mode 'insert)
+    (evil-leader/set-key
+      "gs" 'magit-status
+      "gp" 'magit-push
+      "gb" 'magit-blame-mode
+      "gd" 'vc-diff
+      "gl" 'magit-log
+      "gc" (lambda ()
+             (interactive)
+             (minibuffer-with-setup-hook
+                 (lambda () (backward-char 1))
+               (evil-ex "!git commit -m \"\"")))))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
