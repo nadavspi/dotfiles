@@ -23,7 +23,7 @@ linters:
     style: exclude_zero
 
   NameFormat:
-    enabled: true
+    enabled: false
     convention: BEM
 
   PlaceholderInExtend:
