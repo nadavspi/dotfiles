@@ -327,7 +327,7 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
         (evil-leader/set-key key prefix-command)))
 
     ;; files
-    ;;(evil-leader/set-key "fs" 'save-buffer)
+    (evil-leader/set-key "s" 'save-buffer)
 
     (evil-leader/set-key "tv" 'variable-pitch-mode)
 
@@ -1633,7 +1633,7 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
       (insert (concat "ls"))
       (eshell-send-input)))
 
-  (evil-leader/set-key "s" 'eshell-here)
+  ;; (evil-leader/set-key "s" 'eshell-here)
 
   (defun eshell/x ()
     (insert "exit")
