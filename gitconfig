@@ -1,14 +1,14 @@
 [user]
-	name = Nadav Spiegelman
-	email = me@nadav.name
+  name = Nadav Spiegelman
+  email = me@nadav.name
 [alias]
   a = add
-	co = checkout
-	s = status
-	br = branch -v
+  co = checkout
+  s = status
+  br = branch -v
   c = commit -m
   ca = commit -am
-	ci = commit
+  ci = commit
   amend = commit --amend
   ammend = commit --amend
   amendp = commit --amend --no-edit
@@ -18,18 +18,21 @@
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   simple = log --pretty=format:\" * %s\"
   fancy = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	clone = =
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore
+  editor = vim
+  excludesfile = ~/.gitignore
 [push]
   # push only current branch
-	default = tracking
+  default = tracking
 [github]
   user = nadavspi
 [gist]
-	private = true
+  private = true
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[rebase]
+  autosquash = true
