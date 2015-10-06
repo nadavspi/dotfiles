@@ -19,7 +19,8 @@
     "modules": true,
     "spread": true,
     "templateStrings": true,
-    "jsx": true
+    "jsx": true,
+    "experimentalObjectRestSpread": true
   },
   "rules": {
     "consistent-return": [0],
@@ -33,14 +34,23 @@
     "comma-dangle": 0,
     "camelcase": 0,
     "eol-last": 0,
+    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-max-props-per-line": 1,
+    "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
+    "react/jsx-no-undef": 2,
+    "react/jsx-sort-prop-types": 2,
+    "react/jsx-sort-props": 2,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/no-did-mount-set-state": 0,
     "react/no-did-update-set-state": 2,
     "react/no-unknown-property": 2,
     "react/prop-types": 1,
+    "react/sort-comp": 2,
     "react/react-in-jsx-scope": 2,
+    "react/self-closing-comp": 1,
     "react/wrap-multilines": 1
   }
 }
