@@ -674,7 +674,7 @@ A better alternative to ace-jump mode (like easymotion in Vim)
     (define-key evil-normal-state-map (kbd ",") 'avy-goto-char)
     (define-key evil-normal-state-map (kbd "s") 'avy-goto-char-2)
     (define-key evil-motion-state-map (kbd "p") #'avy-goto-word-1)
-    (define-key evil-motion-state-map (kbd "z") #'avy-goto-char-2)
+    (define-key evil-motion-state-map (kbd ",") #'avy-goto-char)
     (define-key evil-motion-state-map (kbd "P") #'avy-goto-line))
 #+END_SRC
 ** Code completion
