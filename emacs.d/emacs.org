@@ -603,6 +603,51 @@ I mostly use Helm but there are places where ido still comes in handy
       (setq projectile-switch-project-action 'helm-projectile)
       ))
 #+END_SRC
+*** Hide mode line above helm buffers
+From https://github.com/hatschipuh/ido2helm
+#+BEGIN_SRC emacs-lisp
+  (defvar bottom-buffers nil
+    "List of bottom buffers before helm session.
+      Its element is a pair of `buffer-name' and `mode-line-format'.")
+
+  (defun bottom-buffers-init ()
+    (setq-local mode-line-format (default-value 'mode-line-format))
+    (setq bottom-buffers
+          (cl-loop for w in (window-list)
+                   when (window-at-side-p w 'bottom)
+                   collect (with-current-buffer (window-buffer w)
+                             (cons (buffer-name) mode-line-format)))))
+
+
+  (defun bottom-buffers-hide-mode-line ()
+    (setq-default cursor-in-non-selected-windows nil)
+    (mapc (lambda (elt)
+            (with-current-buffer (car elt)
+              (setq-local mode-line-format nil)))
+          bottom-buffers))
+
+
+  (defun bottom-buffers-show-mode-line ()
+    (setq-default cursor-in-non-selected-windows t)
+    (when bottom-buffers
+      (mapc (lambda (elt)
+              (with-current-buffer (car elt)
+                (setq-local mode-line-format (cdr elt))))
+            bottom-buffers)
+      (setq bottom-buffers nil)))
+
+  (defun helm-keyboard-quit-advice (orig-func &rest args)
+    (bottom-buffers-show-mode-line)
+    (apply orig-func args))
+
+
+  (add-hook 'helm-before-initialize-hook #'bottom-buffers-init)
+  (add-hook 'helm-after-initialize-hook #'bottom-buffers-hide-mode-line)
+  (add-hook 'helm-exit-minibuffer-hook #'bottom-buffers-show-mode-line)
+  (add-hook 'helm-cleanup-hook #'bottom-buffers-show-mode-line)
+  (advice-add 'helm-keyboard-quit :around #'helm-keyboard-quit-advice)
+#+END_SRC
+
 ** Projectile
 To turn on caching for a project, create a =.dir-locals.el= file with:
 #+BEGIN_SRC text
