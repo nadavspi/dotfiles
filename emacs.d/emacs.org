@@ -905,32 +905,23 @@ Colorizes colors in CSS
 #+END_SRC
 
 ** Aesthetics
-*** Rich minority
-Hide minor modes from the mode lines
-
+*** Spaceline
 #+BEGIN_SRC emacs-lisp
-  (req-package rich-minority
-    :init
-    (progn
-      (rich-minority-mode 1)
-      (setf rm-blacklist "")))
-#+END_SRC
-*** Smart mode line
-
-#+BEGIN_SRC emacs-lisp
-  (req-package smart-mode-line
-    :init
-    (progn
-      (setq sml/no-confirm-load-theme t)
-      (sml/setup)
-      )
+  (req-package spaceline)
+  (req-package spaceline-config
+    :require spaceline
     :config
-    (progn
-      (setq sml/shorten-directory t)
-      (setq sml/shorten-modes t)
-      (setq sml/name-width 40)
-      (setq sml/mode-width 'full)
-      ))
+    (spaceline-spacemacs-theme)
+    (setq ns-use-srgb-colorspace nil)
+    (setq powerline-height 20)
+    (setq spaceline-workspace-numbers-unicode t)
+    (setq spaceline-window-numbers-unicode t)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-toggle-line-column-off)
+    (spaceline-toggle-hud-off)
+    (spaceline-toggle-buffer-encoding-abbrev-off)
+    (spaceline-toggle-buffer-position-off)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 #+END_SRC
 *** Golden ratio
 #+BEGIN_SRC emacs-lisp
