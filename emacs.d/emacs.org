@@ -647,7 +647,21 @@ From https://github.com/hatschipuh/ido2helm
   (add-hook 'helm-cleanup-hook #'bottom-buffers-show-mode-line)
   (advice-add 'helm-keyboard-quit :around #'helm-keyboard-quit-advice)
 #+END_SRC
+*** Helm swoop
+#+BEGIN_SRC emacs-lisp
+  (req-package helm-swoop
+    :require (helm evil)
+    :config
+    (define-key evil-normal-state-map (kbd "C-s") 'helm-swoop)
+    (define-key evil-normal-state-map (kbd "SPC C-s") 'helm-multi-swoop-all)
 
+    (setq helm-swoop-speed-or-color nil)
+
+    (define-key helm-swoop-map (kbd "C-e") 'helm-previous-line)
+    (define-key helm-swoop-map (kbd "C-n") 'helm-next-line)
+    (define-key helm-multi-swoop-map (kbd "C-e") 'helm-previous-line)
+    (define-key helm-multi-swoop-map (kbd "C-n") 'helm-next-line))
+#+END_SRC
 ** Projectile
 To turn on caching for a project, create a =.dir-locals.el= file with:
 #+BEGIN_SRC text
