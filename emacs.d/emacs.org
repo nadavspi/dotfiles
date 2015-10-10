@@ -978,6 +978,14 @@ Hide minor modes from the mode lines
 
       (window-numbering-mode t)))
 #+END_SRC
+*** Eyebrowse
+#+BEGIN_SRC emacs-lisp
+  (req-package eyebrowse
+    :config
+    (eyebrowse-mode t)
+    (eyebrowse-setup-opinionated-keys)
+    (setq eyebrowse-new-workspace t))
+#+END_SRC
 ** ERC
 #+BEGIN_SRC emacs-lisp
   (require 'erc)
