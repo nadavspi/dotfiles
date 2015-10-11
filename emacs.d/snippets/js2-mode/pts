@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: propTypes
+# key: pts;
+# --
+propTypes: {
+$1
+},
+$0

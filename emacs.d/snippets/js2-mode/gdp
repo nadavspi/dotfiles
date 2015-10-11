@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: getDefaultProps
+# key: gdp;
+# --
+getDefaultProps () {
+  return {
+  $1
+  };
+},
+$0

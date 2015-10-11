@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: destructure this.props
+# key: getprop;
+# --
+const { $1 } = this.props;$0
