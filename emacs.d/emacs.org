@@ -1732,7 +1732,29 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
   (ad-activate 'ansi-term)
 #+END_SRC
+*** Set default shell
+Stops the annoying prompt
+#+BEGIN_SRC emacs-lisp
+  (defvar my-term-shell "/bin/zsh")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
 
+  (defun nadav/term-hook ()
+    (linum-mode 0))
+  (add-hook 'term-mode-hook 'nadav/term-hook)
+#+END_SRC
+*** Hook
+#+BEGIN_SRC emacs-lisp
+  (defun nadav/term-hook ()
+    (linum-mode 0)
+    (evil-insert-state))
+  (add-hook 'term-mode-hook 'nadav/term-hook)
+#+END_SRC
+*** Alias
+#+BEGIN_SRC emacs-lisp
+  (defalias 'sh 'ansi-term)
+#+END_SRC
 ** Eshell
 #+BEGIN_SRC emacs-lisp
   (defun eshell-here ()
