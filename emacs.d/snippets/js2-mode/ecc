@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: export React.createClass
-# key: ecc
+# key: ecc;
 # --
 export default React.createClass({
   render() {

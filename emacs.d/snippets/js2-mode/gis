@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: getInitialState
-# key: gis
+# key: gis;
 # --
 getInitialState () {
   return {
