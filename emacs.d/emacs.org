@@ -801,6 +801,19 @@ A better alternative to ace-jump mode (like easymotion in Vim)
       (setq yas-fallback-behavior 'return-nil)
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
+
+
+      (defvar company-mode/enable-yas t
+        "Enable yasnippet for all backends.")
+
+      (defun company-mode/backend-with-yas (backend)
+        (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+            backend
+          (append (if (consp backend) backend (list backend))
+
+                  '(:with company-yasnippet))))
+      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
       (yas-global-mode 1)))
 
 #+END_SRC
