@@ -771,8 +771,8 @@ A better alternative to ace-jump mode (like easymotion in Vim)
             company-dabbrev-ignore-invisible t
             company-dabbrev-downcase nil)
 
-      (define-key company-active-map (kbd "C-n") 'company-select-next)
-      (define-key company-active-map (kbd "C-e") 'company-select-previous)
+      ;; (define-key company-active-map (kbd "C-n") 'company-select-next)
+      ;; (define-key company-active-map (kbd "C-e") 'company-select-previous)
       (global-company-mode t)))
 #+END_SRC
 
