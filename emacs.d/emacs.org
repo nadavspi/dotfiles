@@ -842,6 +842,9 @@ Colorizes colors in CSS
      '(js2-basic-offset 2)
      '(js2-bounce-indent-p nil))
 
+    (setq js2-mode-show-parse-errors nil)
+    (setq js2-mode-show-strict-warnings nil)
+
     (defun modify-syntax-table-for-jsx ()
       (modify-syntax-entry ?< "(>")
       (modify-syntax-entry ?> ")<"))
