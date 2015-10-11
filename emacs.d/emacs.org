@@ -891,7 +891,7 @@ Colorizes colors in CSS
           (js2-minor-mode 1)))
       (add-hook 'web-mode-hook 'maybe-jsx-mode)
 
-      ;; make web-mode play nice with smartparens
+      (setq web-mode-enable-auto-quoting nil)
       (setq web-mode-enable-auto-pairing nil)))
 #+END_SRC
 *** nxml mode
