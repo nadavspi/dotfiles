@@ -603,6 +603,65 @@ I mostly use Helm but there are places where ido still comes in handy
       (setq projectile-switch-project-action 'helm-projectile)
       ))
 #+END_SRC
+*** Hide mode line above helm buffers
+From https://github.com/hatschipuh/ido2helm
+#+BEGIN_SRC emacs-lisp
+  (defvar bottom-buffers nil
+    "List of bottom buffers before helm session.
+      Its element is a pair of `buffer-name' and `mode-line-format'.")
+
+  (defun bottom-buffers-init ()
+    (setq-local mode-line-format (default-value 'mode-line-format))
+    (setq bottom-buffers
+          (cl-loop for w in (window-list)
+                   when (window-at-side-p w 'bottom)
+                   collect (with-current-buffer (window-buffer w)
+                             (cons (buffer-name) mode-line-format)))))
+
+
+  (defun bottom-buffers-hide-mode-line ()
+    (setq-default cursor-in-non-selected-windows nil)
+    (mapc (lambda (elt)
+            (with-current-buffer (car elt)
+              (setq-local mode-line-format nil)))
+          bottom-buffers))
+
+
+  (defun bottom-buffers-show-mode-line ()
+    (setq-default cursor-in-non-selected-windows t)
+    (when bottom-buffers
+      (mapc (lambda (elt)
+              (with-current-buffer (car elt)
+                (setq-local mode-line-format (cdr elt))))
+            bottom-buffers)
+      (setq bottom-buffers nil)))
+
+  (defun helm-keyboard-quit-advice (orig-func &rest args)
+    (bottom-buffers-show-mode-line)
+    (apply orig-func args))
+
+
+  (add-hook 'helm-before-initialize-hook #'bottom-buffers-init)
+  (add-hook 'helm-after-initialize-hook #'bottom-buffers-hide-mode-line)
+  (add-hook 'helm-exit-minibuffer-hook #'bottom-buffers-show-mode-line)
+  (add-hook 'helm-cleanup-hook #'bottom-buffers-show-mode-line)
+  (advice-add 'helm-keyboard-quit :around #'helm-keyboard-quit-advice)
+#+END_SRC
+*** Helm swoop
+#+BEGIN_SRC emacs-lisp
+  (req-package helm-swoop
+    :require (helm evil)
+    :config
+    (define-key evil-normal-state-map (kbd "C-s") 'helm-swoop)
+    (define-key evil-normal-state-map (kbd "SPC C-s") 'helm-multi-swoop-all)
+
+    (setq helm-swoop-speed-or-color nil)
+
+    (define-key helm-swoop-map (kbd "C-e") 'helm-previous-line)
+    (define-key helm-swoop-map (kbd "C-n") 'helm-next-line)
+    (define-key helm-multi-swoop-map (kbd "C-e") 'helm-previous-line)
+    (define-key helm-multi-swoop-map (kbd "C-n") 'helm-next-line))
+#+END_SRC
 ** Projectile
 To turn on caching for a project, create a =.dir-locals.el= file with:
 #+BEGIN_SRC text
@@ -677,6 +736,27 @@ A better alternative to ace-jump mode (like easymotion in Vim)
     (define-key evil-motion-state-map (kbd ",") #'avy-goto-char)
     (define-key evil-motion-state-map (kbd "P") #'avy-goto-line))
 #+END_SRC
+
+*** Vimish folding
+#+BEGIN_SRC emacs-lisp
+  (req-package vimish-fold
+    :requires evil
+    :config
+    (define-key evil-normal-state-map "zo" 'vimish-fold-toggle)
+    (define-key evil-visual-state-map "zf" 'vimish-fold)
+    (define-key evil-normal-state-map "zd" 'vimish-fold-delete)
+    (define-key evil-normal-state-map "zn" 'vimish-fold-next-fold)
+    (define-key evil-normal-state-map "ze" 'vimish-fold-previous-fold))
+#+END_SRC
+
+
+*** Expand region
+#+BEGIN_SRC emacs-lisp
+  (req-package expand-region
+    :requires evil
+    :config
+    (evil-leader/set-key "e" 'er/expand-region))
+#+END_SRC
 ** Code completion
 *** Company
 #+BEGIN_SRC emacs-lisp
@@ -691,8 +771,8 @@ A better alternative to ace-jump mode (like easymotion in Vim)
             company-dabbrev-ignore-invisible t
             company-dabbrev-downcase nil)
 
-      (define-key company-active-map (kbd "C-n") 'company-select-next)
-      (define-key company-active-map (kbd "C-e") 'company-select-previous)
+      ;; (define-key company-active-map (kbd "C-n") 'company-select-next)
+      ;; (define-key company-active-map (kbd "C-e") 'company-select-previous)
       (global-company-mode t)))
 #+END_SRC
 
@@ -721,6 +801,19 @@ A better alternative to ace-jump mode (like easymotion in Vim)
       (setq yas-fallback-behavior 'return-nil)
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
+
+
+      (defvar company-mode/enable-yas t
+        "Enable yasnippet for all backends.")
+
+      (defun company-mode/backend-with-yas (backend)
+        (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+            backend
+          (append (if (consp backend) backend (list backend))
+
+                  '(:with company-yasnippet))))
+      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
       (yas-global-mode 1)))
 
 #+END_SRC
@@ -761,6 +854,9 @@ Colorizes colors in CSS
     (custom-set-variables
      '(js2-basic-offset 2)
      '(js2-bounce-indent-p nil))
+
+    (setq js2-mode-show-parse-errors nil)
+    (setq js2-mode-show-strict-warnings nil)
 
     (defun modify-syntax-table-for-jsx ()
       (modify-syntax-entry ?< "(>")
@@ -811,7 +907,7 @@ Colorizes colors in CSS
           (js2-minor-mode 1)))
       (add-hook 'web-mode-hook 'maybe-jsx-mode)
 
-      ;; make web-mode play nice with smartparens
+      (setq web-mode-enable-auto-quoting nil)
       (setq web-mode-enable-auto-pairing nil)))
 #+END_SRC
 *** nxml mode
@@ -825,32 +921,23 @@ Colorizes colors in CSS
 #+END_SRC
 
 ** Aesthetics
-*** Rich minority
-Hide minor modes from the mode lines
-
+*** Spaceline
 #+BEGIN_SRC emacs-lisp
-  (req-package rich-minority
-    :init
-    (progn
-      (rich-minority-mode 1)
-      (setf rm-blacklist "")))
-#+END_SRC
-*** Smart mode line
-
-#+BEGIN_SRC emacs-lisp
-  (req-package smart-mode-line
-    :init
-    (progn
-      (setq sml/no-confirm-load-theme t)
-      (sml/setup)
-      )
+  (req-package spaceline)
+  (req-package spaceline-config
+    :require spaceline
     :config
-    (progn
-      (setq sml/shorten-directory t)
-      (setq sml/shorten-modes t)
-      (setq sml/name-width 40)
-      (setq sml/mode-width 'full)
-      ))
+    (spaceline-spacemacs-theme)
+    (setq ns-use-srgb-colorspace nil)
+    (setq powerline-height 20)
+    (setq spaceline-workspace-numbers-unicode t)
+    (setq spaceline-window-numbers-unicode t)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-toggle-line-column-off)
+    (spaceline-toggle-hud-off)
+    (spaceline-toggle-buffer-encoding-abbrev-off)
+    (spaceline-toggle-buffer-position-off)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 #+END_SRC
 *** Golden ratio
 #+BEGIN_SRC emacs-lisp
@@ -897,6 +984,23 @@ Hide minor modes from the mode lines
         "9" 'select-window-9)
 
       (window-numbering-mode t)))
+#+END_SRC
+*** Eyebrowse
+#+BEGIN_SRC emacs-lisp
+  (req-package eyebrowse
+    :config
+    (eyebrowse-mode t)
+    (define-key evil-normal-state-map (kbd "M-0") 'eyebrowse-switch-to-window-config-0)
+    (define-key evil-normal-state-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
+    (define-key evil-normal-state-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
+    (define-key evil-normal-state-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
+    (define-key evil-normal-state-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
+    (define-key evil-normal-state-map (kbd "M-5") 'eyebrowse-switch-to-window-config-5)
+    (define-key evil-normal-state-map (kbd "M-6") 'eyebrowse-switch-to-window-config-6)
+    (define-key evil-normal-state-map (kbd "M-7") 'eyebrowse-switch-to-window-config-7)
+    (define-key evil-normal-state-map (kbd "M-8") 'eyebrowse-switch-to-window-config-8)
+    (define-key evil-normal-state-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9)
+    (setq eyebrowse-new-workspace t))
 #+END_SRC
 ** ERC
 #+BEGIN_SRC emacs-lisp
@@ -1628,7 +1732,29 @@ Much taken from http://doc.norang.ca/org-mode.html#CustomAgendaViews
     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
   (ad-activate 'ansi-term)
 #+END_SRC
+*** Set default shell
+Stops the annoying prompt
+#+BEGIN_SRC emacs-lisp
+  (defvar my-term-shell "/bin/zsh")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
 
+  (defun nadav/term-hook ()
+    (linum-mode 0))
+  (add-hook 'term-mode-hook 'nadav/term-hook)
+#+END_SRC
+*** Hook
+#+BEGIN_SRC emacs-lisp
+  (defun nadav/term-hook ()
+    (linum-mode 0)
+    (evil-insert-state))
+  (add-hook 'term-mode-hook 'nadav/term-hook)
+#+END_SRC
+*** Alias
+#+BEGIN_SRC emacs-lisp
+  (defalias 'sh 'ansi-term)
+#+END_SRC
 ** Eshell
 #+BEGIN_SRC emacs-lisp
   (defun eshell-here ()

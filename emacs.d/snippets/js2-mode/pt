@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: prop type
+# key: pt;
+# --
+React.PropTypes.$0

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: import
-# key: import
+# key: import;
 # --
-import $1 from '$2';
+import $1 from '$2$1$3';
 $0
