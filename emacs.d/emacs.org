@@ -905,8 +905,8 @@ Colorizes colors in CSS
               ad-do-it)
           ad-do-it))
 
-      (add-to-list 'web-mode-content-types '("jsx" . "app/.*\\.js\\'"))
-      (add-to-list 'web-mode-content-types '("jsx" . "src/.*\\.js\\'"))
+      (setq web-mode-content-types-alist
+            '(("jsx" . "\\.js[x]?\\'")))
 
       (defun maybe-jsx-mode ()
         (when (string-equal "jsx" web-mode-content-type)
