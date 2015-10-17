@@ -219,6 +219,7 @@ https://github.com/TheBB/dotfiles/blob/master/emacs/init.el
 (define-key minibuffer-local-must-match-map [escape] 'bb/minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'bb/minibuffer-keyboard-quit)
 #+END_SRC
+
 * Install Packages
 The good stuff
 ** Evil and family
@@ -337,6 +338,11 @@ Must be set before evil is loaded and use-package's :pre-load isn't working for 
       "wv" 'split-and-switch-vertically
       "wc" 'delete-window
       "wo" 'delete-other-windows)
+
+    (defun nadav/find-notes ()
+      (interactive)
+      (dired "~/Dropbox/Notes/"))
+    (evil-leader/set-key "n" 'nadav/find-notes)
 
     ;; switch to previous buffer with <leader>SPC
     (evil-leader/set-key
