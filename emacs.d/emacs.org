@@ -893,6 +893,8 @@ Colorizes colors in CSS
       (setq web-mode-markup-indent-offset 2)
       (setq web-mode-attr-indent-offset 2)
 
+      (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
+
       (defadvice web-mode-highlight-part (around tweak-jsx activate)
         (if (equal web-mode-content-type "jsx")
             (let ((web-mode-enable-part-face nil))
@@ -2005,4 +2007,14 @@ From here: http://nathantypanski.com/blog/2014-08-03-a-vim-like-emacs-config.htm
   (add-hook 'emacs-lisp-mode-hook 'my-lisp-hook)
 
   ;; (evil-define-key 'normal emacs-lisp-mode-map (kbd "K") 'elisp-slime-nav-describe-elisp-thing-at-point)
+#+END_SRC
+
+** Kill other buffers
+#+BEGIN_SRC emacs-lisp
+  (defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer
+          (delq (current-buffer)
+                (remove-if-not 'buffer-file-name (buffer-list)))))
 #+END_SRC
