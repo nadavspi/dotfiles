@@ -53,7 +53,7 @@ bind k:alt;shift focus above
 bind j:alt;shift focus below
 
 # Applicatioctrl;altn switching
-bind esc:alt focus 'Emacs'
-bind esc:cmd focus 'iTerm'
+#bind esc:alt focus 'Emacs'
+# bind esc:cmd focus 'iTerm'
 bind esc:shift focus 'Firefox'
 bind ;:alt;cmd focus 'OmniFocus'
