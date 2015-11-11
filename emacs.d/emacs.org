@@ -722,7 +722,6 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
         (lambda () (unless defun-prompt-regexp
                      (setq-local defun-prompt-regexp "^[^[:blank:]].*")))))
     (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook #'aggressive-indent-mode)
     (add-hook 'css-mode-hook #'aggressive-indent-mode)))
 #+END_SRC
 
