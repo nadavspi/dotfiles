@@ -202,6 +202,12 @@ Because we're going to override the default bind to switch windows
 (bind-key  "M-o" 'other-window)
 #+END_SRC
 
+*** Dired
+
+#+BEGIN_SRC emacs-lisp
+  (define-key dired-mode-map "e" 'dired-previous-line)
+#+END_SRC
+
 *** Escape from everything
 Use esc to get away from everything, like in vim
 https://github.com/TheBB/dotfiles/blob/master/emacs/init.el
