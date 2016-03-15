@@ -742,6 +742,7 @@ A better alternative to ace-jump mode (like easymotion in Vim)
   (req-package avy
     :requires evil
     :config
+    (setq avy-all-windows nil)
     (define-key evil-normal-state-map (kbd ",") 'avy-goto-char)
     (define-key evil-normal-state-map (kbd "s") 'avy-goto-char-2)
     (define-key evil-motion-state-map (kbd "p") #'avy-goto-word-1)
