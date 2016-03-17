@@ -3,6 +3,7 @@
     "r" = "replyAll:";
     "R" = "replySender:";
     "f" =  "forwardMessage:";
+    "F" =  "forwardAsAttachment";
 
     "x" = "deleteMessage:";
     "m" = "moveToMailbox:";
