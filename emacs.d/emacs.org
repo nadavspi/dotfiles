@@ -698,6 +698,7 @@ To turn on caching for a project, create a =.dir-locals.el= file with:
 
 #+BEGIN_SRC emacs-lisp
   (req-package smartparens
+    :disabled
     :config
     (progn
       (require 'smartparens-config)
