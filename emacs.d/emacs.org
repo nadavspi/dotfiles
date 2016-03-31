@@ -205,7 +205,7 @@ Because we're going to override the default bind to switch windows
 *** Dired
 
 #+BEGIN_SRC emacs-lisp
-  (define-key dired-mode-map "e" 'dired-previous-line)
+  ;(define-key dired-mode-map "e" 'dired-previous-line)
 #+END_SRC
 
 *** Escape from everything
