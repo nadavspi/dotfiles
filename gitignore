@@ -23,6 +23,7 @@ projectile*
 eshell/
 emacs.el
 org-clock-save.el
+.dir-locals.el
 
 .mutt/cache/*
 .mutt/temp/*
