@@ -1,0 +1,18 @@
+" Colemak stuff
+nnoremap n j
+nnoremap e k
+nnoremap i l
+nnoremap u i
+nnoremap l u
+nnoremap k n
+nnoremap K N
+
+vnoremap n j
+vnoremap e k
+vnoremap i l
+
+inoremap dt <Esc>:w<cr>o
+
+set ignorecase
+
+set surround
