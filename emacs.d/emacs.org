@@ -935,7 +935,12 @@ Colorizes colors in CSS
  nxml-attribute-indent 4
  nxml-slash-auto-complete-flag t))
 #+END_SRC
-
+*** EditorConfig
+#+BEGIN_SRC emacs-lisp
+(req-package editorconfig
+:config
+(editorconfig-mode 1))
+#+END_SRC
 ** Aesthetics
 *** Spaceline
 #+BEGIN_SRC emacs-lisp
