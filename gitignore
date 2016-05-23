@@ -29,3 +29,4 @@ org-clock-save.el
 .mutt/temp/*
 
 *.log
+.idea

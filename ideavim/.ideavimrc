@@ -16,3 +16,6 @@ inoremap dt <Esc>:w<cr>o
 set ignorecase
 
 set surround
+set number
+set relativenumber
+set incsearch
