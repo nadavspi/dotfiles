@@ -11,8 +11,6 @@ vnoremap n j
 vnoremap e k
 vnoremap i l
 
-inoremap dt <Esc>:w<cr>o
-
 set ignorecase
 
 set surround
