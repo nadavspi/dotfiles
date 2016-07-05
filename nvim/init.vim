@@ -42,12 +42,15 @@ Plug 'Raimondi/delimitMate'
 Plug 'JulesWang/css.vim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'mklabs/jscs.vim', { 'do': 'npm i jscs -g' }
 Plug 'mxw/vim-jsx'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'carlitux/deoplete-ternjs'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 call plug#end()
@@ -99,6 +102,7 @@ nnoremap <leader><space> :noh<CR>
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+let g:tern_request_timeout = 1
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
@@ -180,7 +184,7 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
 nnoremap <C-p> :GFiles<cr>
-
+  
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
 
