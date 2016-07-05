@@ -1,83 +1,78 @@
-set nocompatible
-filetype off
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" Vundle
-""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+set nocompatible
+
+call plug#begin('~/.vim/plugged')
 
 " Plugins
 """"""""""
 
 " aesthetic
-Plugin 'reedes/vim-thematic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'reedes/vim-colors-pencil'
+Plug 'reedes/vim-thematic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'reedes/vim-colors-pencil'
 
 " tpope
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
 
 " utils
-Plugin 'rking/ag.vim'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'wellle/targets.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'justinmk/vim-sneak'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'godlygeek/tabular'
-Plugin 'nixon/vim-vmath'
-Plugin 'kana/vim-textobj-user'
-Plugin 'tyru/open-browser.vim'
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'rking/ag.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'wellle/targets.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'justinmk/vim-sneak'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'godlygeek/tabular'
+Plug 'nixon/vim-vmath'
+Plug 'kana/vim-textobj-user'
+Plug 'tyru/open-browser.vim'
+Plug 'bronson/vim-trailing-whitespace'
 
 " code
-Plugin 'scrooloose/syntastic'
-" Plugin 'StanAngeloff/php.vim'
-" Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'dsawardekar/wordpress.vim'
+Plug 'scrooloose/syntastic'
+" Plug 'StanAngeloff/php.vim'
+" Plug 'shawncplus/phpcomplete.vim'
+Plug 'dsawardekar/wordpress.vim'
 
 " frontend
-Plugin 'mattn/emmet-vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'JulesWang/css.vim'
-Plugin 'othree/html5.vim'
-Plugin 'csscomb/vim-csscomb'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plug 'mattn/emmet-vim'
+Plug 'Raimondi/delimitMate'
+Plug 'JulesWang/css.vim'
+Plug 'othree/html5.vim'
+Plug 'csscomb/vim-csscomb'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 " writing
-Plugin 'reedes/vim-pencil'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
-if executable('dayone')
-  Plugin 'glidenote/newdayone.vim'
-endif
+call plug#end()
 
-
-call vundle#end()
-filetype plugin indent on
 
 " General
 """"""""""
-syntax on
 set number
 set ruler
 set backspace=indent,eol,start
@@ -226,6 +221,19 @@ let g:airline#extensions#default#layout = [
     \ [ 'warning' ]
     \ ]
 
+" Ag / The Silver Searcher
+""""""""
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 " tmux
 """"""""
 
@@ -249,7 +257,21 @@ xmap <bs>    <Plug>SneakPrevious
 " Case sensitivity is determined by 'ignorecase' and 'smartcase'.
 let g:sneak#use_ic_scs = 1
 
+" Private gists by default
+let g:gist_post_private = 1
+
+" Syntastic
+""""""""
+let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_javascript_checkers = ['eslint']
+
 let g:jsx_ext_required = 0
+
+" Pencil
+""""""""
+let g:pencil#wrapModeDefault = 'soft'
+" disable switch to next line with h/l
+let g:pencil#cursorwrap = 0
 
 " Thematic
 """"""""
@@ -279,6 +301,42 @@ let g:thematic#themes = {
       \                 'laststatus': 0,
       \                },
   \ }
+
+" Goyo
+""""""""
+
+function! GoyoBefore()
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+  set scrolloff=999
+  set noshowmode
+  set noshowcmd
+  set nocursorline
+  set norelativenumber
+  TogglePencil
+endfunction
+
+function! GoyoAfter()
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+  set scrolloff=5
+  set showmode
+  set showcmd
+  set cursorline
+  set relativenumber
+  NoPencil
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+
+let g:goyo_width = 68
+
+" Vmath
+""""""""
+vmap <expr>  ++  VMATH_YankAndAnalyse()
+nmap         ++  vip++
 
 " delimitMate
 """""""""""""
