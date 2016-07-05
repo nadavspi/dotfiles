@@ -1,12 +1,7 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
 
 set nocompatible
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 """"""""""
@@ -17,7 +12,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'altercation/vim-colors-solarized'
-Plug 'reedes/vim-colors-pencil'
 
 " tpope
 Plug 'tpope/vim-sensible'
@@ -27,7 +21,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-haml'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 
@@ -38,35 +31,24 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'justinmk/vim-sneak'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
 Plug 'godlygeek/tabular'
-Plug 'nixon/vim-vmath'
 Plug 'kana/vim-textobj-user'
-Plug 'tyru/open-browser.vim'
 Plug 'bronson/vim-trailing-whitespace'
-
-" code
-Plug 'scrooloose/syntastic'
-" Plug 'StanAngeloff/php.vim'
-" Plug 'shawncplus/phpcomplete.vim'
-Plug 'dsawardekar/wordpress.vim'
 
 " frontend
 Plug 'mattn/emmet-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'JulesWang/css.vim'
 Plug 'othree/html5.vim'
-Plug 'csscomb/vim-csscomb'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
-" writing
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 call plug#end()
 
@@ -115,6 +97,33 @@ set nohlsearch
 " Unset the 'last search pattern' highlight
 nnoremap <leader><space> :noh<CR>
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+
+" Use tab for autocomplete or indent
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " Abbreviations
 """"""""""
 abbreviate lenght length
@@ -149,8 +158,8 @@ nnoremap <leader>s :w<cr>
 
 nnoremap <leader>t :tabnew<cr>
 
-nnoremap <tab> %
-inoremap <tab> <c-x><c-o>
+" nnoremap <tab> %
+" inoremap <tab> <c-x><c-o>
 
 " toggle folds, because za is awkward
 nnoremap zo za
@@ -257,21 +266,7 @@ xmap <bs>    <Plug>SneakPrevious
 " Case sensitivity is determined by 'ignorecase' and 'smartcase'.
 let g:sneak#use_ic_scs = 1
 
-" Private gists by default
-let g:gist_post_private = 1
-
-" Syntastic
-""""""""
-let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_javascript_checkers = ['eslint']
-
 let g:jsx_ext_required = 0
-
-" Pencil
-""""""""
-let g:pencil#wrapModeDefault = 'soft'
-" disable switch to next line with h/l
-let g:pencil#cursorwrap = 0
 
 " Thematic
 """"""""
@@ -296,10 +291,6 @@ let g:thematic#themes = {
       \ 'background': 'dark',
       \ 'airline-theme': 'tomorrow',
       \ },
-      \ 'pencil' :{'colorscheme': 'pencil',
-      \                 'background': 'light',
-      \                 'laststatus': 0,
-      \                },
   \ }
 
 " Goyo
@@ -354,12 +345,6 @@ call textobj#user#plugin('php', {
 \   },
 \ })
 
-" open-browser
-""""""""""""""
-
-" If URI, open. Othwrwise, search.
-nnoremap gb <Plug>(openbrowser-smart-search)
-vnoremap gb <Plug>(openbrowser-smart-search)
 
 " Colemak stuff
 nnoremap n j
@@ -369,3 +354,6 @@ nnoremap u i
 nnoremap l u
 nnoremap k n
 nnoremap K N
+vnoremap n j
+vnoremap e k
+vnoremap i l
