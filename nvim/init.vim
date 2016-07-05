@@ -226,19 +226,6 @@ let g:airline#extensions#default#layout = [
     \ [ 'warning' ]
     \ ]
 
-" Ag / The Silver Searcher
-""""""""
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
 " tmux
 """"""""
 
@@ -262,21 +249,7 @@ xmap <bs>    <Plug>SneakPrevious
 " Case sensitivity is determined by 'ignorecase' and 'smartcase'.
 let g:sneak#use_ic_scs = 1
 
-" Private gists by default
-let g:gist_post_private = 1
-
-" Syntastic
-""""""""
-let g:syntastic_scss_checkers = ['scss_lint']
-let g:syntastic_javascript_checkers = ['eslint']
-
 let g:jsx_ext_required = 0
-
-" Pencil
-""""""""
-let g:pencil#wrapModeDefault = 'soft'
-" disable switch to next line with h/l
-let g:pencil#cursorwrap = 0
 
 " Thematic
 """"""""
@@ -306,42 +279,6 @@ let g:thematic#themes = {
       \                 'laststatus': 0,
       \                },
   \ }
-
-" Goyo
-""""""""
-
-function! GoyoBefore()
-  if exists('$TMUX')
-    silent !tmux set status off
-  endif
-  set scrolloff=999
-  set noshowmode
-  set noshowcmd
-  set nocursorline
-  set norelativenumber
-  TogglePencil
-endfunction
-
-function! GoyoAfter()
-  if exists('$TMUX')
-    silent !tmux set status on
-  endif
-  set scrolloff=5
-  set showmode
-  set showcmd
-  set cursorline
-  set relativenumber
-  NoPencil
-endfunction
-
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-
-let g:goyo_width = 68
-
-" Vmath
-""""""""
-vmap <expr>  ++  VMATH_YankAndAnalyse()
-nmap         ++  vip++
 
 " delimitMate
 """""""""""""
