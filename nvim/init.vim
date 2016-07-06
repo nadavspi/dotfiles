@@ -22,6 +22,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 
 " utils
+Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -56,6 +57,7 @@ call plug#end()
 " General
 """"""""""
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set number
 set ruler
 set backspace=indent,eol,start
