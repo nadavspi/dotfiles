@@ -1,15 +1,12 @@
-
-set nocompatible
-
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 """"""""""
 
 " aesthetic
-Plug 'reedes/vim-thematic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'reedes/vim-thematic'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'altercation/vim-colors-solarized'
 
@@ -25,6 +22,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 
 " utils
+Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -42,8 +40,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'JulesWang/css.vim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'othree/yajs.vim'
-Plug 'mklabs/jscs.vim', { 'do': 'npm i jscs -g' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 
 function! DoRemote(arg)
@@ -58,6 +55,7 @@ call plug#end()
 
 " General
 """"""""""
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set number
 set ruler
 set backspace=indent,eol,start
@@ -66,6 +64,12 @@ set visualbell
 
 set nobackup
 set noswapfile
+
+" save when leaving insert mode
+autocmd InsertLeave * write
+
+" persist undo
+set undofile
 
 " automatically re-read files that have been changed outside of vim
 set autoread
@@ -115,7 +119,6 @@ augroup omnifuncs
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup end
 " tern
@@ -127,6 +130,10 @@ endif
 
 " Use tab for autocomplete or indent
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" neomake
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Abbreviations
 """"""""""
@@ -183,7 +190,17 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-nnoremap <C-p> :GFiles<cr>
+" fzf
+fun! s:fzf_root()
+  let path = finddir(".git", expand("%:p:h").";")
+  return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
+endfun
+
+nnoremap <silent> <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
+nnoremap <leader>b :Buffers<cr>
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
   
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
@@ -220,7 +237,9 @@ set formatoptions=qrn1
 
 " Windows
 """"""""""
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>ww <C-w>v<C-w>l
+nnoremap <leader>wo :only<cr>
+nnoremap <leader>wc :close<cr>
 nnoremap <leader>v <C-w>
 set splitbelow
 set splitright
@@ -239,12 +258,6 @@ let g:airline#extensions#default#layout = [
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " tmux
@@ -296,47 +309,6 @@ let g:thematic#themes = {
       \ 'airline-theme': 'tomorrow',
       \ },
   \ }
-
-" Goyo
-""""""""
-
-function! GoyoBefore()
-  if exists('$TMUX')
-    silent !tmux set status off
-  endif
-  set scrolloff=999
-  set noshowmode
-  set noshowcmd
-  set nocursorline
-  set norelativenumber
-  TogglePencil
-endfunction
-
-function! GoyoAfter()
-  if exists('$TMUX')
-    silent !tmux set status on
-  endif
-  set scrolloff=5
-  set showmode
-  set showcmd
-  set cursorline
-  set relativenumber
-  NoPencil
-endfunction
-
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-
-let g:goyo_width = 68
-
-" Vmath
-""""""""
-vmap <expr>  ++  VMATH_YankAndAnalyse()
-nmap         ++  vip++
-
-" delimitMate
-"""""""""""""
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
 
 " vim-textobj-user (custom text objects)
 """"""""""""""""""""""""""""""""""""""""
