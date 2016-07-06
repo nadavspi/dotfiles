@@ -36,3 +36,6 @@ zstyle :omz:plugins:ssh-agent identities github nspiegelman
 if [[ -f ~/.zshrc-local ]]; then
   source ~/.zshrc-local
 fi
+
+[ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
