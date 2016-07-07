@@ -25,6 +25,8 @@ Plug 'tpope/vim-rails'
 
 " utils
 Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -53,7 +55,7 @@ function! DoRemote(arg)
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'carlitux/deoplete-ternjs'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 
 call plug#end()
 
@@ -67,6 +69,9 @@ set ruler
 set backspace=indent,eol,start
 let mapleader = "\<Space>"
 set visualbell
+" to show tern argument hints more quickly
+set updatetime=2000
+set noshowmode
 
 set nobackup
 set noswapfile
@@ -127,6 +132,10 @@ nnoremap <leader><space> :noh<CR>
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 let g:tern_request_timeout = 1
+" use global `tern`
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
@@ -228,7 +237,10 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Emmet
-let g:user_emmet_leader_key = '<c-e>'
+" let g:user_emmet_leader_key = '<c-e>'
+" makes emmet work with tab but breaks completion 
+" let g:user_emmet_expandabbr_key='<Tab>'
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Tabs
 nnoremap <leader>1 1gt<cr>
