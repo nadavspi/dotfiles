@@ -84,6 +84,18 @@ set autoread
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>y  "+y
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P"
+
+inoremap <C-e> <Esc>A
+
 " Filetypes
 """"""""""
 autocmd BufNewFile,BufRead *.phtml set filetype=php
@@ -114,6 +126,9 @@ if !exists('g:deoplete#omni#input_patterns')
 endif
 " let g:deoplete#disable_auto_complete = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Tern
+nnoremap <silent> <leader>d :TernDef<CR>
 
 " omnifuncs
 augroup omnifuncs
