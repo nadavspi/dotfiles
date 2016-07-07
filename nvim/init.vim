@@ -24,6 +24,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 
 " utils
+Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -69,15 +70,16 @@ set ruler
 set backspace=indent,eol,start
 let mapleader = "\<Space>"
 set visualbell
-" to show tern argument hints more quickly
-set updatetime=2000
+" for autosave and to show tern argument hints more quickly
+set updatetime=1000
 set noshowmode
 
 set nobackup
 set noswapfile
 
-" save when leaving insert mode
-autocmd InsertLeave * write
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+let g:auto_save_silent = 1 
 
 " persist undo
 set undofile
