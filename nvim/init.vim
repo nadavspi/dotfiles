@@ -8,7 +8,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'reedes/vim-thematic'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'romainl/flattened'
+Plug 'whatyouhide/vim-gotham'
 
 " tpope
 Plug 'tpope/vim-sensible'
@@ -43,6 +45,8 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/es.next.syntax.vim'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -56,7 +60,7 @@ call plug#end()
 
 " General
 """"""""""
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set number
 set ruler
@@ -144,6 +148,8 @@ if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_signature_in_pum = 1
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
+
+let g:used_javascript_libs = 'jquery,react'
 
 " Use tab for autocomplete or indent
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -304,26 +310,44 @@ let g:jsx_ext_required = 0
 
 " Thematic
 """"""""
-let g:thematic#theme_name = 'tomorrow'
+let g:gruvbox_italic=1
+highlight Comment cterm=italic
+let g:thematic#theme_name = 'gruvbox_dark'
 let g:thematic#defaults = {
       \ 'background': 'dark',
       \ 'laststatus': 2,
       \ 'ruler': 0,
 \ }
 let g:thematic#themes = {
-      \ 'solarized_light' : {
-      \ 'colorscheme': 'solarized',
+      \ 'flattened_dark' : {
+      \ 'colorscheme': 'flattened_dark',
+      \ 'background': 'dark',
+      \ 'airline-theme': 'solarized',
+      \ },
+      \ 'flattened_light' : {
+      \ 'colorscheme': 'flattened_light',
       \ 'background': 'light',
       \ 'airline-theme': 'solarized',
       \ },
-      \ 'solarized_dark' : {
-      \ 'colorscheme': 'solarized',
-      \ 'airline-theme': 'solarized',
+      \ 'gruvbox_dark' : {
+      \ 'colorscheme': 'gruvbox',
+      \ 'background': 'dark',
+      \ 'airline-theme': 'gruvbox',
+      \ },
+      \ 'gruvbox_light' : {
+      \ 'colorscheme': 'gruvbox',
+      \ 'background': 'light',
+      \ 'airline-theme': 'gruvbox',
       \ },
       \ 'tomorrow' : {
       \ 'colorscheme': 'Tomorrow-Night-Eighties',
       \ 'background': 'dark',
       \ 'airline-theme': 'tomorrow',
+      \ },
+      \ 'gotham' : {
+      \ 'colorscheme': 'gotham',
+      \ 'background': 'dark',
+      \ 'airline-theme': 'gotham',
       \ },
   \ }
 
