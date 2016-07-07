@@ -11,8 +11,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="nvim"
 
 alias ec="emacsclient -t"
-alias v="vim"
-alias vi="vim"
+alias v="nvim"
 alias n="ncmpcpp"
 
 auto-ls () {
