@@ -228,15 +228,15 @@ omap <leader><tab> <plug>(fzf-maps-o)
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
 
-" Buffers
-nnoremap <leader>1 :buffer 1<cr>
-nnoremap <leader>2 :buffer 2<cr>
-nnoremap <leader>3 :buffer 3<cr>
-nnoremap <leader>4 :buffer 4<cr>
-nnoremap <leader>5 :buffer 5<cr>
-nnoremap <leader>6 :buffer 6<cr>
-nnoremap <leader>7 :buffer 7<cr>
-nnoremap <leader>8 :buffer 8<cr>
+" Tabs
+nnoremap <leader>1 1gt<cr>
+nnoremap <leader>2 2gt<cr>
+nnoremap <leader>3 3gt<cr>
+nnoremap <leader>4 4gt<cr>
+nnoremap <leader>5 5gt<cr>
+nnoremap <leader>6 6gt<cr>
+nnoremap <leader>7 7gt<cr>
+nnoremap <leader>8 8gt<cr>
 
 " duplicate and comma-ize CSS
 nnoremap gy :norm yypk$hC,<cr>:norm j0<cr>
