@@ -88,6 +88,8 @@ set autoread
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+tnoremap <Esc> <C-\><C-n>
+
 " Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>y  "+y
