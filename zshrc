@@ -8,7 +8,7 @@ DISABLE_AUTO_TITLE="true"
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 alias ec="emacsclient -t"
 alias v="vim"
