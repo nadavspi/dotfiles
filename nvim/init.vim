@@ -226,7 +226,7 @@ nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-  
+
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
 
@@ -273,6 +273,7 @@ set splitright
 """"""""""
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_powerline_fonts=1
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c'],
     \ [ 'warning' ]
