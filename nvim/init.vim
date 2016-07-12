@@ -24,25 +24,24 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
 
 " utils
+" Plug 'SirVer/ultisnips'
 Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'AndrewRadev/sideways.vim'
 
 " frontend
 Plug 'mattn/emmet-vim'
-Plug 'Raimondi/delimitMate'
 Plug 'JulesWang/css.vim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -94,8 +93,6 @@ set autoread
 " highlight 81st column of wide lines
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
-
-tnoremap <Esc> <C-\><C-n>
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -166,6 +163,12 @@ let g:used_javascript_libs = 'jquery,react'
 
 " Use tab for autocomplete or indent
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 
 " neomake
 autocmd! BufWritePost,BufEnter * Neomake
@@ -237,6 +240,25 @@ nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+
+nnoremap <silent> <leader>ag :call SearchWordWithAg()<CR>
+vnoremap <silent> <leader>ag :call SearchVisualSelectionWithAg()<CR>
+
+function! SearchWordWithAg()
+  execute 'Ag' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithAg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Ag' selection
+endfunction
 
 " Emmet
 " let g:user_emmet_leader_key = '<c-e>'
@@ -379,6 +401,8 @@ call textobj#user#plugin('php', {
 \   },
 \ })
 
+nnoremap <Leader>< :SidewaysLeft<CR>
+nnoremap <Leader>> :SidewaysRight<CR>
 
 " Colemak stuff
 nnoremap n j
@@ -391,3 +415,8 @@ nnoremap K N
 vnoremap n j
 vnoremap e k
 vnoremap i l
+" had to fix terminfo for this one (https://github.com/neovim/neovim/issues/2048#issuecomment-78045837)
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-n> <C-w><C-j>
+nnoremap <C-e> <C-w><C-k>
+nnoremap <C-i> <C-w><C-l>
