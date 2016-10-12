@@ -30,3 +30,4 @@ org-clock-save.el
 
 *.log
 .idea
+.tern-port
