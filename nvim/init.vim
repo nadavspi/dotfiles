@@ -25,6 +25,7 @@ Plug 'tpope/vim-rails'
 
 " utils
 " Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
 Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
