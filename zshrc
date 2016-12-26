@@ -15,6 +15,7 @@ alias gst="git status"
 alias ec="emacsclient -t"
 alias v="nvim"
 alias n="ncmpcpp"
+alias notes="nvim ~/Dropbox/Notes"
 
 auto-ls () {
   if [[ $#BUFFER -eq 0 ]]; then
