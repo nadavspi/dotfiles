@@ -4,6 +4,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 source ~/.zsh/aliases.zsh
+source ~/.zsh/exports.zsh
 
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
