@@ -13,7 +13,6 @@ Plug 'romainl/flattened'
 Plug 'whatyouhide/vim-gotham'
 
 " tpope
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
@@ -26,11 +25,13 @@ Plug 'tpope/vim-rails'
 " utils
 " Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
+Plug 'thinca/vim-qfreplace'
 Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'junegunn/fzf.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
@@ -40,6 +41,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'wakatime/vim-wakatime'
 
 " frontend
 Plug 'mattn/emmet-vim'
@@ -81,6 +83,7 @@ set noswapfile
 let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_silent = 1 
+set backupcopy=yes
 
 " persist undo
 set undofile
@@ -108,9 +111,12 @@ vnoremap <leader>P "+P"
 
 inoremap <C-e> <Esc>A
 
+let g:UltiSnipsUsePythonVersion = 2 
+
 " Filetypes
 """"""""""
-autocmd BufNewFile,BufRead *.phtml set filetype=php
+autocmd BufNewFile,BufRead *.phtml set filetype=phtml
+autocmd BufNewFile,BufRead *.php set filetype=phtml
 autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
 
 " Tabs
@@ -160,7 +166,7 @@ if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_signature_in_pum = 1
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
-
+autocmd FileType javascript set formatprg=prettier\ --stdin\ --trailing-comma\ es5\ --single-quote
 let g:used_javascript_libs = 'jquery,react'
 
 " Use tab for autocomplete or indent
@@ -175,11 +181,13 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " neomake
 autocmd! BufWritePost,BufEnter * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_html_enabled_makers = [] 
 
 " Abbreviations
 """"""""""
 abbreviate lenght length
 abbreviate dont' don't
+iabbrev target="_blank" target="_blank" rel="noopener"
 
 
 " Key bindings
@@ -351,8 +359,8 @@ let g:jsx_ext_required = 0
 
 " Thematic
 """"""""
-let g:gruvbox_italic=1
-highlight Comment cterm=italic
+" let g:gruvbox_italic=1
+" highlight Comment cterm=italic
 let g:thematic#theme_name = 'gruvbox_dark'
 let g:thematic#defaults = {
       \ 'background': 'dark',
