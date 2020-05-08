@@ -41,7 +41,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'wakatime/vim-wakatime'
 
 " frontend
 Plug 'mattn/emmet-vim'
@@ -49,6 +48,7 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'sbdchd/neoformat'
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -63,6 +63,11 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 
 call plug#end()
 
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/denite.nvim'
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " General
 """"""""""
@@ -119,6 +124,8 @@ autocmd BufNewFile,BufRead *.phtml set filetype=phtml
 autocmd BufNewFile,BufRead *.php set filetype=phtml
 autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
 
+autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+
 " Tabs
 """"""""""
 set expandtab
@@ -147,7 +154,7 @@ if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 " let g:deoplete#disable_auto_complete = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Tern
 nnoremap <silent> <leader>d :TernDef<CR>
@@ -170,8 +177,8 @@ autocmd FileType javascript set formatprg=prettier\ --stdin\ --trailing-comma\ e
 let g:used_javascript_libs = 'jquery,react'
 
 " Use tab for autocomplete or indent
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -180,7 +187,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " neomake
 autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_html_enabled_makers = [] 
 
 " Abbreviations
@@ -245,7 +252,7 @@ fun! s:fzf_root()
   return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
 endfun
 
-nnoremap <silent> <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
+nnoremap <silent> <C-p> :exe 'GFiles ' . <SID>fzf_root()<CR>
 nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
