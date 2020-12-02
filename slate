@@ -25,9 +25,7 @@ alias mobile move screenOriginX;screenOriginY 320;screenSizeY
 bind 1:${leader} ${full}
 bind space:${leader} ${full}
 bind space:alt;cmd ${full}
-bind left:alt;cmd ${lefthalf}
 bind h:alt;cmd ${lefthalf}
-bind right:alt;cmd ${righthalf}
 bind l:alt;cmd ${righthalf}
 bind ]:alt;cmd ${topright}
 bind [:alt;cmd ${topleft}
