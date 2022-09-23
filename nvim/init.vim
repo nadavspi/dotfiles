@@ -150,9 +150,6 @@ let g:tern_request_timeout = 1
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
 " let g:deoplete#disable_auto_complete = 1
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
