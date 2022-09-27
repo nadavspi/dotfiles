@@ -20,10 +20,8 @@ shift + alt - 2  : yabai -m space --focus 5
 shift + alt - 3  : yabai -m space --focus 6
 
 # move window and focus space
-# shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
-# shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
-# shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
-# shift E+ alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+cmd + alt - h : yabai -m window --space prev; yabai -m space --focus prev
+cmd + alt - i : yabai -m window --space next; yabai -m space --focus next
 
 # send window to monitor and follow focus
 ctrl + cmd - h : yabai -m window --display prev; yabai -m display --focus prev
