@@ -47,3 +47,13 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2d
+
+
+# app switching
+hyper - f : open -a "Firefox"
+hyper - t : open -a "iTerm" || open -a "Terminal"
+hyper - v : open -a "Visual Studio Code"
+hyper - c : open -a "Google Chrome"
+hyper - o : open -a "Microsoft Outlook"
+hyper - w : open -a "Webex"
+hyper - d : open -a "Discord"
