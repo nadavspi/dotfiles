@@ -1,11 +1,14 @@
 # focus window
-alt - h : yabai -m window --focus west || yabai -m display --focus prev
+alt - h : yabai -m window --focus west || yabai -m display --focus prev || yabai -m window --focus last
 alt - n : yabai -m window --focus south
 alt - e : yabai -m window --focus north
-alt - i : yabai -m window --focus east || yabai -m display --focus next
+alt - i : yabai -m window --focus east || yabai -m display --focus next || yabai -m window --focus first
+
+alt - m : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last # comma
+
 
 # swap managed window
-# todo: send to next display
 shift + alt - h : yabai -m window --swap west
 shift + alt - n : yabai -m window --swap south
 shift + alt - e : yabai -m window --swap north
@@ -44,6 +47,13 @@ shift + cmd - d : yabai -m space --balance
 
 # toggle window fullscreen zoom
 alt - f : yabai -m window --toggle zoom-fullscreen
+
+# create stack in direction
+hyper - left  : yabai -m window west --stack $(yabai -m query --windows --window | jq -r '.id')
+hyper - down  : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
+hyper - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
+hyper - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
+
 
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2d
