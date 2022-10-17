@@ -1,4 +1,9 @@
 call plug#begin('~/.config/nvim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+
+if !exists('g:vscode')
+
 
 " Plugins
 """"""""""
@@ -16,8 +21,6 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
@@ -61,7 +64,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 
+endif
 call plug#end()
+if !exists('g:vscode')
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
@@ -293,32 +298,6 @@ nnoremap <leader>8 8gt<cr>
 " duplicate and comma-ize CSS
 nnoremap gy :norm yypk$hC,<cr>:norm j0<cr>
 
-" Line numbers
-""""""""""
-if exists('+relativenumber')
-  set relativenumber
-
-  " Always show line numbers, but only in current window.
-  :au WinEnter * :setlocal relativenumber
-  :au WinLeave * :setlocal norelativenumber
-endif
-
-" Line length and wrapping
-""""""""""
-set wrap
-set linebreak
-set textwidth=79
-set formatoptions=qrn1
-
-" Windows
-""""""""""
-nnoremap <leader>ww <C-w>v<C-w>l
-nnoremap <leader>wo :only<cr>
-nnoremap <leader>wc :close<cr>
-nnoremap <leader>v <C-w>
-set splitbelow
-set splitright
-
 " Airline
 """"""""""
 let g:airline_left_sep=''
@@ -418,6 +397,14 @@ call textobj#user#plugin('php', {
 nnoremap <Leader>< :SidewaysLeft<CR>
 nnoremap <Leader>> :SidewaysRight<CR>
 
+" had to fix terminfo for this one (https://github.com/neovim/neovim/issues/2048#issuecomment-78045837)
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-n> <C-w><C-j>
+nnoremap <C-e> <C-w><C-k>
+nnoremap <C-i> <C-w><C-l>
+
+endif
+
 " Colemak stuff
 nnoremap n j
 nnoremap e k
@@ -429,8 +416,3 @@ nnoremap K N
 vnoremap n j
 vnoremap e k
 vnoremap i l
-" had to fix terminfo for this one (https://github.com/neovim/neovim/issues/2048#issuecomment-78045837)
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-n> <C-w><C-j>
-nnoremap <C-e> <C-w><C-k>
-nnoremap <C-i> <C-w><C-l>
