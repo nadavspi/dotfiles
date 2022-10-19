@@ -26,6 +26,7 @@ yabai -m config normal_window_opacity 0.95
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Creative Cloud$" manage=off
+yabai -m rule --add app="^Contexts$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 
 echo "yabai configuration loaded"
