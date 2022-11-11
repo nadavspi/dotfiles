@@ -14,6 +14,11 @@ shift + alt - n : yabai -m window --swap south
 shift + alt - e : yabai -m window --swap north
 shift + alt - i : yabai -m window --swap east
 
+shift + alt - j : yabai -m window --warp west
+shift + alt - l : yabai -m window --warp south
+shift + alt - u : yabai -m window --warp north
+shift + alt - y : yabai -m window --warp east
+
 # focus space 
 cmd + shift - 1  : yabai -m space --focus 1
 cmd + shift - 2  : yabai -m space --focus 2
