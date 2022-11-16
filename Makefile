@@ -26,6 +26,12 @@ nvim-plugins:
 $(HOME)/.config/tmux:
 	ln -s $(shell pwd)/tmux $(HOME)/.config/tmux
 
+$(HOME)/.config/alacritty:
+	ln -s $(shell pwd)/alacritty $(HOME)/.config/alacritty
+
+$(HOME)/.config/fish:
+	ln -s $(shell pwd)/fish $(HOME)/.config/fish
+
 docker:
 	docker build -t 'nadavspi/shell' .
 
