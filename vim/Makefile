@@ -28,4 +28,7 @@ clean:
 	mv -f $(HOME)/.vimrc $(HOME)/.vimrc.backup
 	rm -rf $(HOME)/.vim/bundle
 
-.PHONY: PluginInstall clean install uninstall update
+docker:
+	docker build -t 'nadavsp/vimrc' .
+
+.PHONY: PluginInstall clean install uninstall update docker
