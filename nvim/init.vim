@@ -22,11 +22,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
 
 " utils
-" Plug 'SirVer/ultisnips'
 Plug 'ervandew/supertab'
 Plug 'thinca/vim-qfreplace'
 Plug '907th/vim-auto-save'
@@ -46,30 +43,20 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'AndrewRadev/sideways.vim'
 
 " frontend
-Plug 'mattn/emmet-vim'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'sbdchd/neoformat'
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'othree/es.next.syntax.vim'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'carlitux/deoplete-ternjs'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 
 endif
 call plug#end()
 if !exists('g:vscode')
 
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/denite.nvim'
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
@@ -186,19 +173,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-
-" neomake
-autocmd! BufWritePost,BufEnter * Neomake
-" let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_html_enabled_makers = [] 
-
-" Abbreviations
-""""""""""
-abbreviate lenght length
-abbreviate dont' don't
-iabbrev target="_blank" target="_blank" rel="noopener"
-
-
 " Key bindings
 """"""""""
 
@@ -209,7 +183,7 @@ nnoremap gev :vsplit $MYVIMRC<cr>
 nnoremap gsv :source $MYVIMRC<cr>
 
 " go install plugins
-nnoremap gip :PluginInstall<cr>
+nnoremap gip :PlugInstall<cr>
 
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
