@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Install packages
-      package:
+      homebrew:
         update_homebrew: true
         name:
           - bat
@@ -12,6 +12,11 @@
           - fish
           - tmux
         state: present
+
+    - name: Install nvim python3 provider
+      pip:
+        name: pynvim
+        extra_args: --user --upgrade
 
     - name: Link dotfiles
       vars:
@@ -37,6 +42,10 @@
           dest: ~/.config/yabai
         - src: "{{ dotfiles }}/skhd"
           dest: ~/.config/skhd
+
+    - name: Install neovim plugins
+      command: >
+        nvim +PlugClean\! +PlugInstall\! +UpdateRemotePlugins +qall
 
 
 
