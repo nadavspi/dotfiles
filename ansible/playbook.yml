@@ -42,6 +42,8 @@
           dest: ~/.config/yabai
         - src: "{{ dotfiles }}/skhd"
           dest: ~/.config/skhd
+        - src: "{{ dotfiles }}/kitty"
+          dest: ~/.config/kitty
 
     - name: Install neovim plugins
       command: >
