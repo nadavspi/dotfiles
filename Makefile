@@ -45,4 +45,4 @@ ansible:
 docker:
 	docker build -t 'nadavspi/shell' .
 
-.PHONY: install docker nvim vim-plug nvim-plugins git
+.PHONY: install docker nvim vim-plug nvim-plugins git ansible
