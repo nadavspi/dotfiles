@@ -3,11 +3,18 @@ install:
 	make git
 	make nvim
 	make $(HOME)/.config/tmux
+	make $(HOME)/.config/fish
 
 git:
+	make $(HOME)/.gitignore
+	make $(HOME)/.gitconfig
+
+$(HOME)/.gitignore:
 	ln -s $(shell pwd)/gitignore $(HOME)/.gitignore
+
+$(HOME)/.gitconfig:
 	ln -s $(shell pwd)/gitconfig $(HOME)/.gitconfig
-	
+
 nvim:
 	make vim-plug
 	make $(HOME)/.config/nvim
@@ -31,6 +38,9 @@ $(HOME)/.config/alacritty:
 
 $(HOME)/.config/fish:
 	ln -s $(shell pwd)/fish $(HOME)/.config/fish
+
+ansible:
+	python3 -m pip install --upgrade --user ansible
 
 docker:
 	docker build -t 'nadavspi/shell' .
