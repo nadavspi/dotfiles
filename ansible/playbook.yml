@@ -1,13 +1,9 @@
 ---
 - hosts: all
-
   tasks:
-    # - name: Update homebrew
-    #   homebrew:
-    #     update_homebrew: true
-
     - name: Install packages
       package:
+        update_homebrew: true
         name:
           - bat
           - git-delta
@@ -35,3 +31,12 @@
           dest: ~/.config/fish
         - src: "{{ dotfiles }}/nvim"
           dest: ~/.config/nvim
+        - src: "{{ dotfiles }}/alacritty"
+          dest: ~/.config/alacritty
+        - src: "{{ dotfiles }}/yabai"
+          dest: ~/.config/yabai
+        - src: "{{ dotfiles }}/skhd"
+          dest: ~/.config/skhd
+
+
+
