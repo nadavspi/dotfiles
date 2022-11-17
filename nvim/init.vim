@@ -4,7 +4,6 @@ Plug 'tpope/vim-commentary'
 
 if !exists('g:vscode')
 
-
 " Plugins
 """"""""""
 
@@ -68,7 +67,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set number
 set ruler
 set backspace=indent,eol,start
-let mapleader = "\<Space>"
+let mapleader = ","
 set visualbell
 " for autosave and to show tern argument hints more quickly
 set updatetime=1000
@@ -132,6 +131,7 @@ set smartcase
 set incsearch
 set nohlsearch
 
+set relativenumber
 " Unset the 'last search pattern' highlight
 nnoremap <leader><space> :noh<CR>
 
@@ -356,17 +356,6 @@ let g:thematic#themes = {
       \ 'airline-theme': 'gotham',
       \ },
   \ }
-
-" vim-textobj-user (custom text objects)
-""""""""""""""""""""""""""""""""""""""""
-
-call textobj#user#plugin('php', {
-\   'code': {
-\     'pattern': ['<?php\>', '?>'],
-\     'select-a': 'aP',
-\     'select-i': 'iP',
-\   },
-\ })
 
 nnoremap <Leader>< :SidewaysLeft<CR>
 nnoremap <Leader>> :SidewaysRight<CR>
