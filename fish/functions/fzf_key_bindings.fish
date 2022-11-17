@@ -1,0 +1,1 @@
+/Users/spiegeln/.fzf/shell/key-bindings.fish
