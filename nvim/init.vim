@@ -40,6 +40,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'knubie/vim-kitty-navigator'
 
 " frontend
 Plug 'JulesWang/css.vim'
@@ -360,11 +361,11 @@ let g:thematic#themes = {
 nnoremap <Leader>< :SidewaysLeft<CR>
 nnoremap <Leader>> :SidewaysRight<CR>
 
-" had to fix terminfo for this one (https://github.com/neovim/neovim/issues/2048#issuecomment-78045837)
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-n> <C-w><C-j>
-nnoremap <C-e> <C-w><C-k>
-nnoremap <C-i> <C-w><C-l>
+let g:kitty_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :KittyNavigateLeft<cr>
+nnoremap <silent> <c-n> :KittyNavigateDown<cr>
+nnoremap <silent> <c-e> :KittyNavigateUp<cr>
+nnoremap <silent> <c-i> :KittyNavigateRight<cr>
 
 endif
 
