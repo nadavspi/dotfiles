@@ -1,0 +1,28 @@
+---
+- name: Install packages
+  homebrew:
+    update_homebrew: true
+    name: "{{ universal_packages }}"
+    state: present
+
+- name: Install nvim python3 provider
+  pip:
+    name: pynvim
+    extra_args: --user --upgrade
+
+- name: Link dotfiles
+  vars:
+    dotfiles: "{{ playbook_dir | dirname }}"
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - "{{ universal_dotfiles }}"
+
+- name: Install neovim plugins
+  command: >
+    nvim +PlugClean\! +PlugInstall\! +UpdateRemotePlugins +qall
+
+
+

@@ -1,0 +1,26 @@
+---
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install packages
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kitty
+
+- name: Install OS-specific packages
+  package:
+    name: "{{ os_packages }}"
+    state: present
+
+- name: Link dotfiles
+  vars:
+    dotfiles: "{{ playbook_dir | dirname }}"
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - "{{ universal_dotfiles }}"
+    - "{{ os_dotfiles }}"

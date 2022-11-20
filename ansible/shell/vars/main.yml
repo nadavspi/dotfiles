@@ -1,0 +1,20 @@
+---
+universal_packages:
+  - bat
+  - git-delta
+  - tree
+  - the_silver_searcher
+  - fish
+  - tmux
+
+universal_dotfiles:
+  - src: "{{ dotfiles }}/gitconfig"
+    dest: ~/.gitconfig
+  - src: "{{ dotfiles }}/gitignore"
+    dest: ~/.gitignore
+  - src: "{{ dotfiles }}/tmux"
+    dest: ~/.config/tmux
+  - src: "{{ dotfiles }}/fish"
+    dest: ~/.config/fish
+  - src: "{{ dotfiles }}/nvim"
+    dest: ~/.config/nvim
