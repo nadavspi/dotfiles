@@ -11,6 +11,8 @@
         repo: 'https://github.com/nadavspi/dotfiles.git'
         dest: ~/.dotfiles
   roles:
-    - hardening
+    - role: hardening
+      become: yes
+    - role: timezone
+      become: yes
     - shell
-
