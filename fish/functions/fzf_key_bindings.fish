@@ -1,1 +1,1 @@
-/Users/spiegeln/.fzf/shell/key-bindings.fish
+/Users/nadav/.fzf/shell/key-bindings.fish
