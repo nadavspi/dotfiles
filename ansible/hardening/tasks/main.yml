@@ -1,0 +1,24 @@
+---
+- name: Update SSH config
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    validate: 'sshd -t -f %s'
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication no"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin no"
+  notify: restart ssh
+  become: true
+
+- name: Configure sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^nadavspi'
+    line: 'nadavspi ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    validate: 'visudo -cf %s'
+  become: true

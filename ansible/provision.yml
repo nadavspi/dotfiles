@@ -10,6 +10,7 @@
       git:
         repo: 'https://github.com/nadavspi/dotfiles.git'
         dest: ~/.dotfiles
-  become: yes
   roles:
+    - hardening
     - shell
+
