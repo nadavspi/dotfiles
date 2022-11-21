@@ -1,0 +1,15 @@
+---
+- hosts: local
+  roles:
+    - shell
+    - desktop
+
+- hosts: servers
+  pre_tasks:
+    - name: Clone dotfiles repo
+      git:
+        repo: 'https://github.com/nadavspi/dotfiles.git'
+        dest: ~/.dotfiles
+  become: yes
+  roles:
+    - shell

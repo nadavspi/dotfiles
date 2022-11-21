@@ -1,7 +1,7 @@
 ---
 os_packages:
-  - yabai
-  - skhd
+  - koekeishiya/formulae/yabai
+  - koekeishiya/formulae/skhd
 
 os_dotfiles:
   - src: "{{ dotfiles }}/yabai"
