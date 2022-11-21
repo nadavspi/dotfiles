@@ -1,11 +1,15 @@
 ---
 universal_packages:
+  - python3
+  - neovim
   - bat
-  - git-delta
   - tree
-  - the_silver_searcher
+  - "{{ the_silver_searcher }}"
   - fish
   - tmux
+
+
+dotfiles: "~/.dotfiles"
 
 universal_dotfiles:
   - src: "{{ dotfiles }}/gitconfig"

@@ -1,0 +1,7 @@
+---
+os_packages:
+  - git-delta
+
+os_dotfiles: []
+
+the_silver_searcher: "the_silver_searcher"

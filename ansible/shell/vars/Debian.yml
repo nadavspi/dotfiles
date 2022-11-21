@@ -1,0 +1,7 @@
+---
+os_packages:
+ - python3-pip
+
+os_dotfiles: []
+
+the_silver_searcher: "silversearcher-ag"
