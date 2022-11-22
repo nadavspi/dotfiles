@@ -1,1 +1,3 @@
 nvim/plugged/
+fish/fish_variables
+fish/fzf_key_bindings.fish
