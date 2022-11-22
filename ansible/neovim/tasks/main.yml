@@ -7,12 +7,12 @@
     state: present
   become: "{{ 'no' if ansible_os_family == 'Darwin' else 'yes' }}"
 
-- name: Install nvim python3 provider
+- name: Install python3 provider
   pip:
     name: pynvim
     extra_args: --user --upgrade
 
-- name: Create neovim autoload directory
+- name: Create autoload directory
   file:
     path: ~/.local/share/nvim/site/autoload
     state: directory
@@ -30,6 +30,6 @@
     dest: ~/.config/nvim
     state: link
 
-- name: Install neovim plugins
+- name: Install plugins
   command: >
     nvim +PlugClean\! +PlugInstall\! +UpdateRemotePlugins +qall
