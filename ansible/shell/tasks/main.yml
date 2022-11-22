@@ -6,16 +6,19 @@
   package:
     name: "{{ universal_packages }}"
     state: present
+  become: "{{ 'no' if ansible_os_family == 'Darwin' else 'yes' }}"
 
 - name: Install OS-specific packages
   package:
     name: "{{ os_packages }}"
     state: present
+  become: "{{ 'no' if ansible_os_family == 'Darwin' else 'yes' }}"
 
-- name: Install nvim python3 provider
-  pip:
-    name: pynvim
-    extra_args: --user --upgrade
+- name: Create .config directory
+  file:
+    path: ~/.config
+    state: directory
+    mode: '700'
 
 - name: Link dotfiles
   file:
@@ -26,9 +29,5 @@
     - "{{ universal_dotfiles }}"
     - "{{ os_dotfiles }}"
 
-- name: Install neovim plugins
-  command: >
-    nvim +PlugClean\! +PlugInstall\! +UpdateRemotePlugins +qall
-
-
-
+- include_role:
+    name: neovim

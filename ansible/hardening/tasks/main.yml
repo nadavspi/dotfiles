@@ -12,7 +12,6 @@
     - regexp: "^PermitRootLogin"
       line: "PermitRootLogin no"
   notify: restart ssh
-  become: true
 
 - name: Configure sudoers
   lineinfile:
@@ -21,4 +20,53 @@
     line: 'nadavspi ALL=(ALL) NOPASSWD: ALL'
     state: present
     validate: 'visudo -cf %s'
-  become: true
+
+- name: Install unattended upgrades package.
+  apt:
+    name: unattended-upgrades
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Copy unattended-upgrades configuration files in place.
+  template:
+    src: "../templates/{{ item }}.j2"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 20auto-upgrades
+    - 50unattended-upgrades
+  when: ansible_os_family == 'Debian'
+
+- name: Install fail2ban (Debian).
+  apt:
+    name: fail2ban
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure fail2ban is running and enabled on boot.
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Configure ufw to allow SSH
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Configure default incoming/outgoing rules with ufw
+  ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+    state: enabled
+  with_items:
+    - { direction: outgoing, policy: allow }
+    - { direction: incoming, policy: deny }

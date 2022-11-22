@@ -1,7 +1,5 @@
 ---
 universal_packages:
-  - python3
-  - neovim
   - bat
   - tree
   - "{{ the_silver_searcher }}"
@@ -20,5 +18,3 @@ universal_dotfiles:
     dest: ~/.config/tmux
   - src: "{{ dotfiles }}/fish"
     dest: ~/.config/fish
-  - src: "{{ dotfiles }}/nvim"
-    dest: ~/.config/nvim
