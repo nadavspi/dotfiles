@@ -1,4 +1,0 @@
----
-universal_dotfiles:
-  - src: "{{ dotfiles }}/kitty"
-    dest: ~/.config/kitty
