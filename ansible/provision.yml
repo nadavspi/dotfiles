@@ -16,3 +16,9 @@
     - role: timezone
       become: yes
     - shell
+
+- hosts: nextcloud
+  roles:
+    - nextcloud
+
+

@@ -4,3 +4,6 @@
 [servers]
 cloud
 
+[nextcloud]
+cloud
+
