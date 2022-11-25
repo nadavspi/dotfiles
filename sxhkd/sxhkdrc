@@ -13,14 +13,17 @@ alt + Escape
 alt + {_,shift + }{h,n,e,i}
 	bspc node -{f,s} {west,south,north,east}
 
+super + {h,n,e,i}
+  ~/.config/sxhkd/resize.sh {left,down,up,right}
+
 control + alt + {h,i}
 	bspc desktop -f {prev,next}.local
 
 alt + f
 	bspc desktop -l next
 
-alt + {t, shift + t}
-	bspc node -t {tiled,floating}
+alt + t
+	bspc node focused -t \~floating
 
 XF86MonBrightnessDown
  light -U 5
