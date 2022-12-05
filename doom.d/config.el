@@ -1,10 +1,12 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/aonfig.el -*- lexical-binding: t; -*-
 (setq user-full-name "Nadav Spiegelman"
       user-mail-address "me@nadav.name")
 
 (setq doom-theme 'doom-one)
 (setq org-directory "~/org/")
 (setq projectile-project-search-path '("~/src"))
+
+(setq doom-font (font-spec :family "Ubuntu Mono" :size 24 :weight 'normal))
 
 (setq display-line-numbers-type 'relative
       undo-limit 80000000
