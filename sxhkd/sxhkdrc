@@ -10,10 +10,10 @@ super + shift + Tab
 alt + Escape
 	pkill -USR1 -x sxhkd
 
-alt + {_,shift + }{h,n,e,i}
-	bspc node -{f,s} {west,south,north,east}
+alt + {_,shift +, super +}{m,n,e,i}
+	bspc node -{f,n,s} {west,south,north,east}
 
-super + {h,n,e,i}
+super + {m,n,e,i}
   ~/.config/sxhkd/resize.sh {left,down,up,right}
 
 control + alt + {h,i}
