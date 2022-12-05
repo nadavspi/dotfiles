@@ -229,7 +229,7 @@ fun! s:fzf_root()
   return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
 endfun
 
-nnoremap <silent> <C-p> :exe 'GFiles ' . <SID>fzf_root()<CR>
+nnoremap <silent> <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
 nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -362,7 +362,7 @@ nnoremap <Leader>< :SidewaysLeft<CR>
 nnoremap <Leader>> :SidewaysRight<CR>
 
 let g:kitty_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :KittyNavigateLeft<cr>
+nnoremap <silent> <c-m> :KittyNavigateLeft<cr>
 nnoremap <silent> <c-n> :KittyNavigateDown<cr>
 nnoremap <silent> <c-e> :KittyNavigateUp<cr>
 nnoremap <silent> <c-i> :KittyNavigateRight<cr>
@@ -370,6 +370,7 @@ nnoremap <silent> <c-i> :KittyNavigateRight<cr>
 endif
 
 " Colemak stuff
+nnoremap m h
 nnoremap n j
 nnoremap e k
 nnoremap i l
@@ -377,6 +378,7 @@ nnoremap u i
 nnoremap l u
 nnoremap k n
 nnoremap K N
+vnoremap m h
 vnoremap n j
 vnoremap e k
 vnoremap i l
