@@ -10,4 +10,5 @@ end
 
 if test "$hostname" = "stuttgart"
   fish_add_path --path ~/.local/bin
+  fish_add_path --path ~/.emacs.d/bin
 end
