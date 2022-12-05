@@ -1,5 +1,5 @@
 # focus window
-alt - h : yabai -m window --focus west || yabai -m display --focus prev || yabai -m window --focus last
+alt - m : yabai -m window --focus west || yabai -m display --focus prev || yabai -m window --focus last
 alt - n : yabai -m window --focus south
 alt - e : yabai -m window --focus north
 alt - i : yabai -m window --focus east || yabai -m display --focus next || yabai -m window --focus first
@@ -9,7 +9,7 @@ alt - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack
 
 
 # swap managed window
-shift + alt - h : yabai -m window --swap west
+shift + alt - m : yabai -m window --swap west
 shift + alt - n : yabai -m window --swap south
 shift + alt - e : yabai -m window --swap north
 shift + alt - i : yabai -m window --swap east
