@@ -28,7 +28,6 @@
    (super-save-mode +1))
 (setq auto-save-default nil)
 
-
 (after! avy
   (setq avy-keys '(?n ?e ?i ?s ?t ?r ?i ?a)))
 
