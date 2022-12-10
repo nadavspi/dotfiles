@@ -22,6 +22,13 @@
   (obsidian-specify-path "~/Documents/Notes")
   (global-obsidian-mode t))
 
+(use-package! super-save
+  :config
+  (setq super-save-auto-save-when-idle t)
+   (super-save-mode +1))
+(setq auto-save-default nil)
+
+
 (after! avy
   (setq avy-keys '(?n ?e ?i ?s ?t ?r ?i ?a)))
 
