@@ -8,7 +8,7 @@ if test "$hostname" = "C02DP0G0MD6V"
   fish_add_path --path /Users/spiegeln/.fzf/bin
 end
 
-if test "$hostname" = "stuttgart"
+if test "$hostname" = "brooklyn"
   fish_add_path --path ~/.local/bin
   fish_add_path --path ~/.emacs.d/bin
 end
