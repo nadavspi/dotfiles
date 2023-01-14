@@ -12,7 +12,7 @@ set {
 set $mod $alt
 
 set $term kitty
-set $launcher rofi -show drun | xargs swaymsg exec --
+set $launcher ulauncher-toggle | xargs swaymsg exec --
 set $windows rofi -show window | xargs swaymsg exec --
 
 ### Key bindings
@@ -50,31 +50,29 @@ set {
     $ws1  "1: l"
     $ws2  "2: u"
     $ws3  "3: y"
-    $ws4  "4: \'"
-    $ws5  "5: q"
-    $ws6  "6: w"
-    $ws7  "7: f"
-    $ws8  "8: p"
+    $ws4  "4: '"
+    $ws5  "5: j"
 }
 bindsym {
   $mod+l      workspace $ws1
   $mod+u      workspace $ws2
   $mod+y      workspace $ws3
-  $mod+apostrophe workspace $ws4
-  $mod+q      workspace $ws5
-  $mod+w      workspace $ws6
-  $mod+f      workspace $ws7
-  $mod+p      workspace $ws8
+  $mod+apostrophe      workspace $ws4
+  $mod+j      workspace $ws5
   $mod+tab    workspace back_and_forth
 }
 bindsym {
-  $mod+$super+q  move container to workspace $ws1; workspace $ws1
-  $mod+$super+w  move container to workspace $ws2; workspace $ws2
-  $mod+$super+f  move container to workspace $ws3; workspace $ws3
-  $mod+$super+p  move container to workspace $ws4; workspace $ws4
-  $mod+$super+l  move container to workspace $ws5; workspace $ws5
-  $mod+$super+u  move container to workspace $ws6; workspace $ws6
-  $mod+$super+y  move container to workspace $ws7; workspace $ws7
+  $mod+$super+l  move container to workspace $ws1; workspace $ws1
+  $mod+$super+u  move container to workspace $ws2; workspace $ws2
+  $mod+$super+y  move container to workspace $ws3; workspace $ws3
+  $mod+$super+apostrophe  move container to workspace $ws4; workspace $ws4
+  $mod+$super+j  move container to workspace $ws5; workspace $ws5
+}
+
+assign {
+    [class="Emacs"] $ws1
+    [class="obsidian"] $ws2
+    [class="discord"] $ws3
 }
 
 ### layout
@@ -83,7 +81,7 @@ bindsym {
     $mod+bar splitv
     $mod+t layout tabbed
     $mod+o layout toggle split
-    # $mod+f fullscreen
+    $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     $mod+Shift+space floating toggle
@@ -136,17 +134,21 @@ set {
     $green    #A3BE8C
 }
 client.focused            $orange  $orange  #333333  $magenta
+
 client.focused_inactive   $base04  $base04  $base00
 client.unfocused          $base03  $base03  $base00
 client.urgent             $red     $red     $red
 
+output * bg /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/wallpaperflare.com_wallpaper.jpg fill
+
 gaps inner 10px
 default_border pixel 4
+default_floating_border none
 
 bar {
     swaybar_command waybar
 }
 
 exec mako
+exec ulauncher --hide-window 1 > /var/log/ulauncher/ulauncher.log 2>&1
 exec systemctl --user import-environment
-include ~/src/sway-ubuntu/sway/config.d/*
