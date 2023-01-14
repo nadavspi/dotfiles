@@ -111,6 +111,13 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+### media
+bindsym {
+    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+}
+
 ### aesthetics
 font pango:"Tundra Offc" 16
 set {
