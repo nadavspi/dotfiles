@@ -47,14 +47,14 @@ bindsym {
 
 # workspaces
 set {
-    $ws1  1:l
-    $ws2  2:u
-    $ws3  3:y
-    $ws4  4:\'
-    $ws5  5:q
-    $ws6  6:w
-    $ws7  7:f
-    $ws8  8:p
+    $ws1  "1: l"
+    $ws2  "2: u"
+    $ws3  "3: y"
+    $ws4  "4: \'"
+    $ws5  "5: q"
+    $ws6  "6: w"
+    $ws7  "7: f"
+    $ws8  "8: p"
 }
 bindsym {
   $mod+l      workspace $ws1
@@ -112,6 +112,7 @@ mode "resize" {
 }
 
 ### aesthetics
+font pango:"Tundra Offc" 16
 set {
     $base06   #2E3440
     $base05   #3B4252
