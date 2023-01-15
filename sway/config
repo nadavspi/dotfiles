@@ -1,101 +1,89 @@
 # thanks https://grtcdr.tn/dotfiles/sway/sway.html
 ### variables
 # keys
-set {
-    $super Mod4
-    $alt Mod1
-    $left m
-    $down n
-    $up e
-    $right i
-}
-set $mod $alt
+set $super Mod4
+set $alt Mod1
+set $left m
+set $down n
+set $up e
+set $right i
+set $mod Mod1
 
 set $term kitty
-set $launcher ulauncher-toggle | xargs swaymsg exec --
-set $windows rofi -show window | xargs swaymsg exec --
+# set $launcher ulauncher-toggle
+set $launcher rofi -show drun
+set $windows rofi -show window
 
 ### Key bindings
 # Drag floating windows by holding down $mod and left mouse button.
-floating_modifier $mod normal
+# floating_modifier $mod normal
 
 # launching
-bindsym {
-    $mod+Return exec $term
-    $mod+b exec firefox
-    $mod+Shift+q kill
-    Control+Space exec $launcher
-    $super+Shift+Tab exec $windows
-    $mod+Shift+c reload
-}
+bindsym $mod+Return exec $term
+bindsym $mod+b exec firefox
+bindsym $mod+Shift+q kill
+bindsym Control+Space exec $launcher
+bindsym $super+Shift+Tab exec $windows
+bindsym $mod+Shift+c reload
 
 # focus
-bindsym {
-    $mod+$left focus left
-    $mod+$down focus down
-    $mod+$up focus up
-    $mod+$right focus right
-}
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 
 # move
-bindsym {
-    $mod+$super+$left move left
-    $mod+$super+$down move down
-    $mod+$super+$up move up
-    $mod+$super+$right move right
-}
+bindsym $mod+$super+$left move left
+bindsym $mod+$super+$down move down
+bindsym $mod+$super+$up move up
+bindsym $mod+$super+$right move right
 
 # workspaces
-set {
-    $ws1  "1: l"
-    $ws2  "2: u"
-    $ws3  "3: y"
-    $ws4  "4: '"
-    $ws5  "5: j"
-}
-bindsym {
-  $mod+l      workspace $ws1
-  $mod+u      workspace $ws2
-  $mod+y      workspace $ws3
-  $mod+apostrophe      workspace $ws4
-  $mod+j      workspace $ws5
-  $mod+tab    workspace back_and_forth
-}
-bindsym {
-  $mod+$super+l  move container to workspace $ws1; workspace $ws1
-  $mod+$super+u  move container to workspace $ws2; workspace $ws2
-  $mod+$super+y  move container to workspace $ws3; workspace $ws3
-  $mod+$super+apostrophe  move container to workspace $ws4; workspace $ws4
-  $mod+$super+j  move container to workspace $ws5; workspace $ws5
-}
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
 
-assign {
-    [class="Emacs"] $ws1
-    [class="obsidian"] $ws2
-    [class="discord"] $ws3
-}
+bindsym  $mod+l      workspace $ws1
+bindsym  $mod+u      workspace $ws2
+bindsym  $mod+y      workspace $ws3
+bindsym  $mod+apostrophe      workspace $ws4
+bindsym  $mod+j      workspace $ws5
+bindsym  $mod+tab    workspace back_and_forth
+
+bindsym  $mod+$super+l  move container to workspace $ws1; workspace $ws1
+bindsym  $mod+$super+u  move container to workspace $ws2; workspace $ws2
+bindsym  $mod+$super+y  move container to workspace $ws3; workspace $ws3
+bindsym  $mod+$super+apostrophe  move container to workspace $ws4; workspace $ws4
+bindsym  $mod+$super+j  move container to workspace $ws5; workspace $ws5
+
+workspace_auto_back_and_forth yes
+assign [class="Emacs"] $ws1
+assign [class="obsidian"] $ws2
+assign [class="discord"] $ws3
 
 ### layout
-bindsym {
-    $mod+minus splith
-    $mod+bar splitv
-    $mod+t layout tabbed
-    $mod+o layout toggle split
-    $mod+f fullscreen
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+t layout tabbed
+bindsym $mod+o layout toggle split
+bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
     # Swap focus between the tiling area and the floating area
-    $mod+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
+floating_modifier $mod
 
-    $mod+a focus parent
-}
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+bindsym $mod+a focus parent
 
 ### scratchpad
-bindsym {
-    $mod+Shift+grave move scratchpad
-    $mod+grave scratchpad show
-}
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
 
 ### resizing
 set $resize_factor 40px
@@ -110,46 +98,36 @@ mode "resize" {
 }
 
 ### media
-bindsym {
-    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    $super+Shift+m exec pactl set-source-mute 51 toggle
-}
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $super+Shift+m exec pactl set-source-mute 51 toggle
 
 ### aesthetics
-font pango:"Tundra Offc" 16
-set {
-    $base06   #2E3440
-    $base05   #3B4252
-    $base04   #434C5E
-    $base03   #4C566A
-    $base02   #D8DEE9
-    $base01   #E5E9F0
-    $base00   #ECEFF4
-    $blue     #5E81AC
-    $yellow   #EBCB8B
-    $orange   #D08770
-    $red      #BF616A
-    $magenta  #B48EAD
-    $green    #A3BE8C
-}
-client.focused            $orange  $orange  #333333  $magenta
+font pango:Ubuntu 12
+set $red #c72835
+set $primary #bebad4
+set $orange #d9a479
+set $lightgrey #d3d3d3
+set $purple #5d178f
+set $darkpurple #1b191f
+set $cyan #2baec2
+# class                 border       backgr.      text        indicator child_border
+client.focused          $purple      $purple      $primary     $cyan
+client.focused_inactive $purple  $darkpurple  $primary $darkpurple
+client.unfocused        $darkpurple  $darkpurple  $primary $darkpurple
+client.urgent           $red         $red         $primary
 
-client.focused_inactive   $base04  $base04  $base00
-client.unfocused          $base03  $base03  $base00
-client.urgent             $red     $red     $red
-
-output * bg /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/wallpaperflare.com_wallpaper.jpg fill
 
 gaps inner 10px
-default_border pixel 4
+# gaps outer 20px
+smart_gaps inverse_outer
+default_border pixel 5
 default_floating_border none
 
-bar {
-    swaybar_command waybar
-}
-
-exec mako
-exec ulauncher --hide-window 1 > /var/log/ulauncher/ulauncher.log 2>&1
-exec systemctl --user import-environment
+exec --no-startup-id feh --bg-fill /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/wallpaperflare.com_wallpaper.jpg
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec mako
+# exec wlsunset -l 41 -L 74
+exec --no-startup-id ulauncher --hide-window 1 > /var/log/ulauncher/ulauncher.log 2>&1
+# exec systemctl --user import-environment
