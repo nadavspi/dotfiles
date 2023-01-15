@@ -120,8 +120,7 @@ client.urgent           $red         $red         $primary
 
 
 gaps inner 10px
-# gaps outer 20px
-smart_gaps inverse_outer
+gaps bottom 45px
 default_border pixel 5
 default_floating_border none
 
