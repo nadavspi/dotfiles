@@ -22,7 +22,7 @@ set $windows rofi -show window
 bindsym $mod+Return exec $term
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
-bindsym Control+Space exec $launcher
+bindsym Control+space exec $launcher
 bindsym $super+Shift+Tab exec $windows
 bindsym $mod+Shift+c reload
 
@@ -128,5 +128,6 @@ exec --no-startup-id feh --bg-fill /mnt/nfs/docs/Archive/10-19\ Personal\ docume
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec mako
 # exec wlsunset -l 41 -L 74
+exec --no-startup-id redshift -l 41:-74
 exec --no-startup-id ulauncher --hide-window 1 > /var/log/ulauncher/ulauncher.log 2>&1
 # exec systemctl --user import-environment
