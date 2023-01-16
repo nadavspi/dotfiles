@@ -1,8 +1,14 @@
 alt + Return
 	kitty
 
+alt + b
+    firefox
+
+alt + shift + q
+    bspc node --close
+
 control + @space
-	rofi -show run
+	rofi -show drun
 
 super + shift + Tab
   rofi -show window
@@ -10,23 +16,49 @@ super + shift + Tab
 alt + Escape
 	pkill -USR1 -x sxhkd
 
-alt + {_,shift +, super +}{m,n,e,i}
-	bspc node -{f,n,s} {west,south,north,east}
+super + alt + {q,r}
+	bspc {quit,wm -r}
 
-super + {m,n,e,i}
-  ~/.config/sxhkd/resize.sh {left,down,up,right}
+alt + {_, shift +, super +}{m,n,e,i}
+    bspc node --{focus,to-node,swap} {west,south,north,east}
 
-control + alt + {h,i}
-	bspc desktop -f {prev,next}.local
+alt + control + {m,n,e,i}
+    bspc node --presel-dir ~{west,south,north,east}
 
-alt + f
-	bspc desktop -l next
+alt + r : {m,n,e,i, control+m, control+n, control+e, control+i}
+	bspc node --resize {\
+         left -40 0,    \
+         bottom 0 40,   \
+         top 0 -40,     \
+         right 40 0,    \
+         right -40 0,   \
+         top 0 40,      \
+         bottom 0 -40,  \
+         left 40 0     \
+    }
 
-alt + t
-	bspc node focused -t \~floating
+alt + {l,u,y,apostrophe,j}
+	bspc desktop -f {1,2,3,4,5}
+
+alt + super + {l,u,y,apostrophe,j}
+	bspc node --to-desktop {1,2,3,4,5} --follow
+
+shift + alt + @space
+	bspc node --state ~floating
+
+alt + {f,o}
+    bspc node --{state ~fullscreen,--rotate 90}
 
 XF86MonBrightnessDown
- light -U 5
-
+    light -U 5
 XF86MonBrightnessUp
- light -A 5
+    light -A 5
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+super + shift +m
+    pactl set-source-mute 51 toggle

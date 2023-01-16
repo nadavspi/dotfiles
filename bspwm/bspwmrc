@@ -1,26 +1,27 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
-
-bspc monitor -d 1 2 3 4
+bspc monitor -d 1 2 3 4 5
 
 bspc config border_width 4
 bspc config window_gap 10
-bspc config top_padding 25
-bspc config focused_border_color "#cc8899"
+bspc config bottom_padding 25
+bspc config focused_border_color "#5d178f"
+bspc config presel_feedback_color "#d9a479"
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config single_monocle          true
+bspc config left_monocle_padding    800
+bspc config right_monocle_padding   800
+
+bspc config split_ratio           0.52
 bspc config focus_follows_pointer true
 
 bspc config pointer_modifier mod1
-bspc config pointer_action1 resize_side
-bspc config pointer_action1 resize_corner
-bspc config pointer_action3 move
+bspc config pointer_action1 move
+bspc config pointer_action3 resize_side
+bspc config pointer_action3 resize_corner
 
-bspc rule -a Nextcloud manage=ofts
 bspc rule -a Emacs state=tiled
 
-# $HOME/.config/polybar/launch.sh
+pgrep -x sxhkd > /dev/null || sxhkd &
+$HOME/.config/polybar/launch.sh
 xsetroot -cursor_name left_ptr
