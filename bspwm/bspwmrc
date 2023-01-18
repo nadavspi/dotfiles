@@ -1,6 +1,6 @@
 #! /bin/sh
 
-bspc monitor -d 1 2 3 4 5
+bspc monitor -d main notes chat task misc
 
 bspc config border_width 4
 bspc config window_gap 10
@@ -21,7 +21,12 @@ bspc config pointer_action3 resize_side
 bspc config pointer_action3 resize_corner
 
 bspc rule -a Emacs state=tiled
+bspc rule -a obsidian desktop="^2"
+bspc rule -a discord desktop="^3"
 
+picom &
 pgrep -x sxhkd > /dev/null || sxhkd &
-$HOME/.config/polybar/launch.sh
+$HOME/.config/polybar/launch.sh &
+redshift -l "41:-74" &
+feh --bg-fill /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/Vista\ big.jpg
 xsetroot -cursor_name left_ptr

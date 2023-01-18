@@ -22,7 +22,7 @@ set $windows rofi -show window
 bindsym $mod+Return exec $term
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
-bindsym Control+space exec $launcher
+# bindsym Control+space exec $launcher
 bindsym $super+Shift+Tab exec $windows
 bindsym $mod+Shift+c reload
 
@@ -120,8 +120,9 @@ client.urgent           $red         $red         $primary
 
 
 gaps inner 10px
-gaps bottom 45px
-default_border pixel 5
+gaps horizontal 800px
+smart_gaps inverse_outer
+default_border pixel 3
 default_floating_border none
 
 exec --no-startup-id feh --bg-fill /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/wallpaperflare.com_wallpaper.jpg

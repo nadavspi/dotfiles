@@ -38,10 +38,10 @@ alt + r : {m,n,e,i, control+m, control+n, control+e, control+i}
     }
 
 alt + {l,u,y,apostrophe,j}
-	bspc desktop -f {1,2,3,4,5}
+	bspc desktop -f ^{1,2,3,4,5}
 
 alt + super + {l,u,y,apostrophe,j}
-	bspc node --to-desktop {1,2,3,4,5} --follow
+	bspc node --to-desktop ^{1,2,3,4,5} --follow
 
 shift + alt + @space
 	bspc node --state ~floating
