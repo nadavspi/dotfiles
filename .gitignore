@@ -3,3 +3,4 @@ fish/fish_variables
 fish/fzf_key_bindings.fish
 mpv/watch_later/
 beets/state.pickle
+bspwm/local.bspwmrc
