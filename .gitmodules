@@ -7,3 +7,6 @@
 [submodule "kitty/themes"]
 	path = kitty/themes
 	url = https://github.com/dexpota/kitty-themes
+[submodule "mpv/scripts/subs2srs"]
+	path = mpv/scripts/subs2srs
+	url = https://github.com/Ajatt-Tools/mpvacious.git
