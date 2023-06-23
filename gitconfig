@@ -53,3 +53,5 @@
   autosquash = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = /mnt/nfs/docker/borgmatic
