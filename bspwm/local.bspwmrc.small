@@ -1,0 +1,3 @@
+bspc config single_monocle false
+
+bspc monitor -d main notes mpv anki misc
