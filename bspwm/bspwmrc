@@ -28,7 +28,6 @@ if [ -f ~/.config/bspwm/local.bspwmrc ]; then
   sh ~/.config/bspwm/local.bspwmrc
 fi
 
-picom &
 pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh &
 redshift -l "41:-74" &
