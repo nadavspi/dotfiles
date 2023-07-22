@@ -1,10 +1,10 @@
-super + Return
+alt + Return
 	kitty
 
-super + b
+alt + b
     firefox
 
-super + shift + q
+alt + shift + q
     bspc node --close
 
 control + @space
@@ -19,13 +19,13 @@ alt + Escape
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-super + {_, shift +, alt +}{h,j,k,l}
+alt + {_, shift +, super +}{m,n,e,i}
     bspc node --{focus,to-node,swap} {west,south,north,east}
 
-super + control + {h,j,k,l}
+alt + control + {m,n,e,i}
     bspc node --presel-dir ~{west,south,north,east}
 
-super + r : {h,j,k,l}
+alt + r : {m,n,e,i, control+m, control+n, control+e, control+i}
 	bspc node --resize {\
          left -40 0,    \
          bottom 0 40,   \
@@ -37,23 +37,28 @@ super + r : {h,j,k,l}
          left 40 0     \
     }
 
-super + {1,2,3,4,5,0}
-	bspc desktop -f ^{1,2,3,4,5,6}
+alt + t ; t
+    bash $HOME/.config/sxhkd/tabs.sh toggle
 
-alt + super + {1,2,3,4,5,0}
-	bspc node --to-desktop ^{1,2,3,4,5,6} --follow
+alt + t ; {m,n,e,i}
+    tabc attach $(bspc query -N -n) {$(bspc query -N -n west),$(bspc query -N -n south),$(bspc query -N -n north),$(bspc query -N -n east)}
 
-shift + super + @space
+alt + {j,l,u,y,apostrophe}
+	bspc desktop -f ^{1,2,3,4,5}
+
+alt + super + {j,l,u,y,apostrophe}
+	bspc node --to-desktop ^{1,2,3,4,5} --follow
+
+shift + alt + @space
 	bspc node --state ~floating
 
-super + {f,o}
+alt + {f,o}
     bspc node --{state ~fullscreen,--rotate 90}
 
 XF86MonBrightnessDown
-    brightnessctl s 10%-
-
+    light -U 5
 XF86MonBrightnessUp
-    brightnessctl s +10%
+    light -A 5
 
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
