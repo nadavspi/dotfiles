@@ -80,9 +80,10 @@ PutCurrentLink = r
 PutOtherLink = ctrl-r
 
 [panel]
+Filter = ctrl-f
 CycleListingFormat = alt-t
 Search = ctrl-s; alt-s
-Mark = insert; ctrl-t
+Mark = insert; ctrl-t; space
 MarkUp = shift-up
 MarkDown = shift-down
 # MarkLeft =
