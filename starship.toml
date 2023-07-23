@@ -1,0 +1,42 @@
+[directory]
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+style = '#c49e78'
+
+[git_branch]
+ignore_branches = ['master', 'main']
+
+[cmd_duration]
+disabled = true
+
+[git_status]
+disabled = true
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](210) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = ""
+stashed = ""
+
+[line_break]
+disabled = true
+
+[jobs]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+ssh_symbol = ''
+format = '[$ssh_symbol$hostname]($style) '
+style = '#cc5500'
+
+[python]
+disabled = true
+
+[character]
+success_symbol = '[❯](dimmed #9cff88)'
