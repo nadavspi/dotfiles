@@ -1,0 +1,1 @@
+/home/nadavspi/.fzf/shell/key-bindings.fish
