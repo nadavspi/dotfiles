@@ -1,7 +1,7 @@
 # git
-alias gst="git status"
+alias gst='git status'
 
-# tmux 
+# tmux
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
@@ -11,7 +11,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# editing 
+# editing
 if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
+  alias vim=nvim
 fi
+alias v=nvim
+
+alias -g L='| bat --style plain'
