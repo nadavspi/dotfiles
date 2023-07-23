@@ -8,3 +8,5 @@ set fish_greeting
 
 set -x EDITOR nvim
 abbr -a -- zyp 'sudo zypper'
+starship init fish | source
+
