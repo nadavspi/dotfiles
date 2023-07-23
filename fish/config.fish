@@ -7,3 +7,4 @@
 set fish_greeting
 
 set -x EDITOR nvim
+abbr -a -- zyp 'sudo zypper'
