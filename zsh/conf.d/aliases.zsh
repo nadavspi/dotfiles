@@ -1,4 +1,5 @@
 # git
+alias g=lazygit
 alias gst='git status'
 
 # tmux
