@@ -8,7 +8,7 @@ alt + shift + q
     bspc node --close
 
 control + @space
-	rofi -show drun
+	rofi -show run
 
 super + shift + Tab
   rofi -show window
@@ -50,10 +50,10 @@ alt + super + {j,l,u,y,apostrophe}
 	bspc node --to-desktop ^{1,2,3,4,5} --follow
 
 shift + alt + @space
-	bspc node --state ~floating
+	bspc node --state \~floating
 
 alt + {f,o}
-    bspc node --{state ~fullscreen,--rotate 90}
+    bspc node --{state \~fullscreen,--rotate 90}
 
 XF86MonBrightnessDown
     light -U 5
