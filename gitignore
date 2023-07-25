@@ -31,3 +31,8 @@ org-clock-save.el
 *.log
 .idea
 .tern-port
+bspwm/local.bspwmrc
+kitty/theme.conf
+mpv/input.conf
+polybar/config.ini
+sxhkd/sxhkdrc
