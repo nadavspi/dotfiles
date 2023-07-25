@@ -1,4 +1,3 @@
-alias ls=nnn
 export NNN_FCOLORS=0000df310000000000000000
 export NNN_OPTS=aeAH
 

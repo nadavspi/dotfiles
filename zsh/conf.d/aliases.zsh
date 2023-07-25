@@ -4,6 +4,7 @@ alias gst='git status'
 
 alias cat=bat
 alias lg=lazygit
+alias s='kitty +kitten ssh'
 
 # tmux
 alias ta='tmux attach -t'
