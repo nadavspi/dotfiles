@@ -29,9 +29,7 @@ Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'junegunn/fzf.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
@@ -47,6 +45,13 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'sbdchd/neoformat'
+
+Plug 'luukvbaal/nnn.nvim'
+call plug#end()
+
+lua << EOF
+require("nnn").setup()
+EOF
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -223,13 +228,7 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-" fzf
-fun! s:fzf_root()
-  let path = finddir(".git", expand("%:p:h").";")
-  return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
-endfun
-
-nnoremap <silent> <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
+nnoremap <C-p> :NnnPicker %:p:h<cr>
 nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
