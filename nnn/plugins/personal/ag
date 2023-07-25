@@ -7,5 +7,5 @@ read -r pattern
 
 if [ -n "$pattern" ]; then
     printf "%s" "+l" > "$NNN_PIPE"
-    eval "ag -l0 --hidden -S $pattern" > "$NNN_PIPE"
+    eval "rg -l0 --hidden -S $pattern" > "$NNN_PIPE"
 fi
