@@ -2,6 +2,9 @@
 alias g=lazygit
 alias gst='git status'
 
+alias cat=bat
+alias lg=lazygit
+
 # tmux
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
