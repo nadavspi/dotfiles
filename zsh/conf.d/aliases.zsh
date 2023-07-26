@@ -2,10 +2,10 @@
 alias g=lazygit
 alias gst='git status'
 
+alias ls=n
 alias cat=bat
 alias lg=lazygit
 alias s='kitty +kitten ssh'
-
 # tmux
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
@@ -23,3 +23,4 @@ fi
 alias v=nvim
 
 alias -g L='| bat --style plain'
+alias -g F='| fzf --reverse'
