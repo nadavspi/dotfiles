@@ -23,6 +23,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 
 " utils
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'thinca/vim-qfreplace'
 Plug '907th/vim-auto-save'
@@ -228,7 +230,13 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-nnoremap <C-p> :NnnPicker %:p:h<cr>
+nnoremap - :NnnPicker %:p:h<cr>
+
+fun! s:fzf_root()
+  let path = finddir(".git", expand("%:p:h").";")
+  return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
+endfun
+nnoremap <silent> <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
 nnoremap <leader>b :Buffers<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
