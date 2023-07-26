@@ -5,6 +5,7 @@ local plugins=(
   'a:personal/ag'
   'e:-!sudo -E vim "$nnn"*'
   'f:personal/fzfind'
+  'g:personal/lazygit'
   'j:autojump'
   'o:fzplug'
   'p:preview-tui'

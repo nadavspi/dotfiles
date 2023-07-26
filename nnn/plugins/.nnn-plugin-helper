@@ -9,7 +9,7 @@ selection=${NNN_SEL:-${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection}
 export selection
 
 ## Set CUR_CTX to 1 to open directory in current context
-CUR_CTX=0
+CUR_CTX=1
 export CUR_CTX
 
 NNN_PREFER_SELECTION="${NNN_PREFER_SELECTION:-0}"
