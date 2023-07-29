@@ -7,3 +7,9 @@
 [submodule "mpv/scripts/subs2srs"]
 	path = mpv/scripts/subs2srs
 	url = https://github.com/Ajatt-Tools/mpvacious.git
+[submodule "mpv/scripts/evafast"]
+	path = mpv/scripts/evafast
+	url = https://github.com/po5/evafast.git
+[submodule "mpv/scripts/sub-transition"]
+	path = mpv/scripts/sub-transition
+	url = https://github.com/Ajatt-Tools/sub-transition.git
