@@ -3,6 +3,7 @@ alias g=lazygit
 alias gst='git status'
 
 alias ls=n
+alias ll="/usr/bin/ls -l"
 alias cat=bat
 alias lg=lazygit
 alias s='kitty +kitten ssh'
@@ -21,6 +22,7 @@ if type nvim > /dev/null 2>&1; then
   alias vim=nvim
 fi
 alias v=nvim
+alias e='emacsclient -c -a emacs'
 
 alias -g L='| bat --style plain'
 alias -g F='| fzf --reverse'
