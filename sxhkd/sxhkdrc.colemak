@@ -10,6 +10,12 @@ alt + shift + q
 control + @space
 	rofi -show run
 
+control + @space
+	rofi -show drun -theme launcher
+
+alt + v
+	rofi -show drun -theme clipboard
+
 super + shift + Tab
   rofi -show window
 

@@ -1,0 +1,10 @@
+configuration {
+  modi: "clip:greenclip print";
+  run-command: "{cmd}";
+}
+
+@import "theme.rasi"
+
+listview {
+  lines: 10;
+}

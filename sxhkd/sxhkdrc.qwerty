@@ -8,7 +8,10 @@ super + shift + q
     bspc node --close
 
 control + @space
-	rofi -show run
+	rofi -show drun -theme launcher
+
+alt + v
+	rofi -show clip -theme clipboard
 
 super + shift + Tab
   rofi -show window
