@@ -33,5 +33,5 @@ fi
 pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh &
 redshift -l "41:-74" &
-feh --bg-fill /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/Vista\ big.jpg
+feh --bg-max --randomize --image-bg "#a0785a" /mnt/nfs/docs/Archive/10-19\ Personal\ documents/16\ Collections/16.03\ Wallpapers/art/*
 xsetroot -cursor_name left_ptr
