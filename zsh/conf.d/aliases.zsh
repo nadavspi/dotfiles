@@ -26,3 +26,5 @@ alias e='emacsclient -c -a emacs'
 
 alias -g L='| bat --style plain'
 alias -g F='| fzf --reverse'
+
+alias cp-epub="mv -v ~/Downloads/*.epub /mnt/nfs/data/watch/books/"
