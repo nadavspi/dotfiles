@@ -32,6 +32,8 @@ theme.tasklist_bg_focus = theme.bg_systray
 theme.tasklist_align = "center"
 theme.tasklist_disable_icon = true
 
+theme.useless_gap = 10
+
 
 -- Display the taglist squares
 theme.taglist_squares_sel   = "/usr/share/awesome/themes/openSUSE/taglist/squarefw.png"

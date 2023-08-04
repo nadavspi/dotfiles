@@ -67,7 +67,6 @@ end
 local lain = require("lain")
 
 require("rules")
-beautiful.useless_gap = 10
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -457,18 +456,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
-
-    awful.key({ modkey, "Control" }, "n",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                      client.focus = c
-                      c:raise()
-                  end
-              end,
-              {description = "restore minimized", group = "client"})
+              {description = "select previous", group = "layout"})
 
 )
 
