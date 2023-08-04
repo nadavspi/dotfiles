@@ -13,3 +13,6 @@
 [submodule "mpv/scripts/sub-transition"]
 	path = mpv/scripts/sub-transition
 	url = https://github.com/Ajatt-Tools/sub-transition.git
+[submodule "awesome/lain"]
+	path = awesome/lain
+	url = https://github.com/lcpz/lain.git
