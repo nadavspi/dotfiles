@@ -1,22 +1,32 @@
+local c = {
+    red = "#c72835",
+    primary = "#bebad4",
+    orange = "#d9a479",
+    lightgrey = "#d3d3d3",
+    purple = "#5d178f",
+    darkpurple = "#1b191f",
+    cyan = "#2baec2",
+}
+
 theme = {}
 
 theme.font          = "Noto Sans 16"
 
-theme.bg_normal     = "#1b191f"
-theme.bg_focus      = "#5d178f"
+theme.bg_normal     = c.darkpurple
+theme.bg_focus      = c.purple
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+theme.bg_systray    = c.darkpurple
 
-theme.fg_normal     = "#d3d3d3"
-theme.fg_focus      = "#bebad4"
+theme.fg_normal     = c.primary
+theme.fg_focus      = c.primary
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 5
 theme.border_normal = "#000000"
-theme.border_focus  = "#5d178f"
-theme.border_marked = "#d9a479"
+theme.border_focus  = c.purple
+theme.border_marked = c.orange
 
 -- There are other variable sets
 -- overriding the default one when
@@ -29,6 +39,7 @@ theme.border_marked = "#d9a479"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 theme.tasklist_bg_focus = theme.bg_systray
+theme.taglist_fg_occupied = c.orange
 theme.tasklist_align = "center"
 theme.tasklist_disable_icon = true
 
