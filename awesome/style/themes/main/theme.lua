@@ -61,5 +61,8 @@ theme.menu_width  = 100
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
+theme.master_width_factor = 0.55
+theme.column_count = 2
+
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
