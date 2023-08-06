@@ -14,7 +14,7 @@ theme.font          = "Noto Sans 16"
 
 theme.bg_normal     = c.darkpurple
 theme.bg_focus      = c.purple
-theme.bg_urgent     = "#ff0000"
+theme.bg_urgent     = c.cyan
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = c.darkpurple
 
@@ -27,6 +27,7 @@ theme.border_width  = 5
 theme.border_normal = "#000000"
 theme.border_focus  = c.purple
 theme.border_marked = c.orange
+theme.border_color_floating = c.cyan
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,11 +45,6 @@ theme.tasklist_align = "center"
 theme.tasklist_disable_icon = true
 
 theme.useless_gap = 10
-
-
--- Display the taglist squares
-theme.taglist_squares_sel   = "/usr/share/awesome/themes/openSUSE/taglist/squarefw.png"
-theme.taglist_squares_unsel = "/usr/share/awesome/themes/openSUSE/taglist/squarew.png"
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]

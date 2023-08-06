@@ -17,3 +17,34 @@ client.connect_signal("request::default_keybindings", function()
 	})
 end)
 
+awful.keyboard.append_global_keybindings({
+	awful.key({ modkey }, "n", function()
+		awful.client.focus.bydirection("down")
+		if client.focus then client.focus:raise() end
+	end),
+	awful.key({ modkey }, "e", function()
+		awful.client.focus.bydirection("up")
+		if client.focus then client.focus:raise() end
+	end),
+	awful.key({ modkey }, "m", function()
+		awful.client.focus.bydirection("left")
+		if client.focus then client.focus:raise() end
+	end),
+	awful.key({ modkey }, "i", function()
+		awful.client.focus.bydirection("right")
+		if client.focus then client.focus:raise() end
+	end),
+
+	awful.key({ modkey, mod.super }, "n", function ()
+		awful.client.swap.bydirection("down")
+	end),
+	awful.key({ modkey, mod.super }, "e", function ()
+		awful.client.swap.bydirection("up")
+	end),
+	awful.key({ modkey, mod.super }, "m", function ()
+		awful.client.swap.bydirection("left")
+	end),
+	awful.key({ modkey, mod.super }, "i", function ()
+		awful.client.swap.bydirection("right")
+	end),
+})
