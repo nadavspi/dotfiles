@@ -12,7 +12,10 @@ end
 
 
 local commands = {
-    "picom &",
+    "picom --experimental-backends &",
+    "blueman-applet &",
+	 "fcitx5 &",
+    -- "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &",
 }
 
 for _, command in ipairs(commands) do

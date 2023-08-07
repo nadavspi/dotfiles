@@ -2,8 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
-local keyboardlayout = awful.widget.keyboardlayout()
-local clock = wibox.widget.textclock()
+local clock = wibox.widget.textclock("%a %b %d | %l:%M:%S", 1)
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.prompt = awful.widget.prompt()
@@ -87,7 +86,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{
 				layout = wibox.layout.fixed.horizontal,
 				clock,
-				keyboardlayout,
 				wibox.widget.systray(),
 			},
 		}
