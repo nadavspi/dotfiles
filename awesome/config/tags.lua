@@ -1,5 +1,13 @@
 local awful = require("awful")
 
+function getTags ()
+	if os.getenv("HOSTNAME") == "shanghai" then
+		return { "firefox", "obsidian", "discord", "yomichan", "mpv", "kitty" }
+	else
+		return { "firefox", "obsidian", "discord", "kitty" }
+	end
+end
+
 screen.connect_signal("request::desktop_decoration", function(s)
-	awful.tag({ "firefox", "obsidian", "discord", "kitty" }, s, awful.layout.layouts[1])
+	awful.tag(getTags(), s, awful.layout.layouts[1])
 end)
