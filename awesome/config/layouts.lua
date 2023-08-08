@@ -10,6 +10,7 @@ function getLayouts (keyboard_layout)
 		}
 	else
 		return {
+			lain.layout.centerwork,
 			awful.layout.suit.tile.left,
 		}
 	end
