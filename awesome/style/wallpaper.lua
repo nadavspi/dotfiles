@@ -4,25 +4,12 @@ local wibox = require("wibox")
 
 -- {{{ Wallpaper
 screen.connect_signal("request::wallpaper", function(s)
-    awful.wallpaper {
-        screen = s,
-        bg     = "#a0785a",
-        widget = {
-            {
-                image  = gears.filesystem.get_random_file_from_dir(
-                    "/mnt/nfs/docs/Archive/10-19 Personal documents/16 Collections/16.03 Wallpapers/art",
-                    {".jpg", ".png", ".svg"},
-                    true
-                ),
-                resize = true,
-                widget = wibox.widget.imagebox,
-            },
-            valign = "center",
-            halign = "center",
-            tiled  = false,
-            widget = wibox.container.tile,
-        }
-    }
+	local image = gears.filesystem.get_random_file_from_dir(
+		"/mnt/nfs/docs/Archive/10-19 Personal documents/16 Collections/16.03 Wallpapers/art",
+		{".jpg", ".png", ".svg"},
+		true
+	)
+	awful.spawn('feh --bg-max --randomize --image-bg "#a0785a" ' .. string.gsub(image, ' ', '\\ '))
 end)
 
 gears.timer {
