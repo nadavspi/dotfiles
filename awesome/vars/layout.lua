@@ -1,4 +1,5 @@
 local qwerty = {
+	name = 'qwerty',
 	left = 'h',
 	down = 'j',
 	up = 'k',
@@ -6,6 +7,7 @@ local qwerty = {
 }
 
 local colemak = {
+	name = 'colemak',
 	left = 'm',
 	down = 'n',
 	up = 'e',

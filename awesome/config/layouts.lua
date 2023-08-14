@@ -1,10 +1,10 @@
 local awful = require("awful")
 local lain = require("lain")
 
-local keyboard_layout = require("vars.layout")
+local layout = require("vars.layout")
 
 function getLayouts (keyboard_layout)
-	if l == "qwerty" then
+	if layout.name == "qwerty" then
 		return {
 			awful.layout.suit.tile.left,
 		}
