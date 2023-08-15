@@ -6,7 +6,7 @@ local clock = wibox.widget.textclock("%a %b %d | %l:%M:%S", 1)
 
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.prompt = awful.widget.prompt()
-	s.mypromptbox = s.prompt 
+	s.mypromptbox = s.prompt
 
 	-- Create a taglist widget
 	s.taglist = awful.widget.taglist {
