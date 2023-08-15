@@ -17,6 +17,7 @@ local commands = {
 	"picom --experimental-backends &",
 	"blueman-applet &",
 	"fcitx5 &",
+	"volumeicon &",
 }
 
 for _, command in ipairs(commands) do
