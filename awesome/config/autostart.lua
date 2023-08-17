@@ -18,6 +18,7 @@ local commands = {
 	"blueman-applet &",
 	"fcitx5 &",
 	"volumeicon &",
+	"xfce4-power-manager &",
 }
 
 for _, command in ipairs(commands) do
