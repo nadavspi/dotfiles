@@ -44,7 +44,9 @@ theme.taglist_fg_occupied = c.orange
 theme.tasklist_align = "center"
 theme.tasklist_disable_icon = true
 
-theme.useless_gap = 10
+if os.getenv("HOSTNAME") ~= "shanghai" then
+    theme.useless_gap = 10
+end
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
