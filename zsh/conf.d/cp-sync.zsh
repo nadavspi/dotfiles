@@ -6,5 +6,5 @@ function cp-sync () {
     echo "Usage: copy-from-sync <filename> <path>"
     return 1
   fi
-  ssh ono rsync -avz --progress --delete /mnt/user/data/sync/$1 /mnt/user/data/media/$2
+  ssh ono rsync -avz --progress --remove-source-files /mnt/user/data/sync/$1 /mnt/user/data/media/$2
 }
