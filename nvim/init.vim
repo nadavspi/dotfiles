@@ -49,6 +49,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'sbdchd/neoformat'
 
 Plug 'luukvbaal/nnn.nvim'
+Plug 'ptzz/lf.vim'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 lua << EOF
@@ -68,6 +70,7 @@ Plug 'Shougo/denite.nvim'
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
+let g:lf_replace_netrw = 1
 " General
 """"""""""
 set termguicolors

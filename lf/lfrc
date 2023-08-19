@@ -1,8 +1,15 @@
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+
 set relativenumber true
 set drawbox
 
 map x :delete
 map gf :filter
+map <enter> :open
+
+map gnf push $touch<space>
+map gnd push $mkdir<space>
 
 cmd fzf_jump ${{
     res="$(find . | fzf --reverse --header='Jump to location')"
@@ -88,3 +95,9 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 map <c-r> :bulk-rename
+
+cmd edit-config ${{
+    $EDITOR ~/.config/lf/lfrc
+    lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+map C edit-config
