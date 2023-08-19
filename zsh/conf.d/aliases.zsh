@@ -2,7 +2,7 @@
 alias g=lazygit
 alias gst='git status'
 
-alias ls=n
+alias ls=f
 alias ll="/usr/bin/ls -l"
 alias cat=bat
 alias lg=lazygit
