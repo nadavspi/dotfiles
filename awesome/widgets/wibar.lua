@@ -1,6 +1,7 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
+local mod = require("bindings.mod")
 
 local clock = wibox.widget.textclock("%a %b %d | %l:%M:%S", 1)
 
@@ -92,3 +93,27 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	}
 end)
 
+local function checkWibarForTag(t)
+	-- in case the tag was just removed
+	if t.screen == nil then return end
+	-- or just created
+	if t.wibar_visible == nil then
+		t.wibar_visible = true
+	end
+	t.screen.mywibox.visible = t.wibar_visible
+end
+
+local function toggleWibarForTag()
+    local t = awful.screen.focused().selected_tag
+    t.wibar_visible = not t.wibar_visible
+    checkWibarForTag(t)
+end
+awful.keyboard.append_global_keybindings({
+	awful.key({ modkey, mod.super }, "b", toggleWibarForTag)
+})
+
+for i,t in pairs(root.tags()) do
+    t.wibar_visible = true
+end
+
+tag.connect_signal("property::selected", checkWibarForTag)
