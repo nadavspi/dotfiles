@@ -11,7 +11,7 @@ local function add_tag()
 	awful.tag.add("new",
 	{
 		screen = awful.screen.focused(),
-		layout = awful.layout.layouts[1]
+		layout = awful.layout.layouts[1],
 	}):view_only()
 end
 
@@ -43,7 +43,6 @@ end
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "a", add_tag),
 	awful.key({ modkey, mod.shift }, "a", delete_tag),
-	awful.key({ modkey, mod.control }, "a", move_to_new_tag),
 	awful.key({ modkey }, "r", rename_tag),
 
 	awful.key {
