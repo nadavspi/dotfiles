@@ -2,7 +2,8 @@ utils = require "mp.utils"
 
 -- test available filename
 function slow_start(extension)
-  local basename = mp.get_property("filename"):gsub("%.([^%.]+)$", "")
+  local range = tostring(mp.get_property_number("ab-loop-a")) .. "-" .. tostring(mp.get_property_number("ab-loop-b"))
+  local basename = mp.get_property("filename"):gsub("%.([^%.]+)$", "") .. " - " .. range
   local screenshot_folder = mp.get_property("screenshot-directory") or ""
 
   function filename(idx)
