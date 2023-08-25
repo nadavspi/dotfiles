@@ -14,6 +14,7 @@ Plug 'reedes/vim-thematic'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'morhetz/gruvbox'
 Plug 'romainl/flattened'
+Plug 'atelierbram/Base2Tone-nvim'
 Plug 'whatyouhide/vim-gotham'
 
 " tpope
@@ -38,9 +39,12 @@ Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'knubie/vim-kitty-navigator'
+
+Plug 'vimwiki/vimwiki'
+Plug 'tools-life/taskwiki'
+Plug 'kdheepak/lazygit.nvim'
 
 " frontend
 Plug 'JulesWang/css.vim'
@@ -78,7 +82,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set number
 set ruler
 set backspace=indent,eol,start
-let mapleader = ","
+let mapleader = "\<Space>"
 set visualbell
 " for autosave and to show tern argument hints more quickly
 set updatetime=1000
@@ -126,7 +130,7 @@ autocmd BufNewFile,BufRead *.phtml set filetype=phtml
 autocmd BufNewFile,BufRead *.php set filetype=phtml
 autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
 
-autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+" autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
 
 " Tabs
 """"""""""
@@ -220,7 +224,7 @@ nnoremap zo za
 nnoremap zc za
 
 " Vim fugitive
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gs :LazyGit<cr>
 nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -m ""<left>
 nnoremap <leader>gp :Git push<cr>
@@ -327,9 +331,7 @@ let g:jsx_ext_required = 0
 
 " Thematic
 """"""""
-" let g:gruvbox_italic=1
-" highlight Comment cterm=italic
-let g:thematic#theme_name = 'gruvbox_dark'
+let g:thematic#theme_name = 'base2tone_evening_dark'
 let g:thematic#defaults = {
       \ 'background': 'dark',
       \ 'laststatus': 2,
@@ -361,6 +363,11 @@ let g:thematic#themes = {
       \ 'background': 'dark',
       \ 'airline-theme': 'tomorrow',
       \ },
+      \ 'base2tone_evening_dark' : {
+      \ 'colorscheme': 'base2tone_evening_dark',
+      \ 'background': 'dark',
+      \ 'airline-theme': 'tomorrow',
+      \ },
       \ 'gotham' : {
       \ 'colorscheme': 'gotham',
       \ 'background': 'dark',
@@ -372,23 +379,23 @@ nnoremap <Leader>< :SidewaysLeft<CR>
 nnoremap <Leader>> :SidewaysRight<CR>
 
 let g:kitty_navigator_no_mappings = 1
-nnoremap <silent> <c-m> :KittyNavigateLeft<cr>
-nnoremap <silent> <c-n> :KittyNavigateDown<cr>
-nnoremap <silent> <c-e> :KittyNavigateUp<cr>
-nnoremap <silent> <c-i> :KittyNavigateRight<cr>
+nnoremap <silent> <c-h> :KittyNavigateLeft<cr>
+nnoremap <silent> <c-j> :KittyNavigateDown<cr>
+nnoremap <silent> <c-k> :KittyNavigateUp<cr>
+nnoremap <silent> <c-l> :KittyNavigateRight<cr>
 
 endif
 
-" Colemak stuff
-nnoremap m h
-nnoremap n j
-nnoremap e k
-nnoremap i l
-nnoremap u i
-nnoremap l u
-nnoremap k n
-nnoremap K N
-vnoremap m h
-vnoremap n j
-vnoremap e k
-vnoremap i l
+set nocompatible
+
+filetype plugin on
+syntax on
+
+let g:vimwiki_list = [{
+      \ 'path': '~/Documents/Notes/',
+      \ 'syntax': 'markdown', 'ext': '.md',
+      \ 'diary_rel_path': 'DailyNotes/'
+      \ }]
+let g:vimwiki_ext2syntax = {}
+nnoremap <silent> gn :Files ~/Documents/Notes<CR>
+
