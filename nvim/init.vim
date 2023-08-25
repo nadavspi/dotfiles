@@ -203,6 +203,7 @@ nnoremap gip :PlugInstall<cr>
 " go edit hosts file
 nnoremap geh :e /etc/hosts<cr>
 
+
 map ; :
 noremap ;; ;
 
@@ -214,7 +215,20 @@ nnoremap <leader><leader> <c-^>
 
 nnoremap <leader>s :w<cr>
 
-nnoremap <leader>t :tabnew<cr>
+" window management
+nnoremap <silent> <leader>wc :close<cr>
+nnoremap <silent> <leader>wo :only<cr>
+nnoremap <silent> <leader>ws :split<cr>
+nnoremap <silent> <leader>wv :vsplit<cr>
+nnoremap <silent> <leader>t :tabnew<cr>
+nnoremap <leader>1 1gt<cr>
+nnoremap <leader>2 2gt<cr>
+nnoremap <leader>3 3gt<cr>
+nnoremap <leader>4 4gt<cr>
+nnoremap <leader>5 5gt<cr>
+nnoremap <leader>6 6gt<cr>
+nnoremap <leader>7 7gt<cr>
+nnoremap <leader>8 8gt<cr>
 
 " nnoremap <tab> %
 " inoremap <tab> <c-x><c-o>
@@ -274,15 +288,6 @@ endfunction
 " let g:user_emmet_expandabbr_key='<Tab>'
 " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-" Tabs
-nnoremap <leader>1 1gt<cr>
-nnoremap <leader>2 2gt<cr>
-nnoremap <leader>3 3gt<cr>
-nnoremap <leader>4 4gt<cr>
-nnoremap <leader>5 5gt<cr>
-nnoremap <leader>6 6gt<cr>
-nnoremap <leader>7 7gt<cr>
-nnoremap <leader>8 8gt<cr>
 
 " duplicate and comma-ize CSS
 nnoremap gy :norm yypk$hC,<cr>:norm j0<cr>
