@@ -3,6 +3,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.visualbell = true
 vim.opt.undofile = true
+vim.opt.swapfile = false
 vim.opt.autoread = true
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<Nop>")
@@ -265,7 +266,7 @@ lazy.setup({
 			vim.keymap.set("n", "<leader>gG", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
 		end,
 	},
-	{ "ggandor/lightspeed.nvim" },
+	{ "ggandor/leap.nvim" },
 	{ "knubie/vim-kitty-navigator" },
 })
 
