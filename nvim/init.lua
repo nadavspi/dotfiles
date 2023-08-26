@@ -14,6 +14,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 local lazy = {}
 function lazy.install(path)
@@ -47,6 +48,15 @@ lazy.setup({
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-unimpaired" },
 	{ "tpope/vim-commentary" },
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "~/src", "~/Downloads", "/" },
+			})
+		end,
+	},
 	{ "gpanders/editorconfig.nvim" },
 	{ "wellle/targets.vim" },
 	{ "kana/vim-textobj-indent", dependencies = { "kana/vim-textobj-user" } },
@@ -73,7 +83,7 @@ lazy.setup({
 		},
 		config = function()
 			local cmp = require("cmp")
-      local luasnip = require("luasnip")
+			local luasnip = require("luasnip")
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 			local has_words_before = function()
@@ -103,7 +113,6 @@ lazy.setup({
 							fallback()
 						end
 					end, { "i", "s" }),
-
 
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
@@ -231,9 +240,9 @@ lazy.setup({
 	{ "akinsho/toggleterm.nvim", lazy = true, version = "*", config = true },
 	{
 		"lmburns/lf.nvim",
-		keys = "<leader>-",
 		config = function()
-			-- This feature will not work if the plugin is lazy-loaded
+			vim.g.lf_netrw = 1
+
 			require("lf").setup({
 				border = "rounded",
 			})
