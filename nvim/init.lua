@@ -199,7 +199,8 @@ lazy.setup({
 	},
 	{
 		"vimwiki/vimwiki",
-		config = function()
+		lazy = false,
+		init = function()
 			vim.g.vimwiki_list = {
 				{
 					path = "~/Documents/Notes/",
@@ -208,17 +209,66 @@ lazy.setup({
 					diary_rel_path = "DailyNotes/",
 				},
 			}
-			vim.g.vimwiki_ext2syntax = {}
-			vim.keymap.set(
-				"n",
-				"gn",
-				"<cmd>lua require('fzf-lua').files({ cwd = '~/Documents/Notes' })<CR>",
-				{ silent = true }
-			)
+			vim.g.vimwiki_global_ext = 0
+			-- vim.g.vimwiki_url_maxsave = 0
 		end,
 		dependencies = {
 			"ibhagwan/fzf-lua",
 		},
+	},
+	{
+		"epwalsh/obsidian.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"ibhagwan/fzf-lua",
+		},
+		opts = {
+			dir = "~/Documents/Notes",
+
+			daily_notes = {
+				folder = "DailyNotes",
+				date_format = "%Y-%m-%d-%A",
+			},
+
+			disable_frontmatter = true,
+
+			completion = {
+				nvim_cmp = true,
+				min_chars = 2,
+				-- Where to put new notes created from completion. Valid options are
+				--  * "current_dir" - put new notes in same directory as the current buffer.
+				--  * "notes_subdir" - put new notes in the default notes subdirectory.
+				new_notes_location = "notes_subdir",
+
+				-- Whether to add the output of the node_id_func to new notes in autocompletion.
+				-- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
+				prepend_note_id = false,
+			},
+
+			-- 			mappings = {
+			-- 				["gf"] = require("obsidian.mapping").gf_passthrough(),
+			-- 			},
+		},
+		init = function()
+			vim.keymap.set(
+				"n",
+				"<leader>of",
+				"<cmd>ObsidianQuickSwitch<CR>",
+				{ silent = true }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>ot",
+				"<cmd>ObsidianToday<CR>",
+				{ silent = true }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>ob",
+				"<cmd>ObsidianBacklinks<CR>",
+				{ silent = true }
+			)
+		end,
 	},
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
 	{
@@ -266,7 +316,12 @@ lazy.setup({
 			vim.keymap.set("n", "<leader>gG", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
 		end,
 	},
-	{ "ggandor/leap.nvim" },
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	},
 	{ "knubie/vim-kitty-navigator" },
 })
 
