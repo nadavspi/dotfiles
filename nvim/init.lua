@@ -252,24 +252,9 @@ lazy.setup({
 			-- 			},
 		},
 		init = function()
-			vim.keymap.set(
-				"n",
-				"<leader>of",
-				"<cmd>ObsidianQuickSwitch<CR>",
-				{ silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ot",
-				"<cmd>ObsidianToday<CR>",
-				{ silent = true }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ob",
-				"<cmd>ObsidianBacklinks<CR>",
-				{ silent = true }
-			)
+			vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { silent = true })
+			vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { silent = true })
+			vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { silent = true })
 		end,
 	},
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
@@ -312,10 +297,20 @@ lazy.setup({
 			-- calling `setup` is optional for customization
 			require("fzf-lua").setup({})
 
-			vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>gg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>gG", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
+
+			function files_git_or_cwd(opts)
+				if not opts then
+					opts = {}
+				end
+				opts.cwd = require("fzf-lua.path").git_root(vim.loop.cwd(), true) or vim.loop.cwd()
+				opts.fzf_cli_args = ('--header="cwd = %s"'):format(vim.fn.shellescape(opts.cwd))
+				require("fzf-lua").files(opts)
+			end
+      vim.api.nvim_create_user_command('Files', files_git_or_cwd, {})
+			vim.keymap.set("n", "<c-P>", "<cmd>Files<CR>", { silent = true })
 		end,
 	},
 	{
