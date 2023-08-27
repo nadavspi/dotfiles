@@ -16,6 +16,8 @@ vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.splitbelow = true
+vim.o.splitright = true
 
 local lazy = {}
 function lazy.install(path)
