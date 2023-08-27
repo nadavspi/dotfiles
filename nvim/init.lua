@@ -48,9 +48,20 @@ lazy.setup({
 	{ "folke/tokyonight.nvim" },
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
-	{ "tpope/vim-surround" },
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
 	{ "tpope/vim-unimpaired" },
-	{ "tpope/vim-commentary" },
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	},
 	{
 		"rmagatti/auto-session",
 		config = function()
