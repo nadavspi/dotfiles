@@ -64,6 +64,14 @@ lazy.setup({
 	{ "wellle/targets.vim" },
 	{ "kana/vim-textobj-indent", dependencies = { "kana/vim-textobj-user" } },
 	{ "jceb/vim-textobj-uri", dependencies = { "kana/vim-textobj-user" } },
+	{
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
+		end,
+		dependencies = { "williamboman/mason-lspconfig" },
+	},
 	{ "neovim/nvim-lspconfig" },
 	{
 		"L3MON4D3/LuaSnip",
@@ -309,7 +317,7 @@ lazy.setup({
 				opts.fzf_cli_args = ('--header="cwd = %s"'):format(vim.fn.shellescape(opts.cwd))
 				require("fzf-lua").files(opts)
 			end
-      vim.api.nvim_create_user_command('Files', files_git_or_cwd, {})
+			vim.api.nvim_create_user_command("Files", files_git_or_cwd, {})
 			vim.keymap.set("n", "<c-P>", "<cmd>Files<CR>", { silent = true })
 		end,
 	},
