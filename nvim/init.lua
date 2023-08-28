@@ -373,7 +373,6 @@ vim.keymap.set("n", "gev", "<cmd>edit $MYVIMRC<cr>")
 vim.keymap.set("n", "<leader>s", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 
--- line 220
 -- window management
 vim.keymap.set("n", "<leader>wc", ":close<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wo", ":only<cr>", { silent = true })
@@ -388,6 +387,10 @@ vim.keymap.set("n", "<leader>5", "5gt<cr>")
 vim.keymap.set("n", "<leader>6", "6gt<cr>")
 vim.keymap.set("n", "<leader>7", "7gt<cr>")
 vim.keymap.set("n", "<leader>8", "8gt<cr>")
+
+-- terminal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-v><Esc>", "<Esc>")
 
 vim.g.vimwiki_list = {
 	{
