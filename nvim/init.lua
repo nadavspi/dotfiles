@@ -270,15 +270,12 @@ lazy.setup({
 				-- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
 				prepend_note_id = false,
 			},
-
-			-- 			mappings = {
-			-- 				["gf"] = require("obsidian.mapping").gf_passthrough(),
-			-- 			},
 		},
 		init = function()
 			vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { silent = true })
+			vim.keymap.set("n", "<leader>og", "<cmd>ObsidianSearch<CR>", { silent = true })
 		end,
 	},
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
@@ -391,6 +388,7 @@ vim.keymap.set("n", "<leader>5", "5gt<cr>")
 vim.keymap.set("n", "<leader>6", "6gt<cr>")
 vim.keymap.set("n", "<leader>7", "7gt<cr>")
 vim.keymap.set("n", "<leader>8", "8gt<cr>")
+
 vim.g.vimwiki_list = {
 	{
 		path = "~/Documents/Notes/",
@@ -399,3 +397,7 @@ vim.g.vimwiki_list = {
 		diary_rel_path = "DailyNotes/",
 	},
 }
+vim.g.vimwiki_key_mappings = {
+	links = 0,
+}
+vim.g.taskwiki_suppress_mappings = true
