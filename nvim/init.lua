@@ -231,7 +231,7 @@ lazy.setup({
 				},
 			}
 			vim.g.vimwiki_global_ext = 0
-			-- vim.g.vimwiki_url_maxsave = 0
+			vim.g.vimwiki_conceallevel = 0
 		end,
 		dependencies = {
 			"ibhagwan/fzf-lua",
