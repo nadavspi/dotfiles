@@ -79,9 +79,14 @@ lazy.setup({
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup()
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls" },
+			})
 		end,
-		dependencies = { "williamboman/mason-lspconfig" },
+		dependencies = {
+			"williamboman/mason-lspconfig",
+			"neovim/nvim-lspconfig",
+		},
 	},
 	{ "neovim/nvim-lspconfig" },
 	{
