@@ -20,6 +20,7 @@ function fzf_obsidian_link()
 	)
 end
 vim.keymap.set("i", "[[", fzf_obsidian_link, { buffer = true })
+vim.keymap.set("n", "<c-p>", "<cmd>ObsidianQuickSwitch<CR>", { buffer = true })
 
 vim.keymap.set("n", "<leader>ta", "<cmd>:TaskWikiAnnotate<CR>")
 vim.keymap.set("n", "<leader>tbd", "<cmd>:TaskWikiBurndownDaily<CR>")
