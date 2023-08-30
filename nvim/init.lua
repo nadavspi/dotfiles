@@ -71,6 +71,15 @@ lazy.setup({
 			})
 		end,
 	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {},
+	},
 	{ "gpanders/editorconfig.nvim" },
 	{ "wellle/targets.vim" },
 	{ "kana/vim-textobj-indent", dependencies = { "kana/vim-textobj-user" } },
@@ -378,7 +387,7 @@ vim.keymap.set("n", "<leader>wc", ":close<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wo", ":only<cr>", { silent = true })
 vim.keymap.set("n", "<leader>ws", ":split<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wv", ":vsplit<cr>", { silent = true })
-vim.keymap.set("n", "<leader>t", ":tabnew<cr>", { silent = true })
+vim.keymap.set("n", "<leader>wt", ":tabnew<cr>", { silent = true })
 vim.keymap.set("n", "<leader>1", "1gt<cr>")
 vim.keymap.set("n", "<leader>2", "2gt<cr>")
 vim.keymap.set("n", "<leader>3", "3gt<cr>")
