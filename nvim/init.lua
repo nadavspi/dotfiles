@@ -413,3 +413,5 @@ vim.g.vimwiki_key_mappings = {
 	links = 0,
 }
 vim.g.taskwiki_suppress_mappings = true
+
+pcall(require, "local")
