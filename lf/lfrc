@@ -3,6 +3,8 @@ set cleaner ~/.config/lf/cleaner
 
 set relativenumber true
 set drawbox
+set incsearch
+set incfilter
 
 map x :delete
 map gf :filter
