@@ -279,6 +279,7 @@ lazy.setup({
 				-- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
 				prepend_note_id = false,
 			},
+			mappings = {},
 		},
 		init = function()
 			vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { silent = true })
