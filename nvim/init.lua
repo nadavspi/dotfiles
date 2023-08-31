@@ -76,11 +76,35 @@ lazy.setup({
 		end,
 	},
 	{
-		"rmagatti/auto-session",
+		"gnikdroy/projections.nvim",
+		branch = "pre_release",
+		dependencies = {
+			"ibhagwan/fzf-lua",
+			"nyngwang/fzf-lua-projections.nvim",
+		},
 		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/src", "~/Downloads", "/" },
+			require("projections").setup({
+				workspaces = {
+					{ "~/src", {} },
+				},
+			})
+			vim.keymap.set("n", "<Leader>cp", function()
+				require("fzf-lua-p").projects()
+			end, NOREF_NOERR_TRUNC)
+
+			local Session = require("projections.session")
+			vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+				callback = function()
+					Session.store(vim.loop.cwd())
+				end,
+			})
+			vim.api.nvim_create_autocmd({ "VimEnter" }, {
+				callback = function()
+					if vim.fn.argc() ~= 0 then
+						return
+					end
+					Session.restore(vim.loop.cwd())
+				end,
 			})
 		end,
 	},
