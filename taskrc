@@ -4,11 +4,6 @@ hooks.location=~/.task/hooks
 
 default.project=in
 
-report.in.columns           = id,description
-report.in.description       = Inbox
-report.in.filter            = status:pending limit:page (+in)
-report.in.labels            = ID,Description
-
 report.s.columns = id,project,description.count,parent,start,scheduled,due,until
 report.s.description = Strategic
 report.s.filter = status:pending
@@ -18,6 +13,6 @@ report.next.columns = id,project,description,start.age,scheduled
 report.next.description = Tactical
 report.next.filter = status:pending and +DUE or +OVERDUE or +ACTIVE or (+READY and +SCHEDULED)
 report.next.sort = start+,scheduled+,project+,entry+
-report.next.labels = 
+report.next.labels = ID,Proj,Desc,Started,Scheduled
 
-color.blocking = 
+color.blocking = none
