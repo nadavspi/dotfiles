@@ -65,7 +65,9 @@ lazy.setup({
 		},
 		config = function()
 			local neogit = require("neogit")
-			neogit.setup({})
+			neogit.setup({
+				disable_insert_on_commit = "auto",
+			})
 			vim.keymap.set("n", "<leader>gs", "<cmd>:Neogit cwd=%:p:h<cr>")
 		end,
 	},
