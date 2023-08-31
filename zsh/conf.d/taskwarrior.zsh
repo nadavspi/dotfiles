@@ -1,7 +1,11 @@
 alias in="task add +in"
 
+tp () {
+  task s project:$1
+}
+
 webpage_title (){
-    curl "$1" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)' 
+    curl "$1" -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)'
 }
 
 read_and_review (){
