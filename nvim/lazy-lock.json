@@ -15,6 +15,7 @@
   "friendly-snippets": { "branch": "main", "commit": "00e191fea2cfbbdd378243f35b5953296537a116" },
   "fzf-lua": { "branch": "main", "commit": "a6d524cc1107caf7655ff6dc0aa9a51792d27965" },
   "fzf-lua-projections.nvim": { "branch": "main", "commit": "411672ab6f7c38d3a4a51916fda1a01c1618ae04" },
+  "highlight-undo.nvim": { "branch": "main", "commit": "d9e674a2eb4d95ee16cd477d47eab7ddc586e336" },
   "lazy.nvim": { "branch": "main", "commit": "2a9354c7d2368d78cbd5575a51a2af5bd8a6ad01" },
   "lazygit.nvim": { "branch": "main", "commit": "22e51e03268fabe068a77e2bd316ac25ff2084f9" },
   "leap.nvim": { "branch": "main", "commit": "5efe985cf68fac3b6a6dfe7a75fbfaca8db2af9c" },

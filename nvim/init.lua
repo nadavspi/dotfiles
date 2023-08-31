@@ -119,6 +119,27 @@ lazy.setup({
 		end,
 		opts = {},
 	},
+	{
+		"tzachar/highlight-undo.nvim",
+		opts = {
+			duration = 300,
+			undo = {
+				hlgroup = "HighlightUndo",
+				mode = "n",
+				lhs = "u",
+				map = "undo",
+				opts = {},
+			},
+			redo = {
+				hlgroup = "HighlightUndo",
+				mode = "n",
+				lhs = "<C-r>",
+				map = "redo",
+				opts = {},
+			},
+			highlight_for_count = true,
+		},
+	},
 	{ "gpanders/editorconfig.nvim" },
 	{ "wellle/targets.vim" },
 	{ "kana/vim-textobj-indent", dependencies = { "kana/vim-textobj-user" } },
