@@ -346,6 +346,15 @@ lazy.setup({
 			vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>og", "<cmd>ObsidianSearch<CR>", { silent = true })
+
+			function fzf_taskwiki_pending()
+				require("fzf-lua").fzf_exec("rg '^\\s*\\* \\[ \\]'", {
+					actions = require("fzf-lua").defaults.actions.files,
+					cwd = "~/Documents/Notes",
+					previewer = "builtin",
+				})
+			end
+			vim.keymap.set("n", "<leader>ot", fzf_taskwiki_pending, { desc = "Show pending tasks" })
 		end,
 	},
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
