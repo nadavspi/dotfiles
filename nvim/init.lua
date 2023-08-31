@@ -57,6 +57,19 @@ lazy.setup({
 	},
 	{ "tpope/vim-unimpaired" },
 	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"ibhagwan/fzf-lua",
+		},
+		config = function()
+			local neogit = require("neogit")
+			neogit.setup({})
+			vim.keymap.set("n", "<leader>gs", "<cmd>:Neogit cwd=%:p:h<cr>")
+		end,
+	},
+	{
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
@@ -291,7 +304,7 @@ lazy.setup({
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
 	{
 		"kdheepak/lazygit.nvim",
-		keys = { "<leader>gs" },
+		keys = { "<leader>gS" },
 		config = function()
 			vim.keymap.set("n", "<leader>gs", "<cmd>LazyGitCurrentFile<cr>")
 		end,
