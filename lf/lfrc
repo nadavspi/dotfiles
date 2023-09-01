@@ -5,6 +5,7 @@ set relativenumber true
 set drawbox
 set incsearch
 set incfilter
+set icons
 
 map x :delete
 map gf :filter
