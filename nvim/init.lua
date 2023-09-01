@@ -354,7 +354,7 @@ lazy.setup({
 					previewer = "builtin",
 				})
 			end
-			vim.keymap.set("n", "<leader>ot", fzf_taskwiki_pending, { desc = "Show pending tasks" })
+			vim.keymap.set("n", "<leader>op", fzf_taskwiki_pending, { desc = "Show pending tasks" })
 		end,
 	},
 	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
