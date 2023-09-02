@@ -33,15 +33,23 @@ awful.keyboard.append_global_keybindings({
 		end
 	end),
 	awful.key({ modkey }, l.left, function()
-		awful.client.focus.bydirection("left")
-		if client.focus then
-			client.focus:raise()
+		if mouse.screen.selected_tag.layout.name == "max" then
+			awful.client.focus.byidx(-1)
+		else
+			awful.client.focus.bydirection("left")
+			if client.focus then
+				client.focus:raise()
+			end
 		end
 	end),
 	awful.key({ modkey }, l.right, function()
-		awful.client.focus.bydirection("right")
-		if client.focus then
-			client.focus:raise()
+		if mouse.screen.selected_tag.layout.name == "max" then
+			awful.client.focus.byidx(-1)
+		else
+			awful.client.focus.bydirection("right")
+			if client.focus then
+				client.focus:raise()
+			end
 		end
 	end),
 
