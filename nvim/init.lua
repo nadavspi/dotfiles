@@ -445,6 +445,7 @@ vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>P", '"+P"')
+vim.keymap.set("n", "<leader>cf", '<cmd>let @" = expand("%:p")<cr>', { desc = "Copy full path" })
 
 -- insert mode maps
 vim.keymap.set("i", "<C-e>", "<Esc>A")
