@@ -18,3 +18,5 @@ read_and_review (){
 }
 
 alias rnr=read_and_review
+
+alias tsync="cd ~/.task && ./git-sync"
