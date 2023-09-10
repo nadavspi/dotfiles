@@ -14,18 +14,18 @@ awful.keyboard.append_global_keybindings({
 
 	-- number of master clients
 	awful.key({ modkey, mod.shift }, l.left, function ()
-		awful.tag.incnmaster(1, nil, true)
+		awful.tag.incnmaster(-1, nil, true)
 	end),
 	awful.key({ modkey, mod.shift   }, l.right, function ()
-		awful.tag.incnmaster(-1, nil, true)
+		awful.tag.incnmaster(1, nil, true)
 	end),
 
 	-- number of columns
 	awful.key({ modkey, mod.control }, l.left, function ()
-		awful.tag.incncol(1, nil, true)
+		awful.tag.incncol(-1, nil, true)
 	end),
 	awful.key({ modkey, mod.control }, l.right, function ()
-		awful.tag.incncol(-1, nil, true)
+		awful.tag.incncol(1, nil, true)
 	end),
 
 	-- switch layout
