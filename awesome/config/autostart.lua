@@ -20,6 +20,7 @@ local commands = {
 	"fcitx5 &",
 	"volumeicon &",
 	"xfce4-power-manager &",
+	"xiccd &",
 }
 
 for _, command in ipairs(commands) do
