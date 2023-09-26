@@ -169,6 +169,26 @@ lazy.setup({
 		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
+
+			local ls = require("luasnip")
+			local snip = ls.snippet
+			local func = ls.function_node
+
+			local today = function()
+				return { "[[" .. os.date("%Y-%m-%d-%A") .. "]]" }
+			end
+
+			ls.add_snippets(nil, {
+				all = {
+					snip({
+						trig = "today",
+						namr = "today",
+						dscr = "Link to today's daily note",
+					}, {
+						func(today, {}),
+					}),
+				},
+			})
 		end,
 	},
 	{
@@ -423,8 +443,8 @@ lazy.setup({
 		"ggandor/leap.nvim",
 		config = function()
 			require("leap").add_default_mappings()
-      vim.keymap.set("o", "z", "<Plug>(leap-forward-to)")
-      vim.keymap.set("o", "Z", "<Plug>(leap-backward-to)")
+			vim.keymap.set("o", "z", "<Plug>(leap-forward-to)")
+			vim.keymap.set("o", "Z", "<Plug>(leap-backward-to)")
 		end,
 	},
 	{ "knubie/vim-kitty-navigator" },
