@@ -57,6 +57,12 @@ lazy.setup({
 	},
 	{ "tpope/vim-unimpaired" },
 	{
+		"nanotee/zoxide.vim",
+		config = function()
+			vim.keymap.set("n", "gz", "<cmd>:Z ")
+		end,
+	},
+	{
 		"NeogitOrg/neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
