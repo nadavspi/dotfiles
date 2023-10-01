@@ -31,3 +31,5 @@ alias -g L='| bat --style plain'
 alias -g F='| fzf --reverse'
 
 alias cp-epub="mv -v ~/Downloads/*.epub /mnt/nfs/data/watch/books/"
+
+alias dup="sudo zypper dup"
