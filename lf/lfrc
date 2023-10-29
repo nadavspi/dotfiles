@@ -103,3 +103,6 @@ cmd edit-config ${{
     lf -remote "send $id source ~/.config/lf/lfrc"
 }}
 map C edit-config
+
+cmd dragon %dragon -a -x $fx
+map gdr dragon
