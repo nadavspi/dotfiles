@@ -25,7 +25,7 @@ cmd fzf_jump ${{
         lf -remote "send $id $cmd \"$res\""
     fi
 }}
-map <c-f> :fzf_jump
+map <c-p> :fzf_jump
 
 cmd fzf_search ${{
     RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
@@ -57,7 +57,7 @@ cmd recol ${{
     if [ $w -le 80 ]; then
         lf -remote "send $id set ratios 1:2"
     elif [ $w -le 160 ]; then
-        lf -remote "send $id set ratios 1:2:3"
+        lf -remote "send $id set ratios 1:3:2"
     else
         lf -remote "send $id set ratios 1:2:3:5"
     fi
@@ -68,7 +68,7 @@ cmd toggle_preview %{{
     if [ "$lf_preview" = "true" ]; then
         lf -remote "send $id :set preview false; set ratios 1:5"
     else
-        lf -remote "send $id :set preview true; set ratios 1:2:3"
+        lf -remote "send $id :set preview true; set ratios 1:3:2"
     fi
 }}
 map zp toggle_preview
