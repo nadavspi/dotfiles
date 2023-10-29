@@ -3,8 +3,8 @@ alias g=lazygit
 alias gst='git status'
 
 alias l=lf
-alias ls=lf
-alias ll="/usr/bin/ls -l"
+alias ls=eza
+alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
 alias s='kitty +kitten ssh'
