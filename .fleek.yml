@@ -18,13 +18,35 @@ min_version: 0.8.4
 name: Fleek Configuration
 overlays: {}
 packages:
-    - helix
+    - bat
+    - btop
+    - delta
+    - eza
+    - fzf
+    - gnumake
+    - just
+    - lazygit
+    - lf
+    - ncdu
+    - ncurses
+    - python3
+    - ripgrep
+    - speedtest-cli
+    - starship
+    - tmux
+    - tree
+    - wget
+    - yt-dlp
+    - zoxide
+    - zsh
+    - zstd
+    - neovim
 paths:
     - $HOME/bin
     - $HOME/.local/bin
 programs:
     - dircolors
-shell: bash
+shell: zsh
 systems:
     - arch: x86_64
       home: ""
@@ -34,7 +56,7 @@ systems:
         email: me@nadav.name
         name: Nadav Spiegelman
         ssh_private_key_file: ~/.ssh/main
-        ssh_public_key_file: ~/.ssh/main
+        ssh_public_key_file: ~/.ssh/main.pub
         username: nadavspi
       username: nadavspi
 track: nixos-unstable
