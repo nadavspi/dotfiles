@@ -18,8 +18,8 @@
         };
 
         signing = {
-            key = "~/.ssh/passwordless";
-            signByDefault = builtins.stringLength "~/.ssh/passwordless" > 0;
+            key = "~/.ssh/main";
+            signByDefault = builtins.stringLength "~/.ssh/main" > 0;
         };
 
         lfs.enable = true;

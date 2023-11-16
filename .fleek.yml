@@ -4,15 +4,15 @@ aliases:
     update-fleek: nix run https://getfleek.dev/latest.tar.gz -- update
 allow_broken: false
 auto_gc: true
-bling: default
+bling: none
 blocklist: []
 byo_git: false
 ejected: false
 flakedir: src/dotfiles
 git:
-    autocommit: true
-    autopull: true
-    autopush: true
+    autocommit: false
+    autopull: false
+    autopush: false
     enabled: false
 min_version: 0.8.4
 name: Fleek Configuration
@@ -33,8 +33,8 @@ systems:
       user:
         email: me@nadav.name
         name: Nadav Spiegelman
-        ssh_private_key_file: ~/.ssh/passwordless
-        ssh_public_key_file: ~/.ssh/passwordless.pub
+        ssh_private_key_file: ~/.ssh/main
+        ssh_public_key_file: ~/.ssh/main
         username: nadavspi
       username: nadavspi
 track: nixos-unstable

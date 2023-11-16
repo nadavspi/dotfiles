@@ -20,38 +20,9 @@
   # programs are installed and configuration applied to dotfiles
   home.packages = [
     # user selected packages
-    pkgs.bat
-    pkgs.btop
-    pkgs.delta
-    pkgs.eza
-    pkgs.fzf
-    pkgs.gnumake
-    pkgs.just
-    pkgs.lazygit
-    pkgs.lf
-    pkgs.ncdu
-    pkgs.ncurses
-    pkgs.neovim
-    pkgs.python3
-    pkgs.ripgrep
-    pkgs.speedtest-cli
-    pkgs.starship
-    pkgs.tmux
-    pkgs.tree
-    pkgs.wget
-    pkgs.yt-dlp
-    pkgs.zoxide
-    pkgs.zsh
-    pkgs.zstd
+    pkgs.helix
     # Fleek Bling
     pkgs.git
-    pkgs.htop
-    pkgs.github-cli
-    pkgs.glab
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.vscode
-    pkgs.just
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   fonts.fontconfig.enable = true; 

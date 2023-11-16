@@ -19,7 +19,7 @@ $ apply-$(hostname)
 ```
 
 Your actual aliases are listed below:
-    fleeks = "cd ~/.local/share/fleek";
+    fleeks = "cd ~/src/dotfiles";
 
     latest-fleek-version = "nix run https://getfleek.dev/latest.tar.gz -- version";
 
