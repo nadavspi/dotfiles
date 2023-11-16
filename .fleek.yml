@@ -13,7 +13,7 @@ git:
     autocommit: true
     autopull: true
     autopush: true
-    enabled: true
+    enabled: false
 min_version: 0.8.4
 name: Fleek Configuration
 overlays: {}
