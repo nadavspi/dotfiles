@@ -1,0 +1,42 @@
+aliases:
+    fleeks: cd ~/src/dotfiles
+    latest-fleek-version: nix run https://getfleek.dev/latest.tar.gz -- version
+    update-fleek: nix run https://getfleek.dev/latest.tar.gz -- update
+allow_broken: false
+auto_gc: true
+bling: default
+blocklist: []
+byo_git: false
+ejected: false
+flakedir: src/dotfiles
+git:
+    autocommit: true
+    autopull: true
+    autopush: true
+    enabled: true
+min_version: 0.8.4
+name: Fleek Configuration
+overlays: {}
+packages:
+    - helix
+paths:
+    - $HOME/bin
+    - $HOME/.local/bin
+programs:
+    - dircolors
+shell: bash
+systems:
+    - arch: x86_64
+      home: ""
+      hostname: brooklyn
+      os: linux
+      user:
+        email: me@nadav.name
+        name: Nadav Spiegelman
+        ssh_private_key_file: ~/.ssh/passwordless
+        ssh_public_key_file: ~/.ssh/passwordless.pub
+        username: nadavspi
+      username: nadavspi
+track: nixos-unstable
+unfree: true
+users: []
