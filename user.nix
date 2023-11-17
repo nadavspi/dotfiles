@@ -1,28 +1,38 @@
 { pkgs, config, misc, ... }:
 
 let 
+  dotfiles = "/home/nadavspi/src/dotfiles";
+
   link = config.lib.file.mkOutOfStoreSymlink;
-  fullPath = x: "/home/nadavspi/src/dotfiles/${x}";
-  prepareLinks = { files, prefix }: builtins.listToAttrs(map(file: {
-      name = file; 
-      value = { source = link(fullPath prefix + file); };
-      }) files);
+  prepareLinks = { 
+    filenames, 
+    transFilename ? file: file,
+  }: builtins.listToAttrs(map(filename: {
+      name = transFilename(filename); 
+      value = { source = link("${dotfiles}/${filename}"); };
+      }) filenames);
 
   configFiles = [ 
+    "lf"
     "nvim"
     "starship.toml"
+    "tmux"
     "zsh"
   ];
 
-in {
+  homeFiles = [
+    "gitconfig"
+    "gitignore"
+    "zshenv"
+  ];
 
+in {
   xdg.configFile = prepareLinks { 
-    files = configFiles;
-    prefix= ""; 
+    filenames = configFiles;
   };
 
   home.file = prepareLinks {
-    files = ["zshenv"];
-    prefix = ".";
+    filenames = homeFiles;
+    transFilename = file: ".${file}";
   };
 }
