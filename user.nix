@@ -1,23 +1,28 @@
 { pkgs, config, misc, ... }:
 
 let 
+  link = config.lib.file.mkOutOfStoreSymlink;
   fullPath = x: "/home/nadavspi/src/dotfiles/${x}";
+  prepareLinks = { files, prefix }: builtins.listToAttrs(map(file: {
+      name = file; 
+      value = { source = link(fullPath prefix + file); };
+      }) files);
 
-  nvim = fullPath "nvim";
-
-  files = [
-    {
-      target = "nvim";
-      path = fullPath "nvim";
-    }
+  configFiles = [ 
+    "nvim"
+    "starship.toml"
+    "zsh"
   ];
 
 in {
 
-  xdg.configFile = {
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink nvim;
-    };
+  xdg.configFile = prepareLinks { 
+    files = configFiles;
+    prefix= ""; 
   };
- 
+
+  home.file = prepareLinks {
+    files = ["zshenv"];
+    prefix = ".";
+  };
 }
