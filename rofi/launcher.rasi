@@ -3,7 +3,7 @@ configuration {
   display-window: "Windows:";
   drun-display-format: "{name}";
   font: "JetBrainsMono Nerd Font Medium 16";
-  modi: "window,run,drun,calc";
+  modi: "window,run,drun";
   show-icons: true;
 }
 
