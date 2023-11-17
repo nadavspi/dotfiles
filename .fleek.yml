@@ -59,6 +59,17 @@ systems:
         ssh_public_key_file: ~/.ssh/main.pub
         username: nadavspi
       username: nadavspi
+    - arch: x86_64
+      home: ""
+      hostname: fedora
+      os: linux
+      user:
+        email: me@nadav.name
+        name: nadavspi
+        ssh_private_key_file: ~/.ssh/main
+        ssh_public_key_file: ~/.ssh/main.pub
+        username: nadavspi
+      username: nadavspi
 track: nixos-unstable
 unfree: true
 users: []
