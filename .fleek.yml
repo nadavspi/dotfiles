@@ -1,4 +1,7 @@
 aliases:
+    apply-brooklyn: nix run --impure home-manager/master -- -b bak switch --flake .#nadavspi@brooklyn
+    apply-fedora: nix run --impure home-manager/master -- -b bak switch --flake .#nadavspi@fedora
+    apply-mac-mini-m2.local: nix run --impure home-manager/master -- -b bak switch --flake .#nadavspi@mac-mini-m2.local
     fleeks: cd ~/src/dotfiles
     latest-fleek-version: nix run https://getfleek.dev/latest.tar.gz -- version
     update-fleek: nix run https://getfleek.dev/latest.tar.gz -- update
@@ -7,7 +10,7 @@ auto_gc: false
 bling: none
 blocklist: []
 byo_git: false
-ejected: false
+ejected: true
 flakedir: src/dotfiles
 git:
     autocommit: false

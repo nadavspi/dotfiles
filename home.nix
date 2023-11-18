@@ -14,12 +14,11 @@
   };
 
   
-  # managed by fleek, modify ~/.fleek.yml to change installed packages
-  
   # packages are just installed (no configuration applied)
   # programs are installed and configuration applied to dotfiles
   home.packages = [
     # user selected packages
+    pkgs.abduco
     pkgs.bat
     pkgs.btop
     pkgs.delta
@@ -38,7 +37,6 @@
     pkgs.ripgrep
     pkgs.speedtest-cli
     pkgs.starship
-    pkgs.tmux
     pkgs.tree
     pkgs.wget
     pkgs.yt-dlp
