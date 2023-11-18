@@ -2,7 +2,7 @@ local awful = require("awful")
 
 function getTags ()
 	if os.getenv("HOSTNAME") == "shanghai" then
-		return { "firefox", "notes", "mpv", "kitty", "files", "discord" }
+		return { "firefox", "notes", "mpv", "kitty", "files", "discord", "anki" }
 	else
 		return { "firefox", "notes", "discord", "kitty" }
 	end
