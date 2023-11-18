@@ -27,6 +27,7 @@ packages:
     - just
     - lazygit
     - lf
+    - pistol
     - ncdu
     - ncurses
     - python3
@@ -38,7 +39,6 @@ packages:
     - wget
     - yt-dlp
     - zoxide
-    - zsh
     - zstd
     - neovim
 paths:

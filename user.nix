@@ -18,6 +18,13 @@ let
     "starship.toml"
     "tmux"
     "zsh"
+
+    "awesome"
+    "kitty"
+    "mpv"
+    "picom"
+    "polybar"
+    "rofi"
   ];
 
   homeFiles = [

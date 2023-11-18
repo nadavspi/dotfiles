@@ -40,7 +40,6 @@
     pkgs.wget
     pkgs.yt-dlp
     pkgs.zoxide
-    pkgs.zsh
     pkgs.zstd
     pkgs.neovim
     # Fleek Bling
