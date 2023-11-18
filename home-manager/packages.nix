@@ -30,6 +30,7 @@
     tree
     wget
     yt-dlp
+    zellij
     zoxide
     zstd
   ];
