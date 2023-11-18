@@ -19,10 +19,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; }; 
         modules = [
-          ./home-manager/cli.nix 
-          ./home-manager/packages.nix
-          ./home-manager/programs.nix
-          ./home-manager/shell.nix
+          ./home-manager
           { 
             home = rec {
               username = "nadavspi";
@@ -43,10 +40,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; }; 
         modules = [
-          ./home-manager/cli.nix 
-          ./home-manager/packages.nix
-          ./home-manager/programs.nix
-          ./home-manager/shell.nix
+          ./home-manager
           { 
             home = rec {
               username = "nadavspi";
@@ -67,11 +61,8 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; 
         extraSpecialArgs = { inherit inputs; }; 
         modules = [
-          ./home-manager/cli.nix 
+          ./home-manager
           ./home-manager/gui.nix 
-          ./home-manager/packages.nix
-          ./home-manager/programs.nix
-          ./home-manager/shell.nix
           { 
             home = rec {
               username = "nadavspi";
@@ -92,10 +83,7 @@
         pkgs = nixpkgs.legacyPackages.aarch64-darwin; 
         extraSpecialArgs = { inherit inputs; }; 
         modules = [
-          ./home-manager/cli.nix 
-          ./home-manager/packages.nix
-          ./home-manager/programs.nix
-          ./home-manager/shell.nix
+          ./home-manager
           { 
             home = rec {
               username = "nadavspi";

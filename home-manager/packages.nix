@@ -1,10 +1,4 @@
 { config, pkgs, misc, ... }: {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
-  };
 
   home.packages = [
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -35,7 +29,5 @@
     pkgs.zstd
   ];
   fonts.fontconfig.enable = true; 
-  home.stateVersion =
-    "22.11"; # To figure this out (in-case it changes) you can comment out the line and see what version it expected.
-  programs.home-manager.enable = true;
+  programs.dircolors.enable = true;
 }
