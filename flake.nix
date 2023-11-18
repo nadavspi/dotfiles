@@ -38,6 +38,30 @@
 
         ];
       };
+
+      "nadavspi@shanghai" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; }; 
+        modules = [
+          ./home-manager/cli.nix 
+          ./home-manager/packages.nix
+          ./home-manager/programs.nix
+          ./home-manager/shell.nix
+          { 
+            home = rec {
+              username = "nadavspi";
+              homeDirectory = "/home/${username}";
+              packages = [
+                fleek.packages.x86_64-linux.default
+              ];
+            };
+          }
+          ({
+           nixpkgs.overlays = [];
+          })
+
+        ];
+      };
       
       "nadavspi@fedora" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; 
