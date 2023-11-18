@@ -1,23 +1,13 @@
 { config, pkgs, misc, ... }: {
-  # DO NOT EDIT: This file is managed by fleek. Manual changes will be overwritten.
   nixpkgs = {
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
-      
       allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
-      
-      
     };
   };
 
-  
-  # packages are just installed (no configuration applied)
-  # programs are installed and configuration applied to dotfiles
   home.packages = [
-    # user selected packages
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
     pkgs.abduco
     pkgs.bat
     pkgs.btop
@@ -25,6 +15,7 @@
     pkgs.eza
     pkgs.fzf
     pkgs.gh
+    pkgs.git
     pkgs.gnumake
     pkgs.just
     pkgs.lazygit
@@ -42,9 +33,6 @@
     pkgs.yt-dlp
     pkgs.zoxide
     pkgs.zstd
-    # Fleek Bling
-    pkgs.git
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   fonts.fontconfig.enable = true; 
   home.stateVersion =

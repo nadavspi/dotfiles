@@ -13,12 +13,6 @@ let
       }) filenames);
 
   configFiles = [ 
-    "lf"
-    "nvim"
-    "starship.toml"
-    "tmux"
-    "zsh"
-
     "awesome"
     "kitty"
     "mpv"
@@ -28,9 +22,6 @@ let
   ];
 
   homeFiles = [
-    "gitconfig"
-    "gitignore"
-    "zshenv"
   ];
 
 in {
