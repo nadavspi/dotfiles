@@ -14,8 +14,8 @@ local colemak = {
 	right = 'i'
 }
 
-if os.getenv("KB_LAYOUT") == "qwerty" then
-	return qwerty
-else
+if os.getenv("KB_LAYOUT") == "colemak" then
 	return colemak
+else
+	return qwerty
 end

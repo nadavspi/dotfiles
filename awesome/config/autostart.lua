@@ -17,6 +17,7 @@ local commands = {
 	"gnome-keyring-daemon --start --components=secrets",
 	"picom --experimental-backends &",
 	"blueman-applet &",
+	"nm-applet &",
 	"fcitx5 &",
 	"volumeicon &",
 	"xfce4-power-manager &",
