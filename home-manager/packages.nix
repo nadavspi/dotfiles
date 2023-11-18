@@ -8,7 +8,6 @@
 
   home.packages = [
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
-    pkgs.abduco
     pkgs.bat
     pkgs.btop
     pkgs.delta
@@ -28,6 +27,7 @@
     pkgs.ripgrep
     pkgs.speedtest-cli
     pkgs.starship
+    pkgs.tmux
     pkgs.tree
     pkgs.wget
     pkgs.yt-dlp
