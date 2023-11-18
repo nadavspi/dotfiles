@@ -3,6 +3,9 @@ $username\
 $hostname\
 $directory\
 $status\
+$git_branch\
+$git_status\
+$nix_shell\
 $character"""
 
 [directory]
@@ -15,6 +18,9 @@ ignore_branches = ['master', 'main']
 
 [cmd_duration]
 disabled = true
+
+[nix_shell]
+format = "$symbol"
 
 [git_status]
 disabled = true
