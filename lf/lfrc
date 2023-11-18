@@ -104,5 +104,5 @@ cmd edit-config ${{
 }}
 map C edit-config
 
-cmd dragon %dragon -a -x $fx
+cmd dragon %dragon -a -x "$fx"
 map gdr dragon
