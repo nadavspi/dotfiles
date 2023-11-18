@@ -16,7 +16,6 @@ let
     "lf"
     "nvim"
     "starship.toml"
-    "tmux"
     "zsh"
   ];
 
