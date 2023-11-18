@@ -18,9 +18,11 @@ min_version: 0.8.4
 name: Fleek Configuration
 overlays: {}
 packages:
+    - abduco
     - bat
     - btop
     - delta
+    - dvtm
     - eza
     - fzf
     - gh
@@ -36,7 +38,6 @@ packages:
     - ripgrep
     - speedtest-cli
     - starship
-    - tmux
     - tree
     - wget
     - yt-dlp
