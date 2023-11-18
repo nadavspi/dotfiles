@@ -25,12 +25,15 @@
     pkgs.delta
     pkgs.eza
     pkgs.fzf
+    pkgs.gh
     pkgs.gnumake
     pkgs.just
     pkgs.lazygit
     pkgs.lf
     pkgs.ncdu
     pkgs.ncurses
+    pkgs.neovim
+    pkgs.pistol
     pkgs.python3
     pkgs.ripgrep
     pkgs.speedtest-cli
@@ -41,7 +44,6 @@
     pkgs.yt-dlp
     pkgs.zoxide
     pkgs.zstd
-    pkgs.neovim
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
