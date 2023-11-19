@@ -308,3 +308,5 @@ default_layout "compact"
 // Default: true
 //
 // styled_underlines false
+
+theme "catppuccin-mocha" 
