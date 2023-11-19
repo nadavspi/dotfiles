@@ -22,4 +22,5 @@ update-remote:
   git co -b main
   git remote rm origin
   git remote add origin houston:/srv/git/dotfiles.git
+  git branch --set-upstream-to=origin/main main
   git pull origin main --rebase --autostash
