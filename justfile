@@ -15,3 +15,11 @@ apply:
   cd ~/src/dotfiles
   nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
 
+update-remote:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  cd ~/src/dotfiles
+  git co -b main
+  git remote rm origin
+  git remote add origin houston:/srv/git/dotfiles.git
+  git pull origin main --rebase --autostash
