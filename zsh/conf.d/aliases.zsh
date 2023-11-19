@@ -32,3 +32,13 @@ alias -g F='| fzf --reverse'
 alias cp-epub="mv -v ~/Downloads/*.epub /mnt/nfs/data/watch/books/"
 
 alias dup="sudo zypper dup"
+
+function remote-nix-install () {
+  if [[ $# -lt 1 ]]
+  then
+    echo "Usage: remote-nix-install <hostname>"
+    return 1
+  fi
+  command="curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm"
+  ssh $1 $command
+}
