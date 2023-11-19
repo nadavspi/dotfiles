@@ -1,6 +1,5 @@
 { config, pkgs, misc, ... }: {
   imports = [
-    ./tmux.nix
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +25,6 @@
     ripgrep
     speedtest-cli
     starship
-    tmux
     tree
     wget
     yt-dlp

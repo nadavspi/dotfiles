@@ -15,5 +15,6 @@ function src_confd {
     src_confd $dir
   done
 }
+fpath+="${ZDOTDIR}/completion.d"
 
 eval "$(starship init zsh)"
