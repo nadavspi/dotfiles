@@ -51,7 +51,10 @@
 	required = true
 [rebase]
   autosquash = true
+  autoStash = true
 [init]
 	defaultBranch = main
 [safe]
 	directory = /mnt/nfs/docker/borgmatic
+[pull]
+	rebase = true
