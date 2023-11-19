@@ -8,12 +8,11 @@ alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
 alias s='kitty +kitten ssh'
-# tmux
-alias ta='tmux attach -t'
-alias ts='tmux new-session -s'
-alias tl='tmux list-sessions'
 
-alias t='task'
+alias zl=zellij
+alias ta='zellij attach'
+alias ts='zellij -s'
+alias tl='zellij list-sessions'
 
 # directory navigation
 alias ..='cd ..'
