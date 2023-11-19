@@ -7,3 +7,9 @@ apply:
   cd ~/src/dotfiles
   nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
 
+latest:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  cd ~/src/dotfiles/
+  git pull --autostash
+  nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
