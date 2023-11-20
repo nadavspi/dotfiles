@@ -1,0 +1,18 @@
+layout {
+  cwd "$HOME/src/dotfiles"
+  tab_template name="tab-with-bar" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+  }
+  tab-with-bar name="edit" focus=true {
+    pane 
+    floating_panes {
+      pane command="just" {
+        start_suspended true 
+      }
+    }
+  }
+  tab-with-bar name="shell"
+}
