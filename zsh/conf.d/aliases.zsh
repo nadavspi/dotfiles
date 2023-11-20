@@ -7,7 +7,7 @@ alias ls=eza
 alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
-alias s='kitty +kitten ssh'
+alias s='ssh'
 
 alias zl=zellij
 alias ta='zellij attach'
