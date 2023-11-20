@@ -84,6 +84,7 @@
         extraSpecialArgs = { inherit inputs; }; 
         modules = [
           ./home-manager
+          ./home-manager/mac.nix
           { 
             home = rec {
               username = "nadavspi";
