@@ -33,4 +33,8 @@ in {
     filenames = homeFiles;
     transFilename = file: ".${file}";
   };
+
+  home.packages = with pkgs; [
+    picom-allusive
+  ];
 }
