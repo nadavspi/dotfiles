@@ -72,6 +72,9 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		filter  = awful.widget.tasklist.filter.focused,
 	}
 
+	local systray = wibox.widget.systray()
+	systray:set_base_size(40)
+
 	-- Create the wibox
 	s.mywibox = awful.wibar {
 		position = "bottom",
@@ -87,7 +90,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{
 				layout = wibox.layout.fixed.horizontal,
 				clock,
-				wibox.widget.systray(),
+				wibox.container.margin(
+					systray,
+					10, 10
+				),
 			},
 		}
 	}

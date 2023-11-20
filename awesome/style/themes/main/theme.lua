@@ -51,8 +51,8 @@ end
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = 15
-theme.menu_width  = 100
+theme.menu_height = 50
+theme.menu_width  = 200
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -62,6 +62,7 @@ theme.menu_width  = 100
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+theme.systray_icon_spacing = 5
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
