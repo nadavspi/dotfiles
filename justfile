@@ -1,5 +1,6 @@
-USER := env_var('USER')
-HOST := env_var('HOSTNAME')
+USER := env_var('USER') 
+HOST := `uname -n`
+
 # Sync dotfiles and apply home manager config
 latest:
   #!/usr/bin/env bash
