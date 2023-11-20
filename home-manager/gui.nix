@@ -14,6 +14,7 @@ let
 
   configFiles = [ 
     "awesome"
+    "fcitx5"
     "kitty"
     "mpv"
     "picom"
