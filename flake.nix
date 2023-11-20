@@ -99,6 +99,27 @@
 
         ];
       };
+
+      "spiegeln@C02DP0G0MD6V" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-darwin; 
+        extraSpecialArgs = { inherit inputs; }; 
+        modules = [
+          ./home-manager
+          { 
+            home = rec {
+              username = "spiegeln";
+              homeDirectory = "/Users/${username}";
+              packages = [
+                fleek.packages.x86_64-darwin.default
+              ];
+            };
+          }
+          ({
+           nixpkgs.overlays = [];
+          })
+
+        ];
+      };
       
     };
   };
