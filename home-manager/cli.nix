@@ -1,8 +1,6 @@
-{ pkgs, config, misc, ... }:
+{ pkgs, dotfiles, config, misc, ... }:
 
 let 
-  dotfiles = "/home/nadavspi/src/dotfiles";
-
   link = config.lib.file.mkOutOfStoreSymlink;
   prepareLinks = { 
     filenames, 

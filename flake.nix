@@ -13,7 +13,10 @@
     
       "nadavspi@stuttgart.nadav.is" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; }; 
+        extraSpecialArgs = { 
+          inherit inputs;
+          dotfiles = "/home/nadavspi/src/dotfiles";
+        }; 
         modules = [
           ./home-manager
           ./home-manager/gui.nix 
@@ -32,7 +35,10 @@
 
       "nadavspi@shanghai" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; }; 
+        extraSpecialArgs = { 
+          inherit inputs;
+          dotfiles = "/home/nadavspi/src/dotfiles";
+        }; 
         modules = [
           ./home-manager
           { 
@@ -69,7 +75,10 @@
       
       "nadavspi@mac-mini-m2.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin; 
-        extraSpecialArgs = { inherit inputs; }; 
+        extraSpecialArgs = { 
+          inherit inputs;
+          dotfiles = "/Users/nadavspi/src/dotfiles";
+        }; 
         modules = [
           ./home-manager
           ./home-manager/mac.nix
@@ -88,7 +97,10 @@
 
       "spiegeln@C02DP0G0MD6V" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-darwin; 
-        extraSpecialArgs = { inherit inputs; }; 
+        extraSpecialArgs = { 
+          inherit inputs;
+          dotfiles = "/Users/spiegeln/src/dotfiles";
+        }; 
         modules = [
           ./home-manager
           { 
