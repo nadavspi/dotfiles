@@ -24,7 +24,6 @@ let
   homeFiles = [
     "gitconfig"
     "gitignore"
-    "justfile"
     "zshenv"
   ];
 

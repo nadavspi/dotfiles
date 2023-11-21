@@ -20,8 +20,8 @@ update-remote:
   #!/usr/bin/env bash
   set -euo pipefail
   cd ~/src/dotfiles
-  git co -b main
+  git checkout -b main
   git remote rm origin
-  git remote add origin houston:/srv/git/dotfiles.git
+  git remote add origin houston.nadav.is:/srv/git/dotfiles.git
   git branch --set-upstream-to=origin/main main
   git pull origin main --rebase --autostash
