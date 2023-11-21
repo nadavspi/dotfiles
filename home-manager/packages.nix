@@ -7,7 +7,6 @@
     bat
     btop
     delta
-    direnv
     eza
     fzf
     gh
@@ -19,7 +18,6 @@
     ncdu
     ncurses
     neovim
-    nix-direnv
     pistol
     python3
     ripgrep
@@ -34,4 +32,8 @@
   ];
   fonts.fontconfig.enable = true; 
   programs.dircolors.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;  
+  };
 }
