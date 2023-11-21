@@ -308,5 +308,5 @@ default_layout "default"
 // Default: true
 //
 // styled_underlines false
-
+session_serialization false
 theme "catppuccin-mocha" 
