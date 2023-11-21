@@ -7,6 +7,8 @@
     bat
     btop
     delta
+    direnv
+    dragon
     eza
     fzf
     gh
