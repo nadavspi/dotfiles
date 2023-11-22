@@ -15,7 +15,6 @@ local commands = {
 	"dbus-update-activation-environment --all",
 	"/usr/libexec/polkit-gnome-authentication-agent-1 &",
 	"gnome-keyring-daemon --start --components=secrets",
-	"picom --experimental-backends &",
 	"blueman-applet &",
 	"nm-applet &",
 	"fcitx5 &",
