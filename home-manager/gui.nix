@@ -10,7 +10,13 @@ let
       value = { source = link("${dotfiles}/${filename}"); };
       }) filenames);
 
-  # dotfiles, not packages
+  packages = with pkgs; [
+    i3lock
+    lxappearance
+    scrot
+    xautolock
+  ];
+
   configFiles = [ 
     "awesome"
     "fcitx5"
@@ -22,11 +28,11 @@ let
   ];
 
   homeFiles = [
+    "themes"
   ];
 
 in {
-  home.packages = with pkgs; [
-  ];
+  home.packages = packages;
 
   xdg.configFile = prepareLinks { 
     filenames = configFiles;
