@@ -16,10 +16,18 @@ client.connect_signal("request::default_keybindings", function()
 		awful.key({ modkey, mod.super }, "Return", function(c)
 			c:swap(awful.client.getmaster())
 		end),
+		awful.key({ modkey, "Shift" }, "m",
+		function (c)
+			c.maximized = false
+			c.maximized_vertical = false
+			c.maximized_horizontal = false
+			c:raise()
+		end),
 	})
 end)
 
 awful.keyboard.append_global_keybindings({
+
 	awful.key({ modkey }, l.down, function()
 		awful.client.focus.bydirection("down")
 		if client.focus then
