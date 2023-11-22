@@ -46,3 +46,5 @@ function remote-nix-install () {
   command="curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm"
   ssh $1 $command
 }
+
+alias ros="rpm-ostree"

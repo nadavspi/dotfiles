@@ -10,6 +10,7 @@ let
       value = { source = link("${dotfiles}/${filename}"); };
       }) filenames);
 
+  # dotfiles, not packages
   configFiles = [ 
     "awesome"
     "fcitx5"
@@ -24,6 +25,9 @@ let
   ];
 
 in {
+  home.packages = with pkgs; [
+  ];
+
   xdg.configFile = prepareLinks { 
     filenames = configFiles;
   };
@@ -32,8 +36,4 @@ in {
     filenames = homeFiles;
     transFilename = file: ".${file}";
   };
-
-  home.packages = with pkgs; [
-    picom-allusive
-  ];
 }
