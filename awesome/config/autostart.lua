@@ -21,6 +21,7 @@ local commands = {
 	"volumeicon &",
 	"xfce4-power-manager &",
 	"xiccd &",
+	"1password --silent &",
 }
 
 for _, command in ipairs(commands) do
