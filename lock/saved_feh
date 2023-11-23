@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+: ${XSECURELOCK_IMAGE_PATH:=/usr/share/wallpapers}
+
+feh --auto-zoom --image-bg '#a0785a' --window-id="${XSCREENSAVER_WINDOW}" -F "${XSECURELOCK_IMAGE_PATH}"
