@@ -22,6 +22,7 @@ local commands = {
 	"xfce4-power-manager &",
 	"xiccd &",
 	"1password --silent &",
+	"~/src/dotfiles/lock/init.sh &",
 }
 
 for _, command in ipairs(commands) do

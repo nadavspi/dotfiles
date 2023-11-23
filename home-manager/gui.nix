@@ -11,10 +11,10 @@ let
       }) filenames);
 
   packages = with pkgs; [
-    i3lock
     lxappearance
-    scrot
-    xautolock
+    xorg.xset
+    xsecurelock
+    xss-lock
   ];
 
   configFiles = [ 

@@ -5,7 +5,7 @@ local wibox = require("wibox")
 -- {{{ Wallpaper
 screen.connect_signal("request::wallpaper", function(s)
 	local image = gears.filesystem.get_random_file_from_dir(
-		"/mnt/docs/Archive/10-19 Personal documents/16 Collections/16.03 Wallpapers/art",
+		"/usr/share/wallpapers",
 		{".jpg", ".png", ".svg"},
 		true
 	)
