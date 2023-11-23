@@ -13,6 +13,10 @@ alias zl=zellij
 alias ta='zellij attach'
 alias ts='zellij -s'
 alias tl='zellij list-sessions'
+function zr () { zellij run --name "$*" -- zsh -ic "$*";}
+function zrf () { zellij run --name "$*" --floating -- zsh -ic "$*";}
+function ze () { zellij edit "$*";}
+function zef () { zellij edit --floating "$*";}
 
 # directory navigation
 alias ..='cd ..'
