@@ -19,7 +19,6 @@ let
 
   configFiles = [ 
     "awesome"
-    "fcitx5"
     "kitty"
     "mpv"
     "picom"
@@ -32,6 +31,9 @@ let
   ];
 
 in {
+  imports = [
+  ];
+
   home.packages = packages;
 
   xdg.configFile = prepareLinks { 
