@@ -44,7 +44,7 @@ theme.taglist_fg_occupied = c.orange
 theme.tasklist_align = "center"
 theme.tasklist_disable_icon = true
 
-if os.getenv("HOSTNAME") ~= "shanghai" then
+if os.getenv("HOSTNAME") ~= "shanghai.nadav.is" then
     theme.useless_gap = 10
 end
 

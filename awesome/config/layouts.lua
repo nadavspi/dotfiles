@@ -4,7 +4,7 @@ local lain = require("lain")
 local layout = require("vars.layout")
 
 function getLayouts(keyboard_layout)
-	if os.getenv("HOSTNAME") == "shanghai" then
+	if os.getenv("HOSTNAME") == "shanghai.nadav.is" then
 		return {
 			awful.layout.suit.tile.left,
 			awful.layout.suit.max,

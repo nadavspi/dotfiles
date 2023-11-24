@@ -33,7 +33,7 @@
         ];
       };
 
-      "nadavspi@shanghai" = home-manager.lib.homeManagerConfiguration {
+      "nadavspi@shanghai.nadav.is" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { 
           inherit inputs;
@@ -41,6 +41,7 @@
         }; 
         modules = [
           ./home-manager
+          ./home-manager/gui.nix 
           { 
             home = rec {
               username = "nadavspi";
