@@ -24,8 +24,11 @@ return {
 			require("lspconfig").nil_ls.setup({})
 		end,
 	},
-	{ "neovim/nvim-lspconfig" },
+	{ "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim" } },
 	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/nvim-cmp", dependencies = {
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
+	} },
 	{ "onsails/lspkind-nvim" },
 }

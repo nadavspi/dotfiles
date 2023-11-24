@@ -2,6 +2,7 @@ return {
 	{ "chriskempson/vim-tomorrow-theme" },
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
+	{ "tpope/vim-sleuth" },
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
@@ -20,8 +21,8 @@ return {
 		"NeogitOrg/neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
 			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua",
 		},
 		config = function()
 			local neogit = require("neogit")
@@ -41,8 +42,7 @@ return {
 		"gnikdroy/projections.nvim",
 		branch = "pre_release",
 		dependencies = {
-			"ibhagwan/fzf-lua",
-			"nyngwang/fzf-lua-projections.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			require("projections").setup({
@@ -50,22 +50,26 @@ return {
 					{ "~/src", {} },
 				},
 			})
-			vim.keymap.set("n", "<Leader>cp", function()
-				require("fzf-lua-p").projects()
-			end, NOREF_NOERR_TRUNC)
+			require("telescope").load_extension("projections")
+			vim.keymap.set("n", "<leader>fp", function()
+				vim.cmd("Telescope projections")
+			end)
 
+			-- Autostore session on VimExit
 			local Session = require("projections.session")
 			vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
 				callback = function()
 					Session.store(vim.loop.cwd())
 				end,
 			})
+
+			-- Switch to project if vim was started in a project dir
+			local switcher = require("projections.switcher")
 			vim.api.nvim_create_autocmd({ "VimEnter" }, {
 				callback = function()
-					if vim.fn.argc() ~= 0 then
-						return
+					if vim.fn.argc() == 0 then
+						switcher.switch(vim.loop.cwd())
 					end
-					Session.restore(vim.loop.cwd())
 				end,
 			})
 		end,
@@ -158,6 +162,11 @@ return {
 		end,
 	},
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
+	{
 		"vimwiki/vimwiki",
 		lazy = false,
 		init = function()
@@ -172,11 +181,7 @@ return {
 			vim.g.vimwiki_global_ext = 0
 			vim.g.vimwiki_conceallevel = 0
 		end,
-		dependencies = {
-			"ibhagwan/fzf-lua",
-		},
 	},
-	{ "tools-life/taskwiki", dependencies = { "vimwiki/vimwiki" } },
 	{
 		"kdheepak/lazygit.nvim",
 		keys = { "<leader>gS" },
@@ -207,30 +212,6 @@ return {
 			vim.keymap.set("n", "<leader>-", "<Cmd>Lf<CR>")
 		end,
 		dependencies = { "toggleterm.nvim" },
-	},
-	{
-		"ibhagwan/fzf-lua",
-		-- optional for icon support
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			-- calling `setup` is optional for customization
-			require("fzf-lua").setup({})
-
-			vim.keymap.set("n", "<leader>b", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
-			vim.keymap.set("n", "<leader>gg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
-			vim.keymap.set("n", "<leader>gG", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
-
-			local function files_git_or_cwd(opts)
-				if not opts then
-					opts = {}
-				end
-				opts.cwd = require("fzf-lua.path").git_root(vim.loop.cwd(), true) or vim.loop.cwd()
-				opts.fzf_cli_args = ('--header="cwd = %s"'):format(vim.fn.shellescape(opts.cwd))
-				require("fzf-lua").files(opts)
-			end
-			vim.api.nvim_create_user_command("Files", files_git_or_cwd, {})
-			vim.keymap.set("n", "<c-P>", "<cmd>Files<CR>", { silent = true })
-		end,
 	},
 	{
 		"ggandor/leap.nvim",

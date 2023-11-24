@@ -15,13 +15,14 @@ local commands = {
 	"dbus-update-activation-environment --all",
 	"/usr/libexec/polkit-gnome-authentication-agent-1 &",
 	"gnome-keyring-daemon --start --components=secrets",
-	"picom --experimental-backends &",
 	"blueman-applet &",
 	"nm-applet &",
-	"fcitx5 &",
+	"flatpak run org.fcitx.Fcitx5 &",
 	"volumeicon &",
 	"xfce4-power-manager &",
 	"xiccd &",
+	"1password --silent &",
+	"~/src/dotfiles/lock/init.sh &",
 }
 
 for _, command in ipairs(commands) do

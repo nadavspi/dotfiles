@@ -1,1 +1,1 @@
-alias pi-edit="vim /mnt/nfs/appdata/pihole/pihole/custom.list"
+alias pi-edit="vim /mnt/appdata/pihole/pihole/custom.list"

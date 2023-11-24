@@ -9,7 +9,10 @@
     direnv
     dragon
     eza
+    fd
     fzf
+    fzy
+    gcc
     gh
     git
     gnumake
@@ -23,7 +26,6 @@
     python3
     ripgrep
     speedtest-cli
-    starship
     tree
     wget
     yt-dlp
@@ -31,9 +33,11 @@
     zoxide
     zstd
 
-    nil
     lua-language-server
+    nil
     nixfmt
+    stylua
+    tree-sitter
   ];
   fonts.fontconfig.enable = true;
   programs.dircolors.enable = true;

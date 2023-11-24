@@ -13,7 +13,6 @@ let
   configFiles = [
     "lf"
     "nvim"
-    "starship.toml"
     "zellij"
     "zsh"
     "fcitx5" # for now

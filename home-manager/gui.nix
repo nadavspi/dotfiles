@@ -10,9 +10,15 @@ let
       value = { source = link("${dotfiles}/${filename}"); };
       }) filenames);
 
+  packages = with pkgs; [
+    lxappearance
+    xorg.xset
+    xsecurelock
+    xss-lock
+  ];
+
   configFiles = [ 
     "awesome"
-    "fcitx5"
     "kitty"
     "mpv"
     "picom"
@@ -21,9 +27,15 @@ let
   ];
 
   homeFiles = [
+    "themes"
   ];
 
 in {
+  imports = [
+  ];
+
+  home.packages = packages;
+
   xdg.configFile = prepareLinks { 
     filenames = configFiles;
   };
@@ -32,8 +44,4 @@ in {
     filenames = homeFiles;
     transFilename = file: ".${file}";
   };
-
-  home.packages = with pkgs; [
-    picom-allusive
-  ];
 }

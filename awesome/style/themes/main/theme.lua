@@ -10,7 +10,7 @@ local c = {
 
 theme = {}
 
-theme.font          = "Noto Sans 16"
+theme.font          = "Hack Nerd 16"
 
 theme.bg_normal     = c.darkpurple
 theme.bg_focus      = c.purple
