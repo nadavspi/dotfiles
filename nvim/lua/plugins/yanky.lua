@@ -21,7 +21,7 @@ return {
 			vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
 
 			vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-			vim.keymap.set("n", "<A-n>", "<Plug>(YankyCycleBackward)")
+			vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 		end,
 	},
 	{
