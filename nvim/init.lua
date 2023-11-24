@@ -46,6 +46,7 @@ lazy.opts = {}
 
 lazy.setup({
 	{ "folke/tokyonight.nvim" },
+  { "chriskempson/vim-tomorrow-theme" },
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
 	{
@@ -452,7 +453,7 @@ lazy.setup({
 
 -- aesthetics
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("Tomorrow-Night-Eighties")
 require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
