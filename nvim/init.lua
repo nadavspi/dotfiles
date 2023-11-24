@@ -45,8 +45,7 @@ lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 lazy.opts = {}
 
 lazy.setup({
-	{ "folke/tokyonight.nvim" },
-  { "chriskempson/vim-tomorrow-theme" },
+	{ "chriskempson/vim-tomorrow-theme" },
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
 	{
@@ -118,15 +117,6 @@ lazy.setup({
 		end,
 	},
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {},
-	},
-	{
 		"tzachar/highlight-undo.nvim",
 		opts = {
 			duration = 300,
@@ -156,7 +146,9 @@ lazy.setup({
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" },
+				ensure_installed = { 
+          "lua_ls",
+        },
 			})
 		end,
 		dependencies = {
@@ -294,6 +286,9 @@ lazy.setup({
 				logging = true,
 				log_level = vim.log.levels.WARN,
 				filetype = {
+					nix = {
+						require("formatter.filetypes.nix").nixfmt,
+					},
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 					},
