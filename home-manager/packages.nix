@@ -26,7 +26,6 @@
     python3
     ripgrep
     speedtest-cli
-    starship
     tree
     wget
     yt-dlp
