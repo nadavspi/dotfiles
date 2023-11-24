@@ -24,6 +24,7 @@ update-remote:
   git remote rm origin
   git remote add origin houston.nadav.is:/srv/git/dotfiles.git
   git branch --set-upstream-to=origin/main main
+  git remote add origin houston.nadav.is:/srv/git/dotfiles.git
   git pull origin main --rebase --autostash
 
 install-1password-cli:
