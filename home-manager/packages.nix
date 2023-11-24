@@ -1,6 +1,5 @@
 { config, pkgs, misc, ... }: {
-  imports = [
-  ];
+  imports = [ ];
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
@@ -31,11 +30,17 @@
     zellij
     zoxide
     zstd
+
+    nil
+    lua-language-server
+    nixfmt
   ];
-  fonts.fontconfig.enable = true; 
+  fonts.fontconfig.enable = true;
   programs.dircolors.enable = true;
   programs.direnv = {
     enable = true;
-    nix-direnv.enable = true;  
+    nix-direnv.enable = true;
   };
+
+
 }
