@@ -8,7 +8,7 @@ awful.keyboard.append_global_keybindings({
 	end),
 
 	awful.key({ modkey }, "b", function ()
-		awful.spawn("firefox")
+		awful.spawn("flatpak run org.mozilla.firefox")
 	end),
 
 	awful.key({ mod.control }, "space", function ()

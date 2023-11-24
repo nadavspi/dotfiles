@@ -17,7 +17,7 @@ local commands = {
 	"gnome-keyring-daemon --start --components=secrets",
 	"blueman-applet &",
 	"nm-applet &",
-	"fcitx5 &",
+	"flatpak run org.fcitx.Fcitx5 &",
 	"volumeicon &",
 	"xfce4-power-manager &",
 	"xiccd &",
