@@ -12,9 +12,16 @@ return {
 				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)
 
-			require("lspconfig").lua_ls.setup({})
+			require("lspconfig").lua_ls.setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
 			require("lspconfig").nil_ls.setup({})
-      require("lspconfig")
 		end,
 	},
 	{ "neovim/nvim-lspconfig" },

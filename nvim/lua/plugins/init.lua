@@ -125,7 +125,6 @@ return {
 	{
 		"mhartington/formatter.nvim",
 		config = function()
-			local util = require("formatter.util")
 			require("formatter").setup({
 				logging = true,
 				log_level = vim.log.levels.WARN,
@@ -221,7 +220,7 @@ return {
 			vim.keymap.set("n", "<leader>gg", "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
 			vim.keymap.set("n", "<leader>gG", "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
 
-			function files_git_or_cwd(opts)
+			local function files_git_or_cwd(opts)
 				if not opts then
 					opts = {}
 				end

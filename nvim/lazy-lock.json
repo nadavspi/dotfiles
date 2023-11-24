@@ -3,6 +3,7 @@
   "LuaSnip": { "branch": "master", "commit": "cab667e2674881001a86a7478fff7dc7791c63f5" },
   "autosave.nvim": { "branch": "main", "commit": "49f6aa665d9119dde8f6e770acf753d145dd965e" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "cmp_yanky": { "branch": "main", "commit": "c3d089186ccead26eba01023502f3eeadd7a92d2" },
   "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
   "editorconfig.nvim": { "branch": "master", "commit": "5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf" },
   "formatter.nvim": { "branch": "master", "commit": "91651e6afaf6f73b0ffb8b433c06cd4e06f90403" },
@@ -35,5 +36,6 @@
   "vim-tomorrow-theme": { "branch": "master", "commit": "46994f3a4d4574ce0d48c26a3bc1e528b8092c93" },
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   "vimwiki": { "branch": "dev", "commit": "0bb1b4945bb205a076a35b66174e5d66be8eaafe" },
+  "yanky.nvim": { "branch": "main", "commit": "631b44d4129b04f9b3e87e4a29627504d350eba4" },
   "zoxide.vim": { "branch": "master", "commit": "b1e70b6fc1682a83929aee63680d2b43456fe9a5" }
 }
