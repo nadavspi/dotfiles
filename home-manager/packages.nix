@@ -9,7 +9,10 @@
     direnv
     dragon
     eza
+    fd
     fzf
+    fzy
+    gcc
     gh
     git
     gnumake
@@ -31,9 +34,11 @@
     zoxide
     zstd
 
-    nil
     lua-language-server
+    nil
     nixfmt
+    stylua
+    tree-sitter
   ];
   fonts.fontconfig.enable = true;
   programs.dircolors.enable = true;

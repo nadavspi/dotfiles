@@ -2,6 +2,7 @@ return {
 	{ "chriskempson/vim-tomorrow-theme" },
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
+	{ "tpope/vim-sleuth" },
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
@@ -157,6 +158,11 @@ return {
 			vim.keymap.set("n", "<leader>f", "<cmd>FormatWrite<cr>")
 		end,
 	},
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
+  },
 	{
 		"vimwiki/vimwiki",
 		lazy = false,
