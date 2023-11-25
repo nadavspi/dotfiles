@@ -34,6 +34,7 @@ let
 
 in {
   imports = [
+    modules/mopidy.nix
   ];
 
   home.packages = packages;
