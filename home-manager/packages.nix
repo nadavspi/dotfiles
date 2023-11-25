@@ -28,6 +28,7 @@
     speedtest-cli
     tree
     wget
+    xclip
     yt-dlp
     zellij
     zoxide
