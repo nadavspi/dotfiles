@@ -22,6 +22,7 @@
     ncdu
     ncurses
     neovim
+    pipx
     pistol
     python3
     ripgrep
