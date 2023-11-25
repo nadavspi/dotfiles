@@ -11,6 +11,7 @@ let
       }) filenames);
 
   packages = with pkgs; [
+    dex
     lxappearance
     xorg.xset
     xsecurelock
@@ -18,6 +19,7 @@ let
   ];
 
   configFiles = [ 
+    "autostart"
     "awesome"
     "kitty"
     "mpv"
