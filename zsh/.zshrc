@@ -9,16 +9,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# where do you want to store your plugins?
 ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
-
-# get zsh_unplugged and store it with your other plugins
 if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
   git clone --quiet https://github.com/mattmc3/zsh_unplugged $ZPLUGINDIR/zsh_unplugged
 fi
 source $ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh
 
-# make list of the Zsh plugins you use
 repos=(
   romkatv/powerlevel10k
   marlonrichert/zsh-autocomplete
@@ -27,8 +23,6 @@ repos=(
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
 )
-
-# now load your plugins
 plugin-load $repos
 
 function src_confd {
