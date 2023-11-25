@@ -3,17 +3,20 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		-- {
+		-- 	"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	build = "make",
+		-- 	cond = function()
+		-- 		return vim.fn.executable("make") == 1
+		-- 	end,
+		-- },
 		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			cond = function()
-				return vim.fn.executable("make") == 1
-			end,
+			"nvim-telescope/telescope-fzy-native.nvim",
 		},
 	},
 	config = function()
-		require("telescope").load_extension("fzf")
-
+		-- require("telescope").load_extension("fzf")
+		require("telescope").load_extension("fzy_native")
 		local function find_git_root()
 			-- Use the current buffer's path as the starting point for the git search
 			local current_file = vim.api.nvim_buf_get_name(0)
