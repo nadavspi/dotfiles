@@ -8,8 +8,16 @@ return {
 		},
 	},
 	config = function()
-		local builtin = require("telescope.builtin")
+		require("telescope").setup({
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
+			},
+		})
 		require("telescope").load_extension("fzy_native")
+
+		local builtin = require("telescope.builtin")
 		local function git_root_or_cwd()
 			-- Use the current buffer's path as the starting point for the git search
 			local current_file = vim.api.nvim_buf_get_name(0)
@@ -46,8 +54,8 @@ return {
 		end
 		local function find_files()
 			require("telescope.builtin").find_files({
-					cwd = git_root_or_cwd(),
-				})
+				cwd = git_root_or_cwd(),
+			})
 		end
 
 		vim.keymap.set("n", "<leader>ff", find_files, {})
