@@ -46,7 +46,7 @@ lazy.setup("plugins")
 
 -- aesthetics
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("Tomorrow-Night-Eighties")
+vim.cmd.colorscheme("tokyonight-moon")
 require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },

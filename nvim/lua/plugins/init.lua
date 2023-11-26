@@ -1,5 +1,11 @@
 return {
 	{ "chriskempson/vim-tomorrow-theme" },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 	{ "nvim-lualine/lualine.nvim", lazy = true },
 	{ "tpope/vim-repeat" },
 	{ "tpope/vim-sleuth" },
