@@ -22,6 +22,7 @@ repos=(
   zsh-users/zaw
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
+  aperezdc/zsh-fzy
 )
 plugin-load $repos
 
