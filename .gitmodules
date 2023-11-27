@@ -16,3 +16,5 @@
 [submodule "awesome/lain"]
 	path = awesome/lain
 	url = https://github.com/lcpz/lain.git
+[submodule "subs2srs"]
+	url = git@github.com:nadavspi/mpvacious.git
