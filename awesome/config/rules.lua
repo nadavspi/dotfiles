@@ -47,6 +47,10 @@ ruled.client.append_rule({
 	properties = { tag = "discord" },
 })
 ruled.client.append_rule({
+	rule = { class = "kitty" },
+	properties = { tag = "kitty" },
+})
+ruled.client.append_rule({
 	rule = { class = "obsidian" },
 	properties = { tag = "notes" },
 })
