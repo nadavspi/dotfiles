@@ -13,8 +13,8 @@ map <enter> :open
 map gnf push $touch<space>
 map gnd push $mkdir<space>
 
-cmd fzf_jump ${{
-    res="$(find . | fzf --reverse --header='Jump to location')"
+cmd control_p ${{
+    res="$(fd . | fzy -l 25 --prompt='jump to >> ')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -25,7 +25,7 @@ cmd fzf_jump ${{
         lf -remote "send $id $cmd \"$res\""
     fi
 }}
-map <c-p> :fzf_jump
+map <c-p> :control_p
 
 cmd fzf_search ${{
     RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
