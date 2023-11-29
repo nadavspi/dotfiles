@@ -7,8 +7,6 @@
 }: {
   imports = [
     ./cli.nix
-    ./packages.nix
-    ./shell.nix
   ];
 
   nixpkgs = {
