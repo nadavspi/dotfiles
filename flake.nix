@@ -141,7 +141,7 @@
       nixosConfigurations = {
         prague = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs overlays; };
-          modules = [ ./nixos/configuration.nix ];
+          modules = [ ./nixos/hosts/prague ];
         };
       };
     };

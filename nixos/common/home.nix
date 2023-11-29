@@ -6,6 +6,6 @@
       inherit inputs outputs;
       dotfiles = "/home/nadavspi/src/dotfiles";
     };
-    users = { nadavspi = import ../home-manager; };
+    users = { nadavspi = import ../../home-manager; };
   };
 }
