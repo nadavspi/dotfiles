@@ -25,6 +25,7 @@ let
     "mpv"
     "picom"
     "polybar"
+    "redshift.conf"
     "rofi"
   ];
 
