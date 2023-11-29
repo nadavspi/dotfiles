@@ -39,3 +39,6 @@ install-1password-cli:
         sudo groupadd -f onepassword-cli && \
         sudo chgrp onepassword-cli /usr/local/bin/op && \
         sudo chmod g+s /usr/local/bin/op
+
+cachix:
+  cachix use nix-community

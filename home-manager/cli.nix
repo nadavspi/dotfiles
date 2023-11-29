@@ -12,6 +12,7 @@ let
     (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
     bat
     btop
+    cachix
     delta
     direnv
     dragon
