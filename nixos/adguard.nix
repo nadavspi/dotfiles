@@ -30,6 +30,22 @@ in {
               answer = "192.168.1.202";
             }];
           };
+          filters = [
+            {
+              enabled = true;
+              name = "oisd big";
+              url = "https://big.oisd.nl/";
+              ID = 1;
+            }
+            {
+              enabled = true;
+              url =
+                "https://anti-ad.net/easylist.txt";
+              ID = 2;
+              name = "CHN anti-ad";
+            }
+          ];
+          schema_version = 24;
         };
       };
     };
