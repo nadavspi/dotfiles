@@ -1,8 +1,10 @@
 { inputs, overlays, lib, config, pkgs, ... }: {
   imports = [ 
     ./adguard.nix 
+    ./caddy.nix 
     ./hardware-configuration.nix 
     ./home.nix 
+    ./unbound.nix 
   ];
 
   nixpkgs = {

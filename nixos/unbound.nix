@@ -1,6 +1,15 @@
-{ inputs, outputs, ... }: {
+{ pkgs, inputs, outputs, ... }: {
   services.unbound = {
     enable = true;
-    settings = { server = { port = [ 5335 ]; }; };
+    enableRootTrustAnchor = true;
+    settings = {
+      server = {
+        port = [ 5335 ];
+        prefetch = true;
+        serve-expired = true;
+        serve-expired-ttl = 86400;
+        qname-minimisation = true;
+      };
+    };
   };
 }
