@@ -16,6 +16,9 @@ apply:
   cd ~/src/dotfiles
   nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
 
+nixos:
+  sudo nixos-rebuild switch --flake .#{{HOST}}
+
 update-remote:
   #!/usr/bin/env bash
   set -euo pipefail
