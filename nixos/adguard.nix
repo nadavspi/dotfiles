@@ -29,7 +29,7 @@ in {
         settings = {
           bind_port = adguardPort;
           dns = {
-            bind_hosts = [ "192.168.1.202" "192.168.1.200" ];
+            bind_hosts = [ "::1" "127.0.0.1" "192.168.1.202" "192.168.1.200" ];
             bootstrap_dns = [ "1.1.1.1" "94.140.14.14" "208.67.222.222" ];
             upstream_dns = [
               "127.0.0.1:5335"
@@ -38,10 +38,16 @@ in {
             ];
             all_servers = true;
             enable_dnssec = true;
-            rewrites = [{
-              domain = "prague.nadav.is";
-              answer = "192.168.1.202";
-            }];
+            rewrites = [
+              {
+                domain = "prague.nadav.is";
+                answer = "192.168.1.202";
+              }
+              {
+                domain = "houston.nadav.is";
+                answer = "192.168.1.22";
+              }
+            ];
           };
           filters = [
             {
