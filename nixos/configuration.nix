@@ -1,5 +1,9 @@
 { inputs, overlays, lib, config, pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ./home.nix ];
+  imports = [ 
+    ./adguard.nix 
+    ./hardware-configuration.nix 
+    ./home.nix 
+  ];
 
   nixpkgs = {
     overlays = overlays;
