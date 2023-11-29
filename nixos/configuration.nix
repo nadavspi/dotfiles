@@ -40,8 +40,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  programs.git.enable = true;
-
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -94,6 +92,8 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  security.sudo.wheelNeedsPassword = false;
+
   users.users.nadavspi = {
     isNormalUser = true;
     description = "nadavspi";
@@ -108,7 +108,7 @@
     enable = true;
     settings = {
       PermitRootLogin = "no";
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
     };
   };
 
