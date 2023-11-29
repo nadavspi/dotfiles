@@ -26,9 +26,10 @@
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;
+    trusted-users = [ "root" "nadavspi" ];
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "prague";
   networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;
@@ -47,41 +48,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
-  services.xserver = {
-    enable = true;
-    #	  displayManager.gdm = {
-    #		  enable = true;
-    #		  wayland = true;
-    #	  };
-  };
-
-  # services.xserver.desktopManager.mate.enable = true;
-
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  services.printing.enable = true;
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  services.xserver.libinput.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
