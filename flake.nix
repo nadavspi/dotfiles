@@ -139,7 +139,7 @@
 
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        prague = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs overlays; };
           modules = [ ./nixos/configuration.nix ];
         };
