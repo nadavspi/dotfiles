@@ -1,0 +1,12 @@
+account nadavspi@elitemail.org
+host smtp.fastmail.com
+port 465
+from nadavspi@elitemail.org
+user nadavspi@elitemail.org
+passwordeval "pass nadavspi@elitemail.org"
+auth on
+tls on
+tls_trust_file	/etc/ssl/certs/ca-certificates.crt
+logfile /home/nadavspi/.config/msmtp/msmtp.log
+tls_starttls off
+

@@ -1,6 +1,6 @@
-{ pkgs, dotfiles, config, misc, ... }:
-
-let 
+{ config, pkgs, misc, ... }:
+let
+  dotfiles = "/home/nadavspi/src/dotfiles";
   link = config.lib.file.mkOutOfStoreSymlink;
   prepareLinks = { 
     filenames, 
@@ -9,40 +9,25 @@ let
       name = transFilename(filename); 
       value = { source = link("${dotfiles}/${filename}"); };
       }) filenames);
-
   packages = with pkgs; [
-    dex
-    lxappearance
-    xorg.xset
-    xsecurelock
-    xss-lock
+    abook
+    cacert
+    isync
+    lynx
+    msmtp
+    mutt-wizard
+    neomutt
+    notmuch
+    pass
+    urlview
   ];
 
-  configFiles = [ 
-    "autostart"
-    "awesome"
-    "kitty"
-    "mpv"
-    "picom"
-    "polybar"
-    "redshift.conf"
-    "rofi"
-  ];
-
-  homeFiles = [
-    "themes"
-  ];
-
+  configFiles = [ "mutt" "msmtp" ];
+  homeFiles = [ "mbsyncrc" ];
 in {
-  imports = [
-    ./modules/mutt.nix
-  ];
-
   home.packages = packages;
 
-  xdg.configFile = prepareLinks { 
-    filenames = configFiles;
-  };
+  xdg.configFile = prepareLinks { filenames = configFiles; };
 
   home.file = prepareLinks {
     filenames = homeFiles;
