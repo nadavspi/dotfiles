@@ -46,6 +46,8 @@ let
     lua-language-server
     nil
     nixfmt
+    nodePackages.bash-language-server
+    rust-analyzer
     stylua
     tree-sitter
   ];
