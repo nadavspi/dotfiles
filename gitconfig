@@ -56,5 +56,6 @@
 	defaultBranch = main
 [safe]
 	directory = /mnt/nfs/docker/borgmatic
+	directory = /var/mnt/docker/borgmatic
 [pull]
 	rebase = true
