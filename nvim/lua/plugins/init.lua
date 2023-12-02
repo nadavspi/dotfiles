@@ -138,9 +138,13 @@ return {
 			require("formatter").setup({
 				logging = true,
 				log_level = vim.log.levels.WARN,
+				-- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
 				filetype = {
 					nix = {
 						require("formatter.filetypes.nix").nixfmt,
+					},
+					rust = {
+						require("formatter.filetypes.rust").rustfmt,
 					},
 					lua = {
 						require("formatter.filetypes.lua").stylua,

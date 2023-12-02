@@ -48,6 +48,7 @@ let
     nixfmt
     nodePackages.bash-language-server
     rust-analyzer
+    rustfmt
     stylua
     tree-sitter
   ];
