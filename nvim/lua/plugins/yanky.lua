@@ -24,14 +24,4 @@ return {
 			vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 		end,
 	},
-	{
-		"chrisgrieser/cmp_yanky",
-		config = function()
-			require("cmp").setup({
-				sources = {
-					{ name = "cmp_yanky" },
-				},
-			})
-		end,
-	},
 }

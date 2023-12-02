@@ -36,9 +36,9 @@ return {
 						vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 						vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 						vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-						vim.keymap.set("n", "<leader>f", function()
-							vim.lsp.buf.format({ async = true })
-						end, opts)
+						-- vim.keymap.set("n", "<leader>f", function()
+						-- 	vim.lsp.buf.format({ async = true })
+						-- end, opts)
 					end,
 				})
 			end)
@@ -59,10 +59,5 @@ return {
 		end,
 	},
 	{ "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim" } },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp", dependencies = {
-		"L3MON4D3/LuaSnip",
-		"saadparwaiz1/cmp_luasnip",
-	} },
-	{ "onsails/lspkind-nvim" },
+	{ "hrsh7th/cmp-nvim-lsp", dependencies = { "hrsh7th/nvim-cmp" } },
 }
