@@ -15,7 +15,7 @@ let
     cachix
     delta
     direnv
-    dragon
+    xdragon
     eza
     fd
     fzf
