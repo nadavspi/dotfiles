@@ -13,7 +13,7 @@ source /nix/store/ds22xrqs6y8xv12xlim2hjvdw90dlv4p-mutt-wizard-3.3.1/share/mutt-
 set spoolfile = +INBOX
 set postponed = +Drafts
 set trash = +Trash
-set record = +Sent
+set record = "+Sent Items"
 
 macro index o "<shell-escape>mw -y nadavspi@elitemail.org<enter>" "run mbsync to sync nadavspi@elitemail.org"
 macro index \eg "<enter-command>unset wait_key<enter><shell-escape>gpg --list-secret-keys; printf 'Enter email ID of user to publish: '; read eID; printf 'Enter fingerprint of GPG key to publish: '; read eFGPT; /nix/store/ds22xrqs6y8xv12xlim2hjvdw90dlv4p-mutt-wizard-3.3.1/libexec/gpg-wks-client --create \$eFGPT \$eID | msmtp --read-envelope-from --read-recipients -a nadavspi@elitemail.org<enter>"  "publish GPG key to WKS provider"

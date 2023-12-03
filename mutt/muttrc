@@ -1,4 +1,6 @@
 # vim: filetype=neomuttrc
 source /nix/store/ds22xrqs6y8xv12xlim2hjvdw90dlv4p-mutt-wizard-3.3.1/share/mutt-wizard/mutt-wizard.muttrc
+
+set use_threads=threads sort=last-date sort_aux=date
 source /home/nadavspi/.config/mutt/accounts/nadavspi@elitemail.org.muttrc
 macro index,pager i1 '<sync-mailbox><enter-command>source /home/nadavspi/.config/mutt/accounts/nadavspi@elitemail.org.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to nadavspi@elitemail.org"
