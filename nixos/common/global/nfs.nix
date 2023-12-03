@@ -15,5 +15,10 @@
       fsType = "nfs";
       options = ["x-systemd.automount" "noauto"];
     };
+    "/mnt/isos" = {
+      device = "192.168.1.77:/mnt/user/isos";
+      fsType = "nfs";
+      options = ["x-systemd.automount" "noauto"];
+    };
   };
 }

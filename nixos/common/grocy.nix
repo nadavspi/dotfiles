@@ -1,0 +1,5 @@
+{...}: {
+  programs.grocy = {
+    enable = true;
+  };
+}
