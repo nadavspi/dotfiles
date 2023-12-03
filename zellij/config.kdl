@@ -1,11 +1,7 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
     normal {
-        bind "Ctrl h" { MoveFocus "Left"; }
-        bind "Ctrl j" { MoveFocus "Down"; }
-        bind "Ctrl k" { MoveFocus "Up"; }
-        bind "Ctrl l" { MoveFocus "Right"; }
-    }
+   }
     locked {
         bind "Ctrl l" { SwitchToMode "Normal"; }
     }
@@ -127,7 +123,7 @@ keybinds clear-defaults=true {
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
     shared_except "locked" {
-        bind "Ctrl -" { SwitchToMode "Locked"; }
+        bind "Ctrl l" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
     }
     shared_except "normal" "locked" {
