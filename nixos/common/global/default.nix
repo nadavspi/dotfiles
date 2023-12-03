@@ -1,5 +1,5 @@
 { inputs, overlays, pkgs, lib, config, ... }: {
-  imports = [ ./zsh.nix ];
+  imports = [ ./zsh.nix ./nfs.nix ];
 
   nixpkgs = {
     overlays = overlays;
