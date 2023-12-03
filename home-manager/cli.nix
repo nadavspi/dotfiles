@@ -43,9 +43,9 @@ let
     zoxide
     zstd
 
+    alejandra
     lua-language-server
     nil
-    nixfmt
     nodePackages.bash-language-server
     rust-analyzer
     rustfmt
