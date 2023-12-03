@@ -3,7 +3,7 @@ host smtp.fastmail.com
 port 465
 from nadavspi@elitemail.org
 user nadavspi@elitemail.org
-passwordeval "pass nadavspi@elitemail.org"
+passwordeval "op item get Fastmail --fields label=shanghai"
 auth on
 tls on
 tls_trust_file	/etc/ssl/certs/ca-certificates.crt

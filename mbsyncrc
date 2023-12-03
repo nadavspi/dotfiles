@@ -3,7 +3,7 @@ IMAPStore nadavspi@elitemail.org-remote
 Host imap.fastmail.com
 Port 993
 User nadavspi@elitemail.org
-PassCmd "pass nadavspi@elitemail.org"
+PassCmd "op item get Fastmail --fields label=shanghai"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
