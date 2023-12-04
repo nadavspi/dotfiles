@@ -45,6 +45,16 @@ return {
 			local luasnip = require("luasnip")
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+			local sources = {
+				{ name = "calc" },
+				{ name = "cmp_yanky" },
+				{ name = "luasnip" },
+				{ name = "nvim_lsp" },
+				{ name = "nvim_lua" },
+				{ name = "buffer" },
+				{ name = "path" },
+			}
+
 			local has_words_before = function()
 				unpack = unpack or table.unpack
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -87,16 +97,7 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					["<cr>"] = cmp.mapping.confirm({ select = true }),
 				}),
-				sources = cmp.config.sources({
-					{ name = "calc" },
-					{ name = "cmp_yanky" },
-					{ name = "luasnip" },
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lua" },
-				}, {
-					{ name = "buffer" },
-					{ name = "path" },
-				}),
+				sources = cmp.config.sources(sources),
 				formatting = {
 					format = require("lspkind").cmp_format({
 						mode = "text",
