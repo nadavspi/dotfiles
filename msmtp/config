@@ -1,7 +1,7 @@
-account nadavspi@elitemail.org
+account fastmail
 host smtp.fastmail.com
 port 465
-from nadavspi@elitemail.org
+from me@nadav.name
 user nadavspi@elitemail.org
 passwordeval "op item get Fastmail --fields label=shanghai"
 auth on

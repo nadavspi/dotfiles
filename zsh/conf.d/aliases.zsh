@@ -8,6 +8,7 @@ alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
 alias s='TERM=xterm ssh'
+alias m="neomutt"
 
 alias zl=zellij
 alias ta='zellij attach'

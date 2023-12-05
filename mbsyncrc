@@ -1,5 +1,4 @@
-
-IMAPStore nadavspi@elitemail.org-remote
+IMAPStore fastmail-remote
 Host imap.fastmail.com
 Port 993
 User nadavspi@elitemail.org
@@ -8,15 +7,15 @@ AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore nadavspi@elitemail.org-local
+MaildirStore fastmail-local
 Subfolders Verbatim
-Path /home/nadavspi/.local/share/mail/nadavspi@elitemail.org/
-Inbox /home/nadavspi/.local/share/mail/nadavspi@elitemail.org/INBOX
+Path /home/nadavspi/.local/share/mail/fastmail/
+Inbox /home/nadavspi/.local/share/mail/fastmail/INBOX
 
-Channel nadavspi@elitemail.org
-Expunge Both
-Far :nadavspi@elitemail.org-remote:
-Near :nadavspi@elitemail.org-local:
+Channel fastmail
+#Expunge Both
+Far :fastmail-remote:
+Near :fastmail-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *

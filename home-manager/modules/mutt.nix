@@ -2,13 +2,11 @@
 let
   dotfiles = "/home/nadavspi/src/dotfiles";
   link = config.lib.file.mkOutOfStoreSymlink;
-  prepareLinks = { 
-    filenames, 
-    transFilename ? file: file,
-  }: builtins.listToAttrs(map(filename: {
-      name = transFilename(filename); 
-      value = { source = link("${dotfiles}/${filename}"); };
-      }) filenames);
+  prepareLinks = { filenames, transFilename ? file: file, }:
+    builtins.listToAttrs (map (filename: {
+      name = transFilename (filename);
+      value = { source = link ("${dotfiles}/${filename}"); };
+    }) filenames);
   packages = with pkgs; [
     abook
     cacert
@@ -23,7 +21,7 @@ let
   ];
 
   configFiles = [ "mutt" "msmtp" ];
-  homeFiles = [ "mbsyncrc" ];
+  homeFiles = [ "mbsyncrc" "notmuch-config" ];
 in {
   home.packages = packages;
 
