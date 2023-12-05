@@ -3,7 +3,7 @@ resource "libvirt_domain" "domain" {
   vcpu      = "4"
   memory    = "4"
   running   = false
-  autostart = true
+  autostart = false
 
   cloudinit = libvirt_cloudinit_disk.commoninit.id
 

@@ -1,7 +1,7 @@
 resource "libvirt_pool" "pool" {
   name = "pool"
   type = "dir"
-  path = "/mnt/user/images/pool"
+  path = "/mnt/user/domains/terraform"
 }
 
 resource "libvirt_volume" "qcow2" {
