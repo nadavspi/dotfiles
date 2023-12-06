@@ -1,7 +1,8 @@
 { ... }: {
-  imports = [ ./hardware-configuration.nix ../../common/global ];
+  imports = [ ../../common/global ];
 
   boot.loader.grub.enable = false;
+  nixpkgs.hostPlatform = "aarch64-linux";
 
   networking.hostName = "strasbourg";
 
