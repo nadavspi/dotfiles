@@ -1,8 +1,14 @@
 { ... }: {
-  imports = [ ../../common/global ];
+  imports = [ ./hardware-configuration.nix ../../common/global ];
+  hardware = {
+    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+    deviceTree = {
+      enable = true;
+      filter = "*rpi-4-*.dtb";
+    };
+  };
 
   boot.loader.grub.enable = false;
-  nixpkgs.hostPlatform = "aarch64-linux";
 
   networking.hostName = "strasbourg";
 
