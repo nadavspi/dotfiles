@@ -145,7 +145,7 @@
         };
 
         strasbourg = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs overlays; };
           modules = [ ./nixos/hosts/strasbourg ];
         };
       };
