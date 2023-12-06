@@ -1,5 +1,5 @@
 { ... }: {
-  imports = [ ../../common/global ];
+  imports = [ ./hardware-configuration.nix ../../common/global ];
 
   boot.loader.grub.enable = false;
 
