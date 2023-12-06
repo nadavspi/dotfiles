@@ -40,6 +40,42 @@ in {
             enable_dnssec = true;
             rewrites = [
               {
+                domain = "*.nadav.is";
+                answer = "192.168.1.77";
+              }
+              {
+                domain = "grocy.nadav.is";
+                answer = "192.168.1.202";
+              }
+              {
+                domain = "dns2.nadav.is";
+                answer = "192.168.1.228";
+              }
+              {
+                domain = "pi.nadav.is";
+                answer = "192.168.1.228";
+              }
+              {
+                domain = "dns1.nadav.is";
+                answer = "192.168.1.229";
+              }
+              {
+                domain = "stuttgart.nadav.is";
+                answer = "192.168.1.27";
+              }
+              {
+                domain = "shanghai.nadav.is";
+                answer = "192.168.1.7";
+              }
+              {
+                domain = "brooklyn.nadav.is";
+                answer = "192.168.1.83";
+              }
+              {
+                domain = "fedora.nadav.is";
+                answer = "192.168.1.193";
+              }
+              {
                 domain = "prague.nadav.is";
                 answer = "192.168.1.202";
               }
