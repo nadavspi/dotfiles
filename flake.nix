@@ -143,6 +143,11 @@
           specialArgs = { inherit inputs outputs overlays; };
           modules = [ ./nixos/hosts/prague ];
         };
+
+        strasbourg = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/hosts/strasbourg ];
+        };
       };
     };
 }
