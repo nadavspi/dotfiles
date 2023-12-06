@@ -7,9 +7,10 @@
       "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
       inherit (self) outputs;
       overlays = [ inputs.neovim-nightly-overlay.overlay ];
@@ -146,7 +147,7 @@
 
         strasbourg = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs overlays; };
-          modules = [ ./nixos/hosts/strasbourg ];
+          modules = [ ./nixos/hosts/strasbourg nixos-hardware.nixosModules.raspberry-pi-4 ];
         };
       };
     };

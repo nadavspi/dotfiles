@@ -1,8 +1,7 @@
 { ... }: {
-  imports = [ ./hardware-configuration.nix ../../common/global ];
+  imports = [ ../../common/global ];
 
   boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
 
   networking.hostName = "strasbourg";
 
