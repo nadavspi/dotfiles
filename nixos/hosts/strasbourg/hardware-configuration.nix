@@ -1,6 +1,6 @@
 { ... }: {
   imports =
-    [ <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-raspberrypi4.nix> ];
+    [ <nixpkgs/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix> ];
 
   networking.wireless.enable = false;
 }
