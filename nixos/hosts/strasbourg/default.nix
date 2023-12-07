@@ -1,17 +1,30 @@
 { ... }: {
-  imports = [ ./hardware-configuration.nix ../../common/global ];
-  hardware = {
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-    deviceTree = {
-      enable = true;
-      filter = "*rpi-4-*.dtb";
+  imports = [
+    ./hardware-configuration.nix
+    ./system.nix
+    ../../common/global
+
+    ../../common/adguard.nix
+    ../../common/unbound.nix
+  ];
+
+  networking = { hostName = "strasbourg"; };
+
+  networking.firewall.extraCommands = "iptables -A INPUT -p vrrp -j ACCEPT";
+  services.keepalived = {
+    enable = true;
+    vrrpInstances.dns = {
+      interface = "end0";
+      state = "BACKUP";
+      priority = 20;
+      virtualIps = [{ addr = "192.168.1.200"; }];
+      virtualRouterId = 200;
     };
   };
+  nadavspi.adguard = {
+    enable = true;
+    networkInterface = "end0";
+  };
 
-  boot.loader.grub.enable = false;
-
-  networking.hostName = "strasbourg";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

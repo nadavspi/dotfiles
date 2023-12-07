@@ -1,23 +1,25 @@
-{ inputs, outputs, ... }:
-let adguardPort = 3000;
+{ lib, config, ... }:
+with lib;
+let cfg = config.nadavspi.adguard;
 in {
-  config = {
+  options.nadavspi.adguard = {
+    enable = mkEnableOption "adguardhome";
+    webPort = mkOption {
+      type = types.int;
+      default = 3000;
+    };
+    networkInterface = mkOption { type = types.string; };
+    haIpAddress = mkOption {
+      type = types.string;
+      default = "192.168.1.200";
+    };
+  };
+
+  config = mkIf cfg.enable {
     networking = {
       firewall = {
-        allowedTCPPorts = [ adguardPort ];
+        allowedTCPPorts = [ cfg.webPort ];
         allowedUDPPorts = [ 53 ];
-      };
-    };
-
-    networking.firewall.extraCommands = "iptables -A INPUT -p vrrp -j ACCEPT";
-    services.keepalived = {
-      enable = true;
-      vrrpInstances.dns = {
-        interface = "enp1s0";
-        state = "MASTER";
-        priority = 50;
-        virtualIps = [{ addr = "192.168.1.200"; }];
-        virtualRouterId = 200;
       };
     };
 
@@ -27,9 +29,9 @@ in {
         mutableSettings = false;
         openFirewall = true;
         settings = {
-          bind_port = adguardPort;
+          bind_port = cfg.webPort;
           dns = {
-            bind_hosts = [ "::1" "127.0.0.1" "192.168.1.202" "192.168.1.200" ];
+            bind_hosts = [ "0.0.0.0" ];
             bootstrap_dns = [ "1.1.1.1" "94.140.14.14" "208.67.222.222" ];
             upstream_dns = [
               "127.0.0.1:5335"

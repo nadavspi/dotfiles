@@ -25,9 +25,6 @@
     trusted-users = [ "root" "nadavspi" ];
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   security.sudo.wheelNeedsPassword = false;
 
   time.timeZone = "America/New_York";

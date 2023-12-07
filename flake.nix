@@ -7,7 +7,6 @@
       "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
@@ -39,7 +38,25 @@
           };
 
         "nadavspi@nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          extraSpecialArgs = {
+            inherit inputs;
+            dotfiles = "/home/nadavspi/src/dotfiles";
+          };
+          modules = [
+            ./home-manager
+            {
+              home = rec {
+                username = "nadavspi";
+                homeDirectory = "/home/${username}";
+              };
+            }
+            ({ nixpkgs.overlays = overlays; })
+
+          ];
+        };
+        "nadavspi@strasbourg" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
           extraSpecialArgs = {
             inherit inputs;
             dotfiles = "/home/nadavspi/src/dotfiles";
@@ -145,10 +162,10 @@
           modules = [ ./nixos/hosts/prague ];
         };
 
-        strasbourg = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs overlays; };
-          modules = [ ./nixos/hosts/strasbourg nixos-hardware.nixosModules.raspberry-pi-4 ];
-        };
+       strasbourg = nixpkgs.lib.nixosSystem {
+         specialArgs = { inherit inputs outputs overlays; };
+         modules = [ ./nixos/hosts/strasbourg ];
+       };
       };
     };
 }
