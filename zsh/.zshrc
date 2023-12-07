@@ -1,5 +1,5 @@
 if [[ -z "$ZELLIJ" ]]; then
-  zellij attach -c main
+  zellij attach -c $(uname -n)
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
