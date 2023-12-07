@@ -8,7 +8,6 @@ in {
       type = types.int;
       default = 3000;
     };
-    networkInterface = mkOption { type = types.string; };
     haIpAddress = mkOption {
       type = types.string;
       default = "192.168.1.200";

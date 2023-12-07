@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ./system.nix
@@ -8,7 +8,7 @@
     ../../common/unbound.nix
   ];
 
-  networking = { hostName = "strasbourg"; };
+  networking = {hostName = "strasbourg";};
 
   networking.firewall.extraCommands = "iptables -A INPUT -p vrrp -j ACCEPT";
   services.keepalived = {
@@ -17,13 +17,12 @@
       interface = "end0";
       state = "BACKUP";
       priority = 20;
-      virtualIps = [{ addr = "192.168.1.200"; }];
+      virtualIps = [{addr = "192.168.1.200";}];
       virtualRouterId = 200;
     };
   };
   nadavspi.adguard = {
     enable = true;
-    networkInterface = "end0";
   };
 
   system.stateVersion = "23.11";
