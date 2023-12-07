@@ -38,7 +38,7 @@
           };
 
         "nadavspi@nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
             inherit inputs;
             dotfiles = "/home/nadavspi/src/dotfiles";
@@ -165,6 +165,11 @@
        strasbourg = nixpkgs.lib.nixosSystem {
          specialArgs = { inherit inputs outputs overlays; };
          modules = [ ./nixos/hosts/strasbourg ];
+       };
+
+       nixos = nixpkgs.lib.nixosSystem {
+         specialArgs = { inherit inputs outputs overlays; };
+         modules = [ ./nixos/hosts/nixos-desktop ];
        };
       };
     };
