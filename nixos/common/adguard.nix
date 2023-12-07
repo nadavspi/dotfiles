@@ -85,6 +85,10 @@ in {
                 domain = "houston.nadav.is";
                 answer = "192.168.1.22";
               }
+              {
+                domain = "strasbourg.nadav.is";
+                answer = "192.168.1.128";
+              }
             ];
           };
           filters = [
