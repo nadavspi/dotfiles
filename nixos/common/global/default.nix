@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./autoupgrade.nix
     ./cache.nix
     ./nfs.nix
     ./nix.nix
