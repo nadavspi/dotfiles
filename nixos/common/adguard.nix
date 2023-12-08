@@ -1,6 +1,48 @@
-{ lib, config, ... }:
-with lib;
-let cfg = config.nadavspi.adguard;
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.nadavspi.adguard;
+  rewrites = [
+    {
+      domain = "*.nadav.is";
+      answer = "192.168.1.77";
+    }
+    {
+      domain = "dns.nadav.is";
+      answer = "192.168.1.200";
+    }
+    {
+      domain = "stuttgart.nadav.is";
+      answer = "192.168.1.27";
+    }
+    {
+      domain = "shanghai.nadav.is";
+      answer = "192.168.1.7";
+    }
+    {
+      domain = "fedora.nadav.is";
+      answer = "192.168.1.193";
+    }
+    {
+      domain = "prague.nadav.is";
+      answer = "192.168.1.202";
+    }
+    {
+      domain = "houston.nadav.is";
+      answer = "192.168.1.22";
+    }
+    {
+      domain = "strasbourg.nadav.is";
+      answer = "192.168.1.128";
+    }
+    {
+      domain = "nixos-desktop.nadav.is";
+      answer = "192.168.1.203";
+    }
+  ];
 in {
   options.nadavspi.adguard = {
     enable = mkEnableOption "adguardhome";
@@ -17,8 +59,8 @@ in {
   config = mkIf cfg.enable {
     networking = {
       firewall = {
-        allowedTCPPorts = [ cfg.webPort ];
-        allowedUDPPorts = [ 53 ];
+        allowedTCPPorts = [cfg.webPort];
+        allowedUDPPorts = [53];
       };
     };
 
@@ -30,8 +72,8 @@ in {
         settings = {
           bind_port = cfg.webPort;
           dns = {
-            bind_hosts = [ "0.0.0.0" ];
-            bootstrap_dns = [ "1.1.1.1" "94.140.14.14" "208.67.222.222" ];
+            bind_hosts = ["0.0.0.0"];
+            bootstrap_dns = ["1.1.1.1" "94.140.14.14" "208.67.222.222"];
             upstream_dns = [
               "127.0.0.1:5335"
               "https://1.1.1.1/dns-query"
@@ -39,56 +81,7 @@ in {
             ];
             all_servers = true;
             enable_dnssec = true;
-            rewrites = [
-              {
-                domain = "*.nadav.is";
-                answer = "192.168.1.77";
-              }
-              {
-                domain = "grocy.nadav.is";
-                answer = "192.168.1.202";
-              }
-              {
-                domain = "dns2.nadav.is";
-                answer = "192.168.1.228";
-              }
-              {
-                domain = "pi.nadav.is";
-                answer = "192.168.1.228";
-              }
-              {
-                domain = "dns1.nadav.is";
-                answer = "192.168.1.229";
-              }
-              {
-                domain = "stuttgart.nadav.is";
-                answer = "192.168.1.27";
-              }
-              {
-                domain = "shanghai.nadav.is";
-                answer = "192.168.1.7";
-              }
-              {
-                domain = "brooklyn.nadav.is";
-                answer = "192.168.1.83";
-              }
-              {
-                domain = "fedora.nadav.is";
-                answer = "192.168.1.193";
-              }
-              {
-                domain = "prague.nadav.is";
-                answer = "192.168.1.202";
-              }
-              {
-                domain = "houston.nadav.is";
-                answer = "192.168.1.22";
-              }
-              {
-                domain = "strasbourg.nadav.is";
-                answer = "192.168.1.128";
-              }
-            ];
+            rewrites = rewrites;
           };
           filters = [
             {
@@ -101,8 +94,7 @@ in {
               ID = 2;
               enabled = true;
               name = "HaGeZi's Pro DNS Blocklist";
-              url =
-                "https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/pro.txt";
+              url = "https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/pro.txt";
             }
             {
               ID = 3;
