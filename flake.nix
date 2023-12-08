@@ -184,11 +184,6 @@
         specialArgs = {inherit inputs outputs overlays;};
         modules = [./nixos/hosts/nixos-desktop];
       };
-
-      minimal-gnome = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs overlays;};
-        modules = [./nixos/hosts/minimal-gnome];
-      };
     };
   };
 }
