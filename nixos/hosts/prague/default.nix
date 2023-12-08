@@ -1,11 +1,11 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../common/global
+    ../../modules/global
 
-    ../../common/services/adguard.nix
-    ../../common/services/caddy.nix
-    ../../common/services/unbound.nix
+    ../../modules/services/adguard.nix
+    ../../modules/services/caddy.nix
+    ../../modules/services/unbound.nix
   ];
 
   networking.hostName = "prague";
