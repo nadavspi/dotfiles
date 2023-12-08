@@ -1,12 +1,10 @@
 {
   inputs,
-  overlays,
   lib,
   config,
   ...
 }: {
   nixpkgs = {
-    overlays = overlays;
     config = {allowUnfree = true;};
   };
 
