@@ -21,8 +21,12 @@
       virtualRouterId = 200;
     };
   };
-  nadavspi.adguard = {
-    enable = true;
+  nadavspi = {
+    adguard.enable = true;
+    autoUpgrade = {
+      enable = true;
+      allowReboot = true;
+    };
   };
 
   system.stateVersion = "23.11";

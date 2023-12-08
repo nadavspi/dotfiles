@@ -25,8 +25,13 @@
       virtualRouterId = 200;
     };
   };
-  nadavspi.adguard = {
-    enable = true;
+
+  nadavspi = {
+    adguard.enable = true;
+    autoUpgrade = {
+      enable = true;
+      allowReboot = false;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
