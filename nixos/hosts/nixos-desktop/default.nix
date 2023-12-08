@@ -13,6 +13,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  system.autoUpgrade = {
+    allowReboot = false;
+    enable = true;
+    flake = "github:nadavspi/dotfiles";
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
