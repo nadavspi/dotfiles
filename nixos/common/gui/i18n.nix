@@ -5,10 +5,6 @@
       fcitx5-gtk
       fcitx5-nord
     ];
-    # settings = {
-    #   inputMethod = {
-    #   };
-    # };
   };
 in {
   i18n.inputMethod = {
