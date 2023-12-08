@@ -11,21 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v20
+    - uses: cachix/install-nix-action@v20
 
-      - run: nix flake update
+    - run: nix flake update
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Nix flake update
-          branch: main
-          file_pattern: flake.lock
-          commit_user_name: Nix Bot
-          commit_author: Nix Bot <actions@github.com> 
-          skip_dirty_check: false    
-          skip_fetch: true
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Nix flake update
+        branch: main
+        file_pattern: flake.lock
+        commit_user_name: Nix Bot
+        commit_author: Nix Bot <actions@github.com> 
+        skip_dirty_check: false    
+        skip_fetch: true
 
+    - uses: sarisia/actions-status-discord@v1
+      if: always()
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
