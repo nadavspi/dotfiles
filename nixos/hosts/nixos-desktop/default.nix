@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../common/global
+    ../../modules/global
 
-    ../../common/gui
+    ../../modules/gui
   ];
 
   networking.hostName = "nixos-desktop";

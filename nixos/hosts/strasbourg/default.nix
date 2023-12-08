@@ -2,10 +2,10 @@
   imports = [
     ./hardware-configuration.nix
     ./system.nix
-    ../../common/global
+    ../../modules/global
 
-    ../../common/adguard.nix
-    ../../common/unbound.nix
+    ../../modules/services/adguard.nix
+    ../../modules/services/unbound.nix
   ];
 
   networking = {hostName = "strasbourg";};
