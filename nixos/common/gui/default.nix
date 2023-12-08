@@ -1,11 +1,22 @@
-{...}: {
-  imports = [./awesome.nix];
+{pkgs, ...}: {
+  imports = [
+    ./awesome.nix
+    ./i18n.nix
+  ];
 
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
   };
+
+  environment.systemPackages = with pkgs; [
+    anki
+    discord
+    firefox
+    obsidian
+    zoom
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
