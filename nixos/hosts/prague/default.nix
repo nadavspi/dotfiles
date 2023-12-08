@@ -2,7 +2,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../common/global
-    ../../common/home.nix
 
     ../../common/adguard.nix
     ../../common/caddy.nix
