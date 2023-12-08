@@ -4,8 +4,8 @@
     ./system.nix
     ../../common/global
 
-    ../../common/adguard.nix
-    ../../common/unbound.nix
+    ../../common/services/adguard.nix
+    ../../common/services/unbound.nix
   ];
 
   networking = {hostName = "strasbourg";};

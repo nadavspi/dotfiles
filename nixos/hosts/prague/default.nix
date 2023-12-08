@@ -3,9 +3,9 @@
     ./hardware-configuration.nix
     ../../common/global
 
-    ../../common/adguard.nix
-    ../../common/caddy.nix
-    ../../common/unbound.nix
+    ../../common/services/adguard.nix
+    ../../common/services/caddy.nix
+    ../../common/services/unbound.nix
   ];
 
   networking.hostName = "prague";
