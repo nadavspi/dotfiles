@@ -5,6 +5,7 @@
 
     ../../modules/services/adguard.nix
     ../../modules/services/caddy.nix
+    ../../modules/services/grafana.nix
     ../../modules/services/unbound.nix
     ./keepalived.nix
   ];
