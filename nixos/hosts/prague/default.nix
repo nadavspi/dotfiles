@@ -23,6 +23,9 @@
       enable = true;
       allowReboot = false;
     };
+    monitoring = {
+      exporters.enable = true;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

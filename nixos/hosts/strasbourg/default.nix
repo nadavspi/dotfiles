@@ -28,6 +28,9 @@
       enable = true;
       allowReboot = true;
     };
+    monitoring = {
+      exporters.enable = true;
+    };
   };
 
   system.stateVersion = "23.11";
