@@ -6,6 +6,7 @@
 
     ../../modules/services/adguard.nix
     ../../modules/services/unbound.nix
+    ../../modules/services/exporters.nix
   ];
 
   networking = {hostName = "strasbourg";};

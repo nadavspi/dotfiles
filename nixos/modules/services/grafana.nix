@@ -1,7 +1,16 @@
-{...}: let
-  grafanaHost = "grafana.nadav.is";
+{config, ...}: let
+  exporterPort = config.services.prometheus.exporters.node.port;
   grafanaPort = 2342;
+  prometheusPort = 9001;
 in {
+  imports = [ ./exporters.nix ];
+
+  networking = {
+    firewall = {
+      allowedTCPPorts = [grafanaPort prometheusPort 80 443];
+    };
+  };
+
   services.grafana = {
     enable = true;
     settings.server = {
@@ -11,10 +20,17 @@ in {
     };
   };
 
-  services.nginx.virtualHosts.${grafanaHost} = {
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${grafanaPort}";
-      proxyWebsockets = true;
-    };
+  services.prometheus = {
+    enable = true;
+    port = prometheusPort;
+
+    scrapeConfigs = [
+      {
+        job_name = "prague";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString exporterPort}" ];
+        }];
+      }
+    ];
   };
 }
