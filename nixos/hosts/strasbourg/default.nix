@@ -1,4 +1,10 @@
-{...}: {
+{...}: 
+let 
+  hostName = "strasbourg";
+
+  hosts = import ../../hosts;
+  host = builtins.getAttr hostName hosts;
+in {
   imports = [
     ./hardware-configuration.nix
     ./system.nix
@@ -9,7 +15,7 @@
     ../../modules/services/exporters.nix
   ];
 
-  networking = {hostName = "strasbourg";};
+  networking.hostName = hostName;
 
   networking.firewall.extraCommands = "iptables -A INPUT -p vrrp -j ACCEPT";
   services.keepalived = {
@@ -22,16 +28,7 @@
       virtualRouterId = 200;
     };
   };
-  nadavspi = {
-    adguard.enable = true;
-    autoUpgrade = {
-      enable = true;
-      allowReboot = true;
-    };
-    monitoring = {
-      exporters.enable = true;
-    };
-  };
+  nadavspi = host.options;
 
   system.stateVersion = "23.11";
 }
