@@ -2,17 +2,19 @@
   description = "nadavspi/dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
-    self,
-    nixpkgs,
     home-manager,
     nixos-hardware,
+    nixpkgs,
+    self,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -172,17 +174,17 @@
     nixosConfigurations = {
       prague = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs overlays;};
-        modules = [./nixos/hosts/prague];
+        modules = [./nixos/hosts/prague sops-nix.nixosModules.sops];
       };
 
       strasbourg = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs overlays;};
-        modules = [./nixos/hosts/strasbourg];
+        modules = [./nixos/hosts/strasbourg sops-nix.nixosModules.sops];
       };
 
       nixos-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs overlays;};
-        modules = [./nixos/hosts/nixos-desktop];
+        modules = [./nixos/hosts/nixos-desktop sops-nix.nixosModules.sops];
       };
     };
   };
