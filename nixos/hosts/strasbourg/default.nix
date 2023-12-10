@@ -1,18 +1,12 @@
-{...}: 
-let 
+{...}: let
   hostName = "strasbourg";
-
-  hosts = import ../../hosts;
-  host = builtins.getAttr hostName hosts;
+  host = builtins.getAttr hostName (import ../../hosts);
 in {
   imports = [
+    ../../modules/global
+    ../../modules/services
     ./hardware-configuration.nix
     ./system.nix
-    ../../modules/global
-
-    ../../modules/services/adguard.nix
-    ../../modules/services/unbound.nix
-    ../../modules/services/exporters.nix
   ];
 
   networking.hostName = hostName;

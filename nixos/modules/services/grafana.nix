@@ -1,36 +1,64 @@
-{config, ...}: let
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.nadavspi.monitoring.server;
+  hosts = import ../../hosts;
+
   exporterPort = config.services.prometheus.exporters.node.port;
-  grafanaPort = 2342;
-  prometheusPort = 9001;
 in {
-  imports = [ ./exporters.nix ];
-
-  networking = {
-    firewall = {
-      allowedTCPPorts = [grafanaPort prometheusPort 80 443];
+  options.nadavspi.monitoring.server = {
+    enable = mkEnableOption "monitoring";
+    grafanaPort = mkOption {
+      type = types.int;
+      default = 2342;
+    };
+    prometheusPort = mkOption {
+      type = types.int;
+      default = 9001;
     };
   };
 
-  services.grafana = {
-    enable = true;
-    settings.server = {
-      enable_gzip = true;
-      http_addr = "0.0.0.0";
-      http_port = grafanaPort;
+  config = mkIf cfg.enable {
+    networking = {
+      firewall = {
+        allowedTCPPorts = [cfg.grafanaPort cfg.prometheusPort];
+      };
     };
-  };
 
-  services.prometheus = {
-    enable = true;
-    port = prometheusPort;
+    services.grafana = {
+      enable = true;
+      settings.server = {
+        enable_gzip = true;
+        http_addr = "0.0.0.0";
+        http_port = cfg.grafanaPort;
+      };
+    };
 
-    scrapeConfigs = [
-      {
-        job_name = "prague";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString exporterPort}" ];
-        }];
-      }
-    ];
+    services.prometheus = {
+      enable = true;
+      port = cfg.prometheusPort;
+
+      scrapeConfigs = [
+        {
+          job_name = "prague";
+          static_configs = [
+            {
+              targets = ["${hosts.prague.ip}:${toString exporterPort}"];
+            }
+          ];
+        }
+        {
+          job_name = "strasbourg";
+          static_configs = [
+            {
+              targets = ["${hosts.strasbourg.ip}:${toString exporterPort}"];
+            }
+          ];
+        }
+      ];
+    };
   };
 }
