@@ -3,10 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
@@ -14,7 +21,6 @@
     self,
     nixpkgs,
     home-manager,
-    nixos-hardware,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -185,6 +191,14 @@
       nixos-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs overlays;};
         modules = [./nixos/hosts/nixos-desktop];
+      };
+
+      stuttgart = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs overlays;};
+        modules = [
+          inputs.disko.nixosModules.disko
+          ./nixos/hosts/nixos-desktop
+        ];
       };
     };
   };
