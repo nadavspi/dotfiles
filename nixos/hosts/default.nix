@@ -4,6 +4,7 @@
     options = {
       adguard.enable = true;
       tailscale.enable = true;
+      gitea.enable = true;
       autoUpgrade = {
         enable = true;
         allowReboot = false;
