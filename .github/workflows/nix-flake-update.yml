@@ -18,6 +18,7 @@ jobs:
     - uses: cachix/install-nix-action@v20
 
     - run: nix flake update
+    - run: nix flake check
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
