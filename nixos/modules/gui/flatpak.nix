@@ -11,7 +11,7 @@ in {
   options.nadavspi.flatpak = {
     enable = mkEnableOption "flatpak";
     extraPackages = mkOption {
-      type = types.list;
+      type = types.listOf types.str;
       default = [];
     };
   };
