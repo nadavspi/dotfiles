@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./awesome.nix
+    ./flatpak.nix
     ./i18n.nix
   ];
 
