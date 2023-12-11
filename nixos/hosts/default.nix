@@ -9,6 +9,7 @@
         allowReboot = false;
       };
       monitoring = {
+        server.enable = true;
         exporters.enable = true;
       };
     };
