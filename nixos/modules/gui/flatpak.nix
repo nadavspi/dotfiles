@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 with lib; let
@@ -18,10 +19,18 @@ in {
   imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
 
   config = mkIf cfg.enable {
-    services.flatpak.packages =
-      [
-        "md.obsidian.Obsidian"
-      ]
-      ++ cfg.extraPackages;
+    xdg.portal = {
+      enable = true;
+      config.common.default = "gtk";
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    };
+    services.flatpak = {
+      enable = true;
+      packages =
+        [
+          "md.obsidian.Obsidian"
+        ]
+        ++ cfg.extraPackages;
+    };
   };
 }
