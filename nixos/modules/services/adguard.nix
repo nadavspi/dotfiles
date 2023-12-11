@@ -11,6 +11,10 @@ with lib; let
       answer = "192.168.1.77";
     }
     {
+      domain = "www.nadav.is";
+      answer = "76.76.21.21";
+    }
+    {
       domain = "dns.nadav.is";
       answer = "192.168.1.200";
     }
