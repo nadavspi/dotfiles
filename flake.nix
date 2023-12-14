@@ -184,6 +184,15 @@
         specialArgs = {inherit inputs outputs overlays;};
         modules = [./nixos/hosts/nixos-desktop];
       };
+
+      iso = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs outputs overlays;};
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./nixos/hosts/stuttgart
+        ];
+      };
     };
   };
 }

@@ -42,3 +42,6 @@ install-1password-cli:
 
 cachix:
   cachix use nix-community
+
+iso:
+  nix build .#nixosConfigurations.iso.config.system.build.isoImage
