@@ -1,3 +1,2 @@
-tmux.conf
 plugins/
 !plugins/tpm
