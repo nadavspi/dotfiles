@@ -15,3 +15,6 @@
 	url = https://github.com/lcpz/lain.git
 [submodule "subs2srs"]
 	url = git@github.com:nadavspi/mpvacious.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

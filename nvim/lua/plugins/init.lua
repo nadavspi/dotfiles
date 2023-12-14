@@ -192,5 +192,10 @@ return {
 			vim.keymap.set("o", "Z", "<Plug>(leap-backward-to)")
 		end,
 	},
-	{ "knubie/vim-kitty-navigator" },
+	{
+		"aserowy/tmux.nvim",
+		config = function()
+			require("tmux").setup()
+		end,
+	},
 }

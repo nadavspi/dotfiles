@@ -61,12 +61,13 @@ let
     "fcitx5" # for now
   ];
 
-  homeFiles = [ "gitconfig" "gitignore" "zshenv" ];
-
+  homeFiles = ["gitconfig" "gitignore" "zshenv"];
 in {
+  imports = [./modules/tmux.nix];
+
   home.packages = packages;
 
-  xdg.configFile = prepareLinks { filenames = configFiles; };
+  xdg.configFile = prepareLinks {filenames = configFiles;};
 
   home.file = prepareLinks {
     filenames = homeFiles;
