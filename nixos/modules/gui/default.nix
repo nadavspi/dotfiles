@@ -14,7 +14,6 @@
     anki
     discord
     firefox
-    obsidian
     zoom
   ];
 
