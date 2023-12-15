@@ -3,9 +3,7 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{
-			"nvim-telescope/telescope-fzy-native.nvim",
-		},
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	config = function()
 		require("telescope").setup({
@@ -15,7 +13,7 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("fzy_native")
+		require("telescope").load_extension("fzf")
 
 		local builtin = require("telescope.builtin")
 		local function git_root_or_cwd()

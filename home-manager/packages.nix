@@ -11,7 +11,6 @@
     eza
     fd
     fzf
-    fzy
     gcc
     gh
     git
