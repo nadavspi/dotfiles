@@ -178,6 +178,7 @@ return {
 
 			require("lf").setup({
 				border = "rounded",
+				escape_quit = true,
 			})
 
 			vim.keymap.set("n", "<leader>-", "<Cmd>Lf<CR>")
