@@ -192,10 +192,4 @@ return {
 			vim.keymap.set("o", "Z", "<Plug>(leap-backward-to)")
 		end,
 	},
-	{
-		"aserowy/tmux.nvim",
-		config = function()
-			require("tmux").setup()
-		end,
-	},
 }
