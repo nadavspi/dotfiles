@@ -47,6 +47,7 @@ let
     lua-language-server
     nil
     nodePackages.bash-language-server
+    nodePackages.prettier
     rust-analyzer
     rustfmt
     stylua
