@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1.tar.gz";
@@ -15,6 +16,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     ...
   } @ inputs: let
@@ -79,7 +81,7 @@
       };
 
       "nadavspi@strasbourg" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        pkgs = nixpkgs-stable.legacyPackages.aarch64-linux;
         extraSpecialArgs = {
           inherit inputs;
           dotfiles = "/home/nadavspi/src/dotfiles";
