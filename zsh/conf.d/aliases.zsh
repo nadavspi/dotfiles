@@ -9,15 +9,11 @@ alias cat=bat
 alias lg=lazygit
 alias s='TERM=xterm ssh'
 alias m="neomutt"
+alias s='kitty +kitten ssh'
 
-alias zl=zellij
-alias ta='zellij attach'
-alias ts='zellij -s'
-alias tl='zellij list-sessions'
-function zr () { zellij run --name "$*" -- zsh -ic "$*";}
-function zrf () { zellij run --name "$*" --floating -- zsh -ic "$*";}
-function ze () { zellij edit "$*";}
-function zef () { zellij edit --floating "$*";}
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
 
 # directory navigation
 alias ..='cd ..'
