@@ -1,9 +1,18 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  hostName = "nixos-desktop";
+  host = builtins.getAttr hostName (import ../../hosts);
+in {
   imports = [
     ./hardware-configuration.nix
     ../../modules/global
+    ../../modules/services
 
     ../../modules/gui
+    ../../modules/home.nix
   ];
 
   networking.hostName = "nixos-desktop";
@@ -13,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nadavspi.autoUpgrade.enable = true;
+  nadavspi = host.options;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

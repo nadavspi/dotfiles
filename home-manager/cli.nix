@@ -28,7 +28,7 @@ let
     lf
     ncdu
     ncurses
-    neovim-nightly
+    neovim
     pipx
     pistol
     python3

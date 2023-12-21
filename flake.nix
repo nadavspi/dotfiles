@@ -176,17 +176,17 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       prague = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs overlays;};
+        specialArgs = {inherit inputs;};
         modules = [./nixos/hosts/prague];
       };
 
       strasbourg = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs overlays;};
+        specialArgs = {inherit inputs;};
         modules = [./nixos/hosts/strasbourg];
       };
 
       nixos-desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs overlays;};
+        specialArgs = {inherit inputs;};
         modules = [./nixos/hosts/nixos-desktop];
       };
 

@@ -28,4 +28,14 @@
       };
     };
   };
+  nixos-desktop = {
+    ip = "192.168.1.203";
+    options = {
+      tailscale.enable = true;
+      autoUpgrade = {
+        enable = true;
+        allowReboot = true;
+      };
+    };
+  };
 }

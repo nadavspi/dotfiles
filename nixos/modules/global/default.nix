@@ -1,9 +1,10 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ./autoupgrade.nix
     ./cache.nix
     ./nfs.nix
     ./nix.nix
+    ./overlays.nix
     ./user.nix
     ./zsh.nix
   ];
