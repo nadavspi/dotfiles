@@ -7,8 +7,17 @@ alias ls=eza
 alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
-alias s='TERM=xterm ssh'
 alias m="neomutt"
+
+s() {
+  if [[ -n "${TMUX}" ]]; then
+    tmux rename-window "$*"
+    command kitten ssh "$@"
+    tmux set-window-option automatic-rename "on" 1>/dev/null
+  else
+    command kitten ssh "$@"
+  fi
+}
 
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
