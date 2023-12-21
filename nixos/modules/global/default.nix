@@ -2,6 +2,7 @@
   imports = [
     ./autoupgrade.nix
     ./cache.nix
+    ./home.nix
     ./nfs.nix
     ./nix.nix
     ./overlays.nix

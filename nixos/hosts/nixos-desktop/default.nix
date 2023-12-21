@@ -12,7 +12,6 @@ in {
     ../../modules/services
 
     ../../modules/gui
-    ../../modules/home.nix
   ];
 
   networking.hostName = "nixos-desktop";

@@ -10,6 +10,6 @@
       dotfiles = "/home/nadavspi/src/dotfiles";
     };
     useGlobalPkgs = true;
-    users.nadavspi = import ../../home-manager;
+    users.nadavspi = import ../../../home-manager;
   };
 }
