@@ -7,7 +7,7 @@ with lib; let
   cfg = config.nadavspi.monitoring.server;
   hosts = import ../../hosts;
 
-  exporterPort = config.services.prometheus.exporters.node.port;
+  nodeExporterPort = config.services.prometheus.exporters.node.port;
 in {
   options.nadavspi.monitoring.server = {
     enable = mkEnableOption "monitoring";
@@ -46,7 +46,7 @@ in {
           job_name = "prague";
           static_configs = [
             {
-              targets = ["${hosts.prague.ip}:${toString exporterPort}"];
+              targets = ["${hosts.prague.ip}:${toString nodeExporterPort}"];
             }
           ];
         }
@@ -54,7 +54,23 @@ in {
           job_name = "strasbourg";
           static_configs = [
             {
-              targets = ["${hosts.strasbourg.ip}:${toString exporterPort}"];
+              targets = ["${hosts.strasbourg.ip}:${toString nodeExporterPort}"];
+            }
+          ];
+        }
+        {
+          job_name = "shanghai";
+          static_configs = [
+            {
+              targets = ["${hosts.shanghai.ip}:${toString nodeExporterPort}"];
+            }
+          ];
+        }
+        {
+          job_name = "stuttgart";
+          static_configs = [
+            {
+              targets = ["${hosts.stuttgart.ip}:${toString nodeExporterPort}"];
             }
           ];
         }
