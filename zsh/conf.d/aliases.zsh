@@ -9,11 +9,12 @@ alias cat=bat
 alias lg=lazygit
 alias s='TERM=xterm ssh'
 alias m="neomutt"
-alias s='kitty +kitten ssh'
 
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
+
+alias sc='sudo -E SYSTEMD_EDITOR=vim systemctl'
 
 # directory navigation
 alias ..='cd ..'
