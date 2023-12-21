@@ -5,7 +5,7 @@ let
 in {
   home.file = {
     ".var/app/io.mpv.Mpv/config/mpv" = {
-      source = link("${dotfiles}/mpv"); 
+      source = link"${dotfiles}/mpv"; 
     };
   };
 }

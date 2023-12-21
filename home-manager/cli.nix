@@ -4,8 +4,8 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
   prepareLinks = { filenames, transFilename ? file: file, }:
     builtins.listToAttrs (map (filename: {
-      name = transFilename (filename);
-      value = { source = link ("${dotfiles}/${filename}"); };
+      name = transFilename filename;
+      value = { source = link "${dotfiles}/${filename}"; };
     }) filenames);
 
   packages = with pkgs; [

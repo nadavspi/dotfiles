@@ -1,4 +1,4 @@
-{...}: let
+_: let
   hostName = "strasbourg";
   host = builtins.getAttr hostName (import ../../hosts);
 in {

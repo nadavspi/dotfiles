@@ -6,8 +6,8 @@ let
     filenames, 
     transFilename ? file: file,
   }: builtins.listToAttrs(map(filename: {
-      name = transFilename(filename); 
-      value = { source = link("${dotfiles}/${filename}"); };
+      name = transFilenamefilename; 
+      value = { source = link"${dotfiles}/${filename}"; };
       }) filenames);
 
   configFiles = [ 

@@ -9,6 +9,6 @@
 in {
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5 = fcitx5;
+    inherit fcitx5;
   };
 }

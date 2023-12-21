@@ -1,4 +1,4 @@
-{...}: {
+_: {
   networking.firewall.extraCommands = "iptables -A INPUT -p vrrp -j ACCEPT";
   services.keepalived = {
     enable = true;

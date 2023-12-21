@@ -20,7 +20,7 @@ in {
         node = {
           enable = true;
           enabledCollectors = ["systemd"];
-          port = cfg.port;
+          inherit (cfg) port;
         };
       };
     };

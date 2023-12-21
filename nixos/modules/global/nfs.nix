@@ -1,4 +1,4 @@
-{...}: {
+_: {
   fileSystems = {
     "/mnt/data" = {
       device = "192.168.1.77:/mnt/user/data";

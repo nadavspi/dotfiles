@@ -20,7 +20,6 @@
     home-manager,
     ...
   } @ inputs: let
-    inherit (self) outputs;
     overlays = [inputs.neovim-nightly-overlay.overlay];
   in {
     homeConfigurations = {

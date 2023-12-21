@@ -12,7 +12,7 @@ in {
 
   config = mkIf cfg.enable {
     system.autoUpgrade = {
-      allowReboot = cfg.allowReboot;
+      inherit (cfg) allowReboot;
       enable = true;
       flake = "github:nadavspi/dotfiles";
     };

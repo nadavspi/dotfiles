@@ -85,7 +85,7 @@ in {
             ];
             all_servers = true;
             enable_dnssec = true;
-            rewrites = rewrites;
+            inherit rewrites;
           };
           filters = [
             {
