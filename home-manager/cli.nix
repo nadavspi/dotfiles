@@ -49,6 +49,7 @@ let
     nodePackages.prettier
     rust-analyzer
     rustfmt
+    shellcheck
     stylua
     tree-sitter
   ];
