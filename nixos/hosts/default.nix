@@ -12,6 +12,7 @@
         server.enable = true;
         exporters.enable = true;
       };
+      nix-serve.enable = true;
     };
   };
   strasbourg = {
