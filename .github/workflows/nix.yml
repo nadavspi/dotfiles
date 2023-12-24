@@ -23,6 +23,12 @@ jobs:
 
     - run: nix flake check
 
+    - name: Build NixOS (prague)
+      run: nix run "nixpkgs#nixos-rebuild" -- build --flake .#prague
+
+    - name: Build home manager (shanghai)
+      run: nix run "nixpkgs#home-manager" -- build --flake .#nadavspi@shanghai
+
     - uses: sarisia/actions-status-discord@v1
       if: always()
       with:
