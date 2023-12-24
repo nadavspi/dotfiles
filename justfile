@@ -7,14 +7,14 @@ latest:
   set -euo pipefail
   cd ~/src/dotfiles/
   git pull --autostash
-  nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
+  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
 
 # Apply home manager config 
 apply:
   #!/usr/bin/env bash
   set -euo pipefail
   cd ~/src/dotfiles
-  nix run --impure home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
+  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
 
 nixos:
   sudo nixos-rebuild switch --flake .#{{HOST}}
