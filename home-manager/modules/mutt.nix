@@ -17,7 +17,7 @@ let
     neomutt
     notmuch
     pass
-    urlview
+    urlscan
   ];
 
   configFiles = [ "mutt" "msmtp" ];
