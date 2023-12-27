@@ -8,6 +8,7 @@ alias ll='eza -l'
 alias cat=bat
 alias lg=lazygit
 alias m="neomutt"
+alias k=kubectl
 
 s() {
   if [[ -n "${TMUX}" ]]; then
