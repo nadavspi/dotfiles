@@ -46,6 +46,14 @@ with lib; let
       domain = "nixos-desktop.nadav.is";
       answer = "192.168.1.203";
     }
+    {
+      domain = "1password-connect.nadav.is";
+      answer = "192.168.1.232";
+    }
+    {
+      domain = "coder.nadav.is";
+      answer = "192.168.1.232";
+    }
   ];
 in {
   options.nadavspi.adguard = {
