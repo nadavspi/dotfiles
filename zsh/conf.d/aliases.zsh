@@ -10,6 +10,7 @@ alias lg=lazygit
 alias m="neomutt"
 alias k=kubectl
 
+alias ssh-public-key='op read "op://Personal/ed/public key"'
 s() {
   if [[ -n "${TMUX}" ]]; then
     tmux rename-window "$*"
@@ -23,6 +24,7 @@ s() {
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
+alias k=kubectl
 
 alias sc='sudo -E SYSTEMD_EDITOR=vim systemctl'
 
