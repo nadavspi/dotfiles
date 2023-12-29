@@ -52,6 +52,7 @@ let
     shellcheck
     stylua
     tree-sitter
+    yaml-language-server
   ];
 
   configFiles = [
