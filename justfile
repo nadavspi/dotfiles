@@ -1,5 +1,5 @@
 USER := env_var('USER') 
-HOST := `uname -n`
+LOCALHOST := `uname -n`
 
 # Sync dotfiles and apply home manager config
 latest:
@@ -7,17 +7,24 @@ latest:
   set -euo pipefail
   cd ~/src/dotfiles/
   git pull --autostash
-  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
+  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{LOCALHOST}}
 
 # Apply home manager config 
 apply:
   #!/usr/bin/env bash
   set -euo pipefail
   cd ~/src/dotfiles
-  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{HOST}}
+  nix run home-manager/master -- -b bak switch --flake .#{{USER}}@{{LOCALHOST}}
 
 nixos:
-  sudo nixos-rebuild switch --flake .#{{HOST}}
+  sudo nixos-rebuild switch --flake .#{{LOCALHOST}}
+
+nixos-deploy host:
+  nixos-rebuild switch --flake .#{{host}} \
+    --no-build-nix \
+    --use-remote-sudo \
+    --build-host {{host}} \
+    --target-host {{host}}
 
 update-remote:
   #!/usr/bin/env bash
