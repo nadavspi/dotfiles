@@ -16,6 +16,7 @@ return {
 				"typescript",
 				"vim",
 				"vimdoc",
+				"yaml"
 			},
 
 			auto_install = true,
