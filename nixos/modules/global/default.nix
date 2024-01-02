@@ -6,6 +6,7 @@
     ./nfs.nix
     ./nix.nix
     ./overlays.nix
+    ./secrets.nix
     ./user.nix
     ./zsh.nix
   ];

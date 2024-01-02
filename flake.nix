@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix.url = "github:Mic92/sops-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
@@ -207,7 +208,12 @@
     };
 
     devShells = forEachSupportedSystem ({pkgs}: {
-      default = pkgs.mkShell {packages = with pkgs; [age sops];};
+      default = pkgs.mkShell {
+        packages = with pkgs; [
+          nixos-rebuild
+          sops
+        ];
+      };
     });
   };
 }

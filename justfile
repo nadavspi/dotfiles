@@ -50,5 +50,8 @@ install-1password-cli:
 cachix:
   cachix use nix-community
 
-save-age-private-key:
+age-private-key-save:
   op read "op://Personal/dotfiles age key/password" > ~/src/dotfiles/.age-private-key.txt
+
+age-private-key-copy host:
+  scp .age-private-key.txt {{host}}:~/src/dotfiles/.age-private-key.txt
