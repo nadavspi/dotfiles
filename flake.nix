@@ -21,6 +21,15 @@
     ...
   } @ inputs: let
     overlays = [inputs.neovim-nightly-overlay.overlay];
+    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forEachSupportedSystem = f:
+      nixpkgs.lib.genAttrs supportedSystems (system:
+        f {
+          pkgs = import nixpkgs {
+            inherit overlays system;
+            config.allowUnfree = true;
+          };
+        });
   in {
     homeConfigurations = {
       "nadavspi@stuttgart.nadav.is" = home-manager.lib.homeManagerConfiguration {
@@ -196,5 +205,9 @@
         ];
       };
     };
+
+    devShells = forEachSupportedSystem ({pkgs}: {
+      default = pkgs.mkShell {packages = with pkgs; [age sops];};
+    });
   };
 }
