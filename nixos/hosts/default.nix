@@ -5,7 +5,7 @@
       adguard.enable = true;
       tailscale.enable = true;
       autoUpgrade = {
-        enable = true;
+        enable = false;
         allowReboot = false;
       };
       monitoring = {
