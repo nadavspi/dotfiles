@@ -2,3 +2,4 @@ result
 bspwm/local.bspwmrc
 polybar/config.ini
 sxhkd/sxhkdrc
+.age-private-key.txt

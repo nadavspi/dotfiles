@@ -49,3 +49,6 @@ install-1password-cli:
 
 cachix:
   cachix use nix-community
+
+save-age-private-key:
+  op read "op://Personal/dotfiles age key/password" > ~/src/dotfiles/.age-private-key.txt
