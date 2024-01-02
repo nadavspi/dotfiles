@@ -13,7 +13,7 @@ in {
       default = false;
     };
     serverAddr = mkOption {
-      type = types.string;
+      type = types.str;
       default = "";
     };
   };
@@ -27,8 +27,8 @@ in {
       enable = true;
       clusterInit = cfg.clusterInit;
       role = "server";
-      serverAddr = mkIf serverAddr "https://" + cfg.serverAddr + ":6443";
-      token = "<randomized common secret>";
+      tokenFile = config.sops.secrets.k3s-token.path;
+      serverAddr = cfg.serverAddr;
     };
   };
 }

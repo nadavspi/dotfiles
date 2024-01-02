@@ -13,6 +13,10 @@
         exporters.enable = true;
       };
       nix-serve.enable = true;
+      k3s = {
+        enable = true;
+        serverAddr = "https://100.112.215.23:6443";
+      };
     };
   };
   strasbourg = {
