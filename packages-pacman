@@ -19,4 +19,5 @@ wget
 xclip
 yt-dlp
 zoxide
+zsh
 zstd
