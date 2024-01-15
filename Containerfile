@@ -1,11 +1,5 @@
 FROM ghcr.io/ublue-os/arch-distrobox:latest
 
-RUN ln -fs /bin/sh /usr/bin/sh && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree
-
 # Create build user
 RUN useradd -m --shell=/bin/bash build && usermod -L build && \
    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
@@ -29,3 +23,10 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
+
+# Convenience symlinks
+RUN ln -fs /bin/sh /usr/bin/sh && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree
