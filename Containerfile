@@ -6,13 +6,15 @@ RUN useradd -m --shell=/bin/bash build && usermod -L build && \
    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Install packages
+COPY packages-pacman /
+RUN pacman -Syu && \
+    grep -v '^#' /packages-pacman | xargs pacman -S --noconfirm
 USER build
 WORKDIR /home/build
-COPY extra-packages /
-RUN sudo pacman -Syu && \
-    grep -v '^#' /extra-packages | xargs paru -S --noconfirm
+COPY packages-aur /
+RUN grep -v '^#' /packages-aur | xargs paru -S --noconfirm
 USER root
-RUN rm /extra-packages
+RUN rm /packages-aur /packages-pacman
 WORKDIR /
 
 # Clean up
@@ -23,10 +25,3 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
-
-# Convenience symlinks
-RUN ln -fs /bin/sh /usr/bin/sh && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree

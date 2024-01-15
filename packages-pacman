@@ -5,13 +5,12 @@ direnv
 eza
 fd
 fzf
-git-delta-git
+git-delta
 github-cli
 just
 lazygit
 lf
 ncdu
-neovim-nightly-bin
 python3
 ripgrep
 speedtest-cli
