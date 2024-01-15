@@ -1,6 +1,7 @@
 base-devel
 bat
 btop
+chezmoi
 direnv
 eza
 fd
