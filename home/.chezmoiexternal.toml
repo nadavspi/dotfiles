@@ -1,0 +1,5 @@
+[".config/tmux/plugins/tpm"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tpm/archive/refs/tags/v3.1.0.tar.gz"
+    exact = true
+    stripComponents = 1
