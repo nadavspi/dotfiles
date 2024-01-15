@@ -1,5 +1,0 @@
-bspc config single_monocle false
-
-bspc monitor -d main notes chat mpv anki misc
-
-nm-applet &

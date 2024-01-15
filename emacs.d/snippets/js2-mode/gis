@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: getInitialState
-# key: gis;
-# --
-getInitialState () {
-  return {
-  $1
-  };
-},$0
