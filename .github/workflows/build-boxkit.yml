@@ -8,9 +8,9 @@ on:
   push:
     branches:
       - chezmoi
-    paths:
-      - 'boxkit/'
-      - 'home/'
+    # paths:
+    #   - 'boxkit/'
+    #   - 'home/'
 env:
     IMAGE_NAME: boxkit
     IMAGE_TAGS: latest
