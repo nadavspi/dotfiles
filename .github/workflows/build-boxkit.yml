@@ -3,13 +3,14 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron: '0 0 * * TUE'
+  # schedule:
+  #   - cron: '0 0 * * TUE'
   push:
     branches:
-      - main
-    paths-ignore:
-      - '**/README.md'
+      - chezmoi
+    paths:
+      - 'boxkit/'
+      - 'home/'
 env:
     IMAGE_NAME: boxkit
     IMAGE_TAGS: latest
@@ -26,11 +27,9 @@ jobs:
     strategy:
       fail-fast: false
     steps: 
-      # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
         
-      # Build metadata
       - name: Image Metadata
         uses: docker/metadata-action@v5
         id: meta
@@ -40,27 +39,17 @@ jobs:
           labels: |
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/boxkit/main/README.md
 
-      # Build image using Buildah action
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ./Containerfile
+            ./boxkit/Containerfile
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: false
-          
-      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
-      # https://github.com/macbre/push-to-ghcr/issues/12
-      - name: Lowercase Registry
-        id: registry_case
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ env.IMAGE_REGISTRY }}
 
-      # Push the image to GHCR (Image Registry)
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
         id: push
@@ -83,18 +72,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
             
-      # Sign container
-      - uses: sigstore/cosign-installer@v3.2.0
-
-      - name: Sign container image
-        if: github.event_name != 'pull_request'
-        run: |
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
-        env:
-          TAGS: ${{ steps.push.outputs.digest }}
-          COSIGN_EXPERIMENTAL: false
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+      # - uses: sigstore/cosign-installer@v3.2.0
+      # - name: Sign container image
+      #   if: github.event_name != 'pull_request'
+      #   run: |
+      #     cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
+      #   env:
+      #     TAGS: ${{ steps.push.outputs.digest }}
+      #     COSIGN_EXPERIMENTAL: false
+      #     COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+      #     COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
 
       - name: Echo outputs
         run: |
