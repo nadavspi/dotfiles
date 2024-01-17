@@ -20,6 +20,9 @@ jobs:
   push-ghcr:
     name: Build and push image
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./boxkit
     permissions:
       contents: read
       packages: write
@@ -36,15 +39,13 @@ jobs:
         with:
           images: |
             ${{ env.IMAGE_NAME }}
-          labels: |
-            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/boxkit/main/README.md
 
       - name: Build Image
-        id: build_image
         uses: redhat-actions/buildah-build@v2
+        id: build_image
         with:
           containerfiles: |
-            ./boxkit/Containerfile
+            ./Containerfile
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           labels: ${{ steps.meta.outputs.labels }}
