@@ -1,7 +1,7 @@
 FROM quay.io/toolbx-images/opensuse-toolbox:tumbleweed
 
 # Install packages
-COPY packages /
+COPY boxkit/packages /
 RUN grep -v '^#' /packages | xargs zypper --non-interactive install 
 RUN rm /packages
 WORKDIR /
