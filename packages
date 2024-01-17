@@ -1,4 +1,3 @@
-base-devel
 bat
 btop
 chezmoi
@@ -7,15 +6,16 @@ eza
 fd
 fzf
 git-delta
-github-cli
+gh
 lazygit
 lf
 ncdu
+neovim
 python3
 ripgrep
 speedtest-cli
 tmux
-ttf-hack-nerd
+#ttf-hack-nerd
 wget
 xclip
 yt-dlp
