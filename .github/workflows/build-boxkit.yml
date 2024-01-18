@@ -12,7 +12,7 @@ on:
     #   - 'boxkit/'
     #   - 'home/'
 env:
-    IMAGE_NAME: boxkit
+    IMAGE_NAME: dotfiles
     IMAGE_TAGS: latest
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
