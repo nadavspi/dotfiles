@@ -1,6 +1,3 @@
-[submodule "emacs.d/vendor/evil-org-mode"]
-	path = emacs.d/vendor/evil-org-mode
-	url = https://github.com/edwtjo/evil-org-mode.git
 [submodule "mpv/scripts/subs2srs"]
 	path = home/dot_config/mpv/scripts/subs2srs
 	url = https://github.com/Ajatt-Tools/mpvacious.git
@@ -14,6 +11,7 @@
 	path = home/dot_config/awesome/lain
 	url = https://github.com/lcpz/lain.git
 [submodule "subs2srs"]
+	path = home/dot_config/mpv/scripts/subs2srs
 	url = git@github.com:nadavspi/mpvacious.git
 [submodule "tmux/plugins/tpm"]
 	path = home/dot_config/tmux/plugins/tpm
