@@ -6,9 +6,6 @@ RUN grep -v '^#' /packages | xargs zypper --non-interactive install
 RUN rm /packages
 WORKDIR /
 
-COPY / /opt/dotfiles
-RUN chmod 775 /opt/dotfiles
-
 # Convience symlinks
 RUN ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
