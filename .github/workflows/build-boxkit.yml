@@ -81,6 +81,12 @@ jobs:
       #     COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
       #     COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
 
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
       - name: Echo outputs
         run: |
           echo "${{ toJSON(steps.push.outputs) }}"
+
