@@ -4,7 +4,11 @@ local user = require("config.user")
 
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "Return", function ()
-		awful.spawn(user.terminal)
+		awful.spawn("kitty distrobox enter dotfiles")
+	end),
+
+	awful.key({ modkey, mod.shift }, "Return", function ()
+		awful.spawn("kitty")
 	end),
 
 	awful.key({ modkey }, "b", function ()
