@@ -9,8 +9,8 @@ on:
     branches:
       - chezmoi
     paths:
-      - 'boxkit/'
-      - 'home/'
+      - 'boxkit/**'
+      - 'home/**'
 env:
     IMAGE_NAME: dotfiles
     IMAGE_TAGS: latest
