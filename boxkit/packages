@@ -1,3 +1,4 @@
+#ttf-hack-nerd
 bat
 btop
 chezmoi
@@ -5,20 +6,25 @@ direnv
 eza
 fd
 fzf
-git-delta
 gh
+git-delta
 lazygit
 lf
 ncdu
-neovim
 python3
 ripgrep
 speedtest-cli
 tmux
-#ttf-hack-nerd
 wget
 xclip
 yt-dlp
 zoxide
 zsh
 zstd
+
+# neovim build deps
+cmake
+curl
+gcc-c++
+gettext-tools
+ninja
