@@ -9,8 +9,10 @@ on:
     branches:
       - chezmoi
     paths:
+      - 'Containerfile'
       - 'boxkit/**'
       - 'home/**'
+  workflow_dispatch:
 env:
     IMAGE_NAME: dotfiles
     IMAGE_TAGS: latest
