@@ -1,7 +1,14 @@
 return {
 	{
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup()
+		end,
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
+		dependencies = { "williamboman/mason.nvim" },
 		init = function()
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
