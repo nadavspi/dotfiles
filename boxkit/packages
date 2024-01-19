@@ -21,3 +21,11 @@ yt-dlp
 zoxide
 zsh
 zstd
+
+# neovim build deps
+build-base 
+cmake 
+coreutils 
+curl 
+unzip 
+gettext-tiny-dev
