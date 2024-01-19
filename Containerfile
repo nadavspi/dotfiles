@@ -11,6 +11,11 @@ RUN apk update && \
     grep -v '^#' /packages | xargs apk add
 RUN rm /packages
 
+RUN curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux \
+  --extra-conf "sandbox = false" \
+  --init none \
+  --no-confirm
+
 WORKDIR /tmp
 RUN git clone --depth=1 https://github.com/neovim/neovim && \
     cd neovim && \
