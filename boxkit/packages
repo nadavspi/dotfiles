@@ -1,13 +1,13 @@
-#ttf-hack-nerd
 bat
 btop
 chezmoi
+delta
 direnv
 eza
 fd
+font-hack-nerd
 fzf
-gh
-git-delta
+github-cli
 lazygit
 lf
 ncdu
@@ -21,10 +21,3 @@ yt-dlp
 zoxide
 zsh
 zstd
-
-# neovim build deps
-cmake
-curl
-gcc-c++
-gettext-tools
-ninja

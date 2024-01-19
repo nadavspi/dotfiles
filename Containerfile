@@ -1,8 +1,14 @@
-FROM quay.io/toolbx-images/opensuse-toolbox:tumbleweed
+FROM quay.io/toolbx-images/alpine-toolbox:3.19
 
-# Install packages
-COPY boxkit/packages /
-RUN grep -v '^#' /packages | xargs zypper --non-interactive install 
+COPY boxkit/install-distrobox-base.sh /install-distrobox-base.sh
+RUN chmod +x /install-distrobox-base.sh
+RUN /install-distrobox-base.sh
+RUN rm /install-distrobox-base.sh
+
+COPY boxkit/packages /packages
+RUN apk update && \
+    apk upgrade && \
+    grep -v '^#' /packages | xargs apk add
 RUN rm /packages
 
 WORKDIR /tmp
