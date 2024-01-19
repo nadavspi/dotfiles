@@ -19,7 +19,8 @@ RUN git clone --depth=1 https://github.com/neovim/neovim && \
     rm -rf /tmp/neovim
 
 # Convience symlinks
-RUN ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
+RUN ln -fs /bin/sh /usr/bin/sh && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/just && \ 
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
