@@ -9,3 +9,7 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".local/share/fonts/hack-nerd"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.tar.xz"
+    exact = true
