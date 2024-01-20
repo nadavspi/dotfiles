@@ -47,16 +47,6 @@ lazy.setup("plugins")
 -- aesthetics
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("tokyonight-moon")
-require("lualine").setup({
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = { "location" },
-	},
-})
 
 -- clipboard
 vim.keymap.set("v", "<leader>y", '"+y')

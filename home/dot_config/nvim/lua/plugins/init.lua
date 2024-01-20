@@ -6,7 +6,22 @@ return {
 		priority = 1000,
 		opts = {},
 	},
-	{ "nvim-lualine/lualine.nvim", lazy = true },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "filename" },
+					lualine_x = {},
+					lualine_y = {},
+					lualine_z = { "location" },
+				},
+			})
+		end,
+	},
 	{ "tpope/vim-repeat" },
 	{ "tpope/vim-sleuth" },
 	{
