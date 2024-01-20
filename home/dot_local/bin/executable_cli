@@ -1,56 +1,100 @@
 #!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
 
+caller=$(basename "$0")
 container=dotfiles
 image=dotfiles
 service=dotfiles-cli.service
 
-function get_metadata() {
-  # Output:
-  # $0 image id
-  # $1 git revision
-  # $2 created datetime
-  # $3 image name
-  echo "$@" | jq --raw-output '.[0] |
-    # `podman ps` returns .ImageID, `podman image inspect` returns .Id
-    ([.ImageID, .Id] | map(select(. != null)))[0],
-    .Labels["org.opencontainers.image.revision"],
-    .Labels["org.opencontainers.image.created"], .Image
-  '
+help() {
+    echo "Usage: $caller <subcommand> [options]"
+    echo "Subcommands:"
+    echo "  enter   Start a shell in the container"
+    echo "  status  See whether the container is running, up to date, etc."
+    echo ""
+    echo "For help with each subcommand run:"
+    echo "$caller <subcommand> -h|--help"
+    echo ""
 }
 
-function output() {
-  local arr
-  read -ra arr <<< "$@"
-  image=$(echo "${arr[0]}" | cut -c1-7)
-  revision=$(echo "${arr[1]}" | cut -c1-7)
-  datetime=${arr[2]}
-  echo "$image $datetime $revision"
+enter() {
+  distrobox enter $container
 }
 
-active=$(systemctl --user is-active $service)
-latest=$(get_metadata "$(podman image inspect $image)")
-running=$(get_metadata "$(podman ps -f name=dotfiles --format="json")")
-# can get this from $running or $latest
-image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
+status() {
+  function get_metadata() {
+    # Output:
+    # $0 image id
+    # $1 git revision
+    # $2 created datetime
+    # $3 image name
+    echo "$@" | jq --raw-output '.[0] |
+      # `podman ps` returns .ImageID, `podman image inspect` returns .Id
+          ([.ImageID, .Id] | map(select(. != null)))[0],
+          .Labels["org.opencontainers.image.revision"],
+          .Labels["org.opencontainers.image.created"], .Image
+          '
+        }
 
-echo "Image: $image_name"
-echo "Status: $active"
-echo "Last checked for updates:"
+        function output() {
+          local arr
+          read -ra arr <<< "$@"
+          image=$(echo "${arr[0]}" | cut -c1-7)
+          revision=$(echo "${arr[1]}" | cut -c1-7)
+          datetime=${arr[2]}
+          echo "$image $datetime $revision"
+        }
 
-printf "\n"
-headings=$(printf "%-7s %-24s %-7s" "Image" "Created" "Revision")
-if [[ "$(output $latest)" == "$(output $running)" ]]; then
-  printf "󰄬 Running the latest image\n\n"
-  echo "$headings"
-  output $latest
-  gum confirm "Check for updates?" && podman pull "$image" && $0 || exit 0
-else
-  printf "󰚰 Update available\n\n"
-  echo "  $headings"
-  echo "  $(output $latest)"
-  echo "● $(output $running)"
-  gum confirm "Restart container?" && \
-    gum spin --spinner line --title "Restarting $service" -- systemctl --user restart $service && \
-    systemctl --user status $service \
-    || exit 0
+        active=$(systemctl --user is-active $service)
+        latest=$(get_metadata "$(podman image inspect $image)")
+        running=$(get_metadata "$(podman ps -f name=dotfiles --format="json")")
+        # can get this from $running or $latest
+        image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
+
+        echo "Image: $image_name"
+        echo "Status: $active"
+        echo "Last checked for updates:"
+
+        printf "\n"
+        headings=$(printf "%-7s %-24s %-7s" "Image" "Created" "Revision")
+        if [[ "$(output $latest)" == "$(output $running)" ]]; then
+          printf "󰄬 Running the latest image\n\n"
+          echo "$headings"
+          output $latest
+          gum confirm "Check for updates?" && podman pull "$image" && $0 || exit 0
+        else
+          printf "󰚰 Update available\n\n"
+          echo "  $headings"
+          echo "  $(output $latest)"
+          echo "● $(output $running)"
+          gum confirm "Restart container?" && \
+            gum spin --spinner line --title "Restarting $service" -- systemctl --user restart $service && \
+            systemctl --user status $service \
+            || exit 0
+        fi
+      }
+
+if [[ ${#} == 0 ]]; then
+    help 0;
+    exit 1;
 fi
+
+case ${1} in
+    "help" | "--help" | "-h" )
+        help
+        exit 0
+        ;;
+    enter | status )
+        $1 "${@:2}"
+        ;;
+    * )
+        echo "unknown command: $1";
+        help 1;
+        exit 1;
+        ;;
+esac
