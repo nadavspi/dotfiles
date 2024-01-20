@@ -10,26 +10,26 @@ function get_metadata() {
   # $1 git revision
   # $2 created datetime
   # $3 image name
-  echo $(echo "$@" | jq --raw-output '.[0] |
+  echo "$@" | jq --raw-output '.[0] |
     # `podman ps` returns .ImageID, `podman image inspect` returns .Id
     ([.ImageID, .Id] | map(select(. != null)))[0],
     .Labels["org.opencontainers.image.revision"],
     .Labels["org.opencontainers.image.created"], .Image
-  ')
+  '
 }
 
 function output() {
   local arr
-  read -a arr <<< "$@"
-  image=$(echo ${arr[0]} | cut -c1-7)
-  revision=$(echo ${arr[1]} | cut -c1-7)
+  read -ra arr <<< "$@"
+  image=$(echo "${arr[0]}" | cut -c1-7)
+  revision=$(echo "${arr[1]}" | cut -c1-7)
   datetime=${arr[2]}
   echo "$image $datetime $revision"
 }
 
 active=$(systemctl --user is-active $service)
-latest=$(get_metadata `podman image inspect $image`)
-running=$(get_metadata `podman ps -f name=dotfiles --format="json"`)
+latest=$(get_metadata "$(podman image inspect $image)")
+running=$(get_metadata "$(podman ps -f name=dotfiles --format="json")")
 # can get this from $running or $latest
 image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
 
@@ -42,8 +42,8 @@ headings=$(printf "%-7s %-24s %-7s" "Image" "Created" "Revision")
 if [[ "$(output $latest)" == "$(output $running)" ]]; then
   printf "󰄬 Running the latest image\n\n"
   echo "$headings"
-  echo "$(output $latest)"
-  gum confirm "Check for updates?" && podman pull $image && $0 || exit 0
+  output $latest
+  gum confirm "Check for updates?" && podman pull "$image" && $0 || exit 0
 else
   printf "󰚰 Update available\n\n"
   echo "  $headings"
