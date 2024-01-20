@@ -9,13 +9,14 @@ fi
 caller=$(basename "$0")
 container=dotfiles
 image=dotfiles
-service=dotfiles-cli.service
+service=dotfiles.service
 
 help() {
     echo "Usage: $caller <subcommand> [options]"
     echo "Subcommands:"
     echo "  enter   Start a shell in the container"
     echo "  status  See whether the container is running, up to date, etc."
+    echo "  restart"
     echo ""
     echo "For help with each subcommand run:"
     echo "$caller <subcommand> -h|--help"
@@ -24,6 +25,10 @@ help() {
 
 enter() {
   distrobox enter $container
+}
+
+restart() {
+  systemctl --user restart $service
 }
 
 status() {
@@ -89,7 +94,7 @@ case ${1} in
         help
         exit 0
         ;;
-    enter | status )
+    enter | status | restart )
         $1 "${@:2}"
         ;;
     * )
