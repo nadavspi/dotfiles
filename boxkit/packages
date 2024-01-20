@@ -31,3 +31,7 @@ coreutils
 curl 
 unzip 
 gettext-tiny-dev
+
+# coding stuff
+stylua
+shellcheck
