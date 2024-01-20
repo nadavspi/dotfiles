@@ -8,6 +8,7 @@ fi
 
 caller=$(basename "$0")
 
+
 help() {
     echo "Usage: $caller <subcommand> [options]"
     echo "Subcommands:"
@@ -19,21 +20,25 @@ help() {
 }
 
 hello() {
-		echo "hi"
+    echo "hi"
 }
 
-subcommand=$1
-case $subcommand in
-"" | "help" | "-h" | "--help")
-    help
-    ;;
-*)
-    shift
-    ${subcommand} "$@"
-    if [ $? = 127 ]; then
-        echo "Error: '$subcommand' is not a known subcommand." >&2
-        echo "  Run '$caller --help' for a list of known subcommands." >&2
-        exit 1
-    fi
-    ;;
+if [[ ${#} == 0 ]]; then
+    help 0;
+    exit 1;
+fi
+
+case ${1} in
+    "help" | "--help" | "-h" )
+        help
+        exit 0
+        ;;
+    hello )
+        $1 "${@:2}"
+        ;;
+    * )
+        echo "unknown command: $1";
+        help 1;
+        exit 1;
+        ;;
 esac
