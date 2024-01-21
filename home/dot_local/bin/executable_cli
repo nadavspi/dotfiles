@@ -7,8 +7,8 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 caller=$(basename "$0")
-container=dotfiles
-image=dotfiles
+container="dotfiles"
+image="dotfiles"
 service=dotfiles.service
 
 help() {
@@ -31,6 +31,10 @@ restart() {
   systemctl --user restart $service
 }
 
+update() {
+  systemctl --user restart "$image"-update.service 
+}
+
 status() {
   function get_metadata() {
     # Output:
@@ -47,23 +51,23 @@ status() {
         }
 
         function output() {
-          local arr
-          read -ra arr <<< "$@"
-          image=$(echo "${arr[0]}" | cut -c1-7)
-          revision=$(echo "${arr[1]}" | cut -c1-7)
-          datetime=${arr[2]}
+          local arr; read -ra arr <<< "$@"
+          local image; image=$(echo "${arr[0]}" | cut -c1-7)
+          local revision; revision=$(echo "${arr[1]}" | cut -c1-7)
+          local datetime; datetime=${arr[2]}
           echo "$image $datetime $revision"
         }
 
         active=$(systemctl --user is-active $service)
         latest=$(get_metadata "$(podman image inspect $image)")
         running=$(get_metadata "$(podman ps -f name=dotfiles --format="json")")
+        last_update=$(systemctl --user status dotfiles-update.service|awk '/Active:/ { sub(/[^;]*; /,"",$0); print; }')
         # can get this from $running or $latest
         image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
 
         echo "Image: $image_name"
         echo "Status: $active"
-        echo "Last checked for updates:"
+        echo "Last update check: $last_update"
 
         printf "\n"
         headings=$(printf "%-7s %-24s %-7s" "Image" "Created" "Revision")
@@ -71,7 +75,7 @@ status() {
           printf "󰄬 Running the latest image\n\n"
           echo "$headings"
           output $latest
-          gum confirm "Check for updates?" && podman pull "$image" && $0 || exit 0
+          gum confirm "Check for updates?" && update && $0 status || exit 0
         else
           printf "󰚰 Update available\n\n"
           echo "  $headings"
