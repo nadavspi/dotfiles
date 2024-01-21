@@ -34,9 +34,9 @@ jobs:
 
       # Confirm our private key matches cosign.pub
       - uses: sigstore/cosign-installer@v3.3.0
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/live'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/chezmoi'
       - name: Check COSIGN_PRIVATE_KEY matches cosign.pub
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/live'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/chezmoi'
         env:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
