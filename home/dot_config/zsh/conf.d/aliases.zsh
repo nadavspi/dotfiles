@@ -1,6 +1,8 @@
 # git
 alias g=lazygit
 alias gst='git status'
+alias gp='git pull && git push'
+alias gP='git pull'
 
 alias l=lf
 alias ls=eza
