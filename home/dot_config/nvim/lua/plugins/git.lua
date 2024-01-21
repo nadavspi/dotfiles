@@ -70,8 +70,7 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"rcarriga/nvim-notify",
 		},
-		config = function()
-			require("tinygit").setup()
+		init = function()
 			vim.keymap.set("n", "<leader>gc", function()
 				require("tinygit").smartCommit()
 			end)
