@@ -1,11 +1,11 @@
 FROM quay.io/toolbx-images/alpine-toolbox:3.19
 
-COPY boxkit/install-distrobox-base.sh /install-distrobox-base.sh
+COPY cli/install-distrobox-base.sh /install-distrobox-base.sh
 RUN chmod +x /install-distrobox-base.sh
 RUN /install-distrobox-base.sh
 RUN rm /install-distrobox-base.sh
 
-COPY boxkit/packages /packages
+COPY cli/packages /packages
 RUN apk update && \
     apk upgrade && \
     grep -v '^#' /packages | xargs apk add
