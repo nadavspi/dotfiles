@@ -1,0 +1,115 @@
+name: Build CLI container
+on:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * SUN'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-cli.yml'
+      - 'Containerfile.cli'
+      - 'cli/**'
+      - 'home/**'
+  workflow_dispatch:
+env:
+    IMAGE_NAME: dotfiles-cli
+    IMAGE_TAGS: latest
+    IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  push-ghcr:
+    name: Build and push image
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout Push to Registry action
+        uses: actions/checkout@v4
+
+      # Confirm our private key matches cosign.pub
+      - uses: sigstore/cosign-installer@v3.3.0
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/chezmoi'
+      - name: Check COSIGN_PRIVATE_KEY matches cosign.pub
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/chezmoi'
+        env:
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+        shell: bash
+        run: |
+          echo "Checking for difference between public key from COSIGN_PRIVATE_KEY and cosign.pub"
+          delta=$(diff -u <(cosign public-key --key env://COSIGN_PRIVATE_KEY) cosign.pub)
+          if [ -z "$delta" ]; then
+            echo "cosign.pub matches COSIGN_PRIVATE_KEY"
+          else
+            echo "cosign.pub does not match COSIGN_PRIVATE_KEY"
+            echo "$delta"
+            exit 1
+          fi
+
+      - name: Image Metadata
+        uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: |
+            ${{ env.IMAGE_NAME }}
+
+      - name: Build Image
+        uses: redhat-actions/buildah-build@v2
+        id: build_image
+        with:
+          containerfiles: |
+            ./Containerfile.cli
+          image: ${{ env.IMAGE_NAME }}
+          tags: ${{ env.IMAGE_TAGS }}
+          labels: ${{ steps.meta.outputs.labels }}
+          oci: false
+
+      - name: Push To GHCR
+        uses: redhat-actions/push-to-registry@v2
+        id: push
+        env:
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_PASSWORD: ${{ github.token }}
+        with:
+          image: ${{ steps.build_image.outputs.image }}
+          tags: ${{ steps.build_image.outputs.tags }}
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          extra-args: |
+            --disable-content-trust
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: sigstore/cosign-installer@v3.2.0
+      - name: Sign container image
+        if: github.event_name != 'pull_request'
+        run: |
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}@${TAGS}
+        env:
+          TAGS: ${{ steps.push.outputs.digest }}
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Echo outputs
+        run: |
+          echo "${{ toJSON(steps.push.outputs) }}"

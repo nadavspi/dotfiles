@@ -1,0 +1,37 @@
+bat
+btop
+chezmoi
+delta
+direnv
+eza
+fd
+fzf
+github-cli
+jq
+lazygit
+lf
+ncdu
+nodejs
+npm
+python3
+ripgrep
+speedtest-cli
+tmux
+wget
+xclip
+yt-dlp
+zoxide
+zsh
+zstd
+
+# neovim build deps
+build-base 
+cmake 
+coreutils 
+curl 
+unzip 
+gettext-tiny-dev
+
+# coding stuff
+stylua
+shellcheck

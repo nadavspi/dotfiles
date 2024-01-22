@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: import react-dom
-# key: ird;
-# --
-import ReactDOM from 'react-dom';

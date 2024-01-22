@@ -1,0 +1,15 @@
+[".config/tmux/plugins/tpm"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tpm/archive/refs/tags/v3.1.0.tar.gz"
+    exact = true
+    stripComponents = 1
+[".config/awesome/lain"]
+    type = "archive"
+    url = "https://github.com/lcpz/lain/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/fonts/hack-nerd"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.tar.xz"
+    exact = true

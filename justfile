@@ -1,3 +1,5 @@
+import "boxkit/justfile"
+
 USER := env_var('USER') 
 LOCALHOST := `uname -n`
 

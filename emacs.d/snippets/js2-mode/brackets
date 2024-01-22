@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: brackets
-# binding: C-9
-# --
-({
-$1
-});$0
