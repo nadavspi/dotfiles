@@ -8,7 +8,7 @@ fi
 
 caller=$(basename "$0")
 container="dotfiles"
-image="dotfiles"
+image="dotfiles-cli"
 service=dotfiles.service
 
 help() {
