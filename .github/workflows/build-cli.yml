@@ -3,15 +3,15 @@ on:
   pull_request:
     branches:
       - main
-  # schedule:
-  #   - cron: '0 0 * * TUE'
+  schedule:
+    - cron: '0 0 * * SUN'
   push:
     branches:
-      - chezmoi
+      - main
     paths:
       - '.github/workflows/build-cli.yml'
       - 'Containerfile.cli'
-      - 'boxkit/**'
+      - 'cli/**'
       - 'home/**'
   workflow_dispatch:
 env:
