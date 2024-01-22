@@ -1,4 +1,4 @@
-name: build-boxkit
+name: Build CLI container
 on:
   pull_request:
     branches:
