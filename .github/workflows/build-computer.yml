@@ -36,15 +36,6 @@ jobs:
     strategy:
       fail-fast: false
 
-      matrix:
-# !!!
-        # Add recipes for all the images you want to build here.
-        # Don't add module configuration files, you will get errors.
-        recipe:
-          - desktop.yml
-          - laptop.yml
-# !!!
-
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
