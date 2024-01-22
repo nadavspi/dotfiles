@@ -9,7 +9,7 @@ on:
     branches:
       - chezmoi
     paths:
-      - '.github/
+      - '.github/workflows/build-cli.yml'
       - 'Containerfile.cli'
       - 'boxkit/**'
       - 'home/**'
