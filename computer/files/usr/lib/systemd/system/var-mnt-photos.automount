@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount ono photos
+
+[Automount]
+Where=/var/mnt/photos
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+name: nadavspi-desktop
+description: desktop image
+
+base-image: ghcr.io/ublue-os/bluefin
+image-version: 39 
+
+modules:
+  - type: files
+    files:
+      - usr: /usr
+
+  - from-file: base.yml
+
+  - type: rpm-ostree
+    install: 
+      - xcalib
+
+  - type: bling 
+    install:
+      - nix-installer 
+
+  - type: script
+    scripts:
+      - 1password.sh

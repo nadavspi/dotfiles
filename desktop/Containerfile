@@ -1,3 +1,0 @@
-FROM ghcr.io/ublue-os/silverblue-main
-
-RUN rm -rf /tmp/* /var/* && ostree container commit 

@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount ono backups
+
+[Automount]
+Where=/var/mnt/backups
+
+[Install]
+WantedBy=multi-user.target

@@ -1,4 +1,4 @@
-import "boxkit/justfile"
+import "cli/justfile"
 
 USER := env_var('USER') 
 LOCALHOST := `uname -n`
@@ -57,3 +57,10 @@ age-private-key-save:
 
 age-private-key-copy host:
   scp .age-private-key.txt {{host}}:~/src/dotfiles/.age-private-key.txt
+
+computer: computer-build computer-run
+computer-build: 
+  podman build . -f Containerfile.computer -t pc-test
+computer-run:
+  podman run -it computer-test zsh
+  

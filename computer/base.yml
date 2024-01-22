@@ -1,0 +1,65 @@
+modules:
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/coolj/awesome-luajit-nightly/repo/fedora-%OS_VERSION%/coolj-awesome-luajit-nightly-fedora-%OS_VERSION%.repo
+      - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    install: 
+      - awesome
+      - blueman
+      - dex-autostart
+      - feh
+      - flameshot
+      - golang-github-prometheus-node-exporter
+      - input-remapper
+      - kitty
+      - lxappearance
+      - lxpolkit
+      - mpv
+      - network-manager-applet
+      - pasystray
+      - pcmanfm
+      - redshift-gtk
+      - rofi
+      - tailscale
+      - xfce4-power-manager
+      - xsecurelock
+      - xset
+      - xss-lock
+      - zsh
+
+  - type: default-flatpaks
+    system:
+      install:
+        - com.discordapp.Discord
+        - com.github.Eloston.UngoogledChromium
+        - com.github.tchx84.Flatseal
+        - com.slack.Slack
+        - md.obsidian.Obsidian
+        - net.ankiweb.Anki
+        - net.codeindustry.MasterPDFEditor
+        - org.fcitx.Fcitx5
+        - org.mozilla.firefox
+        - us.zoom.Zoom
+
+  - type: script
+    scripts:
+      - signing.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - sshd.service
+        - var-mnt-appdata.automount
+        - var-mnt-backups.automount
+        - var-mnt-data.automount
+        - var-mnt-docker.automount
+        - var-mnt-docs.automount
+        - var-mnt-isos.automount
+        - var-mnt-photos.automount
+        - node_exporter_tailscale.service
+      disabled:
+        - node_exporter.service
+    user:
+      enabled:
+        - dotfiles-update.timer
+        - dotfiles-update.service

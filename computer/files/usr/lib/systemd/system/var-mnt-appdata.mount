@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount ono appdata share
+
+[Mount]
+What=192.168.1.77:/mnt/user/appdata
+Where=/var/mnt/appdata
+Options=vers=4
+Type=nfs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

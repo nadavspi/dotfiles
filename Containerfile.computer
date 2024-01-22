@@ -1,0 +1,26 @@
+FROM ghcr.io/ublue-os/sericea-main:39
+
+COPY computer/files /
+
+# install rpm packages
+COPY computer/packages /packages
+RUN grep -v '^#' /packages | xargs rpm-ostree install
+RUN rm /packages
+
+# install flatpaks
+
+RUN systemctl enable sshd.service && \
+    systemctl enable var-mnt-appdata.automount && \
+    systemctl enable var-mnt-backups.automount && \
+    systemctl enable var-mnt-data.automount && \
+    systemctl enable var-mnt-docker.automount && \
+    systemctl enable var-mnt-docs.automount && \
+    systemctl enable var-mnt-isos.automount && \
+    systemctl enable var-mnt-photos.automount && \
+    systemctl enable --global dotfiles-update.timer
+
+COPY computer/scripts/1password.sh /
+RUN sh /1password.sh
+RUN rm /1password.sh
+
+RUN rm -rf /tmp/* /var/* && ostree container commit

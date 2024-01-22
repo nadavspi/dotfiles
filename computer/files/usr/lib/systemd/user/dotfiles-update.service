@@ -1,0 +1,7 @@
+[Unit]
+Description=Pull dotfiles container image
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/podman pull ghcr.io/nadavspi/dotfiles:latest
