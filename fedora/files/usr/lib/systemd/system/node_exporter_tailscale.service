@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus Node Exporter
+After=sys-subsystem-net-devices-tailscale0.device tailscaled.service
+
+[Service]
+ExecStart=/bin/bash -c "node_exporter --web.listen-address=$$(tailscale ip | head -n 1):9100"
+Type=exec
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull dotfiles container image
+
+[Timer]
+OnBootSec=1h
+OnUnitInactiveSec=1d
+
+[Install]
+WantedBy=timers.target

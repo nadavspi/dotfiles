@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount ono data
+
+[Automount]
+Where=/var/mnt/data
+
+[Install]
+WantedBy=multi-user.target

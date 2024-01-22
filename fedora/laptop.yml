@@ -1,0 +1,22 @@
+name: nadavspi-laptop
+description: laptop image
+
+base-image: ghcr.io/ublue-os/bluefin
+image-version: 39 
+
+modules:
+  - type: files
+    files:
+      - usr: /usr
+
+  - from-file: base.yml
+
+  - type: bling 
+    install:
+      - nix-installer 
+      - justfiles
+      - laptop
+
+  - type: script
+    scripts:
+      - 1password.sh

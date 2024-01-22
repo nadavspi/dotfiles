@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount ono docker share
+
+[Mount]
+What=192.168.1.77:/mnt/user/docker
+Where=/var/mnt/docker
+Options=vers=4
+Type=nfs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

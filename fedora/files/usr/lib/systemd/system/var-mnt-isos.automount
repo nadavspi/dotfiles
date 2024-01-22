@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount ono isos
+
+[Automount]
+Where=/var/mnt/isos
+
+[Install]
+WantedBy=multi-user.target

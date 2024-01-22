@@ -1,7 +1,0 @@
-default: build run
-  
-build:
-  podman build . -t nadav-ublue-test
-
-run:
-  podman run -it nadav-ublue-test sh

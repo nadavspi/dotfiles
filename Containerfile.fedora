@@ -1,0 +1,8 @@
+FROM ghcr.io/ublue-os/sericea-main:39
+
+COPY fedora/files /
+
+COPY fedora/packages /packages
+RUN grep -v '^#' /packages | xargs rpm-ostree install
+
+RUN rm -rf /tmp/* /var/* && ostree container commit
