@@ -15,7 +15,6 @@ RUN echo \
         tailscale \
         wlsunset \
         zsh | xargs rpm-ostree install
-RUN rm /packages
 
 # install flatpaks
 
