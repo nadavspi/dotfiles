@@ -15,7 +15,6 @@ RUN echo \
         pasystray \
         pcmanfm \
         tailscale \
-        wlsunset \
         zsh | xargs rpm-ostree install
 
 # install flatpaks
