@@ -2,9 +2,20 @@ FROM ghcr.io/ublue-os/sericea-main:39
 
 COPY computer/files /
 
-# install rpm packages
+# rpm-ostree install
 COPY computer/packages /packages
-RUN grep -v '^#' /packages | xargs rpm-ostree install
+RUN echo \
+        blueman \
+        dex-autostart \
+        gum \
+        kitty \
+        mpv \
+        network-manager-applet \
+        pasystray \
+        pcmanfm \
+        tailscale \
+        wlsunset \
+        zsh | xargs rpm-ostree install
 RUN rm /packages
 
 # install flatpaks
