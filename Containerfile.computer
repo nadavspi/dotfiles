@@ -12,7 +12,6 @@ RUN echo \
         kitty \
         mpv \
         network-manager-applet \
-        pasystray \
         pcmanfm \
         tailscale \
         zsh | xargs rpm-ostree install
