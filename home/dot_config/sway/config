@@ -33,8 +33,12 @@ client.focused_inactive $purple      $darkpurple  $primary  $darkpurple
 client.unfocused        $darkpurple  $darkpurple  $primary  $darkpurple
 client.urgent           $red         $red         $primary
 
-gaps inner 10px
-smart_gaps inverse_outer
+# gaps inner 10px
+# gaps outer whatever for big monitor
+# smart_gaps inverse_outer
+# smart_gaps on
+
+smart_borders on
 default_border pixel 5
 default_floating_border none
 
