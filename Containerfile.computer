@@ -3,7 +3,6 @@ FROM ghcr.io/ublue-os/sericea-main:39
 COPY computer/files /
 
 # rpm-ostree install
-COPY computer/packages /packages
 RUN echo \
         blueman \
         dex-autostart \
