@@ -1,8 +1,8 @@
 configuration {
-  display-drun: "Applications:";
+  display-drun: "";
   display-window: "Windows:";
   drun-display-format: "{name}";
-  font: "JetBrainsMono Nerd Font Medium 16";
+  font: "Hacker Nerd Font 16";
   modi: "window,run,drun";
   show-icons: true;
 }

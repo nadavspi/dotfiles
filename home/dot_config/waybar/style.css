@@ -1,0 +1,107 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, "Hack Nerd Font", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+}
+
+#window {
+    padding: 0 10px;
+}
+
+window#waybar {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    transition-duration: 0s;
+    color: #d3d3d3;
+    background: #1b191f; 
+} 
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #d3d3d3;
+    min-width: 33px;
+}
+
+#workspaces button.focused {
+    background-color: #5d178f;
+}
+
+#workspaces button.urgent {
+    background-color: #2baec2;
+    color: white;
+}
+
+#workspaces .persistent {
+    color: #333;
+}
+
+#pulseaudio {
+    /* font-size: 26px; */
+}
+
+#custom-recorder {
+	font-size: 18px;
+	margin: 2px 7px 0px 7px;
+	color:#ee2e24;
+}
+
+#tray,
+#mode,
+#battery,
+#temperature,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#sway-language,
+#backlight,
+#custom-storage,
+#custom-cpu_speed,
+#custom-powermenu,
+#custom-spotify,
+#custom-weather,
+#custom-mail,
+#custom-media {
+    margin: 0px 0px 0px 10px;
+    padding: 0 10px;
+    /* border-top: 3px solid rgba(217, 216, 216, 0.5); */
+}
+
+#clock {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#battery.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}
+
+#custom-storage.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#custom-storage.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
