@@ -6,6 +6,7 @@ COPY computer/files /
 RUN echo \
         blueman \
         dex-autostart \
+        gammastep \
         gum \
         kitty \
         mpv \
