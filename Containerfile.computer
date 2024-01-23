@@ -5,14 +5,12 @@ COPY computer/files /
 # rpm-ostree install
 RUN echo \
         blueman \
-        dex-autostart \
         gammastep \
         gammastep-indicator \
         gum \
         kitty \
+        lxappearance \
         mpv \
-        network-manager-applet \
-        pcmanfm \
         tailscale \
         zsh | xargs rpm-ostree install
 
