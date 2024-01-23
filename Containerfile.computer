@@ -20,15 +20,17 @@ RUN rm /packages
 
 # install flatpaks
 
-RUN systemctl enable sshd.service && \
+RUN \
+    systemctl enable --global dotfiles-update.timer && \
+    systemctl enable sshd.service && \
+    systemctl enable tailscaled.service && \
     systemctl enable var-mnt-appdata.automount && \
     systemctl enable var-mnt-backups.automount && \
     systemctl enable var-mnt-data.automount && \
     systemctl enable var-mnt-docker.automount && \
     systemctl enable var-mnt-docs.automount && \
     systemctl enable var-mnt-isos.automount && \
-    systemctl enable var-mnt-photos.automount && \
-    systemctl enable --global dotfiles-update.timer
+    systemctl enable var-mnt-photos.automount
 
 COPY computer/scripts/1password.sh /
 RUN sh /1password.sh
