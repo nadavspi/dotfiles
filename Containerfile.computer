@@ -18,6 +18,7 @@ RUN echo \
 
 RUN \
     systemctl enable --global dotfiles-update.timer && \
+    systemctl enable --global dotfiles-update.service && \
     systemctl enable sshd.service && \
     systemctl enable tailscaled.service && \
     systemctl enable var-mnt-appdata.automount && \
