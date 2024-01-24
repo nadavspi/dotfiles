@@ -10,15 +10,6 @@ set $term kitty
 set $rofi_cmd rofi -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-set $red #c72835
-set $primary #bebad4
-set $orange #d9a479
-set $lightgrey #d3d3d3
-set $purple #5d178f
-set $darkpurple #1b191f
-set $cyan #2baec2
-
-output * bg $darkpurple solid_color
 font pango:Ubuntu 12
 set $red #c72835
 set $primary #bebad4
@@ -27,6 +18,7 @@ set $lightgrey #d3d3d3
 set $purple #5d178f
 set $darkpurple #1b191f
 set $cyan #2baec2
+output * bg $darkpurple solid_color
 # class                 border       bg           text      indicator    child_border
 client.focused          $purple      $purple      $primary  $cyan
 client.focused_inactive $purple      $darkpurple  $primary  $darkpurple
