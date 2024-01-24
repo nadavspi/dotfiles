@@ -1,6 +1,6 @@
 configuration {
   display-drun: "";
-  display-window: "Windows:";
+  display-window: "";
   drun-display-format: "{name}";
   font: "Hacker Nerd Font 16";
   modi: "window,run,drun";
