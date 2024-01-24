@@ -1,4 +1,4 @@
-name: Build ublue image
+name: computer
 on:
   schedule:
     - cron: "00 06 * * *"
