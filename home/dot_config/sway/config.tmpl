@@ -33,10 +33,11 @@ client.focused_inactive $purple      $darkpurple  $primary  $darkpurple
 client.unfocused        $darkpurple  $darkpurple  $primary  $darkpurple
 client.urgent           $red         $red         $primary
 
-# gaps inner 10px
-# gaps outer whatever for big monitor
-# smart_gaps inverse_outer
-# smart_gaps on
+{{- if ne .chezmoi.hostname "shanghai" }}
+gaps inner 10px
+gaps horizontal 800px
+smart_gaps inverse_outer
+{{- end }}
 
 smart_borders on
 default_border pixel 5
@@ -159,3 +160,5 @@ bindsym Escape mode "default"
 bindsym $mod+r mode "resize"
 
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+
+# vim: set ft=swayconfig:
