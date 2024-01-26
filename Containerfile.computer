@@ -12,6 +12,7 @@ RUN echo \
         lxappearance \
         mpv \
         tailscale \
+        unrar \
         zsh | xargs rpm-ostree install
 
 # install flatpaks
