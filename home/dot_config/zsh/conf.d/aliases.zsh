@@ -11,6 +11,7 @@ alias cat=bat
 alias lg=lazygit
 alias m="neomutt"
 alias k=kubectl
+alias h=distrobox-host-exec
 
 alias ssh-public-key='op read "op://Personal/ed/public key"'
 s() {
