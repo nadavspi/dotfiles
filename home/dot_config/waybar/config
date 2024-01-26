@@ -4,7 +4,7 @@
     "spacing": 5,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     "modules-center": [],
-    "modules-right": ["pulseaudio", "sway/language", "battery", "battery#bat2", "tray", "clock#date", "clock#time"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "sway/language", "battery", "battery#bat2", "tray", "clock#date", "clock#time"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -15,6 +15,13 @@
             "3": [],
             "4": [],
         }
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
