@@ -27,7 +27,7 @@ client.urgent           $red         $red         $primary
 
 {{- if ne .chezmoi.hostname "shanghai" }}
 gaps inner 10px
-gaps horizontal 800px
+gaps horizontal 500px
 smart_gaps inverse_outer
 {{- end }}
 
@@ -36,6 +36,7 @@ default_border pixel 5
 default_floating_border none
 
 output eDP-1 scale 1.1
+output HDMI-A-1 scale 1.5 
 
 input "type:touchpad" {
     dwt enabled
