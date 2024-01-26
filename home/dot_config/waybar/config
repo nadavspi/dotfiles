@@ -4,7 +4,7 @@
     "spacing": 5,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     "modules-center": [],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "sway/language", "battery", "battery#bat2", "tray", "clock#date", "clock#time"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "battery", "battery#bat2", "tray", "clock#date", "clock#time"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
