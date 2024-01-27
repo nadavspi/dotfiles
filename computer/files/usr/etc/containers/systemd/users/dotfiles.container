@@ -5,18 +5,18 @@ Description=my cool cli
 Annotation=run.oci.keep_original_groups=1
 AutoUpdate=registry
 ContainerName=dotfiles
-Environment=SHELL=%s
 Environment=HOME=%h
-Environment=XDG_RUNTIME_DIR=%t
+Environment=SHELL=/bin/zsh
 Environment=USER=%u
 Environment=USERNAME=%u
+Environment=XDG_RUNTIME_DIR=%t
+Environment=ZDOTDIR=~/.config/zsh
 Environment=container=podman
 Exec=--verbose --name %u  --user %U --group %G --home %h
 Image=ghcr.io/nadavspi/dotfiles:latest
 HostName=%l
 Network=host
 PodmanArgs=--entrypoint /usr/bin/entrypoint
-PodmanArgs=--env SHELL=/bin/zsh
 PodmanArgs=--ipc host
 PodmanArgs=--label com.github.containers.toolbox=true
 PodmanArgs=--label manager=distrobox
