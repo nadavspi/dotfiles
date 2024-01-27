@@ -132,24 +132,21 @@ bindsym $mod+Ctrl+space floating toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
+bindsym $mod+z focus child
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
 bindsym $mod+BackSpace scratchpad show
 
 mode "resize" {
-# left will shrink the containers width
-# right will grow the containers width
-# up will shrink the containers height
-# down will grow the containers height
-bindsym $right resize shrink width 50px
-bindsym $up resize grow height 50px
-bindsym $down resize shrink height 50px
-bindsym $left resize grow width 50px
+    bindsym $right resize shrink width 50px
+    bindsym $up resize grow height 50px
+    bindsym $down resize shrink height 50px
+    bindsym $left resize grow width 50px
 
-# Return to default mode
-bindsym Return mode "default"
-bindsym Escape mode "default"
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
