@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+while true; do
+    PID=$(pidof swaybg)
+    swaybg -c "#a0785a" -i "$(find /usr/share/wallpapers/ -type f | shuf -n1)" -m center &
+    sleep 1
+    # shellcheck disable=SC2086
+    kill $PID
+    # 6 hours
+    sleep 21600
+done
