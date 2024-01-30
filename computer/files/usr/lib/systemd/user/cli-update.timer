@@ -1,5 +1,5 @@
 [Unit]
-Description=Pull dotfiles container image
+Description=Pull cli container image
 
 [Timer]
 OnBootSec=1h

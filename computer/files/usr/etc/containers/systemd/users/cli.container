@@ -4,7 +4,7 @@ Description=my cool cli
 [Container]
 Annotation=run.oci.keep_original_groups=1
 AutoUpdate=registry
-ContainerName=dotfiles
+ContainerName=cli
 Environment=SHELL=%s
 Environment=HOME=%h
 Environment=XDG_RUNTIME_DIR=%t
@@ -12,7 +12,7 @@ Environment=USER=%u
 Environment=USERNAME=%u
 Environment=container=podman
 Exec=--verbose --name %u  --user %U --group %G --home %h
-Image=ghcr.io/nadavspi/dotfiles:latest
+Image=ghcr.io/nadavspi/cli:latest
 HostName=%l
 Network=host
 PodmanArgs=--entrypoint /usr/bin/entrypoint
