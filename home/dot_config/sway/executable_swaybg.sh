@@ -12,6 +12,5 @@ while true; do
     sleep 1
     # shellcheck disable=SC2086
     kill $PID
-    # 6 hours
     sleep 21600
 done
