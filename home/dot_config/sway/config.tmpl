@@ -49,7 +49,7 @@ exec swayidle -w \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 000000'
 
-bindsym $mod+Return exec $term distrobox enter dotfiles
+bindsym $mod+Return exec $term distrobox enter cli
 bindsym $mod+Shift+Return exec $term
 
 # Kill focused window
