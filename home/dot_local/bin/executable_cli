@@ -7,9 +7,9 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 caller=$(basename "$0")
-container="dotfiles"
-image="dotfiles"
-service=dotfiles.service
+container="cli"
+image="cli"
+service=cli.service
 
 help() {
     echo "Usage: $caller <subcommand> [options]"
@@ -62,8 +62,8 @@ status() {
 
         active=$(systemctl --user is-active $service)
         latest=$(get_metadata "$(podman image inspect $image)")
-        running=$(get_metadata "$(podman ps -f name=dotfiles --format="json")")
-        last_update=$(systemctl --user status dotfiles-update.service|awk '/Active:/ { sub(/[^;]*; /,"",$0); print; }')
+        running=$(get_metadata "$(podman ps -f name=$image --format="json")")
+        last_update=$(systemctl --user status $image-update.service|awk '/Active:/ { sub(/[^;]*; /,"",$0); print; }')
         # can get this from $running or $latest
         image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
 
