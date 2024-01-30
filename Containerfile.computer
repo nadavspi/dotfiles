@@ -18,8 +18,8 @@ RUN echo \
 # install flatpaks
 
 RUN \
-    systemctl enable --global dotfiles-update.timer && \
-    systemctl enable --global dotfiles-update.service && \
+    systemctl enable --global cli-update.timer && \
+    systemctl enable --global cli-update.service && \
     systemctl enable sshd.service && \
     systemctl enable tailscaled.service && \
     systemctl enable var-mnt-appdata.automount && \
