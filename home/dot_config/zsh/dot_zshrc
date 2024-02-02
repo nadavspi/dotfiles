@@ -25,6 +25,7 @@ repos=(
   zsh-users/zsh-completions
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-autosuggestions
+  jeffreytse/zsh-vi-mode
 )
 plugin-load $repos
 
