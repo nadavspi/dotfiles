@@ -8,7 +8,7 @@ fi
 
 while true; do
     PID=$(pidof swaybg)
-    swaybg -c "#a0785a" -i "$(find /usr/share/wallpapers/ -type f | shuf -n1)" -m center &
+    swaybg -c "#313244" -i "$(find /usr/share/wallpapers/ -type f | shuf -n1)" -m center &
     sleep 1
     # shellcheck disable=SC2086
     kill $PID

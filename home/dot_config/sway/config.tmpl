@@ -11,19 +11,14 @@ set $rofi_cmd rofi -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 font pango:Hacker Nerd Font 16
-set $red #c72835
-set $primary #bebad4
-set $orange #d9a479
-set $lightgrey #d3d3d3
-set $purple #5d178f
-set $darkpurple #1b191f
-set $cyan #2baec2
-output * bg #000000 solid_color
+include catppuccin-mocha
+output * bg $surface0 solid_color
 # class                 border       bg           text      indicator    child_border
-client.focused          $purple      $purple      $primary  $cyan
-client.focused_inactive $purple      $darkpurple  $primary  $darkpurple
-client.unfocused        $darkpurple  $darkpurple  $primary  $darkpurple
-client.urgent           $red         $red         $primary
+client.focused          $mauve      $mauve      $text  $yellow
+client.focused_inactive $mauve      $crust  $text  $crust
+client.focused_tab_title $red      $yellow  $base  $crust
+client.unfocused        $crust  $crust  $text  $crust
+client.urgent           $red         $red         $text
 
 {{- if ne .chezmoi.hostname "shanghai" }}
 gaps inner 10px

@@ -46,7 +46,7 @@ lazy.setup("plugins")
 
 -- aesthetics
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("tokyonight-moon")
+vim.cmd.colorscheme("catppuccin-mocha")
 
 -- clipboard
 vim.keymap.set("v", "<leader>y", '"+y')

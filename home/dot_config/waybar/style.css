@@ -1,3 +1,5 @@
+@import "mocha.css";
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, "Hack Nerd Font", Helvetica, Arial, sans-serif;
@@ -14,8 +16,8 @@ window#waybar {
     box-shadow: none;
     text-shadow: none;
     transition-duration: 0s;
-    color: #d3d3d3;
-    background: #1b191f; 
+    background: @base; 
+    color: @text;
 } 
 
 #workspaces {
@@ -24,21 +26,23 @@ window#waybar {
 
 #workspaces button {
     padding: 0 8px;
-    color: #d3d3d3;
     min-width: 33px;
+    color: @text;
 }
 
 #workspaces button.focused {
-    background-color: #5d178f;
+    background-color: @peach;
+    color: @base;
 }
 
 #workspaces button.urgent {
-    background-color: #2baec2;
-    color: white;
+    background-color: @red;
+    color: @base;
 }
 
+/* workspace without windows */
 #workspaces .persistent {
-    color: #333;
+    color: alpha(@text, .7);
 }
 
 #pulseaudio {
