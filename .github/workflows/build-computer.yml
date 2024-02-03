@@ -149,11 +149,9 @@ jobs:
       - name: Get latest cli version
         id: cli_version
         run: |
-          echo "latest=$(gh api \
-              -H 'Accept: application/vnd.github+json' \
-              -H 'X-GitHub-Api-Version: 2022-11-28' \
-              /users/nadavspi/packages/container/cli/versions | jq '.[0].metadata.container.tags[0]')" \
-              >> "$GITHUB_OUTPUT"
+          echo "latest=$(skopeo inspect docker://ghcr.io/nadavspi/computer:latest | \
+                jq -r '.Digest')"
+                >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
