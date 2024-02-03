@@ -146,7 +146,17 @@ jobs:
           remove-android: 'true'
           remove-haskell: 'true'
 
-      # Build image using Buildah action
+      - name: Get latest cli version
+        id: cli_version
+        run: |
+          echo "latest=$(gh api \
+              -H 'Accept: application/vnd.github+json' \
+              -H 'X-GitHub-Api-Version: 2022-11-28' \
+              /users/nadavspi/packages/container/cli/versions | jq '.[0].metadata.container.tags[0]')" \
+              >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@v2
@@ -157,13 +167,13 @@ jobs:
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
           build-args: |
+            CLI_VERSION=${{ steps.cli_version.outputs.latest }}
             IMAGE_MAJOR_VERSION=${{ env.IMAGE_MAJOR_VERSION }}
             BASE_IMAGE_URL=${{ env.BASE_IMAGE_URL }}
             IMAGE_REGISTRY=${{ steps.registry_case.outputs.lowercase }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: false
 
-      # Push the image to GHCR (Image Registry)
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
         id: push

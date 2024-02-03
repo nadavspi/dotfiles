@@ -1,6 +1,5 @@
 FROM ghcr.io/ublue-os/sericea-main:39
-
-COPY computer/files /
+ARG CLI_VERSION
 
 # rpm-ostree install
 RUN echo \
@@ -15,7 +14,10 @@ RUN echo \
         unrar \
         zsh | xargs rpm-ostree install
 
-# install flatpaks
+COPY computer/files /
+RUN sed -i "s|cli:latest|cli:$CLI_VERSION|g" /usr/etc/containers/systemd/users/cli.container
+
+# TODO: install flatpaks
 
 RUN \
     systemctl enable --global cli-update.timer && \
