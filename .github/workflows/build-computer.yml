@@ -150,7 +150,7 @@ jobs:
         id: cli_version
         run: |
           echo "latest=$(skopeo inspect docker://ghcr.io/nadavspi/cli:latest | \
-                jq -r '.Digest')"
+                jq -r '.Digest')" \
                 >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
