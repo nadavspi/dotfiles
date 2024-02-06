@@ -11,6 +11,10 @@ RUN apk update && \
     grep -v '^#' /packages | xargs apk add
 RUN rm /packages
 
+RUN echo \
+        bash-language-server \
+        | xargs npm i -g
+
 WORKDIR /tmp
 RUN git clone --depth=1 https://github.com/neovim/neovim && \
     cd neovim && \
