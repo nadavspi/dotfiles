@@ -15,6 +15,7 @@ lf
 ncdu
 nodejs
 npm
+pipx
 python3
 ripgrep
 speedtest-cli
