@@ -13,6 +13,8 @@ RUN rm /packages
 
 RUN echo \
         bash-language-server \
+        typescript-language-server \
+        @tailwindcss/language-server \
         | xargs npm i -g
 
 WORKDIR /tmp
