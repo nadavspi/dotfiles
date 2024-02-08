@@ -64,6 +64,7 @@ return {
 			require("lspconfig").rust_analyzer.setup({})
 			require("lspconfig").bashls.setup({})
 			require("lspconfig").yamlls.setup({})
+			require("lspconfig").tsserver.setup({})
 		end,
 	},
 	{ "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim" } },
