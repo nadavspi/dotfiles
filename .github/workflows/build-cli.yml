@@ -27,13 +27,15 @@ env:
 jobs:
   push-ghcr:
     name: Build and push image
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
       packages: write
       id-token: write
     strategy:
       fail-fast: false
+      matrix:
+        os: [ubuntu-latest, mac-latest]
     steps:
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
