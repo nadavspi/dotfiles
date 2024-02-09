@@ -1,12 +1,14 @@
 [Unit]
-Description=Pull cli container image
+Description=Keep dotfiles up to date
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=distrobox enter cli -- chezmoi update
+ExecStart=distrobox enter cli -- sh -c " \
+  sudo chown -R %U:%G /opt/dotfiles && \
+  /opt/dotfiles/chezmoi-install.sh"
 
 [Install]
 WantedBy=multi-user.target
