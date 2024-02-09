@@ -11,4 +11,4 @@ ExecStart=distrobox enter cli -- sh -c " \
   /opt/dotfiles/chezmoi-install.sh"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
