@@ -6,8 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/podman pull ghcr.io/nadavspi/cli:latest
-ExecStartPost=distrobox enter cli -- chezmoi update
+ExecStart=distrobox enter cli -- chezmoi update
 
 [Install]
 WantedBy=multi-user.target
