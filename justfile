@@ -69,3 +69,6 @@ cli-build:
   podman build . -f Containerfile.cli -t cli-test
 cli-run:
   podman run -it cli-test zsh
+
+ephemeral:
+  distrobox ephemeral --image ghcr.io/nadavspi/cli:latest -H ~/.home/sandbox
