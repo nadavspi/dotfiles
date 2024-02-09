@@ -2,7 +2,6 @@ FROM ghcr.io/ublue-os/sericea-main:39
 ARG CLI_VERSION
 
 COPY computer/files /
-RUN sed -i "s|cli:latest|cli@$CLI_VERSION|g" /usr/etc/containers/systemd/users/cli.container
 
 # rpm-ostree install
 RUN echo \
