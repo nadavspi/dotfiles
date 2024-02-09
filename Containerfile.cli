@@ -1,5 +1,7 @@
 FROM quay.io/toolbx-images/alpine-toolbox:3.19
 
+COPY . /opt/dotfiles
+
 COPY cli/install-distrobox-base.sh /install-distrobox-base.sh
 RUN chmod +x /install-distrobox-base.sh
 RUN /install-distrobox-base.sh
