@@ -1,5 +1,6 @@
 [Unit]
 Description=Keep dotfiles up to date
+After=cli.service
 After=network-online.target
 Wants=network-online.target
 
