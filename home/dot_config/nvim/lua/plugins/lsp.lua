@@ -1,3 +1,73 @@
+local servers = {
+	bashls = {},
+	nil_ls = {},
+	tailwindcss = {},
+	yamlls = {},
+}
+
+servers.biome = {
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = true
+		client.server_capabilities.documentRangeFormattingProvider = true
+	end,
+}
+-- https://github.com/olrtg/emmet-language-server?tab=readme-ov-file#neovim
+-- https://docs.emmet.io/customization/preferences/
+servers.emmet_language_server = {
+	filetypes = { "css", "html", "javascript", "javascriptreact", "scss", "typescriptreact" },
+	init_options = {
+		showSuggestionsAsSnippets = true, -- so it works with luasnip
+	},
+}
+
+-- https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
+local tsserverConfig = {
+	settings = {
+		-- specific to typescript-tools.nvim
+		complete_function_calls = true,
+		tsserver_plugins = {
+			"@styled/typescript-styled-plugin",
+		},
+
+		-- enable checking javascript without a `jsconfig.json`
+		implicitProjectConfiguration = { -- DOCS https://www.typescriptlang.org/tsconfig
+			checkJs = true,
+			target = "ES2022", -- JXA is compliant with most of ECMAScript: https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/ES6-Features-in-JXA
+		},
+
+		typescript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+			},
+		},
+	},
+	on_attach = function(client)
+		-- Disable formatting in favor of biome
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
+}
+tsserverConfig.settings.javascript = tsserverConfig.settings.typescript
+
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -52,12 +122,17 @@ return {
 					},
 				},
 			})
-			-- servers go here
-			require("lspconfig").nil_ls.setup({})
-			require("lspconfig").rust_analyzer.setup({})
-			require("lspconfig").bashls.setup({})
-			require("lspconfig").yamlls.setup({})
-			require("lspconfig").tailwindcss.setup({})
+
+			-- https://github.com/chrisgrieser/.config/blob/a3c5be040b46f7dc43e5e10c15c807fa505bcb10/nvim/lua/plugins/lsp-config.lua#L395C2-L404C7
+			-- Enable snippets-completion (nvim-cmp) and folding (nvim-ufo)
+			local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
+			lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
+			lspCapabilities.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true }
+
+			for lsp, server in pairs(servers) do
+				server.capabilities = lspCapabilities
+				require("lspconfig")[lsp].setup(server)
+			end
 		end,
 	},
 	{ "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim" } },
@@ -67,13 +142,7 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
 		config = function()
-			require("typescript-tools").setup({
-				settings = {
-					tsserver_plugins = {
-						"@styled/typescript-styled-plugin",
-					},
-				},
-			})
+			require("typescript-tools").setup(tsserverConfig)
 		end,
 	},
 }

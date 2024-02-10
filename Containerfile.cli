@@ -14,9 +14,11 @@ RUN apk update && \
 RUN rm /packages
 
 RUN echo \
-        bash-language-server \
-        @tailwindcss/language-server \
+        @olrtg/emmet-language-server \
         @styled/typescript-styled-plugin \
+        @tailwindcss/language-server \
+        bash-language-server \
+        @biomejs/biome \
         yaml-language-server \
         | xargs npm i -g
 
