@@ -16,6 +16,7 @@ ncdu
 nodejs
 npm
 pipx
+poetry
 python3
 ripgrep
 speedtest-cli
