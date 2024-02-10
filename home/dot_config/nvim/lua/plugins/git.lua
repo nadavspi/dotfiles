@@ -69,10 +69,7 @@ return {
 		},
 		init = function()
 			vim.keymap.set("n", "<leader>gc", function()
-				require("tinygit").smartCommit({ pushIfClean = true })
-			end)
-			vim.keymap.set("n", "<leader>gC", function()
-				require("tinygit").smartCommit({ pushIfClean = true })
+				require("tinygit").smartCommit()
 			end)
 			vim.keymap.set("n", "<leader>gm", function()
 				require("tinygit").amendNoEdit()
