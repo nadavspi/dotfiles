@@ -13,6 +13,7 @@ return {
 				"json",
 				"lua",
 				"nix",
+				"toml",
 				"tsx",
 				"typescript",
 				"vim",

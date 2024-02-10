@@ -10,6 +10,7 @@ local lspToMasonMap = {
 	lua_ls = "lua-language-server",
 	marksman = "marksman", -- markdown lsp
 	tailwindcss = "tailwindcss-language-server",
+	taplo = "taplo",
 	yamlls = "yaml-language-server",
 }
 
