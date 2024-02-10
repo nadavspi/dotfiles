@@ -50,7 +50,6 @@ Volume=/var/mnt/docker:/mnt/docker
 Volume=/var/mnt/docs:/mnt/docs
 Volume=/var/mnt/isos:/mnt/isos
 Volume=/var/mnt/photos:/mnt/photos
-Volume=/nix:/nix
 
 [Install]
 WantedBy=multi-user.target default.target
