@@ -1,6 +1,7 @@
 -- core options
 vim.opt.number = true
-vim.opt.relativenumber = true
+-- line numbers
+vim.opt.number = false
 vim.opt.visualbell = true
 vim.opt.undofile = true
 vim.opt.swapfile = false
