@@ -17,6 +17,7 @@ RUN echo \
         bash-language-server \
         @tailwindcss/language-server \
         @styled/typescript-styled-plugin \
+        yaml-language-server \
         | xargs npm i -g
 
 WORKDIR /tmp
