@@ -64,9 +64,23 @@ return {
 			require("lspconfig").rust_analyzer.setup({})
 			require("lspconfig").bashls.setup({})
 			require("lspconfig").yamlls.setup({})
-			require("lspconfig").tsserver.setup({})
+			require("lspconfig").tailwindcss.setup({})
 		end,
 	},
 	{ "neovim/nvim-lspconfig", dependencies = { "folke/neodev.nvim" } },
 	{ "hrsh7th/cmp-nvim-lsp", dependencies = { "hrsh7th/nvim-cmp" } },
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+		config = function()
+			require("typescript-tools").setup({
+				settings = {
+					tsserver_plugins = {
+						"@styled/typescript-styled-plugin",
+					},
+				},
+			})
+		end,
+	},
 }
