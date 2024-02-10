@@ -12,13 +12,8 @@ RUN apk update && \
 RUN rm /packages
 
 RUN echo \
-        @olrtg/emmet-language-server \
-        @styled/typescript-styled-plugin \
-        @tailwindcss/language-server \
-        bash-language-server \
-        @biomejs/biome \
-        yaml-language-server \
-        | xargs npm i -g
+     @styled/typescript-styled-plugin \
+     | xargs npm i -g
 
 WORKDIR /tmp
 RUN git clone --depth=1 https://github.com/neovim/neovim && \
@@ -31,6 +26,9 @@ COPY . /opt/dotfiles
 RUN mkdir -p /usr/share/nvim
 RUN sh /opt/dotfiles/chezmoi-install.sh
 RUN nvim --headless "+Lazy! install" +qa
+RUN nvim --headless "TSUpdate" +qa
+RUN nvim --headless +"MasonToolsInstall" \ 
+    -c 'autocmd User MasonToolsUpdateCompleted quitall!'
 
 # Convience symlinks
 RUN ln -fs /bin/sh /usr/bin/sh && \
@@ -38,7 +36,6 @@ RUN ln -fs /bin/sh /usr/bin/sh && \
     ln -fs /usr/bin/distrobox-host-exec /usr/bin/systemctl && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/just && \ 
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/nix && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
     ln -fs /usr/bin/distrobox-host-exec /usr/bin/op && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree

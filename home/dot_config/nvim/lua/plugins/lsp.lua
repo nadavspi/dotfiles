@@ -1,9 +1,23 @@
-local servers = {
-	bashls = {},
-	nil_ls = {},
-	tailwindcss = {},
-	yamlls = {},
+-- much here from https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lsp-config.lua
+
+-- since nvim-lspconfig and mason.nvim use different package names
+-- mappings from https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
+local lspToMasonMap = {
+	bashls = "bash-language-server",
+	biome = "biome",
+	emmet_language_server = "emmet-language-server",
+	jsonls = "json-lsp",
+	lua_ls = "lua-language-server",
+	marksman = "marksman", -- markdown lsp
+	tailwindcss = "tailwindcss-language-server",
+	yamlls = "yaml-language-server",
 }
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/lspconfig.txt#L46
+local servers = {}
+for lspName, _ in pairs(lspToMasonMap) do
+	servers[lspName] = {}
+end
 
 servers.biome = {
 	on_attach = function(client)
@@ -17,6 +31,16 @@ servers.emmet_language_server = {
 	filetypes = { "css", "html", "javascript", "javascriptreact", "scss", "typescriptreact" },
 	init_options = {
 		showSuggestionsAsSnippets = true, -- so it works with luasnip
+	},
+}
+
+servers.lua_ls = {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
 	},
 }
 
@@ -72,6 +96,7 @@ return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
+		mason_dependencies = vim.tbl_values(lspToMasonMap),
 		init = function()
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
@@ -113,17 +138,6 @@ return {
 				})
 			end)
 
-			require("lspconfig").lua_ls.setup({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
-			})
-
-			-- https://github.com/chrisgrieser/.config/blob/a3c5be040b46f7dc43e5e10c15c807fa505bcb10/nvim/lua/plugins/lsp-config.lua#L395C2-L404C7
 			-- Enable snippets-completion (nvim-cmp) and folding (nvim-ufo)
 			local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
 			lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
