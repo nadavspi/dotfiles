@@ -63,13 +63,13 @@ status() {
         active=$(systemctl --user is-active $service)
         latest=$(get_metadata "$(podman image inspect $image)")
         running=$(get_metadata "$(podman ps -f name=$image --format="json")")
-        last_update=$(systemctl --user status $image-update.service|awk '/Active:/ { sub(/[^;]*; /,"",$0); print; }')
+        last_update=$(systemctl --user status $image-update.service|grep ' *Active:'|sed 's/Active:*//;s/^[[:blank:]]*//')
         # can get this from $running or $latest
         image_name=$(podman inspect $container|jq '.[0].ImageName' | cut -d '"' -f 2)
 
         echo "Image: $image_name"
         echo "Status: $active"
-        echo "Last update check: $last_update"
+        echo "Updater: $last_update"
 
         printf "\n"
         headings=$(printf "%-7s %-24s %-7s" "Image" "Created" "Revision")
