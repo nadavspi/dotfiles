@@ -1,7 +1,5 @@
 FROM quay.io/toolbx-images/alpine-toolbox:3.19
 
-COPY . /opt/dotfiles
-
 COPY cli/install-distrobox-base.sh /install-distrobox-base.sh
 RUN chmod +x /install-distrobox-base.sh
 RUN /install-distrobox-base.sh
@@ -24,10 +22,15 @@ RUN echo \
 
 WORKDIR /tmp
 RUN git clone --depth=1 https://github.com/neovim/neovim && \
-    cd neovim && \
-    make CMAKE_BUILD_TYPE=RelWithDebInfo && \
-    make install && \
-    rm -rf /tmp/neovim
+ cd neovim && \
+ make CMAKE_BUILD_TYPE=RelWithDebInfo && \
+ make install && \
+ rm -rf /tmp/neovim
+
+COPY . /opt/dotfiles
+RUN mkdir -p /usr/share/nvim
+RUN sh /opt/dotfiles/chezmoi-install.sh
+RUN nvim --headless "+Lazy! install" +qa
 
 # Convience symlinks
 RUN ln -fs /bin/sh /usr/bin/sh && \

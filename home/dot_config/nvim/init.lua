@@ -35,14 +35,17 @@ function lazy.install(path)
 	end
 end
 
+local data_path = "/usr/share/nvim"
 function lazy.setup(plugins)
 	lazy.install(lazy.path)
 
 	vim.opt.rtp:prepend(lazy.path)
 	require("lazy").setup(plugins, lazy.opts)
 end
-lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-lazy.opts = {}
+lazy.path = data_path .. "/lazy/lazy.nvim"
+lazy.opts = {
+	root = data_path .. "/lazy",
+}
 lazy.setup("plugins")
 
 -- aesthetics
