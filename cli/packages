@@ -25,7 +25,6 @@ xclip
 yt-dlp
 zoxide
 zsh
-zstd
 
 # neovim build deps
 build-base 
