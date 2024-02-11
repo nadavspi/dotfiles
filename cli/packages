@@ -33,8 +33,3 @@ coreutils
 curl 
 unzip 
 gettext-tiny-dev
-
-# coding stuff
-shellcheck
-shfmt
-stylua

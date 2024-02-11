@@ -10,6 +10,7 @@ end
 return {
 	"stevearc/conform.nvim",
 	cmd = { "ConformInfo" },
+	mason_dependencies = { "stylua", "shellcheck", "shfmt" },
 	keys = {
 		{ "<leader>f", format, mode = { "n", "x" }, desc = "Format buffer" },
 	},
