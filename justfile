@@ -68,7 +68,7 @@ cli: cli-build cli-run
 cli-build: 
   podman build . -f Containerfile.cli -t cli-test
 cli-run:
-  podman run -it cli-test zsh
+  podman run -it cli-test
 
 ephemeral:
   podman pull ghcr.io/nadavspi/cli:latest
