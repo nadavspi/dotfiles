@@ -5,6 +5,8 @@
 local lspToMasonMap = {
 	bashls = "bash-language-server",
 	biome = "biome",
+	cssls = "css-lsp",
+	cssmodules_ls = "cssmodules-language-server",
 	emmet_language_server = "emmet-language-server",
 	jsonls = "json-lsp",
 	lua_ls = "lua-language-server",
@@ -19,6 +21,12 @@ local servers = {}
 for lspName, _ in pairs(lspToMasonMap) do
 	servers[lspName] = {}
 end
+
+servers.cssmodules_ls = {
+	capabilities = {
+		definitionProvider = false,
+	},
+}
 
 servers.biome = {
 	on_attach = function(client)
