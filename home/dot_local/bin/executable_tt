@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+
+session="site"
+exists=$(tmux list-sessions | grep $session)
+
+if [ "$exists" = "" ]; then
+	cd ~/src/nadav.is || (mkdir -p ~/src/nadav.is && git clone git@github.com:nadavspi/nadav.is.git)
+	tmux new-session -d -s $session
+
+  # my windows start at 1
+	window=1
+	tmux rename-window -t "$session":$window 'nvim'
+	tmux send-keys -t "$session":$window 'nvim' C-m
+
+	window=2
+	tmux new-window -t "$session":$window -n 'server'
+	tmux send-keys -t "$session":$window 'npm run dev' C-m
+
+	window=3
+	tmux new-window -t "$session":$window -n 'shell'
+fi
+
+tmux attach-session -t $session
