@@ -8,6 +8,7 @@ RUN rm /packages*
 
 RUN echo \
   @styled/typescript-styled-plugin \
+  pnpm \
   | xargs npm i -g
 
 COPY . /opt/dotfiles
