@@ -1,3 +1,19 @@
-assemble:
-  echo 'Assembling and replacing distroboxes ...'
-  distrobox assemble create --replace --file distrobox.ini
+
+apko +args:
+  podman run --privileged --rm -v ${PWD}:/work -w /work cgr.dev/chainguard/apko {{args}}
+
+cli: cli-build cli-run
+
+cli-build:
+  just apko build --arch host ./cli/cli.apko.yaml cli:test ./cli/cli-test.tar
+  podman load < ./cli/cli-test.tar
+
+cli-run:
+  podman run --rm -it cli:test-amd64
+
+cli-distrobox:
+  distrobox ephemeral --image cli:test-amd64 -H $(mktemp -d)
+
+local-wolfi:
+  podman run --rm -it \
+    cgr.dev/chainguard/wolfi-base:latest
