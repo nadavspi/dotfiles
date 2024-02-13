@@ -5,6 +5,7 @@ delta
 direnv
 eza
 fd
+fish
 fzf
 github-cli
 jq
