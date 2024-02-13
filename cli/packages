@@ -26,4 +26,5 @@ poetry
 python3
 ripgrep
 tmux
+yazi
 zoxide
