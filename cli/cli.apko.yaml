@@ -1,0 +1,33 @@
+include: ./cli/base.apko.yaml
+
+contents:
+  repositories:
+    - https://packages.wolfi.dev/os
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  packages:
+    - bat
+    - btop
+    - build-base
+    - delta
+    - direnv
+    - eza
+    - fd
+    - fish
+    - fzf
+    - gcc
+    - gh
+    - jq
+    - just
+    - lazygit
+    - make
+    - neovim
+    - nodejs
+    - poetry
+    - python3
+    - ripgrep
+    - tmux
+    - zoxide
+
+entrypoint:
+  command: /usr/bin/fish
