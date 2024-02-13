@@ -1,36 +1,30 @@
+# chezmoi
+# kitty-terminfo
+# lf
+# pipx
+# speedtest-cli
+# yt-dlp
+# zsh
 bat
 btop
-chezmoi
+build-base
 delta
 direnv
 eza
 fd
 fish
 fzf
-github-cli
+gcc
+gh
 jq
-kitty-terminfo
+just
 lazygit
-lf
-ncdu
+make
+neovim
 nodejs
-npm
-pipx
 poetry
 python3
 ripgrep
-speedtest-cli
 tmux
-wget
-xclip
-yt-dlp
+yazi
 zoxide
-zsh
-
-# neovim build deps
-build-base 
-cmake 
-coreutils 
-curl 
-unzip 
-gettext-tiny-dev
