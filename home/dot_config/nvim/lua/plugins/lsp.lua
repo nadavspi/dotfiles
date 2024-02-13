@@ -3,6 +3,7 @@
 -- since nvim-lspconfig and mason.nvim use different package names
 -- mappings from https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
 local lspToMasonMap = {
+	astro = "astro-language-server",
 	bashls = "bash-language-server",
 	biome = "biome",
 	cssls = "css-lsp",
