@@ -60,9 +60,9 @@ age-private-key-copy host:
 
 computer: computer-build computer-run
 computer-build: 
-  podman build . -f Containerfile.computer -t pc-test
+  podman build . -f Containerfile.computer -t computer-test
 computer-run:
-  podman run -it computer-test zsh
+  podman run -it computer-test sh
   
 cli: cli-build cli-run
 cli-build: 
