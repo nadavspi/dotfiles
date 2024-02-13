@@ -16,7 +16,7 @@ Image=ghcr.io/nadavspi/cli:latest
 HostName=%l
 Network=host
 PodmanArgs=--entrypoint /usr/bin/entrypoint
-PodmanArgs=--env SHELL=/bin/zsh
+PodmanArgs=--env SHELL=/usr/bin/fish
 PodmanArgs=--ipc host
 PodmanArgs=--label com.github.containers.toolbox=true
 PodmanArgs=--label manager=distrobox
