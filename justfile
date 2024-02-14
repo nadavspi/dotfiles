@@ -68,7 +68,7 @@ cli: cli-build cli-run
 cli-build: 
   podman build . -f Containerfile.cli -t cli-test
 cli-run:
-  distrobox ephemeral -i cli-test -H $(mktemp -d)
+  podman run -it cli-test zsh
 
 ephemeral:
   podman pull ghcr.io/nadavspi/cli:latest
