@@ -69,6 +69,10 @@ vim.keymap.set("n", "gev", "<cmd>edit $MYVIMRC<cr>")
 vim.keymap.set("n", "<leader>s", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 
+-- jumping around
+vim.keymap.set("", "J", "6j")
+vim.keymap.set("", "K", "6k")
+
 -- window management
 vim.keymap.set("n", "<leader>wc", ":close<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wo", ":only<cr>", { silent = true })
