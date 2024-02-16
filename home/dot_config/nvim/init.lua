@@ -72,6 +72,16 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>")
 -- jumping around
 vim.keymap.set("", "J", "6j")
 vim.keymap.set("", "K", "6k")
+vim.keymap.set("o", "ar", "a]") -- [r]ectangular bracket
+vim.keymap.set("o", "ac", "a}") -- [c]urly brace
+vim.keymap.set("o", "am", "aW") -- [m]assive word
+vim.keymap.set("o", "aq", 'a"') -- [q]uote
+vim.keymap.set("o", "az", "a'") -- [z]ingle quote
+vim.keymap.set("o", "ir", "i]") -- [r]ectangular bracket
+vim.keymap.set("o", "ic", "i}") -- [c]urly brace
+vim.keymap.set("o", "im", "iW") -- [m]assive word
+vim.keymap.set("o", "iq", 'i"') -- [q]uote
+vim.keymap.set("o", "iz", "i'") -- [z]ingle quote
 
 -- window management
 vim.keymap.set("n", "<leader>wc", ":close<cr>", { silent = true })
