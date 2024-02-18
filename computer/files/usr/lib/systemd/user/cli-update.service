@@ -8,9 +8,6 @@ Wants=network-online.target
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/podman pull ghcr.io/nadavspi/cli:latest
-ExecStartPost=distrobox enter cli -- sh -c " \
-  sudo chown -R %U:%G /opt/dotfiles /usr/share/nvim && \
-  /opt/dotfiles/chezmoi-install.sh"
 
 [Install]
 WantedBy=default.target

@@ -12,6 +12,9 @@ Environment=USER=%u
 Environment=USERNAME=%u
 Environment=container=podman
 Exec=--verbose --name %u  --user %U --group %G --home %h
+ExecStartPost=distrobox enter cli -- sh -c " \
+  sudo chown -R %U:%G /opt/dotfiles /usr/share/nvim && \
+  /opt/dotfiles/chezmoi-install.sh"
 Image=ghcr.io/nadavspi/cli:latest
 HostName=%l
 Network=host
