@@ -9,3 +9,5 @@ abbr -a --set-cursor="%" -- cp-epub "mv -v ~/Downloads/*.epub% /mnt/data/watch/b
 abbr -a --set-cursor="%" -- cp-torrent "rsync -avz --remove-source-files % seedbox:~/watch/deluge"
 abbr -a --set-cursor="%" -- gro "git reset --hard origin/%"
 abbr -a --set-cursor="%" gcm "git commit -m \"%\""
+abbr -a -- sc sudo systemctl
+abbr -a -- scu systemctl --user
