@@ -36,4 +36,6 @@ COPY computer/scripts/1password.sh /
 RUN sh /1password.sh
 RUN rm /1password.sh
 
+RUN mkdir -m 755 -p /usr/containers && skopeo copy docker://ghcr.io/nadavspi/cli:latest dir:/usr/containers/cli
+
 RUN rm -rf /tmp/* /var/* && ostree container commit
