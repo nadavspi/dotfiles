@@ -5,6 +5,8 @@ delta
 direnv
 eza
 fd
+ffmpegthumbnailer
+fish
 fzf
 github-cli
 jq
@@ -21,7 +23,7 @@ ripgrep
 speedtest-cli
 tmux
 wget
-xclip
+yazi
 yt-dlp
 zoxide
 zsh
