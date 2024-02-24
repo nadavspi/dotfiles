@@ -5,7 +5,7 @@ RUN chmod +x /install-distrobox-base.sh
 RUN /install-distrobox-base.sh
 RUN rm /install-distrobox-base.sh
 
-COPY ./cli/repositories /etc/apk/repositories
+COPY cli/repositories /etc/apk/repositories
 COPY cli/packages /packages
 RUN apk update && \
     apk upgrade && \
