@@ -5,6 +5,7 @@ RUN chmod +x /install-distrobox-base.sh
 RUN /install-distrobox-base.sh
 RUN rm /install-distrobox-base.sh
 
+COPY ./cli/repositories /etc/apk/repositories
 COPY cli/packages /packages
 RUN apk update && \
     apk upgrade && \
@@ -30,6 +31,8 @@ RUN nvim --headless "+Lazy! install" +qa
 RUN nvim --headless "TSUpdate" +qa
 RUN nvim --headless +"MasonToolsInstall" \ 
     -c 'autocmd User MasonToolsUpdateCompleted quitall!'
+
+RUN chmod -R 777 /usr/share/nvim
 
 # Convience symlinks
 RUN ln -fs /bin/sh /usr/bin/sh && \
