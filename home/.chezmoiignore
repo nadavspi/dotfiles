@@ -1,0 +1,3 @@
+{{- if eq .chezmoi.hostname "C02DP0G0MD6V" }}
+.ssh
+{{- end }}

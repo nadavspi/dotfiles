@@ -2,9 +2,11 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = true,
+		{{ if eq .chezmoi.os "linux" }}
 		opts = {
 			install_root_dir = "/usr/share/nvim/mason",
 		},
+		{{ end }}
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
