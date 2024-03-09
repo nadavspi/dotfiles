@@ -73,3 +73,6 @@ cli-run:
 ephemeral:
   podman pull ghcr.io/nadavspi/cli:latest
   distrobox ephemeral --image ghcr.io/nadavspi/cli:latest -H ~/.home/sandbox
+
+brew:
+  brew bundle install --file mac/Brewfile
