@@ -1,6 +1,3 @@
-tap "koekeishiya/formulae"
-brew "yabai"
-
 brew "bat"
 brew "btop"
 brew "chezmoi"
@@ -30,4 +27,5 @@ brew "yazi"
 brew "yt-dlp"
 brew "zoxide"
 
+cask "amethyst"
 cask "kitty"
