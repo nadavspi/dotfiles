@@ -16,18 +16,19 @@
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 layouts:
   - tall-right
+  - center
   - middle-wide
   - column
   - fullscreen
   # - tall
   # - wide
-  # - two-pane
+  - two-pane
   # - middle-wide
   # - 3column-right
   # - 4column-left
   # - 4column-right
   # - row
-  # - floating
+  - floating
   # - widescreen-tall
   # - widescreen-tall-right
   # - bsp
@@ -67,7 +68,7 @@ cycle-layout:
 # Move to the previous layout in the list.
 cycle-layout-backward:
   mod: mod2
-  key: space
+  key: p
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
@@ -239,7 +240,13 @@ relaunch-amethyst:
   mod: mod2
   key: z
 
+# To get id: osascript -e 'id of app "Application Name"' 
+floating: ["com.apple.systempreferences"]
+
 window-margins: true
-smart-window-margins: true
-window-margin-size: 20 
-focus-follows-mouse: true
+smart-window-margins: false
+window-margin-size: 10 
+focus-follows-mouse: false
+mouse-resizes-windows: true
+enables-layout-hud-on-space-change: false
+
