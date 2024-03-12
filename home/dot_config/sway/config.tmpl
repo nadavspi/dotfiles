@@ -41,9 +41,11 @@ input "type:touchpad" {
     middle_emulation enabled
 }
 
+{{- if eq .chezmoi.hostname "shanghai" }}
 exec swayidle -w \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 000000'
+{{- end }}
 
 bindsym $mod+Return exec $term distrobox enter cli
 bindsym $mod+Shift+Return exec $term
