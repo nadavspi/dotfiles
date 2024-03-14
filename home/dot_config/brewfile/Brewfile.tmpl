@@ -4,7 +4,6 @@ brew "chezmoi"
 brew "direnv"
 brew "eza"
 brew "fd"
-brew "ffmpegthumbnailer"
 brew "fish"
 brew "fzf"
 brew "gh"
@@ -24,8 +23,22 @@ brew "speedtest-cli"
 brew "tmux"
 brew "wget"
 brew "yazi"
-brew "yt-dlp"
 brew "zoxide"
 
+{{- if ne .chezmoi.hostname "JKW7FF949F" }}
+brew "ffmpegthumbnailer"
+brew "yt-dlp"
+{{- end }}
+
+cask "1password"
+cask "alfred"
 cask "amethyst"
+cask "chromium"
+cask "cleanshot"
+cask "firefox"
 cask "kitty"
+cask "obsidian"
+
+{{- if eq .chezmoi.hostname "JKW7FF949F" }}
+cask "postman"
+{{- end }}

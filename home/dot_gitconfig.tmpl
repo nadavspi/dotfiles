@@ -1,6 +1,10 @@
 [user]
   name = Nadav Spiegelman
+{{- if ne .chezmoi.hostname "JKW7FF949F" }}
   email = me@nadav.name
+{{- else }}
+  email = nadav.spiegelman@adp.com
+{{- end }}
 [alias]
   a = add
   co = checkout

@@ -16,3 +16,6 @@ abbr -a --set-cursor="%" -- gro "git reset --hard origin/%"
 abbr -a --set-cursor="%" gcm "git commit -m \"%\""
 abbr -a -- sc sudo systemctl
 abbr -a -- scu systemctl --user
+{{ if eq .chezmoi.os "darwin" }}
+abbr -a -- bbi "brew bundle --file ~/.config/brewfile/Brewfile install"
+{{ end }}
