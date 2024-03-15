@@ -15,20 +15,21 @@
 
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 layouts:
+  - custom-column
+  - custom-two-pane
   - tall-right
-  - center
-  - middle-wide
-  - column
-  - fullscreen
+  # - floating
+  # - middle-wide
+  # - column
+  # - fullscreen
   # - tall
   # - wide
-  - two-pane
+  # - two-pane
   # - middle-wide
   # - 3column-right
   # - 4column-left
   # - 4column-right
   # - row
-  - floating
   # - widescreen-tall
   # - widescreen-tall-right
   # - bsp
@@ -72,13 +73,21 @@ cycle-layout-backward:
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
-  mod: mod1
+  mod: mod2
   key: h
 
 # Expand the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 expand-main:
+  mod: mod2
+  key: l
+
+command1:
   mod: mod1
   key: l
+
+command2:
+  mod: mod1
+  key: h
 
 # Increase the number of windows in the main pane. Note that not all layouts respond to this command.
 increase-main:

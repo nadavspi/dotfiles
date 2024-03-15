@@ -3,7 +3,7 @@ function layout() {
 		name: "Custom column",
 		initialState: {
 			mainCount: 1,
-			mainRatio: 0.5,
+			mainRatio: 0.6,
 		},
 		commands: {
 			command1: {
