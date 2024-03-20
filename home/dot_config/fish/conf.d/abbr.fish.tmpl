@@ -12,10 +12,11 @@ abbr -a --set-cursor="%" -- cp-epub "mv -v ~/Downloads/*.epub% /Volumes/data/wat
 abbr -a --set-cursor="%" -- cp-epub "mv -v ~/Downloads/*.epub% /mnt/data/watch/books/"
 {{ end }}
 abbr -a --set-cursor="%" -- cp-torrent "rsync -avz --remove-source-files % seedbox:~/watch/deluge"
+abbr -a --set-cursor="%" -- cp-photos "rsync -remove-source-files -avzh --partial ~/Pictures/Local\ photos/ /Volumes/photos/archive/"
 abbr -a --set-cursor="%" -- gro "git reset --hard origin/%"
 abbr -a --set-cursor="%" gcm "git commit -m \"%\""
 abbr -a -- sc sudo systemctl
 abbr -a -- scu systemctl --user
 {{ if eq .chezmoi.os "darwin" }}
-abbr -a -- bbi "brew bundle --file ~/.config/brewfile/Brewfile install"
+abbr -a -- bbi "brew bundle --file ~/.config/brewfile/Brewfile install && brew bundle cleanup --file ~/.config/brewfile/Brewfile --force"
 {{ end }}
