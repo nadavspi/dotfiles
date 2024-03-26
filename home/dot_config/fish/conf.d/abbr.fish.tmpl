@@ -20,3 +20,4 @@ abbr -a -- scu systemctl --user
 {{ if eq .chezmoi.os "darwin" }}
 abbr -a -- bbi "brew bundle --file ~/.config/brewfile/Brewfile install && brew bundle cleanup --file ~/.config/brewfile/Brewfile --force"
 {{ end }}
+abbr -a -- ffsubsync "pipx run ffsubsync"
