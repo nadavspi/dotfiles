@@ -25,29 +25,33 @@ brew "wget"
 brew "yazi"
 brew "zoxide"
 
-{{- if ne .chezmoi.hostname "JKW7FF949F" }}
-brew "ffmpegthumbnailer"
-brew "yt-dlp"
-{{- end }}
-
 cask "1password"
 cask "1password-cli"
 cask "alfred"
 cask "amethyst"
 cask "chromium"
 cask "firefox"
-cask "hammerspoon"
 cask "karabiner-elements"
 cask "kitty"
 cask "obsidian"
 
 {{- if ne .chezmoi.hostname "JKW7FF949F" }}
+
+brew "ffmpegthumbnailer"
+brew "yt-dlp"
+
+cask "bartender"
 cask "fantastical"
+cask "hazel"
 cask "mpv"
-cask "tailscale"
 cask "signal"
+cask "spotify"
+cask "tailscale"
+
 {{- end }}
 
 {{- if eq .chezmoi.hostname "JKW7FF949F" }}
+
 cask "postman"
+
 {{- end }}
