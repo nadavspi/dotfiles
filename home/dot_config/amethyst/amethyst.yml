@@ -250,7 +250,7 @@ relaunch-amethyst:
   key: z
 
 # To get id: osascript -e 'id of app "Application Name"' 
-floating: ["com.apple.systempreferences"]
+floating: ["com.apple.systempreferences", "com.noodlesoft.Hazel"]
 
 window-margins: true
 smart-window-margins: false
