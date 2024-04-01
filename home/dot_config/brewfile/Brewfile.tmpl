@@ -36,16 +36,17 @@ cask "kitty"
 cask "obsidian"
 
 {{- if ne .chezmoi.hostname "JKW7FF949F" }}
+## home only
 
 brew "ffmpegthumbnailer"
 brew "yt-dlp"
-
 cask "bartender"
 cask "fantastical"
 cask "hazel"
 cask "mpv"
 cask "signal"
 cask "spotify"
+cask "syncthing"
 cask "tailscale"
 
 {{- end }}
