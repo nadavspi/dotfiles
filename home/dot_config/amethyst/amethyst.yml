@@ -43,9 +43,9 @@ mod1:
 
 # Second mod (default option + shift + control).
 mod2:
-  - option
+  # - option
   - shift
-  # - control
+  - control
   # - command
 
 # Commands:
@@ -253,7 +253,7 @@ relaunch-amethyst:
 floating: ["com.apple.systempreferences", "com.noodlesoft.Hazel"]
 
 window-margins: true
-smart-window-margins: false
+smart-window-margins: true
 window-margin-size: 10 
 focus-follows-mouse: false
 mouse-resizes-windows: true
