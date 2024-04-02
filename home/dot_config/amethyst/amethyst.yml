@@ -21,7 +21,7 @@ layouts:
   # - floating
   # - middle-wide
   # - column
-  # - fullscreen
+  - fullscreen
   # - tall
   # - wide
   # - two-pane
