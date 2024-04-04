@@ -1,3 +1,5 @@
+tap "homebrew/cask-fonts"
+
 brew "bat"
 brew "btop"
 brew "chezmoi"
@@ -28,20 +30,22 @@ brew "zoxide"
 cask "1password"
 cask "1password-cli"
 cask "alfred"
-cask "amethyst"
-cask "caffeine"
-cask "chromium"
+cask "contexts"
 cask "firefox"
+cask "font-hack-nerd-font"
 cask "karabiner-elements"
 cask "kitty"
+cask "moom"
 cask "obsidian"
 
 {{- if ne .chezmoi.hostname "JKW7FF949F" }}
 ## home only
 
 brew "ffmpegthumbnailer"
+brew "mas"
 brew "yt-dlp"
 cask "adobe-creative-cloud"
+cask "anki"
 cask "bartender"
 cask "chromium", args: { no_quarantine: true }
 cask "discord"
@@ -52,7 +56,9 @@ cask "spotify"
 cask "syncthing"
 cask "tailscale"
 cask "vuescan"
-
+cask "zoom"
+mas "amphetamine", id: 937984704
+mas "paprika", id: 1303222628
 {{- end }}
 
 {{- if eq .chezmoi.hostname "JKW7FF949F" }}
