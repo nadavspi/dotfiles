@@ -252,8 +252,8 @@ relaunch-amethyst:
 # To get id: osascript -e 'id of app "Application Name"' 
 floating: ["com.apple.systempreferences", "com.noodlesoft.Hazel"]
 
-window-margins: true
-smart-window-margins: true
+window-margins: false
+smart-window-margins: false
 window-margin-size: 10 
 focus-follows-mouse: false
 mouse-resizes-windows: true
