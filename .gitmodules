@@ -16,3 +16,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = home/dot_config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "home/dot_config/mpv/scripts/mpv-sub-scripts"]
+	path = home/dot_config/mpv/scripts/mpv-sub-scripts
+	url = https://github.com/Ben-Kerman/mpv-sub-scripts.git
