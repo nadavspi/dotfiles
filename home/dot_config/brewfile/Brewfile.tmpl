@@ -46,12 +46,14 @@ cask "obsidian"
 
 {{- if ne .chezmoi.hostname "JKW7FF949F" }}
 ## home only
+tap "nikitabobko/aerospace"
 
 brew "ansible"
 brew "ffmpegthumbnailer"
 brew "mas"
 brew "yt-dlp"
 cask "adobe-creative-cloud"
+cask "aerospace"
 cask "anki"
 cask "bartender"
 cask "chromium", args: { no_quarantine: true }
