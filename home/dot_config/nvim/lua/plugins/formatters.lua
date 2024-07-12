@@ -19,6 +19,7 @@ return {
 	opts = {
 		formatters_by_ft = {
 			astro = {  "prettierd" },
+			html = {  "prettierd" },
 			just = { "just" },
 			lua = { "stylua" },
 			nix = { "alejandra" },
