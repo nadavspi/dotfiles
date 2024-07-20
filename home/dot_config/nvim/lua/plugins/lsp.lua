@@ -9,6 +9,7 @@ local lspToMasonMap = {
 	cssls = "css-lsp",
 	cssmodules_ls = "cssmodules-language-server",
 	emmet_language_server = "emmet-language-server",
+	intelephense = "intelephense",
 	jsonls = "json-lsp",
 	lua_ls = "lua-language-server",
 	marksman = "marksman", -- markdown lsp
@@ -41,6 +42,20 @@ servers.emmet_language_server = {
 	filetypes = { "css", "html", "javascript", "javascriptreact", "scss", "typescriptreact" },
 	init_options = {
 		showSuggestionsAsSnippets = true, -- so it works with luasnip
+	},
+}
+
+servers.intelephense = {
+	settings = {
+		intelephense = {
+			stubs = {
+				"wordpress-globals",
+				"wordpress-stubs",
+			},
+			environment = {
+				includePaths = { "vendor/php-stubs/" },
+			},
+		},
 	},
 }
 
