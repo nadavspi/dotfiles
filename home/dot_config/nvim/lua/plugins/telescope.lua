@@ -55,6 +55,11 @@ return {
 				cwd = git_root_or_cwd(),
 			})
 		end
+		local function find_notes()
+			require("telescope.builtin").find_files({
+				cwd = "~/Documents/Archive/10-19 Personal documents/18 Notes"
+			})
+		end
 
 		vim.keymap.set("n", "<leader>ff", find_files, {})
 		vim.keymap.set("n", "<leader>gg", live_grep, {})
