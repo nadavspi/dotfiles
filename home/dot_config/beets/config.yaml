@@ -1,17 +1,20 @@
-directory: /mnt/nfs/data/media/music
-library: /mnt/nfs/appdata/beets/library.db
-plugins: fromfilename edit
+directory: /Volumes/data/media/music
+library: /Volumes/appdata/beets/library.db
+plugins: 
+  - copyartifacts
+  - edit 
+  - fromfilename 
 
 import:
     copy: yes
     resume: ask
     incremental: yes
-    languages: en he
-    log: /mnt/nfs/appdata/beets/beets.log
+    languages: en 
+    log: /Volumes/appdata/beets/beets.log
 
 match:
     strong_rec_thresh: 0.12
 
 paths:
-    default: $albumartist/$album%aunique{}/$albumartist - $album%aunique{} - $track - $title
+    default: $albumartist/$album ($year) %aunique{albumartist album, albumtype label catalognum albumdisambig releasegroupdisambig}/$albumartist - $album %aunique{} - $track - $title
 
