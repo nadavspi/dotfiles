@@ -1,20 +1,48 @@
 directory: /Volumes/data/media/music
-library: /Volumes/appdata/beets/library.db
+library: ~/Music/beets/library.db
+pluginpath: ~/Music/beets/plugins
 plugins: 
+  # pipx install beets[fetchart]
   - copyartifacts
   - edit 
+  - fetchart
+  - fish
   - fromfilename 
+  - ftintitle
+  - inline
+  - unimported
 
 import:
     copy: yes
     resume: ask
     incremental: yes
     languages: en 
-    log: /Volumes/appdata/beets/beets.log
+    log: ~/Music/beets/beets.log
+    none_rec_action: skip
 
 match:
-    strong_rec_thresh: 0.12
+    strong_rec_thresh: .15
+    medium_rec_thresh: .4
 
 paths:
-    default: $albumartist/$album ($year) %aunique{albumartist album, albumtype label catalognum albumdisambig releasegroupdisambig}/$albumartist - $album %aunique{} - $track - $title
+    default: $albumartist/$album ($year)%aunique{albumartist album, albumtype label catalognum media albumdisambig releasegroupdisambig} [$format]/%if{$multidisc,CD$disc/}$track - $title
 
+album_fields:  
+  format: |
+       formatList = []
+       for item in items:
+           formatList.append(item.format)
+       return ", ".join(set(formatList))
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
+asciify_paths: yes
+per_disc_numbering: yes
+
+
+format_item: '$artist - $album: $title [$format]'
+format_album: '$albumartist - $album ($year) [$format]'
+
+unimported:
+    ignore_extensions: jpg JPG png cue log DS_Store
+    ignore_subdirectories: extras scans .@__thumb
