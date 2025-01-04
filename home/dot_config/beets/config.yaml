@@ -5,12 +5,18 @@ plugins:
   # pipx install beets[fetchart]
   - copyartifacts
   - edit 
+  - duplicates
   - fetchart
   - fish
   - fromfilename 
   - ftintitle
   - inline
   - unimported
+  - play
+  - the
+
+play:
+    command: /Applications/VLC.app/Contents/MacOS/VLC
 
 import:
     copy: yes
@@ -18,14 +24,14 @@ import:
     incremental: yes
     languages: en 
     log: ~/Music/beets/beets.log
-    none_rec_action: skip
+    # none_rec_action: skip
 
 match:
     strong_rec_thresh: .15
     medium_rec_thresh: .4
 
 paths:
-    default: $albumartist/$album ($year)%aunique{albumartist album, albumtype label catalognum media albumdisambig releasegroupdisambig} [$format]/%if{$multidisc,CD$disc/}$track - $title
+    default: %the{$albumartist}/$album ($year)%aunique{albumartist album, albumtype label catalognum media albumdisambig releasegroupdisambig} [$format]/%if{$multidisc,CD$disc/}$track - $title
 
 album_fields:  
   format: |
@@ -38,7 +44,6 @@ item_fields:
 
 asciify_paths: yes
 per_disc_numbering: yes
-
 
 format_item: '$artist - $album: $title [$format]'
 format_album: '$albumartist - $album ($year) [$format]'

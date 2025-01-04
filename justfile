@@ -3,6 +3,12 @@ import "cli/justfile"
 USER := env_var('USER') 
 LOCALHOST := `uname -n`
 
+build:
+  #!/usr/bin/env fish
+  set fish_trace 1
+  chezmoi apply
+  brew bundle --file ~/.config/brewfile/Brewfile install && brew bundle cleanup --file ~/.config/brewfile/Brewfile --force
+
 # Sync dotfiles and apply home manager config
 latest:
   #!/usr/bin/env bash
@@ -68,7 +74,7 @@ cli: cli-build cli-run
 cli-build: 
   podman build . -f Containerfile.cli -t cli-test
 cli-run:
-  distrobox ephemeral --image cli-test
+  podman run -it cli-test
 
 ephemeral:
   podman pull ghcr.io/nadavspi/cli:latest
@@ -76,3 +82,6 @@ ephemeral:
 
 brew:
   brew bundle install --file mac/Brewfile
+
+sync-wallpapers:
+  rsync -avz --progress "/Volumes/docs/Archive/10-19 Personal documents/16 Collections/16.03 Wallpapers/art" ~/Pictures/wallpapers

@@ -1,0 +1,7 @@
+%everyone ALL=(root:wheel) NOPASSWD:NOSETENV: /bin/mkdir -m 775 -p /private/var/run/lima
+
+# Manage "bridged" network daemons
+
+# Manage "host" network daemons
+
+# Manage "shared" network daemons

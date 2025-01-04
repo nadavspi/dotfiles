@@ -13,3 +13,7 @@
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.tar.xz"
     exact = true
+[".config/mpv/scripts/sub-pause.lua"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/Ben-Kerman/mpv-sub-scripts/master/sub-pause.lua"
+    refreshPeriod = "168h"

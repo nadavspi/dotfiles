@@ -1,5 +1,9 @@
 save-position-on-quit=yes
+{{ if eq .chezmoi.os "darwin" }}
+screenshot-directory=/Volumes/data/media/chinese/clips
+{{ else }}
 screenshot-directory=/mnt/data/media/chinese/clips
+{{ end }}
 screenshot-template="%F %p"
 
 no-keepaspect-window

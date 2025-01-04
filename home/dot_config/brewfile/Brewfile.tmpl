@@ -1,10 +1,14 @@
 tap "homebrew/cask-fonts"
 tap "dimentium/autoraise"
+tap "homebrew/services"
 
 brew "bat"
 brew "btop"
 brew "chezmoi"
+brew "colima"
+brew "docker-compose"
 brew "direnv"
+brew "docker"
 brew "eza"
 brew "fd"
 brew "fish"
@@ -18,8 +22,7 @@ brew "just"
 brew "lazygit"
 brew "lf"
 brew "neovim"
-brew "nodejs"
-brew "npm"
+brew "pandoc"
 brew "pipx"
 brew "poetry"
 brew "python3"
@@ -32,10 +35,20 @@ brew "wget"
 brew "yazi"
 brew "zoxide"
 
+tap "ddev/ddev"
+brew "ddev"
+brew "mkcert" 
+brew "nss"
+
+# android device mirroring
+brew "scrcpy"
+cask "android-platform-tools"
+
 cask "1password"
 cask "1password-cli"
 cask "alfred"
 cask "amethyst"
+cask "basictex" # pdflatex for pandoc 
 cask "contexts"
 cask "dimentium/autoraise/autoraiseapp"
 cask "firefox"
@@ -43,6 +56,8 @@ cask "font-hack-nerd-font"
 cask "karabiner-elements"
 cask "kitty"
 cask "obsidian"
+cask "podman-desktop"
+cask "slack"
 
 {{- if ne .chezmoi.hostname "JKW7FF949F" }}
 ## home only
@@ -56,8 +71,8 @@ cask "anki"
 cask "bartender"
 cask "chromium", args: { no_quarantine: true }
 cask "discord"
-cask "docker"
 cask "hazel"
+cask "ireal-pro"
 cask "libreoffice"
 cask "multifirefox"
 cask "musescore"
@@ -72,12 +87,37 @@ cask "tailscale"
 cask "vuescan"
 cask "zoom"
 cask "zotero"
+cask "qbittorrent"
+cask "vlc"
 mas "amphetamine", id: 937984704
 mas "paprika", id: 1303222628
 {{- end }}
 
-{{- if eq .chezmoi.hostname "JKW7FF949F" }}
+## postman alternative
+cask "bruno"
 
-cask "postman"
+brew "nodejs"
+brew "npm"
+brew "corepack"
+brew "fnm"
 
-{{- end }}
+# virtualization
+cask "utm"
+cask "vmware-fusion"
+
+# ocr
+brew "poppler"
+brew "tesseract"
+
+# irc
+cask "halloy"
+
+# audio
+cask "audacity"
+brew "sox"
+cask "foobar2000"
+brew "mpd"
+brew "mpc"
+brew "ncmpcpp"
+cask "deadbeef@nightly"
+cask "submariner"

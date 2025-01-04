@@ -127,7 +127,6 @@ return {
 	{ "jceb/vim-textobj-uri", dependencies = { "kana/vim-textobj-user" } },
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -191,18 +190,4 @@ return {
 		end,
 	},
 	{ "akinsho/toggleterm.nvim", lazy = true, version = "*", config = true },
-	{
-		"lmburns/lf.nvim",
-		config = function()
-			vim.g.lf_netrw = 1
-
-			require("lf").setup({
-				border = "rounded",
-				escape_quit = true,
-			})
-
-			vim.keymap.set("n", "<leader>-", "<Cmd>Lf<CR>")
-		end,
-		dependencies = { "toggleterm.nvim" },
-	},
 }

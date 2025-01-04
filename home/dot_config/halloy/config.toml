@@ -1,0 +1,40 @@
+theme = "catppuccin-mocha"
+# [servers.irchighway]
+# nickname = "chungledownbim"
+# server = "irc.irchighway.net"
+# port = 6660
+# channels = ["#ebooks"]
+# use_tls = false
+
+[servers.orpheus]
+nickname = "nadav"
+server = "irc.orpheus.network"
+port = 7000
+use_tls = true
+channels = ["#recruitment"]
+nickname_password = "asthma6premise3peaceful3martini"
+
+# [servers.red]
+# nickname = "nadav"
+# server = "irc.scratch-network.net"
+# port = 6697
+# use_tls = true
+
+[buffer.channel.topic]
+enabled = true
+
+[buffer.server_messages.join]
+smart = 600
+[buffer.server_messages.part]
+smart = 600
+
+[notifications]
+highlight = { sound = "peck", show_toast = true }
+direct_message = { sound = "peck", show_toast = true }
+
+[font]
+size = 18
+family = "Hack Nerd Font"
+
+[sidebar]
+buffer_action = "replace-pane"

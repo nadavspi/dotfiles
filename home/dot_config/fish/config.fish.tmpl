@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "darwin" }}
 if status is-interactive
-    fish_add_path /opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin ~/.local/bin
 end
 {{ end }}
 

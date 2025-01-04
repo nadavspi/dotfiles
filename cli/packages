@@ -5,7 +5,6 @@ delta
 direnv
 eza
 fd
-ffmpegthumbnailer
 fish
 fzf
 github-cli
@@ -17,16 +16,21 @@ ncdu
 nodejs
 npm
 pipx
-poetry
 python3
 ripgrep
 speedtest-cli
 tmux
 wget
 yazi
-yt-dlp
 zoxide
 zsh
+
+# for ssh-agent
+openssh-client
+# for chsh
+shadow
+
+neovim
 
 # neovim build deps
 build-base 
@@ -34,4 +38,4 @@ cmake
 coreutils 
 curl 
 unzip 
-gettext-tiny-dev
+# gettext-tiny-dev

@@ -19,7 +19,7 @@ Session.vim
 \#*
 tramp
 elpa/
-bookmarks
+bookmarks!
 projectile*
 .projectile
 eshell/

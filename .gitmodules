@@ -19,3 +19,6 @@
 [submodule "home/dot_config/mpv/scripts/mpv-sub-scripts"]
 	path = home/dot_config/mpv/scripts/mpv-sub-scripts
 	url = https://github.com/Ben-Kerman/mpv-sub-scripts.git
+[submodule "home/dot_config/mpv/scripts/immersive"]
+	path = home/dot_config/mpv/scripts/immersive
+	url = https://github.com/Ben-Kerman/immersive.git

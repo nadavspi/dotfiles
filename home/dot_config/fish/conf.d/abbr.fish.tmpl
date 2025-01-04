@@ -1,5 +1,8 @@
 # vim: set filetype=fish
 abbr -a -- gst "git status"
+abbr -a -- grom "git rebase origin/main"
+abbr -a -- gromi "git rebase -i origin/main"
+abbr -a -- gfo "git fetch origin"
 abbr -a -- lg lazygit
 abbr -a -- ros "rpm-ostree"
 abbr -a -- v nvim
@@ -22,3 +25,6 @@ abbr -a -- bbi "brew bundle --file ~/.config/brewfile/Brewfile install && brew b
 {{ end }}
 abbr -a -- ffsubsync "pipx run ffsubsync"
 abbr -a -- l ya
+abbr -a -- dropout yt-dlp --referer "https://www.dropout.tv/"
+abbr -a -- archivebox "docker run -p 8000:8000 -v '/Users/nadavspi/Documents/Archive/10-19 Personal documents/16 Collections/16.13 Website archives/data':/data -v '/Users/nadavspi/Documents/Archive/10-19 Personal documents/16 Collections/16.13 Website archives/urls':/urls -it archivebox/archivebox"
+abbr -a -- singlefile "docker run -it capsulecode/singlefile"

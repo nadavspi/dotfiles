@@ -1,3 +1,5 @@
+-- vim: set filetype=lua
+
 -- core options
 vim.opt.number = true
 -- line numbers
@@ -7,6 +9,7 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.autoread = true
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.keymap.set("n", "<Space>", "<Nop>")
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -133,7 +136,7 @@ lspconfig_defaults.capabilities =
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<leader>q", "<cmd>lua require'telescope.builtin'.diagnostics({ bufnr = 0 })<cr>")
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -144,13 +147,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+		vim.keymap.set("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>", opts)
 		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+		vim.keymap.set("n", "gi", "<cmd>lua require'telescope.builtin'.lsp_implementations()<cr>", opts)
 		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+		vim.keymap.set("n", "gr", "<cmd>lua require'telescope.builtin'.lsp_references()<cr>", opts)
 		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "<leader>/", "<cmd>lua	require'telescope.builtin'.lsp_document_symbols()<cr>", opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+		vim.keymap.set({ "n", "v" }, "<leader>ca", require("actions-preview").code_actions, opts)
 	end,
 })
 

@@ -1,9 +1,4 @@
-FROM quay.io/toolbx-images/alpine-toolbox:edge
-
-COPY cli/install-distrobox-base.sh /install-distrobox-base.sh
-RUN chmod +x /install-distrobox-base.sh
-RUN /install-distrobox-base.sh
-RUN rm /install-distrobox-base.sh
+FROM alpine:latest
 
 COPY cli/repositories /etc/apk/repositories
 COPY cli/packages /packages
@@ -12,17 +7,12 @@ RUN apk update && \
     grep -v '^#' /packages | xargs apk add
 RUN rm /packages
 
-RUN echo \
-  @styled/typescript-styled-plugin \
-  pnpm \
-  | xargs npm i -g
+RUN curl -fsSL https://fnm.vercel.app/install | sh -s -- --skip-shell --install-dir /usr/local/bin
+COPY --from=docker.io/1password/op:2 /usr/local/bin/op /usr/local/bin/op
 
-WORKDIR /tmp
-RUN git clone --depth=1 https://github.com/neovim/neovim && \
- cd neovim && \
- make CMAKE_BUILD_TYPE=RelWithDebInfo && \
- make install && \
- rm -rf /tmp/neovim
+RUN echo \
+  corepack \
+  | xargs npm i -g
 
 COPY . /opt/dotfiles
 RUN mkdir -p /usr/share/nvim
@@ -32,14 +22,4 @@ RUN nvim --headless "TSUpdate" +qa
 RUN nvim --headless +"MasonToolsInstall" \ 
     -c 'autocmd User MasonToolsUpdateCompleted quitall!'
 
-RUN chmod -R 777 /usr/share/nvim
-
-# Convience symlinks
-RUN ln -fs /bin/sh /usr/bin/sh && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/bin/gum && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/bin/systemctl && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/just && \ 
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/bin/op && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree
+RUN mkdir /root/src

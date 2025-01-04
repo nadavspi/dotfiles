@@ -99,17 +99,21 @@ return {
 						"@styled/typescript-styled-plugin",
 					},
 
+					-- https://github.com/microsoft/TypeScript/blob/v5.0.4/src/server/protocol.ts#L3439
+					tsserver_file_preferences = {
+						includeCompletionsForImportStatements = true,
+					},
+
+					-- https://github.com/microsoft/TypeScript/blob/v5.0.4/src/server/protocol.ts#L3418
+					tsserver_format_options = {
+
+					},
+
 					-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
 					-- "remove_unused_imports"|"organize_imports") -- or string "all"
 					-- to include all supported code actions
 					-- specify commands exposed as code_actions
-					expose_as_code_action = {
-						"fix_all",
-						"add_missing_imports",
-						"remove_unused",
-						"remove_unused_imports",
-						"organize_imports",
-					},
+					expose_as_code_action = "all",
 
 					-- possible values: ("off"|"all"|"implementations_only"|"references_only")
 					code_lens = "off",
@@ -129,4 +133,5 @@ return {
 			})
 		end,
 	},
+	{ "aznhe21/actions-preview.nvim" }
 }

@@ -12,18 +12,30 @@ end
 return {
 	"stevearc/conform.nvim",
 	cmd = { "ConformInfo" },
-	mason_dependencies = { "stylua", "shellcheck", "shfmt", "prettierd" },
+	mason_dependencies = {
+		"prettierd",
+		"shellcheck",
+		"shfmt",
+		"stylua",
+	},
 	keys = {
 		{ "<leader>f", format, mode = { "n", "x" }, desc = "Format buffer" },
 	},
 	opts = {
+		-- log_level = vim.log.levels.DEBUG,
 		formatters_by_ft = {
-			astro = {  "prettierd" },
-			html = {  "prettierd" },
+			html = { "prettierd" },
 			just = { "just" },
 			lua = { "stylua" },
 			nix = { "alejandra" },
+			php = { "easy-coding-standard" },
 			sh = { "shellcheck", "shfmt" },
+			astro = { "prettier" },
+			javascript = { "prettierd", "prettier", stop_after_first = true },
+			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			graphql = { "prettierd", "prettier", stop_after_first = true },
 		},
 	},
 }
