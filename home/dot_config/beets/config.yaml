@@ -45,9 +45,13 @@ item_fields:
 asciify_paths: yes
 per_disc_numbering: yes
 
-format_item: '$artist - $album: $title [$format]'
+format_item: '$artist - $album: $title [$format] $bitrate'
 format_album: '$albumartist - $album ($year) [$format]'
 
 unimported:
     ignore_extensions: jpg JPG png cue log DS_Store
     ignore_subdirectories: extras scans .@__thumb
+
+copyartifacts:
+    extensions: .cue .log .jpg
+    print_ignored: yes
