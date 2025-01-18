@@ -4,6 +4,7 @@ pluginpath: ~/Music/beets/plugins
 plugins: 
   # pipx install beets[fetchart]
   - copyartifacts
+  - originquery
   - edit 
   - duplicates
   - fetchart
@@ -52,6 +53,14 @@ unimported:
     ignore_extensions: jpg JPG png cue log DS_Store
     ignore_subdirectories: extras scans .@__thumb
 
-copyartifacts:
-    extensions: .cue .log .jpg
-    print_ignored: yes
+musicbrainz:
+    extra_tags: [year, catalognum, country, media, label]
+
+originquery:
+    origin_file: origin.yaml
+    tag_patterns:
+        media: '$.Media'
+        year: '$."Edition year"'
+        label: '$."Record label"'
+        catalognum: '$."Catalog number"'
+        albumdisambig: '$.Edition'
